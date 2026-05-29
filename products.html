@@ -2,43 +2,77 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
   <title>Bean to Bag | Our Products</title>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
   <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700;800&family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
   <style>
     * { margin: 0; padding: 0; box-sizing: border-box; }
-    body { font-family: 'Poppins', sans-serif; background: #FFF9F5; color: #2C1810; }
+    body { font-family: 'Poppins', sans-serif; background: #FFF9F5; color: #2C1810; overflow-x: hidden; }
     h1, h2, h3, .logo { font-family: 'Playfair Display', serif; }
-    nav { position: fixed; top: 0; width: 100%; background: rgba(255, 249, 245, 0.95); backdrop-filter: blur(10px); z-index: 1000; padding: 1rem 5%; display: flex; justify-content: space-between; align-items: center; }
-    .logo { font-size: 1.8rem; font-weight: 800; }
+
+    nav {
+      position: fixed;
+      top: 0;
+      width: 100%;
+      background: rgba(255, 249, 245, 0.98);
+      backdrop-filter: blur(10px);
+      z-index: 1000;
+      padding: 0.8rem 5%;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      box-shadow: 0 2px 15px rgba(0,0,0,0.05);
+    }
+    .logo { font-size: 1.4rem; font-weight: 800; }
     .logo span { color: #C68B5E; }
-    .nav-links { display: flex; gap: 2.5rem; list-style: none; }
-    .nav-links a { text-decoration: none; color: #2C1810; font-weight: 500; transition: 0.3s; }
+    .menu-icon { display: block; font-size: 1.8rem; cursor: pointer; color: #2C1810; }
+    .nav-links {
+      display: none;
+      position: absolute;
+      top: 65px;
+      left: 0;
+      width: 100%;
+      background: #FFF9F5;
+      flex-direction: column;
+      padding: 1.5rem;
+      text-align: center;
+      gap: 1.2rem;
+      box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+      border-top: 1px solid #EDE3D8;
+    }
+    .nav-links.active { display: flex; }
+    .nav-links a { text-decoration: none; color: #2C1810; font-weight: 500; padding: 0.5rem; font-size: 1rem; }
     .nav-links a:hover, .nav-links a.active { color: #C68B5E; }
-    .menu-icon { display: none; font-size: 1.8rem; cursor: pointer; }
-    .btn-primary { background: #C68B5E; color: white; padding: 0.8rem 2rem; border-radius: 50px; text-decoration: none; display: inline-block; transition: 0.3s; }
-    .whatsapp-float { position: fixed; bottom: 30px; right: 30px; background: #25D366; width: 60px; height: 60px; border-radius: 50%; text-align: center; line-height: 60px; font-size: 32px; color: white; z-index: 999; }
-    footer { background: #1A0F0A; color: #B8A99A; padding: 3rem 5% 2rem; margin-top: 4rem; text-align: center; }
-    .section { padding: 8rem 5% 4rem; }
+
+    .btn-primary { background: #C68B5E; color: white; padding: 0.8rem 1.5rem; border-radius: 50px; text-decoration: none; display: inline-block; font-size: 0.9rem; transition: 0.3s; }
+    .whatsapp-float { position: fixed; bottom: 20px; right: 20px; background: #25D366; width: 50px; height: 50px; border-radius: 50%; text-align: center; line-height: 50px; font-size: 26px; color: white; z-index: 999; }
+    footer { background: #1A0F0A; color: #B8A99A; padding: 2rem 1rem; margin-top: 2rem; text-align: center; }
+    .section { padding: 6rem 1rem 3rem; }
     .container { max-width: 1200px; margin: 0 auto; }
-    .products-hero { background: linear-gradient(135deg, #C68B5E, #8B5E3C); color: white; text-align: center; padding: 6rem 2rem; border-radius: 30px; margin-bottom: 3rem; }
-    .products-hero h1 { font-size: 4rem; margin-bottom: 1rem; }
-    .products-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 2rem; margin: 3rem 0; }
-    .product-card { background: white; border-radius: 20px; overflow: hidden; box-shadow: 0 10px 30px rgba(0,0,0,0.08); transition: 0.4s; }
-    .product-card:hover { transform: translateY(-10px); }
-    .product-img { height: 280px; display: flex; align-items: center; justify-content: center; font-size: 5rem; color: white; }
-    .product-info { padding: 2rem; }
-    .product-info h2 { font-size: 1.8rem; margin-bottom: 0.5rem; }
-    .roast-level { display: inline-block; background: #C68B5E; color: white; padding: 0.2rem 1rem; border-radius: 50px; font-size: 0.7rem; margin: 1rem 0; }
-    .sizes { margin-top: 1rem; padding-top: 1rem; border-top: 1px solid #EEE; display: flex; gap: 1rem; flex-wrap: wrap; }
-    .size { background: #F5EDE5; padding: 0.3rem 0.8rem; border-radius: 50px; font-size: 0.8rem; }
-    .packaging-showcase { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 1.5rem; margin: 3rem 0; }
-    .pack-img { width: 100%; border-radius: 15px; box-shadow: 0 5px 15px rgba(0,0,0,0.1); }
-    @media (max-width: 768px) {
-      .nav-links { display: none; position: absolute; top: 70px; left: 0; width: 100%; background: #FFF9F5; flex-direction: column; padding: 1rem; text-align: center; }
-      .menu-icon { display: block; }
-      .products-hero h1 { font-size: 2.5rem; }
+    .products-hero { background: linear-gradient(135deg, #C68B5E, #8B5E3C); color: white; text-align: center; padding: 2.5rem 1rem; border-radius: 20px; margin-bottom: 2rem; }
+    .products-hero h1 { font-size: 2rem; margin-bottom: 0.5rem; }
+    .products-grid { display: grid; grid-template-columns: 1fr; gap: 1.5rem; margin: 2rem 0; }
+    .product-card { background: white; border-radius: 20px; overflow: hidden; box-shadow: 0 10px 20px rgba(0,0,0,0.08); }
+    .product-img { height: 200px; display: flex; align-items: center; justify-content: center; font-size: 4rem; color: white; }
+    .product-info { padding: 1.2rem; }
+    .product-info h2 { font-size: 1.4rem; margin-bottom: 0.3rem; }
+    .roast-level { display: inline-block; background: #C68B5E; color: white; padding: 0.2rem 0.8rem; border-radius: 50px; font-size: 0.7rem; margin: 0.5rem 0; }
+    .sizes { margin-top: 0.8rem; padding-top: 0.8rem; border-top: 1px solid #EEE; display: flex; gap: 0.8rem; flex-wrap: wrap; }
+    .size { background: #F5EDE5; padding: 0.2rem 0.7rem; border-radius: 50px; font-size: 0.75rem; }
+    .packaging-showcase { display: grid; grid-template-columns: 1fr; gap: 1rem; margin: 2rem 0; }
+    .pack-img { width: 100%; border-radius: 15px; height: 180px; object-fit: cover; }
+
+    @media (min-width: 768px) {
+      .menu-icon { display: none; }
+      .nav-links { display: flex !important; position: static; width: auto; flex-direction: row; padding: 0; gap: 2rem; box-shadow: none; border-top: none; }
+      .products-hero h1 { font-size: 3.5rem; }
+      .products-grid { grid-template-columns: repeat(2, 1fr); gap: 2rem; }
+      .packaging-showcase { grid-template-columns: repeat(3, 1fr); gap: 1.5rem; }
+      .section { padding: 8rem 2rem 4rem; }
+    }
+    @media (min-width: 1024px) {
+      .products-grid { grid-template-columns: repeat(4, 1fr); }
     }
   </style>
 </head>
@@ -48,6 +82,7 @@
 
 <nav>
   <div class="logo">Bean <span>to Bag</span></div>
+  <div class="menu-icon" onclick="toggleMenu()"><i class="fas fa-bars"></i></div>
   <ul class="nav-links" id="navLinks">
     <li><a href="index.html">Home</a></li>
     <li><a href="about.html">About</a></li>
@@ -55,7 +90,6 @@
     <li><a href="origin.html">Origin</a></li>
     <li><a href="contact.html">Contact</a></li>
   </ul>
-  <div class="menu-icon" onclick="document.getElementById('navLinks').classList.toggle('active')"><i class="fas fa-bars"></i></div>
 </nav>
 
 <section class="section">
@@ -66,61 +100,52 @@
     </div>
 
     <div class="products-grid">
-      <!-- Caskara -->
       <div class="product-card">
         <div class="product-img" style="background: linear-gradient(135deg, #E8A87C, #D4845A);"><i class="fas fa-mug-hot"></i></div>
         <div class="product-info">
           <h2>Caskara</h2>
-          <p>Dried coffee cherry infusion with naturally sweet and fruity notes.</p>
-          <div class="roast-level">Caffeine-Free Herbal</div>
-          <p><strong>Taste:</strong> Fruity · Sweet · Floral</p>
+          <p>Dried coffee cherry infusion with sweet, fruity notes.</p>
+          <div class="roast-level">Caffeine-Free</div>
           <div class="sizes"><span class="size">250g</span><span class="size">500g</span><span class="size">1kg</span></div>
         </div>
       </div>
-      <!-- Qalid's Choice -->
       <div class="product-card">
         <div class="product-img" style="background: linear-gradient(135deg, #8B5E3C, #6B3E1A);"><i class="fas fa-mortar-pestle"></i></div>
         <div class="product-info">
           <h2>Qalid's Choice</h2>
-          <p>House blend ground coffee with balanced body and chocolate notes.</p>
-          <div class="roast-level">Medium-Dark Roast</div>
-          <p><strong>Taste:</strong> Balanced · Smooth · Chocolate</p>
+          <p>House blend ground coffee with balanced chocolate notes.</p>
+          <div class="roast-level">Medium-Dark</div>
           <div class="sizes"><span class="size">250g</span><span class="size">500g</span><span class="size">1kg</span></div>
         </div>
       </div>
-      <!-- Chemina -->
       <div class="product-card">
         <div class="product-img" style="background: linear-gradient(135deg, #3A281C, #2C1810);"><i class="fas fa-seedling"></i></div>
         <div class="product-info">
           <h2>Chemina</h2>
-          <p>Whole bean espresso roast with bold body and deep cocoa notes.</p>
-          <div class="roast-level">Medium-Dark Roast</div>
-          <p><strong>Taste:</strong> Bold · Cocoa · Smooth finish</p>
+          <p>Whole bean espresso roast with bold cocoa body.</p>
+          <div class="roast-level">Medium-Dark</div>
           <div class="sizes"><span class="size">250g</span><span class="size">500g</span><span class="size">1kg</span></div>
         </div>
       </div>
-      <!-- Origin Green -->
       <div class="product-card">
         <div class="product-img" style="background: linear-gradient(135deg, #5A7A4A, #3A5A2A);"><i class="fas fa-leaf"></i></div>
         <div class="product-info">
           <h2>Origin Green</h2>
           <p>Raw green coffee beans for home roasters and cafés.</p>
-          <div class="roast-level">Unroasted · Green Beans</div>
-          <p><strong>Perfect for:</strong> Home roasting · Cafés · Enthusiasts</p>
+          <div class="roast-level">Unroasted</div>
           <div class="sizes"><span class="size">500g</span><span class="size">1kg</span><span class="size">5kg</span></div>
         </div>
       </div>
     </div>
 
-    <!-- Packaging Showcase -->
-    <h2 style="text-align: center; margin: 3rem 0 1rem;">Our Premium Packaging</h2>
+    <h2 style="text-align: center; margin: 2rem 0 1rem;">Our Premium Packaging</h2>
     <div class="packaging-showcase">
-      <img src="packaging.jpg" alt="Packaging" class="pack-img">
-      <img src="packaging2.jpg" alt="Packaging 2" class="pack-img">
-      <img src="packaging3.jpg" alt="Packaging 3" class="pack-img">
+      <img src="packaging.jpg" class="pack-img" onerror="this.src='https://placehold.co/400x300?text=Packaging'">
+      <img src="packaging2.jpg" class="pack-img" onerror="this.src='https://placehold.co/400x300?text=Packaging+2'">
+      <img src="packaging3.jpg" class="pack-img" onerror="this.src='https://placehold.co/400x300?text=Packaging+3'">
     </div>
 
-    <div style="text-align: center; margin-top: 2rem;">
+    <div style="text-align: center; margin-top: 1.5rem;">
       <a href="contact.html" class="btn-primary">Place Your Order →</a>
     </div>
   </div>
@@ -129,15 +154,18 @@
 <footer>
   <div class="container">
     <h2 style="color: white;">Bean <span style="color: #C68B5E;">to Bag</span></h2>
-    <p style="margin-top: 1rem;">Freshly roasted in Addis Ababa, Ethiopia</p>
+    <p style="margin-top: 0.5rem;">Freshly roasted in Addis Ababa, Ethiopia</p>
   </div>
 </footer>
 
 <script>
-  window.addEventListener('scroll', function() {
-    const nav = document.querySelector('nav');
-    if (window.scrollY > 50) nav.style.background = 'rgba(255, 249, 245, 0.98)';
-    else nav.style.background = 'rgba(255, 249, 245, 0.95)';
+  function toggleMenu() {
+    document.getElementById('navLinks').classList.toggle('active');
+  }
+  document.querySelectorAll('.nav-links a').forEach(link => {
+    link.addEventListener('click', () => {
+      document.getElementById('navLinks').classList.remove('active');
+    });
   });
 </script>
 </body>
