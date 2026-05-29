@@ -2,13 +2,13 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
   <title>Bean to Bag | About Us</title>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
   <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700;800&family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
   <style>
     * { margin: 0; padding: 0; box-sizing: border-box; }
-    body { font-family: 'Poppins', sans-serif; background: #FFF9F5; color: #2C1810; overflow-x: hidden; }
+    body { font-family: 'Poppins', sans-serif; background: #FFF9F5; color: #2C1810; }
     h1, h2, .logo { font-family: 'Playfair Display', serif; }
     ul, li { list-style: none; }
 
@@ -26,7 +26,7 @@
     }
     .logo { font-size: 1.5rem; font-weight: 800; }
     .logo span { color: #C68B5E; }
-    .menu-icon { display: block; font-size: 1.8rem; cursor: pointer; background: none; border: none; }
+    .menu-icon { display: block; font-size: 1.8rem; cursor: pointer; background: none; border: none; color: #2C1810; }
     .nav-links {
       display: none;
       position: absolute;
@@ -38,27 +38,26 @@
       padding: 1.5rem;
       text-align: center;
       gap: 1rem;
+      border-top: 1px solid #EDE3D8;
     }
     .nav-links.active { display: flex; }
     .nav-links a { text-decoration: none; color: #2C1810; font-weight: 500; }
     .nav-links a:hover, .nav-links a.active { color: #C68B5E; }
 
-    .btn-primary { background: #C68B5E; color: white; padding: 0.8rem 2rem; border-radius: 50px; text-decoration: none; }
+    .btn-primary { background: #C68B5E; color: white; padding: 0.8rem 2rem; border-radius: 50px; text-decoration: none; display: inline-block; transition: 0.3s; }
+    .btn-primary:hover { background: #A06B42; transform: translateY(-2px); }
     .whatsapp-float { position: fixed; bottom: 20px; right: 20px; background: #25D366; width: 50px; height: 50px; border-radius: 50%; text-align: center; line-height: 50px; font-size: 26px; color: white; z-index: 999; }
     footer { background: #1A0F0A; color: #B8A99A; padding: 2rem; text-align: center; margin-top: 2rem; }
     .section { padding: 7rem 1.5rem 3rem; }
     .container { max-width: 1200px; margin: 0 auto; }
 
-    .about-hero { background: linear-gradient(135deg, #2C1810, #4A2C1A); color: white; text-align: center; padding: 4rem 1rem; border-radius: 30px; margin-bottom: 2rem; position: relative; overflow: hidden; }
-    .about-hero::before { content: ''; position: absolute; top: -50px; right: -50px; width: 200px; height: 200px; background: url('steaming-cup-coffee-saucer-with-coffee-beans-scattered-around.jpg'); background-size: cover; opacity: 0.2; border-radius: 50%; }
-    .about-hero h1 { font-size: 2.5rem; }
+    .about-hero { background: linear-gradient(135deg, #2C1810, #4A2C1A); color: white; text-align: center; padding: 4rem 1rem; border-radius: 30px; margin-bottom: 2rem; }
+    .about-hero h1 { font-size: 2.5rem; margin-bottom: 1rem; }
     .mission-vision { display: flex; flex-direction: column; gap: 1.5rem; margin: 2rem 0; }
-    .card { background: white; padding: 2rem; border-radius: 20px; text-align: center; position: relative; overflow: hidden; }
+    .card { background: white; padding: 2rem; border-radius: 20px; text-align: center; box-shadow: 0 10px 20px rgba(0,0,0,0.05); }
     .card i { font-size: 3rem; color: #C68B5E; margin-bottom: 1rem; }
     .values { display: grid; grid-template-columns: 1fr; gap: 1rem; margin: 2rem 0; }
     .value-item { background: #F5EDE5; padding: 1.5rem; border-radius: 15px; text-align: center; }
-    .image-row { display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 1rem; margin: 2rem 0; }
-    .image-row img { width: 100%; height: 120px; object-fit: cover; border-radius: 15px; }
 
     @media (min-width: 768px) {
       .menu-icon { display: none; }
@@ -80,7 +79,7 @@
     <li><a href="index.html">Home</a></li>
     <li><a href="about.html" class="active">About</a></li>
     <li><a href="products.html">Products</a></li>
-    <li><a href="origin.html">Origin</a></li>
+    <li><a href="origin.html">Coffee Origin</a></li>
     <li><a href="contact.html">Contact</a></li>
   </ul>
 </nav>
@@ -89,34 +88,33 @@
   <div class="container">
     <div class="about-hero">
       <h1>Our Story</h1>
-      <p style="max-width: 700px; margin: 1rem auto;">Bean to Bag is dedicated to delivering high-quality Ethiopian coffee from origin to cup.</p>
-    </div>
-
-    <div class="image-row">
-      <img src="10.JPG" onerror="this.src='https://placehold.co/200x120?text=Coffee'">
-      <img src="11.JPG" onerror="this.src='https://placehold.co/200x120?text=Coffee'">
-      <img src="12.JPG" onerror="this.src='https://placehold.co/200x120?text=Coffee'">
-      <img src="13.JPG" onerror="this.src='https://placehold.co/200x120?text=Coffee'">
+      <p>Bean to Bag is dedicated to delivering high-quality Ethiopian coffee from origin to cup.</p>
     </div>
 
     <div class="mission-vision">
-      <div class="card"><i class="fas fa-bullseye"></i><h2>Our Mission</h2><p>Provide freshly roasted Ethiopian Arabica coffee while supporting small-scale farmers.</p></div>
-      <div class="card"><i class="fas fa-eye"></i><h2>Our Vision</h2><p>To build a recognized Ethiopian coffee brand with full traceability.</p></div>
+      <div class="card">
+        <i class="fas fa-bullseye"></i>
+        <h2>Our Mission</h2>
+        <p>To provide customers with freshly roasted Ethiopian Arabica coffee that reflects the unique flavors of Ethiopia's highland coffee regions while supporting small-scale farmers and maintaining high quality standards.</p>
+      </div>
+      <div class="card">
+        <i class="fas fa-eye"></i>
+        <h2>Our Vision</h2>
+        <p>To build a recognized Ethiopian coffee brand that delivers premium roasted coffee while maintaining full traceability from farm to final product.</p>
+      </div>
     </div>
 
-    <h2 style="text-align: center; margin: 2rem 0;">Our Core Values</h2>
     <div class="values">
-      <div class="value-item"><i class="fas fa-hand-holding-heart"></i><h3>Quality First</h3><p>100% Arabica</p></div>
-      <div class="value-item"><i class="fas fa-chart-line"></i><h3>Traceability</h3><p>Farm to bag</p></div>
-      <div class="value-item"><i class="fas fa-users"></i><h3>Community</h3><p>Supporting farmers</p></div>
-      <div class="value-item"><i class="fas fa-seedling"></i><h3>Sustainability</h3><p>Traditional farming</p></div>
+      <div class="value-item"><i class="fas fa-hand-holding-heart"></i><h3>Quality First</h3><p>Only 100% Arabica from Ethiopian highlands</p></div>
+      <div class="value-item"><i class="fas fa-chart-line"></i><h3>Traceability</h3><p>From farm to bag, fully transparent</p></div>
+      <div class="value-item"><i class="fas fa-users"></i><h3>Community</h3><p>Supporting smallholder farmers</p></div>
+      <div class="value-item"><i class="fas fa-seedling"></i><h3>Sustainability</h3><p>Traditional garden farming methods</p></div>
     </div>
 
-    <div class="image-row">
-      <img src="14.JPG" onerror="this.src='https://placehold.co/200x120?text=Coffee'">
-      <img src="15.JPG" onerror="this.src='https://placehold.co/200x120?text=Coffee'">
-      <img src="16.JPG" onerror="this.src='https://placehold.co/200x120?text=Coffee'">
-      <img src="17.JPG" onerror="this.src='https://placehold.co/200x120?text=Coffee'">
+    <div style="background: #2C1810; color: white; padding: 2rem; border-radius: 20px; text-align: center; margin-top: 2rem;">
+      <i class="fas fa-mug-hot" style="font-size: 3rem; color: #C68B5E;"></i>
+      <h3 style="margin: 1rem 0;">From Bean to Bag — The Complete Coffee Journey</h3>
+      <p>Coffee Bean → Roasting → Packaging → Customer</p>
     </div>
   </div>
 </section>
