@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
   <title>Bean to Bag | Contact Us</title>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
   <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700;800&family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
@@ -26,7 +26,7 @@
     }
     .logo { font-size: 1.5rem; font-weight: 800; }
     .logo span { color: #C68B5E; }
-    .menu-icon { display: block; font-size: 1.8rem; cursor: pointer; background: none; border: none; }
+    .menu-icon { display: block; font-size: 1.8rem; cursor: pointer; background: none; border: none; color: #2C1810; }
     .nav-links {
       display: none;
       position: absolute;
@@ -38,36 +38,38 @@
       padding: 1.5rem;
       text-align: center;
       gap: 1rem;
+      border-top: 1px solid #EDE3D8;
     }
     .nav-links.active { display: flex; }
     .nav-links a { text-decoration: none; color: #2C1810; font-weight: 500; }
     .nav-links a:hover, .nav-links a.active { color: #C68B5E; }
 
-    .btn-primary { background: #C68B5E; color: white; padding: 0.8rem 2rem; border-radius: 50px; border: none; cursor: pointer; }
+    .btn-primary { background: #C68B5E; color: white; padding: 0.8rem 2rem; border-radius: 50px; border: none; cursor: pointer; font-weight: 600; transition: 0.3s; }
+    .btn-primary:hover { background: #A06B42; transform: translateY(-2px); }
     .whatsapp-float { position: fixed; bottom: 20px; right: 20px; background: #25D366; width: 50px; height: 50px; border-radius: 50%; text-align: center; line-height: 50px; font-size: 26px; color: white; z-index: 999; }
     footer { background: #1A0F0A; color: #B8A99A; padding: 2rem; text-align: center; margin-top: 2rem; }
     .section { padding: 7rem 1.5rem 3rem; }
     .container { max-width: 1200px; margin: 0 auto; }
 
-    .contact-hero { background: linear-gradient(135deg, #C68B5E, #8B5E3C); color: white; text-align: center; padding: 4rem 1rem; border-radius: 30px; margin-bottom: 2rem; position: relative; overflow: hidden; }
-    .contact-hero::after { content: ''; position: absolute; bottom: 20px; right: 20px; width: 120px; height: 120px; background: url('steaming-cup-coffee-saucer-with-coffee-beans-scattered-around.jpg'); background-size: cover; opacity: 0.2; border-radius: 50%; }
-    .contact-hero h1 { font-size: 2.5rem; }
+    .contact-hero { background: linear-gradient(135deg, #C68B5E, #8B5E3C); color: white; text-align: center; padding: 4rem 1rem; border-radius: 30px; margin-bottom: 2rem; }
+    .contact-hero h1 { font-size: 2.5rem; margin-bottom: 1rem; }
     .contact-grid { display: flex; flex-direction: column; gap: 1.5rem; margin: 2rem 0; }
     .contact-form, .contact-info { background: white; padding: 2rem; border-radius: 20px; box-shadow: 0 10px 20px rgba(0,0,0,0.08); }
-    .contact-form input, .contact-form textarea { width: 100%; padding: 0.8rem; margin: 0.5rem 0; border: 1px solid #E0D4C8; border-radius: 10px; }
+    .contact-form input, .contact-form textarea { width: 100%; padding: 0.8rem; margin: 0.5rem 0; border: 1px solid #E0D4C8; border-radius: 10px; font-family: inherit; }
+    .contact-form textarea { resize: vertical; }
     .info-item { display: flex; align-items: center; gap: 1rem; margin-bottom: 1rem; }
     .info-item i { width: 30px; color: #C68B5E; font-size: 1.2rem; }
     .map-container { margin: 1.5rem 0; border-radius: 15px; overflow: hidden; height: 220px; }
     .map-container iframe { width: 100%; height: 100%; border: 0; }
     .comment-section { margin-top: 2rem; background: white; padding: 2rem; border-radius: 20px; }
     .comment-item { background: #F5EDE5; padding: 1rem; border-radius: 15px; margin-bottom: 1rem; }
-    .gallery-row { display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 1rem; margin: 2rem 0; }
-    .gallery-row img { width: 100%; height: 120px; object-fit: cover; border-radius: 15px; }
+    .social-icons a { color: #B8A99A; font-size: 1.3rem; margin: 0 0.5rem; transition: 0.3s; }
+    .social-icons a:hover { color: #C68B5E; }
 
     @media (min-width: 768px) {
       .menu-icon { display: none; }
       .nav-links { display: flex !important; position: static; flex-direction: row; background: transparent; padding: 0; gap: 2rem; }
-      .contact-grid { flex-direction: row; }
+      .contact-grid { flex-direction: row; gap: 2rem; }
       .contact-hero h1 { font-size: 4rem; }
     }
   </style>
@@ -83,7 +85,7 @@
     <li><a href="index.html">Home</a></li>
     <li><a href="about.html">About</a></li>
     <li><a href="products.html">Products</a></li>
-    <li><a href="origin.html">Origin</a></li>
+    <li><a href="origin.html">Coffee Origin</a></li>
     <li><a href="contact.html" class="active">Contact</a></li>
   </ul>
 </nav>
@@ -92,52 +94,62 @@
   <div class="container">
     <div class="contact-hero">
       <h1>Get in Touch</h1>
-      <p>Orders, partnerships, or just coffee talk</p>
-    </div>
-
-    <div class="gallery-row">
-      <img src="10.JPG" onerror="this.src='https://placehold.co/200x120?text=Coffee'">
-      <img src="11.JPG" onerror="this.src='https://placehold.co/200x120?text=Coffee'">
-      <img src="12.JPG" onerror="this.src='https://placehold.co/200x120?text=Coffee'">
-      <img src="13.JPG" onerror="this.src='https://placehold.co/200x120?text=Coffee'">
+      <p>Orders, partnerships, wholesale, or just coffee talk — we'd love to hear from you</p>
     </div>
 
     <div class="contact-grid">
       <div class="contact-form">
-        <h2>Send us a message</h2>
+        <h2 style="margin-bottom: 1rem;">Send us a message</h2>
         <form id="messageForm">
           <input type="text" id="name" placeholder="Your name" required>
           <input type="email" id="email" placeholder="Email address" required>
-          <input type="tel" id="phone" placeholder="Phone number">
-          <textarea id="message" rows="4" placeholder="Tell us about your order..."></textarea>
+          <input type="tel" id="phone" placeholder="Phone number (optional)">
+          <textarea id="message" rows="4" placeholder="Tell us about your order, wholesale inquiry, or partnership..."></textarea>
           <button type="submit" class="btn-primary">Send Message</button>
         </form>
         <p id="formFeedback" style="margin-top: 1rem; color: #C68B5E;"></p>
       </div>
 
       <div class="contact-info">
-        <h2>Visit or Connect</h2>
-        <div class="info-item"><i class="fas fa-map-marker-alt"></i><span><strong>Bole Medhanealem</strong><br>Addis Ababa, Ethiopia</span></div>
-        <div class="info-item"><i class="fab fa-whatsapp"></i><span><strong>+251 911 223344</strong><br>WhatsApp business</span></div>
+        <h2 style="margin-bottom: 1rem;">Visit or Connect</h2>
+        <div class="info-item"><i class="fas fa-map-marker-alt"></i><span><strong>Addis Ababa, Ethiopia</strong><br>Bole Medhanealem</span></div>
+        <div class="info-item"><i class="fab fa-whatsapp"></i><span><strong>+251 911 223344</strong><br>WhatsApp business (preferred)</span></div>
         <div class="info-item"><i class="fas fa-envelope"></i><span><strong>hello@beantobag.com</strong><br>Email us anytime</span></div>
-        <div class="info-item"><i class="fab fa-instagram"></i><span><strong>@beantobag_ethiopia</strong><br>Follow our journey</span></div>
+        <div class="info-item"><i class="fab fa-instagram"></i><span><strong>@beantobag_ethiopia</strong><br>Follow our coffee journey</span></div>
+        <div class="info-item"><i class="fab fa-telegram"></i><span><strong>@beantobag</strong><br>Join our Telegram</span></div>
         <div class="map-container">
-          <iframe src="https://maps.google.com/maps?q=Addis+Ababa+Bole+Medhanealem+Ethiopia&t=&z=14&ie=UTF8&iwloc=&output=embed" allowfullscreen></iframe>
+          <iframe src="https://maps.google.com/maps?q=Addis+Ababa+Ethiopia&t=&z=12&ie=UTF8&iwloc=&output=embed" allowfullscreen loading="lazy"></iframe>
         </div>
+        <p><strong>📍 Location:</strong> Addis Ababa, Ethiopia (roastery visits by appointment)</p>
       </div>
     </div>
 
+    <!-- Customer Reviews Section -->
     <div class="comment-section">
-      <h2>Customer Reviews</h2>
+      <h2 style="margin-bottom: 1rem;"><i class="fas fa-comments"></i> Customer Reviews</h2>
       <div id="commentsList">
-        <div class="comment-item"><strong>Meron T.</strong><p>"The Chemina espresso is incredible!"</p><small>★★★★★</small></div>
-        <div class="comment-item"><strong>Samson K.</strong><p>"Qalid's Choice is authentic Ethiopian taste."</p><small>★★★★☆</small></div>
+        <div class="comment-item"><strong>Meron T.</strong><p>"The Chemina espresso is absolutely incredible! Best coffee I've had in Addis."</p><small>★★★★★</small></div>
+        <div class="comment-item"><strong>Samson K.</strong><p>"Qalid's Choice is authentic Ethiopian taste. Smooth and delicious for jebena brewing."</p><small>★★★★☆</small></div>
+        <div class="comment-item"><strong>Hanna D.</strong><p>"Caskara is unique and refreshing. Love the fruity notes!"</p><small>★★★★★</small></div>
+        <div class="comment-item"><strong>Dawit M.</strong><p>"Ordered Origin Green for home roasting. Fresh and high quality."</p><small>★★★★★</small></div>
       </div>
       <form id="commentForm" style="margin-top: 1.5rem;">
-        <input type="text" id="commentName" placeholder="Your name" style="width:100%; padding:0.8rem; margin-bottom:0.8rem; border-radius:10px; border:1px solid #E0D4C8;">
-        <textarea id="commentText" rows="2" placeholder="Share your experience..." style="width:100%; padding:0.8rem; margin-bottom:0.8rem; border-radius:10px; border:1px solid #E0D4C8;"></textarea>
+        <input type="text" id="commentName" placeholder="Your name" required style="width:100%; padding:0.8rem; margin-bottom:0.8rem; border-radius:10px; border:1px solid #E0D4C8;">
+        <textarea id="commentText" rows="2" placeholder="Share your coffee experience..." style="width:100%; padding:0.8rem; margin-bottom:0.8rem; border-radius:10px; border:1px solid #E0D4C8;"></textarea>
         <button type="submit" class="btn-primary">Post Review</button>
       </form>
+    </div>
+
+    <!-- Sales Channels -->
+    <div style="background: #2C1810; color: white; padding: 2rem; border-radius: 20px; margin-top: 2rem; text-align: center;">
+      <h3 style="margin-bottom: 1rem;">Order Through Our Sales Channels</h3>
+      <div style="display: flex; justify-content: center; gap: 2rem; flex-wrap: wrap;">
+        <span><i class="fab fa-instagram"></i> Instagram</span>
+        <span><i class="fab fa-facebook"></i> Facebook</span>
+        <span><i class="fab fa-telegram"></i> Telegram</span>
+        <span><i class="fab fa-whatsapp"></i> WhatsApp</span>
+      </div>
+      <p style="margin-top: 1rem;">Corporate supply & wholesale available — contact us for bulk pricing</p>
     </div>
   </div>
 </section>
@@ -146,6 +158,13 @@
   <div class="container">
     <h2>Bean <span style="color:#C68B5E;">to Bag</span></h2>
     <p>Brewed with heritage, roasted with purpose</p>
+    <div class="social-icons" style="margin-top: 1rem;">
+      <a href="#"><i class="fab fa-instagram"></i></a>
+      <a href="#"><i class="fab fa-facebook"></i></a>
+      <a href="#"><i class="fab fa-telegram"></i></a>
+      <a href="#"><i class="fab fa-twitter"></i></a>
+    </div>
+    <p style="margin-top: 1rem;">© 2025 Bean to Bag Coffee – Premium Ethiopian Coffee</p>
   </div>
 </footer>
 
@@ -155,21 +174,33 @@
     link.addEventListener('click', () => document.getElementById('navLinks').classList.remove('active'));
   });
 
+  // Contact form handler
   document.getElementById('messageForm').addEventListener('submit', function(e) {
     e.preventDefault();
-    document.getElementById('formFeedback').innerHTML = '✅ Thanks! We\'ll reply within 24 hours.';
+    let name = document.getElementById('name').value;
+    document.getElementById('formFeedback').innerHTML = `✅ Thanks ${name}! We'll reply within 24 hours via WhatsApp or email.`;
     this.reset();
   });
 
+  // Comment handler
+  function escapeHtml(str) {
+    return str.replace(/[&<>]/g, function(m) {
+      if (m === '&') return '&amp;';
+      if (m === '<') return '&lt;';
+      if (m === '>') return '&gt;';
+      return m;
+    });
+  }
+
   document.getElementById('commentForm').addEventListener('submit', function(e) {
     e.preventDefault();
-    let name = document.getElementById('commentName').value;
-    let text = document.getElementById('commentText').value;
-    if(name && text) {
-      let div = document.createElement('div');
-      div.className = 'comment-item';
-      div.innerHTML = `<strong>${name}</strong><p>${text}</p><small>Just shared</small>`;
-      document.getElementById('commentsList').prepend(div);
+    let name = document.getElementById('commentName').value.trim();
+    let text = document.getElementById('commentText').value.trim();
+    if (name && text) {
+      let commentDiv = document.createElement('div');
+      commentDiv.className = 'comment-item';
+      commentDiv.innerHTML = `<strong>${escapeHtml(name)}</strong><p>${escapeHtml(text)}</p><small>❤️ Just shared</small>`;
+      document.getElementById('commentsList').prepend(commentDiv);
       this.reset();
     }
   });
