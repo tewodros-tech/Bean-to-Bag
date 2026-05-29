@@ -2,8 +2,8 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Bean to Bag | Coffee Origin</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <title>Bean to Bag | Coffee Origin - Ethiopian Highlands</title>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
   <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700;800&family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
   <style>
@@ -26,7 +26,7 @@
     }
     .logo { font-size: 1.5rem; font-weight: 800; }
     .logo span { color: #C68B5E; }
-    .menu-icon { display: block; font-size: 1.8rem; cursor: pointer; background: none; border: none; }
+    .menu-icon { display: block; font-size: 1.8rem; cursor: pointer; background: none; border: none; color: #2C1810; }
     .nav-links {
       display: none;
       position: absolute;
@@ -38,34 +38,34 @@
       padding: 1.5rem;
       text-align: center;
       gap: 1rem;
+      border-top: 1px solid #EDE3D8;
     }
     .nav-links.active { display: flex; }
     .nav-links a { text-decoration: none; color: #2C1810; font-weight: 500; }
     .nav-links a:hover, .nav-links a.active { color: #C68B5E; }
 
-    .btn-primary { background: #C68B5E; color: white; padding: 0.8rem 2rem; border-radius: 50px; text-decoration: none; }
+    .btn-primary { background: #C68B5E; color: white; padding: 0.8rem 2rem; border-radius: 50px; text-decoration: none; display: inline-block; }
     .whatsapp-float { position: fixed; bottom: 20px; right: 20px; background: #25D366; width: 50px; height: 50px; border-radius: 50%; text-align: center; line-height: 50px; font-size: 26px; color: white; z-index: 999; }
     footer { background: #1A0F0A; color: #B8A99A; padding: 2rem; text-align: center; margin-top: 2rem; }
     .section { padding: 7rem 1.5rem 3rem; }
     .container { max-width: 1200px; margin: 0 auto; }
 
-    .origin-hero { background: linear-gradient(135deg, #2C1810, #4A2C1A); color: white; text-align: center; padding: 4rem 1rem; border-radius: 30px; margin-bottom: 2rem; position: relative; overflow: hidden; }
-    .origin-hero::before { content: ''; position: absolute; top: 20px; left: 20px; width: 120px; height: 120px; background: url('coffee-beans-top-view-background.jpg'); background-size: cover; opacity: 0.2; border-radius: 50%; }
-    .origin-hero h1 { font-size: 2.5rem; }
+    .origin-hero { background: linear-gradient(135deg, #2C1810, #4A2C1A); color: white; text-align: center; padding: 4rem 1rem; border-radius: 30px; margin-bottom: 2rem; }
+    .origin-hero h1 { font-size: 2.5rem; margin-bottom: 1rem; }
     .stats-container { display: grid; grid-template-columns: 1fr; gap: 1rem; margin: 2rem 0; }
     .stat-box { background: #F5EDE5; padding: 1.5rem; border-radius: 20px; text-align: center; }
-    .stat-box i { font-size: 2.5rem; color: #C68B5E; }
-    .flavor-profile { background: white; padding: 2rem; border-radius: 20px; margin: 2rem 0; }
+    .stat-box i { font-size: 2.5rem; color: #C68B5E; margin-bottom: 0.5rem; }
+    .stat-box h3 { font-size: 1.5rem; }
+    .flavor-profile { background: white; padding: 2rem; border-radius: 20px; margin: 2rem 0; box-shadow: 0 10px 20px rgba(0,0,0,0.05); }
     .flavor-tags { display: flex; gap: 0.8rem; flex-wrap: wrap; margin-top: 1rem; }
     .flavor-tag { background: #F5EDE5; padding: 0.4rem 1rem; border-radius: 50px; font-size: 0.8rem; }
-    .roast-profile { background: #2C1810; color: white; padding: 2rem; border-radius: 20px; text-align: center; }
-    .origin-gallery { display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 1rem; margin: 2rem 0; }
-    .origin-gallery img { width: 100%; height: 150px; object-fit: cover; border-radius: 15px; }
+    .roast-profile { background: #2C1810; color: white; padding: 2rem; border-radius: 20px; text-align: center; margin: 2rem 0; }
+    .roast-features { display: flex; justify-content: center; gap: 1.5rem; flex-wrap: wrap; margin-top: 1rem; }
 
     @media (min-width: 768px) {
       .menu-icon { display: none; }
       .nav-links { display: flex !important; position: static; flex-direction: row; background: transparent; padding: 0; gap: 2rem; }
-      .stats-container { grid-template-columns: repeat(3, 1fr); }
+      .stats-container { grid-template-columns: repeat(3, 1fr); gap: 2rem; }
       .origin-hero h1 { font-size: 4rem; }
     }
   </style>
@@ -81,7 +81,7 @@
     <li><a href="index.html">Home</a></li>
     <li><a href="about.html">About</a></li>
     <li><a href="products.html">Products</a></li>
-    <li><a href="origin.html" class="active">Origin</a></li>
+    <li><a href="origin.html" class="active">Coffee Origin</a></li>
     <li><a href="contact.html">Contact</a></li>
   </ul>
 </nav>
@@ -90,39 +90,59 @@
   <div class="container">
     <div class="origin-hero">
       <h1>Ethiopian Highlands</h1>
-      <p>Where extraordinary coffee begins its journey</p>
-    </div>
-
-    <div class="origin-gallery">
-      <img src="14.JPG" onerror="this.src='https://placehold.co/250x150?text=Highland+1'">
-      <img src="15.JPG" onerror="this.src='https://placehold.co/250x150?text=Highland+2'">
-      <img src="16.JPG" onerror="this.src='https://placehold.co/250x150?text=Highland+3'">
-      <img src="17.JPG" onerror="this.src='https://placehold.co/250x150?text=Highland+4'">
+      <p>100% Coffea Arabica • Cultivated at 1,900–2,200 meters above sea level</p>
     </div>
 
     <div class="stats-container">
-      <div class="stat-box"><i class="fas fa-mountain"></i><h3>1,900-2,200m</h3><p>Growing Altitude</p><small>Slow ripening</small></div>
-      <div class="stat-box"><i class="fas fa-leaf"></i><h3>100% Arabica</h3><p>Coffea Arabica</p><small>Traditional farms</small></div>
-      <div class="stat-box"><i class="fas fa-tint"></i><h3>Balanced Rainfall</h3><p>Natural Shade</p><small>Volcanic soil</small></div>
+      <div class="stat-box">
+        <i class="fas fa-mountain"></i>
+        <h3>1,900-2,200m</h3>
+        <p>Growing Altitude</p>
+        <small>Slow ripening for complex flavors</small>
+      </div>
+      <div class="stat-box">
+        <i class="fas fa-leaf"></i>
+        <h3>100% Arabica</h3>
+        <p>Coffea Arabica</p>
+        <small>Traditional garden farms</small>
+      </div>
+      <div class="stat-box">
+        <i class="fas fa-tint"></i>
+        <h3>Balanced Rainfall</h3>
+        <p>Natural shade trees</p>
+        <small>Fertile volcanic soil</small>
+      </div>
     </div>
 
     <div class="flavor-profile">
-      <h2>Cup Profile</h2>
-      <p>The cool highland climate allows coffee cherries to ripen slowly, developing refined and complex flavors.</p>
+      <h2 style="color: #C68B5E;">Cup Profile</h2>
+      <p>The cool highland climate, natural shade trees, fertile soil, and balanced seasonal rainfall allow the coffee cherries to ripen slowly, developing refined and complex flavors.</p>
       <div class="flavor-tags">
         <span class="flavor-tag">Floral aroma</span>
         <span class="flavor-tag">Bright acidity</span>
         <span class="flavor-tag">Citrus notes</span>
-        <span class="flavor-tag">Smooth finish</span>
+        <span class="flavor-tag">Fruit notes</span>
+        <span class="flavor-tag">Smooth clean finish</span>
       </div>
     </div>
 
     <div class="roast-profile">
       <h2>Our Roast Profile</h2>
-      <p>All roasted coffees are <strong>Medium-Dark roast</strong> — perfect balance for Ethiopian beans.</p>
-      <div style="display: flex; justify-content: center; gap: 1rem; flex-wrap: wrap; margin-top: 1rem;">
-        <span>✓ Balanced acidity</span><span>✓ Full body</span><span>✓ Chocolate notes</span>
+      <p>All roasted coffees from Bean to Bag are roasted to a <strong>Medium-Dark roast level</strong>.</p>
+      <div class="roast-features">
+        <span>✓ Balanced acidity</span>
+        <span>✓ Full body</span>
+        <span>✓ Rich chocolate notes</span>
+        <span>✓ Smooth finish</span>
       </div>
+      <p style="margin-top: 1rem;"><strong>Perfect for:</strong> Jebena brewing · Espresso · Macchiato · French press · Milk-based drinks</p>
+    </div>
+
+    <div style="background: #F5EDE5; border-radius: 20px; padding: 2rem; text-align: center;">
+      <i class="fas fa-hand-holding-heart" style="font-size: 3rem; color: #C68B5E;"></i>
+      <h3 style="margin: 1rem 0;">Supporting Smallholder Farmers</h3>
+      <p>Our coffee is cultivated by small-scale farmers in traditional garden farms across Ethiopia's highlands. Every purchase directly supports Ethiopian coffee communities.</p>
+      <a href="products.html" class="btn-primary" style="margin-top: 1rem;">Explore Our Coffee →</a>
     </div>
   </div>
 </section>
@@ -130,7 +150,7 @@
 <footer>
   <div class="container">
     <h2>Bean <span style="color:#C68B5E;">to Bag</span></h2>
-    <p>Honoring Ethiopian coffee heritage</p>
+    <p>Honoring Ethiopian coffee heritage since 2025</p>
   </div>
 </footer>
 
