@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
   <title>Bean to Bag | Our Products</title>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
   <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700;800&family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
@@ -26,7 +26,7 @@
     }
     .logo { font-size: 1.5rem; font-weight: 800; }
     .logo span { color: #C68B5E; }
-    .menu-icon { display: block; font-size: 1.8rem; cursor: pointer; background: none; border: none; }
+    .menu-icon { display: block; font-size: 1.8rem; cursor: pointer; background: none; border: none; color: #2C1810; }
     .nav-links {
       display: none;
       position: absolute;
@@ -38,6 +38,7 @@
       padding: 1.5rem;
       text-align: center;
       gap: 1rem;
+      border-top: 1px solid #EDE3D8;
     }
     .nav-links.active { display: flex; }
     .nav-links a { text-decoration: none; color: #2C1810; font-weight: 500; }
@@ -49,9 +50,8 @@
     .section { padding: 7rem 1.5rem 3rem; }
     .container { max-width: 1200px; margin: 0 auto; }
 
-    .products-hero { background: linear-gradient(135deg, #C68B5E, #8B5E3C); color: white; text-align: center; padding: 4rem 1rem; border-radius: 30px; margin-bottom: 2rem; position: relative; overflow: hidden; }
-    .products-hero::after { content: ''; position: absolute; bottom: -30px; left: -30px; width: 150px; height: 150px; background: url('coffee-beans-top-view-background.jpg'); background-size: cover; opacity: 0.2; border-radius: 50%; }
-    .products-hero h1 { font-size: 2.5rem; }
+    .products-hero { background: linear-gradient(135deg, #C68B5E, #8B5E3C); color: white; text-align: center; padding: 4rem 1rem; border-radius: 30px; margin-bottom: 2rem; }
+    .products-hero h1 { font-size: 2.5rem; margin-bottom: 1rem; }
     .products-grid { display: grid; grid-template-columns: 1fr; gap: 1.5rem; margin: 2rem 0; }
     .product-card { background: white; border-radius: 20px; overflow: hidden; box-shadow: 0 10px 20px rgba(0,0,0,0.08); transition: 0.3s; }
     .product-card:hover { transform: translateY(-5px); }
@@ -60,14 +60,12 @@
     .roast-level { display: inline-block; background: #C68B5E; color: white; padding: 0.2rem 1rem; border-radius: 50px; font-size: 0.7rem; margin: 0.5rem 0; }
     .sizes { margin-top: 1rem; display: flex; gap: 0.8rem; flex-wrap: wrap; }
     .size { background: #F5EDE5; padding: 0.3rem 0.8rem; border-radius: 50px; font-size: 0.8rem; }
-    .gallery-row { display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 1rem; margin: 2rem 0; }
-    .gallery-row img { width: 100%; height: 150px; object-fit: cover; border-radius: 15px; transition: 0.3s; }
-    .gallery-row img:hover { transform: scale(1.02); }
+    .grind-options { margin-top: 1rem; font-size: 0.8rem; color: #C68B5E; font-weight: 600; }
 
     @media (min-width: 768px) {
       .menu-icon { display: none; }
       .nav-links { display: flex !important; position: static; flex-direction: row; background: transparent; padding: 0; gap: 2rem; }
-      .products-grid { grid-template-columns: repeat(4, 1fr); }
+      .products-grid { grid-template-columns: repeat(4, 1fr); gap: 2rem; }
       .products-hero h1 { font-size: 4rem; }
     }
   </style>
@@ -83,7 +81,7 @@
     <li><a href="index.html">Home</a></li>
     <li><a href="about.html">About</a></li>
     <li><a href="products.html" class="active">Products</a></li>
-    <li><a href="origin.html">Origin</a></li>
+    <li><a href="origin.html">Coffee Origin</a></li>
     <li><a href="contact.html">Contact</a></li>
   </ul>
 </nav>
@@ -91,25 +89,66 @@
 <section class="section">
   <div class="container">
     <div class="products-hero">
-      <h1>Our Collection</h1>
-      <p>Premium Ethiopian coffee, roasted fresh in small batches</p>
-    </div>
-
-    <div class="gallery-row">
-      <img src="19.JPG" onerror="this.src='https://placehold.co/250x150?text=Coffee+19'">
-      <img src="coffee-beans-top-view-background.jpg" onerror="this.src='https://placehold.co/250x150?text=Beans'">
-      <img src="dark-coffee-beans-bowl-brown-table.jpg" onerror="this.src='https://placehold.co/250x150?text=Bowl'">
-      <img src="steaming-cup-coffee-saucer-with-coffee-beans-scattered-around.jpg" onerror="this.src='https://placehold.co/250x150?text=Steaming+Cup'">
+      <h1>Our Coffee Collection</h1>
+      <p>Premium Ethiopian Arabica • Small Batch Roasted</p>
     </div>
 
     <div class="products-grid">
-      <div class="product-card"><div class="product-img" style="background: linear-gradient(135deg, #E8A87C, #D4845A);"><i class="fas fa-mug-hot"></i></div><div class="product-info"><h2>Caskara</h2><p>Dried coffee cherry infusion</p><div class="roast-level">Caffeine-Free</div><div class="sizes"><span class="size">250g</span><span class="size">500g</span><span class="size">1kg</span></div></div></div>
-      <div class="product-card"><div class="product-img" style="background: linear-gradient(135deg, #8B5E3C, #6B3E1A);"><i class="fas fa-mortar-pestle"></i></div><div class="product-info"><h2>Qalid's Choice</h2><p>House blend ground coffee</p><div class="roast-level">Medium-Dark</div><div class="sizes"><span class="size">250g</span><span class="size">500g</span><span class="size">1kg</span></div></div></div>
-      <div class="product-card"><div class="product-img" style="background: linear-gradient(135deg, #3A281C, #2C1810);"><i class="fas fa-seedling"></i></div><div class="product-info"><h2>Chemina</h2><p>Whole bean espresso roast</p><div class="roast-level">Medium-Dark</div><div class="sizes"><span class="size">250g</span><span class="size">500g</span><span class="size">1kg</span></div></div></div>
-      <div class="product-card"><div class="product-img" style="background: linear-gradient(135deg, #5A7A4A, #3A5A2A);"><i class="fas fa-leaf"></i></div><div class="product-info"><h2>Origin Green</h2><p>Raw green coffee beans</p><div class="roast-level">Unroasted</div><div class="sizes"><span class="size">500g</span><span class="size">1kg</span><span class="size">5kg</span></div></div></div>
+      <!-- Caskara -->
+      <div class="product-card">
+        <div class="product-img" style="background: #E67E22;"><i class="fas fa-mug-hot"></i></div>
+        <div class="product-info">
+          <h2>Caskara</h2>
+          <p>Dried coffee cherry infusion with naturally sweet and fruity notes.</p>
+          <div class="roast-level">Caffeine-Free Herbal</div>
+          <p><strong>Taste:</strong> Fruity · Sweet · Floral</p>
+          <p><strong>Best for:</strong> Pour-over · Filter coffee · V60</p>
+          <div class="sizes"><span class="size">250g</span><span class="size">500g</span><span class="size">1kg</span></div>
+        </div>
+      </div>
+
+      <!-- Qalid's Choice -->
+      <div class="product-card">
+        <div class="product-img" style="background: #8B5E3C;"><i class="fas fa-mortar-pestle"></i></div>
+        <div class="product-info">
+          <h2>Qalid's Choice</h2>
+          <p>House Blend • Ground Coffee • Medium-Dark Roast</p>
+          <div class="roast-level">Medium-Dark Roast</div>
+          <p><strong>Taste:</strong> Balanced · Smooth · Chocolate notes</p>
+          <div class="grind-options">Grind: Jebena · French Press · Espresso</div>
+          <div class="sizes"><span class="size">250g</span><span class="size">500g</span><span class="size">1kg</span></div>
+        </div>
+      </div>
+
+      <!-- Chemina -->
+      <div class="product-card">
+        <div class="product-img" style="background: #1F1D1B;"><i class="fas fa-seedling"></i></div>
+        <div class="product-info">
+          <h2>Chemina</h2>
+          <p>Whole Bean Coffee • Medium-Dark Roast</p>
+          <div class="roast-level">Medium-Dark Roast</div>
+          <p><strong>Taste:</strong> Bold body · Cocoa notes · Smooth finish</p>
+          <p><strong>Best for:</strong> Espresso · Macchiato · Milk drinks</p>
+          <div class="sizes"><span class="size">250g</span><span class="size">500g</span><span class="size">1kg</span></div>
+        </div>
+      </div>
+
+      <!-- Origin Green -->
+      <div class="product-card">
+        <div class="product-img" style="background: #4F6D4A;"><i class="fas fa-leaf"></i></div>
+        <div class="product-info">
+          <h2>Origin Green</h2>
+          <p>Raw Green Coffee Beans • Unroasted</p>
+          <div class="roast-level">Unroasted / Green</div>
+          <p><strong>Perfect for:</strong> Home roasters · Cafés · Coffee enthusiasts</p>
+          <div class="sizes"><span class="size">500g</span><span class="size">1kg</span><span class="size">5kg</span></div>
+        </div>
+      </div>
     </div>
 
-    <div style="text-align: center; margin-top: 2rem;"><a href="contact.html" class="btn-primary">Place Your Order →</a></div>
+    <div style="text-align: center; margin-top: 2rem;">
+      <a href="contact.html" class="btn-primary">Place Your Order →</a>
+    </div>
   </div>
 </section>
 
