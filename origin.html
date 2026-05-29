@@ -24,7 +24,7 @@
       align-items: center;
       border-bottom: 1px solid rgba(198, 139, 94, 0.3);
     }
-    .logo { font-size: 1.8rem; font-weight: 800; background: linear-gradient(135deg, #FFFFFF, #C68B5E); -webkit-background-clip: text; background-clip: text; color: transparent; }
+    .logo { font-size: 1.5rem; font-weight: 800; background: linear-gradient(135deg, #FFFFFF, #C68B5E); -webkit-background-clip: text; background-clip: text; color: transparent; }
     .menu-icon { display: none; font-size: 1.8rem; cursor: pointer; background: none; border: none; color: white; }
     .nav-links { display: flex; gap: 2rem; list-style: none; }
     .nav-links a { text-decoration: none; color: white; font-weight: 500; transition: 0.3s; position: relative; }
@@ -32,38 +32,47 @@
     .nav-links a:hover::after, .nav-links a.active::after { width: 100%; }
     .nav-links a:hover { color: #C68B5E; }
 
-    .btn-primary { background: linear-gradient(135deg, #C68B5E, #A06B42); color: white; padding: 0.8rem 2rem; border-radius: 50px; text-decoration: none; transition: 0.3s; display: inline-block; }
-    .whatsapp-float { position: fixed; bottom: 30px; right: 30px; background: #25D366; width: 60px; height: 60px; border-radius: 50%; text-align: center; line-height: 60px; font-size: 32px; color: white; z-index: 999; }
-    footer { background: #0A0A0A; border-top: 1px solid rgba(198,139,94,0.3); padding: 3rem 5% 2rem; text-align: center; }
+    .btn-primary { background: linear-gradient(135deg, #C68B5E, #A06B42); color: white; padding: 0.8rem 2rem; border-radius: 50px; text-decoration: none; display: inline-block; transition: 0.3s; }
+    .whatsapp-float { position: fixed; bottom: 20px; right: 20px; background: #25D366; width: 50px; height: 50px; border-radius: 50%; text-align: center; line-height: 50px; font-size: 26px; color: white; z-index: 999; animation: pulse 2s infinite; }
+    @keyframes pulse { 0% { transform: scale(1); } 50% { transform: scale(1.1); } 100% { transform: scale(1); } }
+    footer { background: #0A0A0A; border-top: 1px solid rgba(198,139,94,0.3); padding: 2rem 5% 1.5rem; text-align: center; }
 
-    .hero-origin { min-height: 60vh; background: linear-gradient(135deg, rgba(0,0,0,0.6), rgba(44,24,16,0.7)), url('coffee1.JPG'); background-size: cover; background-attachment: fixed; display: flex; align-items: center; justify-content: center; text-align: center; }
-    .hero-origin h1 { font-size: 4rem; animation: fadeInUp 0.8s ease; }
+    .hero-origin { min-height: 50vh; background: linear-gradient(135deg, rgba(0,0,0,0.5), rgba(44,24,16,0.6)), url('coffee1.JPG'); background-size: cover; background-attachment: fixed; display: flex; align-items: center; justify-content: center; text-align: center; }
+    .hero-origin h1 { font-size: 3rem; animation: fadeInUp 0.8s ease; }
     @keyframes fadeInUp { from { opacity: 0; transform: translateY(30px); } to { opacity: 1; transform: translateY(0); } }
 
-    .section { padding: 5rem 5%; }
+    .section { padding: 4rem 5%; }
     .container { max-width: 1200px; margin: 0 auto; }
-    .section-title { text-align: center; font-size: 3rem; margin-bottom: 1rem; background: linear-gradient(135deg, #FFFFFF, #C68B5E); -webkit-background-clip: text; background-clip: text; color: transparent; }
+    .section-title { text-align: center; font-size: 2.5rem; margin-bottom: 1rem; background: linear-gradient(135deg, #FFFFFF, #C68B5E); -webkit-background-clip: text; background-clip: text; color: transparent; }
 
-    .stats-container { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 2rem; margin: 3rem 0; }
-    .stat-card { text-align: center; padding: 2rem; background: rgba(255,255,255,0.05); border-radius: 20px; border: 1px solid rgba(198,139,94,0.2); transition: 0.3s; }
+    .stats-container { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.5rem; margin: 2rem 0; }
+    .stat-card { text-align: center; padding: 1.5rem; background: rgba(255,255,255,0.05); border-radius: 15px; border: 1px solid rgba(198,139,94,0.2); transition: 0.3s; }
     .stat-card:hover { transform: translateY(-5px); border-color: #C68B5E; }
-    .stat-card i { font-size: 3rem; color: #C68B5E; }
+    .stat-card i { font-size: 2.5rem; color: #C68B5E; margin-bottom: 0.5rem; }
 
-    .flavor-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 2rem; margin: 3rem 0; }
-    .flavor-card { background: rgba(255,255,255,0.05); border-radius: 20px; padding: 2rem; text-align: center; transition: 0.3s; }
+    .flavor-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 1.5rem; margin: 2rem 0; }
+    .flavor-card { background: rgba(255,255,255,0.05); border-radius: 15px; padding: 1.5rem; text-align: center; transition: 0.3s; }
     .flavor-card:hover { transform: translateY(-5px); background: rgba(198,139,94,0.1); }
-    .flavor-card i { font-size: 3rem; color: #C68B5E; margin-bottom: 1rem; }
+    .flavor-card i { font-size: 2rem; color: #C68B5E; margin-bottom: 0.5rem; }
 
-    .roast-level { background: linear-gradient(135deg, #2C1810, #4A2C1A); border-radius: 30px; padding: 3rem; text-align: center; margin: 3rem 0; }
-    .roast-meter { width: 100%; height: 20px; background: #333; border-radius: 20px; margin: 2rem 0; overflow: hidden; }
-    .roast-meter-fill { width: 70%; height: 100%; background: linear-gradient(90deg, #C68B5E, #E8A87C); border-radius: 20px; }
+    .roast-box { background: linear-gradient(135deg, #1A0F0A, #2C1810); border-radius: 20px; padding: 2rem; text-align: center; margin: 2rem 0; }
+    .roast-meter { width: 100%; height: 15px; background: #333; border-radius: 20px; margin: 1.5rem 0; overflow: hidden; }
+    .roast-fill { width: 70%; height: 100%; background: linear-gradient(90deg, #C68B5E, #E8A87C); border-radius: 20px; animation: fillBar 1.5s ease-out; }
+    @keyframes fillBar { from { width: 0; } to { width: 70%; } }
+
+    .image-row { display: grid; grid-template-columns: repeat(2, 1fr); gap: 1rem; margin: 2rem 0; }
+    .image-row img { width: 100%; height: 250px; object-fit: cover; border-radius: 15px; transition: 0.3s; }
+    .image-row img:hover { transform: scale(1.02); box-shadow: 0 10px 20px rgba(198,139,94,0.3); }
 
     @media (max-width: 768px) {
       .menu-icon { display: block; }
       .nav-links { display: none; position: absolute; top: 70px; left: 0; width: 100%; background: rgba(10,10,10,0.95); flex-direction: column; padding: 1.5rem; text-align: center; gap: 1rem; }
       .nav-links.active { display: flex; }
-      .hero-origin h1 { font-size: 2.5rem; }
-      .section-title { font-size: 2rem; }
+      .hero-origin h1 { font-size: 2rem; }
+      .section-title { font-size: 1.8rem; }
+      .stats-container { grid-template-columns: 1fr; }
+      .flavor-grid { grid-template-columns: 1fr; }
+      .image-row { grid-template-columns: 1fr; }
     }
   </style>
 </head>
@@ -84,40 +93,43 @@
 </nav>
 
 <section class="hero-origin">
-  <div><h1>Ethiopian Highlands</h1><p style="margin-top: 1rem;">100% Coffea Arabica • Cultivated at 1,900–2,200 meters</p></div>
+  <div><h1>Ethiopian Highlands</h1><p style="margin-top: 1rem;">100% Coffea Arabica • 1,900–2,200 meters above sea level</p></div>
 </section>
 
 <section class="section">
   <div class="container">
-    <h2 class="section-title">The Birthplace of Coffee</h2>
     <div class="stats-container">
-      <div class="stat-card"><i class="fas fa-mountain"></i><h3>1,900-2,200m</h3><p>Growing Altitude</p><small>Slow ripening for complex flavors</small></div>
-      <div class="stat-card"><i class="fas fa-leaf"></i><h3>100% Arabica</h3><p>Coffea Arabica</p><small>Traditional garden farms</small></div>
-      <div class="stat-card"><i class="fas fa-tint"></i><h3>Balanced Rainfall</h3><p>Natural shade trees</p><small>Fertile volcanic soil</small></div>
+      <div class="stat-card"><i class="fas fa-mountain"></i><h3>1,900-2,200m</h3><p>Growing Altitude</p><small>Slow ripening</small></div>
+      <div class="stat-card"><i class="fas fa-leaf"></i><h3>100% Arabica</h3><p>Coffea Arabica</p><small>Traditional farms</small></div>
+      <div class="stat-card"><i class="fas fa-tint"></i><h3>Balanced Rainfall</h3><p>Natural shade</p><small>Volcanic soil</small></div>
+    </div>
+
+    <div class="image-row">
+      <img src="dark-coffee-beans-bowl-brown-table.jpg" onerror="this.src='https://placehold.co/500x300?text=Coffee+Beans'">
+      <img src="coffee-beans-top-view-background.jpg" onerror="this.src='https://placehold.co/500x300?text=Coffee+Beans+Top'">
     </div>
 
     <h2 class="section-title">Cup Profile</h2>
     <div class="flavor-grid">
-      <div class="flavor-card"><i class="fas fa-flower"></i><h3>Floral Aroma</h3><p>Elegant jasmine and honeysuckle notes</p></div>
-      <div class="flavor-card"><i class="fas fa-sun"></i><h3>Bright Acidity</h3><p>Vibrant and lively mouthfeel</p></div>
-      <div class="flavor-card"><i class="fas fa-apple-alt"></i><h3>Citrus & Fruit</h3><p>Lemon, bergamot, and berry notes</p></div>
-      <div class="flavor-card"><i class="fas fa-feather-alt"></i><h3>Smooth Finish</h3><p>Clean, long-lasting aftertaste</p></div>
+      <div class="flavor-card"><i class="fas fa-flower"></i><h3>Floral Aroma</h3><p>Elegant jasmine notes</p></div>
+      <div class="flavor-card"><i class="fas fa-sun"></i><h3>Bright Acidity</h3><p>Vibrant mouthfeel</p></div>
+      <div class="flavor-card"><i class="fas fa-apple-alt"></i><h3>Citrus & Fruit</h3><p>Lemon, berry notes</p></div>
+      <div class="flavor-card"><i class="fas fa-feather-alt"></i><h3>Smooth Finish</h3><p>Clean aftertaste</p></div>
     </div>
 
-    <div class="roast-level">
-      <h2 style="color: #C68B5E;">Medium-Dark Roast Profile</h2>
-      <div class="roast-meter"><div class="roast-meter-fill"></div></div>
-      <p>All roasted coffees from Bean to Bag are roasted to a Medium-Dark roast level.</p>
-      <div style="display: flex; justify-content: center; gap: 1.5rem; flex-wrap: wrap; margin-top: 1.5rem;">
-        <span>✓ Balanced acidity</span><span>✓ Full body</span><span>✓ Rich chocolate notes</span><span>✓ Smooth finish</span>
+    <div class="roast-box">
+      <h2 style="color:#C68B5E;">Medium-Dark Roast Profile</h2>
+      <div class="roast-meter"><div class="roast-fill"></div></div>
+      <div style="display: flex; justify-content: center; gap: 1rem; flex-wrap: wrap;">
+        <span>✓ Balanced acidity</span><span>✓ Full body</span><span>✓ Rich chocolate</span><span>✓ Smooth finish</span>
       </div>
-      <p style="margin-top: 1.5rem;"><strong>Perfect for:</strong> Jebena brewing • Espresso • Macchiato • French press • Milk-based drinks</p>
+      <p style="margin-top: 1rem;"><strong>Perfect for:</strong> Jebena • Espresso • Macchiato • French press • Milk drinks</p>
     </div>
 
-    <div style="text-align: center; margin-top: 3rem; background: rgba(198,139,94,0.1); padding: 2rem; border-radius: 20px;">
-      <i class="fas fa-hand-holding-heart" style="font-size: 3rem; color: #C68B5E;"></i>
+    <div style="text-align: center; margin-top: 2rem; background: rgba(198,139,94,0.1); padding: 2rem; border-radius: 20px;">
+      <i class="fas fa-hand-holding-heart" style="font-size: 2.5rem; color: #C68B5E;"></i>
       <h3>Supporting Smallholder Farmers</h3>
-      <p>Our coffee is cultivated by small-scale farmers in traditional garden farms. Every purchase directly supports Ethiopian coffee communities.</p>
+      <p>Our coffee is cultivated by small-scale farmers in traditional garden farms.</p>
       <a href="products.html" class="btn-primary" style="margin-top: 1rem;">Explore Our Coffee →</a>
     </div>
   </div>
@@ -129,6 +141,9 @@
 
 <script>
   function toggleMenu() { document.getElementById('navLinks').classList.toggle('active'); }
+  document.querySelectorAll('.nav-links a').forEach(link => {
+    link.addEventListener('click', () => document.getElementById('navLinks').classList.remove('active'));
+  });
 </script>
 </body>
 </html>
