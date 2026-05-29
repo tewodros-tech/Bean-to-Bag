@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <title>Bean to Bag | Premium Ethiopian Coffee</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;14..32,400;14..32,600;14..32,700;14..32,800&display=swap" rel="stylesheet">
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body { font-family: 'Inter', sans-serif; background: #FEFAF5; color: #2D2A24; line-height: 1.5; }
+    :root {
+      --brown-deep: #2F241B;
+      --brown-warm: #A66B3A;
+      --orange-bright: #E67E22;
+      --black-rich: #1F1D1B;
+      --cream: #FEFAF5;
+      --green-moss: #4F6D4A;
+      --shadow-sm: 0 12px 28px rgba(0,0,0,0.05);
+    }
+    .container { max-width: 1280px; margin: 0 auto; padding: 0 28px; }
+    header { background: var(--cream); border-bottom: 1px solid #EDE3D8; position: sticky; top: 0; z-index: 100; }
+    nav { display: flex; justify-content: space-between; align-items: center; padding: 1rem 0; flex-wrap: wrap; }
+    .logo h1 { font-size: 1.9rem; font-weight: 800; letter-spacing: -0.5px; }
+    .logo span { color: var(--orange-bright); }
+    .nav-links { display: flex; gap: 2rem; list-style: none; }
+    .nav-links a { text-decoration: none; font-weight: 600; color: #2F241B; transition: 0.2s; }
+    .nav-links a:hover, .nav-links a.active { color: var(--orange-bright); }
+    .menu-icon { display: none; font-size: 1.8rem; cursor: pointer; }
+    .btn-primary { background: var(--orange-bright); color: white; padding: 12px 28px; border-radius: 40px; font-weight: 600; border: none; cursor: pointer; display: inline-block; text-decoration: none; transition: 0.2s; }
+    .btn-primary:hover { background: #c45f1a; transform: translateY(-2px); }
+    .btn-outline { background: transparent; border: 2px solid var(--orange-bright); color: var(--orange-bright); padding: 10px 24px; border-radius: 40px; font-weight: 600; text-decoration: none; }
+    .section-title { font-size: 2.4rem; text-align: center; margin: 3rem 0 2rem; color: var(--brown-deep); }
+    .section-title:after { content: ''; display: block; width: 70px; height: 3px; background: var(--orange-bright); margin: 12px auto; border-radius: 4px; }
+    .products-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 2rem; margin: 2rem 0; }
+    .product-card { background: white; border-radius: 28px; overflow: hidden; box-shadow: var(--shadow-sm); transition: 0.25s; border: 1px solid #EFE2D4; }
+    .product-card:hover { transform: translateY(-6px); }
+    .card-color { height: 10px; }
+    .card-content { padding: 1.5rem; }
+    .product-title { font-size: 1.6rem; font-weight: 800; }
+    .taste-badge { background: #FBF3EA; padding: 6px 12px; border-radius: 50px; font-size: 0.8rem; margin: 12px 0; display: inline-block; }
+    .whatsapp-float { position: fixed; bottom: 28px; right: 28px; background: #25D366; width: 58px; height: 58px; border-radius: 50%; text-align: center; line-height: 58px; font-size: 32px; color: white; box-shadow: 0 4px 14px rgba(0,0,0,0.2); z-index: 99; transition: 0.2s; }
+    .whatsapp-float:hover { transform: scale(1.05); }
+    footer { background: #1F1B16; color: #CFC5B6; padding: 3rem 0 2rem; margin-top: 4rem; text-align: center; }
+    .social-links a { color: #CFC5B6; font-size: 1.6rem; margin: 0 12px; transition: 0.2s; }
+    .social-links a:hover { color: var(--orange-bright); }
+    @media (max-width: 800px) { .nav-links { display: none; } .menu-icon { display: block; } .section-title { font-size: 1.9rem; } }
+  </style>
+</head>
+<body>
+
+<a href="https://wa.me/251911223344?text=Hello%20Bean%20to%20Bag!%20I'd%20like%20to%20order%20coffee." class="whatsapp-float" target="_blank"><i class="fab fa-whatsapp"></i></a>
+
+<header>
+  <div class="container">
+    <nav>
+      <div class="logo"><h1>Bean <span>to Bag</span></h1></div>
+      <ul class="nav-links">
+        <li><a href="index.html" class="active">Home</a></li>
+        <li><a href="about.html">About</a></li>
+        <li><a href="products.html">Products</a></li>
+        <li><a href="origin.html">Coffee Origin</a></li>
+        <li><a href="contact.html">Contact</a></li>
+      </ul>
+      <div class="menu-icon" onclick="document.querySelector('.nav-links').style.display = document.querySelector('.nav-links').style.display === 'flex' ? 'none' : 'flex'"><i class="fas fa-bars"></i></div>
+    </nav>
+  </div>
+</header>
+
+<main>
+  <section style="background: linear-gradient(130deg, #FEF0E2 0%, #FBE7D6 100%); padding: 70px 0 80px;">
+    <div class="container">
+      <div style="display: flex; flex-wrap: wrap; align-items: center; gap: 48px;">
+        <div style="flex:1">
+          <h1 style="font-size: 3.5rem; line-height: 1.2; color: #2F241B;">From Bean to Bag —<br>Premium Ethiopian Coffee</h1>
+          <p style="font-size: 1.2rem; margin: 24px 0; color: #4A3A28;">Carefully sourced Ethiopian Arabica coffee roasted to a balanced medium-dark profile for a rich and smooth cup.</p>
+          <div style="display: flex; gap: 16px; flex-wrap: wrap;">
+            <a href="products.html" class="btn-primary">Explore Coffee</a>
+            <a href="contact.html" class="btn-outline">Shop Coffee</a>
+          </div>
+        </div>
+        <div style="flex:1; text-align: center; background: #EADBCB; border-radius: 60px 20px 60px 20px; padding: 40px;">
+          <i class="fas fa-mug-hot" style="font-size: 5rem; color: #A66B3A;"></i>
+          <i class="fas fa-seedling" style="font-size: 4rem; margin-left: 20px; color: #4F6D4A;"></i>
+          <p style="margin-top: 20px;"><strong>Fresh roast · Addis Ababa</strong></p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div class="container">
+    <h2 class="section-title">Our Signature Coffees</h2>
+    <div class="products-grid">
+      <div class="product-card"><div class="card-color" style="background:#E67E22"></div><div class="card-content"><div class="product-title">Caskara</div><div class="product-type">Dried Cherry Drink</div><p>Sweet, fruity & floral infusion from coffee cherry skin.</p><div class="taste-badge">🍊 Fruity · Floral</div></div></div>
+      <div class="product-card"><div class="card-color" style="background:#A66B3A"></div><div class="card-content"><div class="product-title">Qalid's Choice</div><div class="product-type">House Blend (Ground)</div><p>Balanced, chocolate notes, smooth body — perfect for Jebena.</p><div class="taste-badge">🍫 Chocolate · Smooth</div></div></div>
+      <div class="product-card"><div class="card-color" style="background:#1F1D1B"></div><div class="card-content"><div class="product-title">Chemina</div><div class="product-type">Whole Bean</div><p>Bold body, cocoa notes, ideal for espresso & milk drinks.</p><div class="taste-badge">☕ Bold · Cocoa</div></div></div>
+    </div>
+    <div style="text-align: center; margin: 20px 0 40px;"><a href="products.html" class="btn-primary">View Full Collection →</a></div>
+  </div>
+</main>
+
+<footer>
+  <div class="container">
+    <h2 style="color:#EFDBC8;">Bean <span style="color:#E67E22;">to Bag</span></h2>
+    <p style="margin: 16px 0;">Highland Arabica · Freshly roasted in Ethiopia</p>
+    <div class="social-links">
+      <a href="#"><i class="fab fa-instagram"></i></a>
+      <a href="#"><i class="fab fa-telegram"></i></a>
+      <a href="#"><i class="fab fa-facebook"></i></a>
+    </div>
+    <p style="margin-top: 32px;">© 2025 Bean to Bag Coffee – From bean to bag, pure passion.</p>
+  </div>
+</footer>
+
+<script>
+  window.addEventListener('resize', function() {
+    let nav = document.querySelector('.nav-links');
+    if(window.innerWidth > 800) nav.style.display = 'flex';
+    else nav.style.display = 'none';
+  });
+</script>
+</body>
+</html>
