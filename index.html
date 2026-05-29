@@ -24,8 +24,8 @@
       font-family: 'Playfair Display', serif;
     }
 
-    /* Remove bullet points from all lists */
-    ul, ol {
+    /* Remove all bullet points */
+    ul, ol, li {
       list-style: none;
     }
 
@@ -37,7 +37,7 @@
       background: rgba(255, 249, 245, 0.98);
       backdrop-filter: blur(10px);
       z-index: 1000;
-      padding: 0.8rem 5%;
+      padding: 1rem 5%;
       display: flex;
       justify-content: space-between;
       align-items: center;
@@ -45,7 +45,7 @@
     }
 
     .logo {
-      font-size: 1.4rem;
+      font-size: 1.5rem;
       font-weight: 800;
     }
 
@@ -53,17 +53,21 @@
       color: #C68B5E;
     }
 
+    /* Hamburger Menu Button */
     .menu-icon {
       display: block;
       font-size: 1.8rem;
       cursor: pointer;
       color: #2C1810;
+      background: none;
+      border: none;
     }
 
+    /* Mobile Navigation Links - Hidden by default */
     .nav-links {
       display: none;
       position: absolute;
-      top: 65px;
+      top: 70px;
       left: 0;
       width: 100%;
       background: #FFF9F5;
@@ -75,8 +79,13 @@
       border-top: 1px solid #EDE3D8;
     }
 
+    /* Show when active */
     .nav-links.active {
       display: flex;
+    }
+
+    .nav-links li {
+      margin: 0;
     }
 
     .nav-links a {
@@ -85,6 +94,8 @@
       font-weight: 500;
       padding: 0.5rem;
       font-size: 1rem;
+      display: inline-block;
+      transition: 0.3s;
     }
 
     .nav-links a:hover,
@@ -92,10 +103,10 @@
       color: #C68B5E;
     }
 
-    /* Hero Section with MOVING background */
+    /* Hero Section with Parallax Background */
     .hero {
       min-height: 100vh;
-      background: linear-gradient(135deg, rgba(44, 24, 16, 0.75), rgba(74, 44, 26, 0.7)), url('coffee1.JPG');
+      background: linear-gradient(135deg, rgba(44, 24, 16, 0.8), rgba(74, 44, 26, 0.7)), url('coffee1.JPG');
       background-size: cover;
       background-position: center;
       background-attachment: fixed;
@@ -105,28 +116,31 @@
       justify-content: center;
       text-align: center;
       color: white;
-      padding: 5rem 1rem;
+      padding: 6rem 1.5rem;
     }
 
     .hero-content {
       max-width: 800px;
-      padding: 0 1rem;
+      padding: 0;
     }
 
     .hero-content h1 {
       font-size: 2.2rem;
       font-weight: 800;
-      margin-bottom: 1rem;
+      margin-bottom: 1.2rem;
+      line-height: 1.2;
     }
 
     .hero-content p {
       font-size: 1rem;
-      margin-bottom: 1.5rem;
+      margin-bottom: 2rem;
+      line-height: 1.6;
+      opacity: 0.95;
     }
 
     .btn-group {
       display: flex;
-      gap: 0.8rem;
+      gap: 1rem;
       justify-content: center;
       flex-wrap: wrap;
     }
@@ -134,7 +148,7 @@
     .btn-primary {
       background: #C68B5E;
       color: white;
-      padding: 0.8rem 1.5rem;
+      padding: 0.9rem 2rem;
       border-radius: 50px;
       text-decoration: none;
       font-weight: 600;
@@ -154,7 +168,7 @@
       background: transparent;
       border: 2px solid white;
       color: white;
-      padding: 0.8rem 1.5rem;
+      padding: 0.9rem 2rem;
       border-radius: 50px;
       text-decoration: none;
       font-weight: 600;
@@ -168,7 +182,7 @@
     }
 
     .section {
-      padding: 3rem 1rem;
+      padding: 3rem 1.5rem;
     }
 
     .section-dark {
@@ -195,7 +209,6 @@
     .container {
       max-width: 1200px;
       margin: 0 auto;
-      padding: 0 0.5rem;
     }
 
     /* Image Slider */
@@ -223,7 +236,7 @@
     .slide img {
       width: 100%;
       height: auto;
-      max-height: 500px;
+      max-height: 450px;
       object-fit: contain;
       display: block;
       background: #1A0F0A;
@@ -241,12 +254,12 @@
     }
 
     .slide-caption h3 {
-      font-size: 1.3rem;
+      font-size: 1.2rem;
       margin-bottom: 0.3rem;
     }
 
     .slide-caption p {
-      font-size: 0.8rem;
+      font-size: 0.75rem;
       opacity: 0.9;
     }
 
@@ -301,6 +314,93 @@
       border-radius: 10px;
     }
 
+    /* ========== CASKARA FEATURE CARD (NEW) ========== */
+    .caskara-feature {
+      background: linear-gradient(135deg, #FFF5EB, #FEE8D6);
+      border-radius: 30px;
+      padding: 2rem;
+      margin: 2rem 0;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 2rem;
+      align-items: center;
+      box-shadow: 0 15px 35px rgba(0,0,0,0.08);
+    }
+
+    .caskara-icon {
+      flex: 1;
+      text-align: center;
+      background: linear-gradient(135deg, #E8A87C, #D4845A);
+      border-radius: 30px;
+      padding: 2rem;
+      transition: transform 0.3s;
+    }
+
+    .caskara-icon:hover {
+      transform: scale(1.02);
+    }
+
+    .caskara-icon i {
+      font-size: 4rem;
+      margin: 0 0.3rem;
+    }
+
+    .caskara-icon i:first-child {
+      color: #FF6B6B;
+    }
+
+    .caskara-icon i:nth-child(2) {
+      color: white;
+    }
+
+    .caskara-icon i:last-child {
+      color: #FFB347;
+    }
+
+    .caskara-info {
+      flex: 2;
+    }
+
+    .caskara-info h2 {
+      color: #C68B5E;
+      font-size: 2rem;
+      margin-bottom: 0.5rem;
+    }
+
+    .caskara-info p {
+      font-size: 1rem;
+      color: #2C1810;
+      line-height: 1.6;
+      margin-bottom: 1rem;
+    }
+
+    .caskara-tags {
+      display: flex;
+      gap: 0.8rem;
+      flex-wrap: wrap;
+      margin: 1rem 0;
+    }
+
+    .caskara-tag {
+      background: #C68B5E;
+      color: white;
+      padding: 0.3rem 1rem;
+      border-radius: 50px;
+      font-size: 0.85rem;
+      font-weight: 500;
+    }
+
+    .caskara-badge {
+      display: inline-block;
+      background: #2C1810;
+      color: white;
+      padding: 0.5rem 1rem;
+      border-radius: 50px;
+      font-size: 0.8rem;
+      margin-top: 1rem;
+    }
+
+    /* Product Detail Cards */
     .product-detail-card {
       background: white;
       border-radius: 20px;
@@ -331,17 +431,18 @@
 
     .detail-item strong {
       color: #2C1810;
-      font-size: 0.75rem;
+      font-size: 0.7rem;
       text-transform: uppercase;
       letter-spacing: 1px;
     }
 
     .detail-item p {
-      font-size: 0.9rem;
+      font-size: 0.85rem;
       font-weight: 600;
       margin-top: 0.3rem;
     }
 
+    /* Products Grid */
     .products-grid {
       display: grid;
       grid-template-columns: 1fr;
@@ -382,6 +483,7 @@
     .product-info p {
       font-size: 0.85rem;
       color: #5a4a3a;
+      line-height: 1.5;
     }
 
     .product-taste {
@@ -398,6 +500,7 @@
       font-size: 0.7rem;
     }
 
+    /* Stats */
     .stats-grid {
       display: grid;
       grid-template-columns: 1fr;
@@ -419,7 +522,8 @@
     }
 
     .stat-card h3 {
-      font-size: 1.5rem;
+      font-size: 1.3rem;
+      margin-bottom: 0.3rem;
     }
 
     .story-content {
@@ -434,10 +538,11 @@
       margin-bottom: 1rem;
     }
 
+    /* Footer */
     footer {
       background: #1A0F0A;
       color: #B8A99A;
-      padding: 2rem 1rem 1.5rem;
+      padding: 2rem 1.5rem 1.5rem;
     }
 
     .footer-content {
@@ -447,11 +552,24 @@
       text-align: center;
     }
 
+    .footer-links a {
+      display: block;
+      color: #B8A99A;
+      text-decoration: none;
+      margin-bottom: 0.4rem;
+      font-size: 0.85rem;
+    }
+
+    .footer-links a:hover {
+      color: #C68B5E;
+    }
+
     .social-icons a {
       color: #B8A99A;
       font-size: 1.3rem;
       margin: 0 0.6rem;
       transition: 0.3s;
+      display: inline-block;
     }
 
     .social-icons a:hover {
@@ -478,8 +596,12 @@
       transform: scale(1.1);
     }
 
+    /* Tablet and Desktop */
     @media (min-width: 768px) {
-      .menu-icon { display: none; }
+      .menu-icon {
+        display: none;
+      }
+
       .nav-links {
         display: flex !important;
         position: static;
@@ -489,30 +611,62 @@
         gap: 2rem;
         box-shadow: none;
         border-top: none;
+        background: transparent;
       }
-      .hero-content h1 { font-size: 3.5rem; }
-      .hero-content p { font-size: 1.2rem; }
-      .products-grid { grid-template-columns: repeat(3, 1fr); gap: 2rem; }
-      .stats-grid { grid-template-columns: repeat(3, 1fr); gap: 2rem; }
-      .story-content { flex-direction: row; gap: 4rem; align-items: center; }
-      .section { padding: 5rem 2rem; }
-      .section-title { font-size: 3rem; }
-      .slide img { max-height: 550px; }
-      .footer-content { flex-direction: row; justify-content: space-between; text-align: left; }
+
+      .hero-content h1 {
+        font-size: 3.5rem;
+      }
+
+      .hero-content p {
+        font-size: 1.2rem;
+      }
+
+      .products-grid {
+        grid-template-columns: repeat(3, 1fr);
+        gap: 2rem;
+      }
+
+      .stats-grid {
+        grid-template-columns: repeat(3, 1fr);
+        gap: 2rem;
+      }
+
+      .story-content {
+        flex-direction: row;
+        gap: 4rem;
+        align-items: center;
+      }
+
+      .section {
+        padding: 5rem 2rem;
+      }
+
+      .section-title {
+        font-size: 3rem;
+      }
+
+      .footer-content {
+        flex-direction: row;
+        justify-content: space-between;
+        text-align: left;
+      }
     }
   </style>
 </head>
 <body>
 
-<a href="https://wa.me/251911223344?text=Hello%20Bean%20to%20Bag!" class="whatsapp-float" target="_blank">
+<!-- WhatsApp Float Button -->
+<a href="https://wa.me/251911223344?text=Hello%20Bean%20to%20Bag!%20I'd%20like%20to%20order%20coffee." class="whatsapp-float" target="_blank">
   <i class="fab fa-whatsapp"></i>
 </a>
 
+<!-- Navigation -->
 <nav>
   <div class="logo">Bean <span>to Bag</span></div>
-  <div class="menu-icon" onclick="toggleMenu()">
+  <button class="menu-icon" onclick="toggleMenu()">
     <i class="fas fa-bars"></i>
-  </div>
+  </button>
   <ul class="nav-links" id="navLinks">
     <li><a href="index.html" class="active">Home</a></li>
     <li><a href="about.html">About</a></li>
@@ -522,7 +676,7 @@
   </ul>
 </nav>
 
-<!-- Hero Section with MOVING/PARALLAX Background -->
+<!-- Hero Section -->
 <section class="hero">
   <div class="hero-content">
     <h1>From Bean to Bag<br>Premium Ethiopian Coffee</h1>
@@ -534,8 +688,32 @@
   </div>
 </section>
 
-<!-- Image Slider Section -->
+<!-- ========== CASKARA FEATURE SECTION (NEW) ========== -->
 <section class="section">
+  <div class="container">
+    <div class="caskara-feature">
+      <div class="caskara-icon">
+        <i class="fas fa-cherries"></i>
+        <i class="fas fa-mug-hot"></i>
+        <i class="fas fa-flower"></i>
+      </div>
+      <div class="caskara-info">
+        <h2>✨ Caskara ✨</h2>
+        <p>Dried coffee cherry infusion with naturally sweet, fruity, and delicate floral notes. Made from the dried skin of coffee cherries, Caskara produces a naturally sweet and refreshing beverage — completely caffeine-free.</p>
+        <div class="caskara-tags">
+          <span class="caskara-tag">🍊 Fruity</span>
+          <span class="caskara-tag">🌸 Floral</span>
+          <span class="caskara-tag">🍯 Sweet</span>
+          <span class="caskara-tag">✨ Caffeine-Free</span>
+        </div>
+        <span class="caskara-badge"><i class="fas fa-star"></i> Ethiopian Specialty Product</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Image Slider Section -->
+<section class="section" style="background: #F5EDE5;">
   <div class="container">
     <h2 class="section-title">Our Premium Packaging</h2>
     <p class="section-subtitle">Elegant design that preserves freshness</p>
@@ -576,7 +754,7 @@
 </section>
 
 <!-- Product Details -->
-<section class="section" style="background: #F5EDE5;">
+<section class="section">
   <div class="container">
     <h2 class="section-title">Product Details</h2>
     <p class="section-subtitle">From the highlands to your cup</p>
@@ -617,7 +795,7 @@
 </section>
 
 <!-- Featured Products -->
-<section class="section">
+<section class="section" style="background: #F5EDE5;">
   <div class="container">
     <h2 class="section-title">Our Signature Collection</h2>
     <p class="section-subtitle">Crafted with passion, roasted to perfection</p>
@@ -681,6 +859,7 @@
   </div>
 </section>
 
+<!-- Footer -->
 <footer>
   <div class="footer-content">
     <div class="footer-logo">
@@ -712,11 +891,13 @@
 </footer>
 
 <script>
-  // Mobile menu toggle
+  // Mobile menu toggle function
   function toggleMenu() {
-    document.getElementById('navLinks').classList.toggle('active');
+    const navLinks = document.getElementById('navLinks');
+    navLinks.classList.toggle('active');
   }
 
+  // Close menu when clicking a link (mobile)
   document.querySelectorAll('.nav-links a').forEach(link => {
     link.addEventListener('click', () => {
       document.getElementById('navLinks').classList.remove('active');
@@ -738,13 +919,17 @@
   }
 
   function nextSlide() {
-    currentSlide = (currentSlide + 1) % slides.length;
-    updateSlider();
+    if (slides.length > 0) {
+      currentSlide = (currentSlide + 1) % slides.length;
+      updateSlider();
+    }
   }
 
   function prevSlide() {
-    currentSlide = (currentSlide - 1 + slides.length) % slides.length;
-    updateSlider();
+    if (slides.length > 0) {
+      currentSlide = (currentSlide - 1 + slides.length) % slides.length;
+      updateSlider();
+    }
   }
 
   function goToSlide(index) {
@@ -753,11 +938,13 @@
   }
 
   // Auto slide every 5 seconds
-  let autoInterval = setInterval(nextSlide, 5000);
-  const sliderContainer = document.querySelector('.slider-container');
-  if (sliderContainer) {
-    sliderContainer.addEventListener('mouseenter', () => clearInterval(autoInterval));
-    sliderContainer.addEventListener('mouseleave', () => { autoInterval = setInterval(nextSlide, 5000); });
+  if (slides.length > 0) {
+    let autoInterval = setInterval(nextSlide, 5000);
+    const sliderContainer = document.querySelector('.slider-container');
+    if (sliderContainer) {
+      sliderContainer.addEventListener('mouseenter', () => clearInterval(autoInterval));
+      sliderContainer.addEventListener('mouseleave', () => { autoInterval = setInterval(nextSlide, 5000); });
+    }
   }
 </script>
 </body>
