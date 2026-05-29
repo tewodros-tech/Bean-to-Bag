@@ -5,76 +5,120 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Bean to Bag | Coffee Origin</title>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
-  <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;14..32,400;14..32,600;14..32,700;14..32,800&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700;800&family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
   <style>
     * { margin: 0; padding: 0; box-sizing: border-box; }
-    body { font-family: 'Inter', sans-serif; background: #FEFAF5; }
-    :root { --orange-bright: #E67E22; --cream: #FEFAF5; }
-    .container { max-width: 1280px; margin: 0 auto; padding: 0 28px; }
-    header { background: var(--cream); border-bottom: 1px solid #EDE3D8; position: sticky; top: 0; z-index: 100; }
-    nav { display: flex; justify-content: space-between; align-items: center; padding: 1rem 0; flex-wrap: wrap; }
-    .logo h1 { font-size: 1.9rem; font-weight: 800; }
-    .logo span { color: var(--orange-bright); }
-    .nav-links { display: flex; gap: 2rem; list-style: none; }
-    .nav-links a { text-decoration: none; font-weight: 600; color: #2F241B; transition: 0.2s; }
-    .nav-links a:hover, .nav-links a.active { color: var(--orange-bright); }
+    body { font-family: 'Poppins', sans-serif; background: #FFF9F5; color: #2C1810; }
+    h1, h2, h3, .logo { font-family: 'Playfair Display', serif; }
+    nav { position: fixed; top: 0; width: 100%; background: rgba(255, 249, 245, 0.95); backdrop-filter: blur(10px); z-index: 1000; padding: 1rem 5%; display: flex; justify-content: space-between; align-items: center; }
+    .logo { font-size: 1.8rem; font-weight: 800; }
+    .logo span { color: #C68B5E; }
+    .nav-links { display: flex; gap: 2.5rem; list-style: none; }
+    .nav-links a { text-decoration: none; color: #2C1810; font-weight: 500; transition: 0.3s; }
+    .nav-links a:hover, .nav-links a.active { color: #C68B5E; }
     .menu-icon { display: none; font-size: 1.8rem; cursor: pointer; }
-    .btn-primary { background: var(--orange-bright); color: white; padding: 12px 28px; border-radius: 40px; text-decoration: none; display: inline-block; }
-    .section-title { font-size: 2.4rem; text-align: center; margin: 3rem 0 2rem; color: #2F241B; }
-    .section-title:after { content: ''; display: block; width: 70px; height: 3px; background: var(--orange-bright); margin: 12px auto; border-radius: 4px; }
-    .stats-row { display: flex; gap: 2rem; flex-wrap: wrap; background: #F2E5D4; border-radius: 48px; padding: 2rem; margin: 2rem 0; justify-content: space-between; }
-    .stat-item { text-align: center; flex: 1; }
-    .whatsapp-float { position: fixed; bottom: 28px; right: 28px; background: #25D366; width: 58px; height: 58px; border-radius: 50%; text-align: center; line-height: 58px; font-size: 32px; color: white; z-index: 99; }
-    footer { background: #1F1B16; color: #CFC5B6; padding: 3rem 0 2rem; margin-top: 4rem; text-align: center; }
-    @media (max-width: 800px) { .nav-links { display: none; } .menu-icon { display: block; } }
+    .btn-primary { background: #C68B5E; color: white; padding: 0.8rem 2rem; border-radius: 50px; text-decoration: none; display: inline-block; transition: 0.3s; }
+    .whatsapp-float { position: fixed; bottom: 30px; right: 30px; background: #25D366; width: 60px; height: 60px; border-radius: 50%; text-align: center; line-height: 60px; font-size: 32px; color: white; z-index: 999; }
+    footer { background: #1A0F0A; color: #B8A99A; padding: 3rem 5% 2rem; margin-top: 4rem; text-align: center; }
+    .section { padding: 8rem 5% 4rem; }
+    .container { max-width: 1200px; margin: 0 auto; }
+    .origin-hero { background: linear-gradient(135deg, #2C1810, #4A2C1A); color: white; text-align: center; padding: 6rem 2rem; border-radius: 30px; margin-bottom: 3rem; }
+    .origin-hero h1 { font-size: 4rem; margin-bottom: 1rem; }
+    .stats-container { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 2rem; margin: 3rem 0; }
+    .stat-box { background: #F5EDE5; padding: 2rem; border-radius: 20px; text-align: center; }
+    .stat-box i { font-size: 3rem; color: #C68B5E; margin-bottom: 1rem; }
+    .stat-box h3 { font-size: 2rem; margin-bottom: 0.5rem; }
+    .flavor-profile { background: white; border-radius: 20px; padding: 2rem; margin: 2rem 0; box-shadow: 0 10px 30px rgba(0,0,0,0.05); }
+    .flavor-tags { display: flex; gap: 1rem; flex-wrap: wrap; margin-top: 1rem; }
+    .flavor-tag { background: #F5EDE5; padding: 0.5rem 1.5rem; border-radius: 50px; font-size: 0.9rem; }
+    @media (max-width: 768px) {
+      .nav-links { display: none; position: absolute; top: 70px; left: 0; width: 100%; background: #FFF9F5; flex-direction: column; padding: 1rem; text-align: center; }
+      .menu-icon { display: block; }
+      .origin-hero h1 { font-size: 2.5rem; }
+    }
   </style>
 </head>
 <body>
+
 <a href="https://wa.me/251911223344" class="whatsapp-float" target="_blank"><i class="fab fa-whatsapp"></i></a>
 
-<header>
-  <div class="container">
-    <nav>
-      <div class="logo"><h1>Bean <span>to Bag</span></h1></div>
-      <ul class="nav-links">
-        <li><a href="index.html">Home</a></li>
-        <li><a href="about.html">About</a></li>
-        <li><a href="products.html">Products</a></li>
-        <li><a href="origin.html" class="active">Coffee Origin</a></li>
-        <li><a href="contact.html">Contact</a></li>
-      </ul>
-      <div class="menu-icon" onclick="document.querySelector('.nav-links').style.display = document.querySelector('.nav-links').style.display === 'flex' ? 'none' : 'flex'"><i class="fas fa-bars"></i></div>
-    </nav>
-  </div>
-</header>
+<nav>
+  <div class="logo">Bean <span>to Bag</span></div>
+  <ul class="nav-links" id="navLinks">
+    <li><a href="index.html">Home</a></li>
+    <li><a href="about.html">About</a></li>
+    <li><a href="products.html">Products</a></li>
+    <li><a href="origin.html" class="active">Origin</a></li>
+    <li><a href="contact.html">Contact</a></li>
+  </ul>
+  <div class="menu-icon" onclick="document.getElementById('navLinks').classList.toggle('active')"><i class="fas fa-bars"></i></div>
+</nav>
 
-<div class="container">
-  <h1 class="section-title">Ethiopian Highlands Origin</h1>
-  <div class="stats-row">
-    <div class="stat-item"><i class="fas fa-mountain" style="font-size:2.5rem; color:#E67E22;"></i><h3>1,900–2,200m</h3><p>Slow ripening, complex flavors</p></div>
-    <div class="stat-item"><i class="fas fa-seedling" style="font-size:2.5rem;"></i><h3>100% Arabica</h3><p>Smallholder garden farms</p></div>
-    <div class="stat-item"><i class="fas fa-chart-line" style="font-size:2.5rem;"></i><h3>Cup Profile</h3><p>Floral, bright acidity, citrus & fruit notes</p></div>
+<section class="section">
+  <div class="container">
+    <div class="origin-hero">
+      <h1>Ethiopian Highlands</h1>
+      <p>Where extraordinary coffee begins its journey</p>
+    </div>
+
+    <div class="stats-container">
+      <div class="stat-box">
+        <i class="fas fa-mountain"></i>
+        <h3>1,900-2,200m</h3>
+        <p>Growing Altitude</p>
+        <small>Slow ripening for complex flavors</small>
+      </div>
+      <div class="stat-box">
+        <i class="fas fa-leaf"></i>
+        <h3>100% Arabica</h3>
+        <p>Coffea Arabica</p>
+        <small>Traditional garden farms</small>
+      </div>
+      <div class="stat-box">
+        <i class="fas fa-tint"></i>
+        <h3>Balanced Rainfall</h3>
+        <p>Natural shade trees</p>
+        <small>Fertile volcanic soil</small>
+      </div>
+    </div>
+
+    <div class="flavor-profile">
+      <h2 style="color: #C68B5E; margin-bottom: 1rem;">Cup Profile</h2>
+      <p style="font-size: 1.1rem; line-height: 1.8;">The cool highland climate, natural shade trees, fertile soil, and balanced seasonal rainfall allow the coffee cherries to ripen slowly, developing refined and complex flavors.</p>
+      <div class="flavor-tags">
+        <span class="flavor-tag">🌸 Floral aroma</span>
+        <span class="flavor-tag">🍋 Bright acidity</span>
+        <span class="flavor-tag">🍊 Citrus notes</span>
+        <span class="flavor-tag">🍇 Fruit notes</span>
+        <span class="flavor-tag">✨ Smooth clean finish</span>
+      </div>
+    </div>
+
+    <div style="background: #2C1810; color: white; border-radius: 20px; padding: 2rem; text-align: center;">
+      <h2 style="margin-bottom: 1rem;">Our Roast Profile</h2>
+      <p>All roasted coffees from Bean to Bag are roasted to a <strong>Medium-Dark roast level</strong>.</p>
+      <div style="display: flex; justify-content: center; gap: 2rem; flex-wrap: wrap; margin-top: 1.5rem;">
+        <span>✓ Balanced acidity</span>
+        <span>✓ Full body</span>
+        <span>✓ Rich chocolate notes</span>
+        <span>✓ Smooth finish</span>
+      </div>
+    </div>
   </div>
-  <div style="background:white; border-radius:32px; padding:2.5rem; margin:2rem 0;">
-    <h3>🌿 Tradition & Terroir</h3>
-    <p>Our coffee is cultivated under natural shade in cool highlands, fertile soil and balanced rain. This creates refined, complex flavors. We currently source green beans from trusted farmer networks and plan to invest in dry-processing land to increase traceability and quality.</p>
-    <p style="margin-top:1.5rem;"><strong>From highland cherry → roasted perfection → your cup.</strong></p>
-  </div>
-  <div style="margin:3rem 0; text-align:center;"><a href="contact.html" class="btn-primary">Inquire about green beans or wholesale</a></div>
-</div>
+</section>
 
 <footer>
   <div class="container">
-    <h2 style="color:#EFDBC8;">Bean <span style="color:#E67E22;">to Bag</span></h2>
-    <p>Honoring Ethiopian coffee legacy</p>
+    <h2 style="color: white;">Bean <span style="color: #C68B5E;">to Bag</span></h2>
+    <p style="margin-top: 1rem;">Honoring Ethiopian coffee heritage since 2025</p>
   </div>
 </footer>
 
 <script>
-  window.addEventListener('resize', function() {
-    let nav = document.querySelector('.nav-links');
-    if(window.innerWidth > 800) nav.style.display = 'flex';
-    else nav.style.display = 'none';
+  window.addEventListener('scroll', function() {
+    const nav = document.querySelector('nav');
+    if (window.scrollY > 50) nav.style.background = 'rgba(255, 249, 245, 0.98)';
+    else nav.style.background = 'rgba(255, 249, 245, 0.95)';
   });
 </script>
 </body>
