@@ -24,7 +24,7 @@
       align-items: center;
       border-bottom: 1px solid rgba(198, 139, 94, 0.3);
     }
-    .logo { font-size: 1.8rem; font-weight: 800; background: linear-gradient(135deg, #FFFFFF, #C68B5E); -webkit-background-clip: text; background-clip: text; color: transparent; }
+    .logo { font-size: 1.5rem; font-weight: 800; background: linear-gradient(135deg, #FFFFFF, #C68B5E); -webkit-background-clip: text; background-clip: text; color: transparent; }
     .menu-icon { display: none; font-size: 1.8rem; cursor: pointer; background: none; border: none; color: white; }
     .nav-links { display: flex; gap: 2rem; list-style: none; }
     .nav-links a { text-decoration: none; color: white; font-weight: 500; transition: 0.3s; position: relative; }
@@ -32,37 +32,42 @@
     .nav-links a:hover::after, .nav-links a.active::after { width: 100%; }
     .nav-links a:hover { color: #C68B5E; }
 
-    .btn-primary { background: linear-gradient(135deg, #C68B5E, #A06B42); color: white; padding: 0.8rem 2rem; border-radius: 50px; text-decoration: none; transition: 0.3s; display: inline-block; }
-    .whatsapp-float { position: fixed; bottom: 30px; right: 30px; background: #25D366; width: 60px; height: 60px; border-radius: 50%; text-align: center; line-height: 60px; font-size: 32px; color: white; z-index: 999; }
-    footer { background: #0A0A0A; border-top: 1px solid rgba(198,139,94,0.3); padding: 3rem 5% 2rem; text-align: center; }
+    .btn-primary { background: linear-gradient(135deg, #C68B5E, #A06B42); color: white; padding: 0.8rem 2rem; border-radius: 50px; text-decoration: none; display: inline-block; transition: 0.3s; }
+    .whatsapp-float { position: fixed; bottom: 20px; right: 20px; background: #25D366; width: 50px; height: 50px; border-radius: 50%; text-align: center; line-height: 50px; font-size: 26px; color: white; z-index: 999; animation: pulse 2s infinite; }
+    @keyframes pulse { 0% { transform: scale(1); } 50% { transform: scale(1.1); } 100% { transform: scale(1); } }
+    footer { background: #0A0A0A; border-top: 1px solid rgba(198,139,94,0.3); padding: 2rem 5% 1.5rem; text-align: center; }
 
-    .hero-products { min-height: 50vh; background: linear-gradient(135deg, #C68B5E, #8B5E3C); display: flex; align-items: center; justify-content: center; text-align: center; }
-    .hero-products h1 { font-size: 4rem; animation: fadeInUp 0.8s ease; }
+    .hero-products { min-height: 40vh; background: linear-gradient(135deg, #C68B5E, #8B5E3C); display: flex; align-items: center; justify-content: center; text-align: center; }
+    .hero-products h1 { font-size: 3rem; animation: fadeInUp 0.8s ease; }
     @keyframes fadeInUp { from { opacity: 0; transform: translateY(30px); } to { opacity: 1; transform: translateY(0); } }
 
-    .section { padding: 5rem 5%; }
+    .section { padding: 4rem 5%; }
     .container { max-width: 1200px; margin: 0 auto; }
-    .section-title { text-align: center; font-size: 3rem; margin-bottom: 1rem; background: linear-gradient(135deg, #FFFFFF, #C68B5E); -webkit-background-clip: text; background-clip: text; color: transparent; }
+    .section-title { text-align: center; font-size: 2.5rem; margin-bottom: 1rem; background: linear-gradient(135deg, #FFFFFF, #C68B5E); -webkit-background-clip: text; background-clip: text; color: transparent; }
 
-    .product-detail { display: grid; grid-template-columns: repeat(auto-fit, minmax(350px, 1fr)); gap: 2rem; margin: 3rem 0; }
-    .product-detail-card { background: rgba(255,255,255,0.05); backdrop-filter: blur(10px); border-radius: 20px; overflow: hidden; transition: 0.4s; border: 1px solid rgba(198,139,94,0.2); }
-    .product-detail-card:hover { transform: translateY(-10px); border-color: #C68B5E; }
-    .product-header { padding: 2rem; text-align: center; }
-    .product-header i { font-size: 4rem; color: #C68B5E; }
-    .product-body { padding: 0 2rem 2rem; }
-    .roast-bar { height: 8px; background: #333; border-radius: 10px; margin: 1rem 0; overflow: hidden; }
+    .product-detail { display: grid; grid-template-columns: repeat(2, 1fr); gap: 2rem; margin: 2rem 0; }
+    .product-card { background: rgba(255,255,255,0.05); backdrop-filter: blur(10px); border-radius: 20px; overflow: hidden; transition: 0.4s; border: 1px solid rgba(198,139,94,0.2); }
+    .product-card:hover { transform: translateY(-10px); border-color: #C68B5E; }
+    .product-header { padding: 1.5rem; text-align: center; background: linear-gradient(135deg, rgba(198,139,94,0.2), rgba(0,0,0,0.3)); }
+    .product-header i { font-size: 3rem; color: #C68B5E; }
+    .product-body { padding: 1.5rem; }
+    .roast-bar { height: 6px; background: #333; border-radius: 10px; margin: 1rem 0; overflow: hidden; }
     .roast-fill { height: 100%; width: 70%; background: linear-gradient(90deg, #C68B5E, #E8A87C); border-radius: 10px; }
-    .price { font-size: 2rem; color: #C68B5E; font-weight: 800; margin: 1rem 0; }
     .sizes { display: flex; gap: 0.5rem; flex-wrap: wrap; margin: 1rem 0; }
-    .size { background: rgba(198,139,94,0.2); padding: 0.3rem 0.8rem; border-radius: 50px; }
+    .size { background: rgba(198,139,94,0.2); padding: 0.2rem 0.7rem; border-radius: 50px; font-size: 0.75rem; }
+
+    .image-gallery { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1rem; margin: 2rem 0; }
+    .image-gallery img { width: 100%; height: 200px; object-fit: cover; border-radius: 15px; transition: 0.3s; cursor: pointer; }
+    .image-gallery img:hover { transform: scale(1.03); box-shadow: 0 10px 20px rgba(198,139,94,0.3); }
 
     @media (max-width: 768px) {
       .menu-icon { display: block; }
       .nav-links { display: none; position: absolute; top: 70px; left: 0; width: 100%; background: rgba(10,10,10,0.95); flex-direction: column; padding: 1.5rem; text-align: center; gap: 1rem; }
       .nav-links.active { display: flex; }
-      .hero-products h1 { font-size: 2.5rem; }
-      .section-title { font-size: 2rem; }
+      .hero-products h1 { font-size: 2rem; }
+      .section-title { font-size: 1.8rem; }
       .product-detail { grid-template-columns: 1fr; }
+      .image-gallery { grid-template-columns: repeat(2, 1fr); }
     }
   </style>
 </head>
@@ -88,13 +93,26 @@
 
 <section class="section">
   <div class="container">
+    <div class="image-gallery">
+      <img src="14.JPG" onerror="this.src='https://placehold.co/400x250?text=Coffee+14'">
+      <img src="15.JPG" onerror="this.src='https://placehold.co/400x250?text=Coffee+15'">
+      <img src="16.JPG" onerror="this.src='https://placehold.co/400x250?text=Coffee+16'">
+    </div>
+
     <h2 class="section-title">Explore Our Range</h2>
     <div class="product-detail">
-      <div class="product-detail-card"><div class="product-header"><i class="fas fa-mug-hot"></i><h2 style="color:#E67E22;">Caskara</h2></div><div class="product-body"><h3>Dried Coffee Cherry</h3><p>Made from the dried skin of coffee cherries. Naturally sweet and fruity beverage with delicate floral notes.</p><div class="roast-bar"><div class="roast-fill" style="width: 40%;"></div></div><p><strong>Taste:</strong> Fruity • Sweet • Floral</p><div class="sizes"><span class="size">250g</span><span class="size">500g</span><span class="size">1kg</span></div><div class="price">From $12.99</div></div></div>
-      <div class="product-detail-card"><div class="product-header"><i class="fas fa-mortar-pestle"></i><h2 style="color:#8B5E3C;">Qalid's Choice</h2></div><div class="product-body"><h3>House Blend - Ground Coffee</h3><p>Signature house blend designed for everyday coffee enjoyment. Balanced cup with smooth body and chocolate notes.</p><div class="roast-bar"><div class="roast-fill" style="width: 70%;"></div></div><p><strong>Taste:</strong> Balanced • Smooth • Chocolate</p><p><strong>Grind:</strong> Jebena • French Press • Espresso</p><div class="sizes"><span class="size">250g</span><span class="size">500g</span><span class="size">1kg</span></div><div class="price">From $14.99</div></div></div>
-      <div class="product-detail-card"><div class="product-header"><i class="fas fa-seedling"></i><h2 style="color:#1F1D1B;">Chemina</h2></div><div class="product-body"><h3>Whole Bean Coffee</h3><p>Bold coffee experience with rich body and deep cocoa notes. Ideal for espresso and milk-based drinks.</p><div class="roast-bar"><div class="roast-fill" style="width: 70%;"></div></div><p><strong>Taste:</strong> Bold • Cocoa • Smooth Finish</p><div class="sizes"><span class="size">250g</span><span class="size">500g</span><span class="size">1kg</span></div><div class="price">From $15.99</div></div></div>
-      <div class="product-detail-card"><div class="product-header"><i class="fas fa-leaf"></i><h2 style="color:#4F6D4A;">Origin Green</h2></div><div class="product-body"><h3>Raw Green Coffee Beans</h3><p>Unroasted green beans for home roasters, cafés, and coffee enthusiasts. Traceable Ethiopian Arabica.</p><div class="roast-bar"><div class="roast-fill" style="width: 10%; background: #4F6D4A;"></div></div><p><strong>Perfect for:</strong> Home Roasters • Cafés • Enthusiasts</p><div class="sizes"><span class="size">500g</span><span class="size">1kg</span><span class="size">5kg</span></div><div class="price">From $11.99</div></div></div>
+      <div class="product-card"><div class="product-header"><i class="fas fa-mug-hot"></i><h2 style="color:#E67E22;">Caskara</h2></div><div class="product-body"><p>Dried coffee cherry infusion. Naturally sweet with fruity & floral notes.</p><div class="roast-bar"><div class="roast-fill" style="width: 40%;"></div></div><p><strong>Taste:</strong> Fruity • Sweet • Floral</p><div class="sizes"><span class="size">250g</span><span class="size">500g</span><span class="size">1kg</span></div></div></div>
+      <div class="product-card"><div class="product-header"><i class="fas fa-mortar-pestle"></i><h2 style="color:#8B5E3C;">Qalid's Choice</h2></div><div class="product-body"><p>House blend ground coffee. Balanced with chocolate notes.</p><div class="roast-bar"><div class="roast-fill" style="width: 70%;"></div></div><p><strong>Taste:</strong> Balanced • Smooth • Chocolate</p><div class="sizes"><span class="size">250g</span><span class="size">500g</span><span class="size">1kg</span></div></div></div>
+      <div class="product-card"><div class="product-header"><i class="fas fa-seedling"></i><h2 style="color:#1F1D1B;">Chemina</h2></div><div class="product-body"><p>Whole bean espresso roast. Bold body with cocoa notes.</p><div class="roast-bar"><div class="roast-fill" style="width: 70%;"></div></div><p><strong>Taste:</strong> Bold • Cocoa • Smooth</p><div class="sizes"><span class="size">250g</span><span class="size">500g</span><span class="size">1kg</span></div></div></div>
+      <div class="product-card"><div class="product-header"><i class="fas fa-leaf"></i><h2 style="color:#4F6D4A;">Origin Green</h2></div><div class="product-body"><p>Raw green coffee beans for home roasters and cafés.</p><div class="roast-bar"><div class="roast-fill" style="width: 10%; background: #4F6D4A;"></div></div><div class="sizes"><span class="size">500g</span><span class="size">1kg</span><span class="size">5kg</span></div></div></div>
     </div>
+
+    <div class="image-gallery">
+      <img src="17.JPG" onerror="this.src='https://placehold.co/400x250?text=Coffee+17'">
+      <img src="19.JPG" onerror="this.src='https://placehold.co/400x250?text=Coffee+19'">
+      <img src="coffee-beans-top-view-background.jpg" onerror="this.src='https://placehold.co/400x250?text=Coffee+Beans'">
+    </div>
+
     <div style="text-align: center;"><a href="contact.html" class="btn-primary">Place Your Order →</a></div>
   </div>
 </section>
@@ -105,6 +123,9 @@
 
 <script>
   function toggleMenu() { document.getElementById('navLinks').classList.toggle('active'); }
+  document.querySelectorAll('.nav-links a').forEach(link => {
+    link.addEventListener('click', () => document.getElementById('navLinks').classList.remove('active'));
+  });
 </script>
 </body>
 </html>
