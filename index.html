@@ -24,7 +24,12 @@
       font-family: 'Playfair Display', serif;
     }
 
-    /* Navigation - Mobile First */
+    /* Remove bullet points from all lists */
+    ul, ol {
+      list-style: none;
+    }
+
+    /* Navigation */
     nav {
       position: fixed;
       top: 0;
@@ -48,13 +53,11 @@
       color: #C68B5E;
     }
 
-    /* Hamburger Menu */
     .menu-icon {
       display: block;
       font-size: 1.8rem;
       cursor: pointer;
       color: #2C1810;
-      z-index: 1001;
     }
 
     .nav-links {
@@ -81,7 +84,6 @@
       color: #2C1810;
       font-weight: 500;
       padding: 0.5rem;
-      transition: 0.3s;
       font-size: 1rem;
     }
 
@@ -90,13 +92,14 @@
       color: #C68B5E;
     }
 
-    /* Hero Section */
+    /* Hero Section with MOVING background */
     .hero {
       min-height: 100vh;
-      background: linear-gradient(135deg, rgba(44, 24, 16, 0.85), rgba(74, 44, 26, 0.8)), url('coffee1.JPG');
+      background: linear-gradient(135deg, rgba(44, 24, 16, 0.75), rgba(74, 44, 26, 0.7)), url('coffee1.JPG');
       background-size: cover;
       background-position: center;
-      background-attachment: scroll;
+      background-attachment: fixed;
+      background-repeat: no-repeat;
       display: flex;
       align-items: center;
       justify-content: center;
@@ -119,7 +122,6 @@
     .hero-content p {
       font-size: 1rem;
       margin-bottom: 1.5rem;
-      line-height: 1.5;
     }
 
     .btn-group {
@@ -139,6 +141,8 @@
       transition: 0.3s;
       display: inline-block;
       font-size: 0.9rem;
+      border: none;
+      cursor: pointer;
     }
 
     .btn-primary:hover {
@@ -154,8 +158,8 @@
       border-radius: 50px;
       text-decoration: none;
       font-weight: 600;
-      transition: 0.3s;
       font-size: 0.9rem;
+      transition: 0.3s;
     }
 
     .btn-outline:hover {
@@ -163,7 +167,6 @@
       color: #2C1810;
     }
 
-    /* Section Styles */
     .section {
       padding: 3rem 1rem;
     }
@@ -195,14 +198,15 @@
       padding: 0 0.5rem;
     }
 
-    /* ========== IMAGE SLIDER / CAROUSEL ========== */
+    /* Image Slider */
     .slider-container {
       position: relative;
-      max-width: 1000px;
+      max-width: 900px;
       margin: 2rem auto;
-      overflow: hidden;
+      background: #2C1810;
       border-radius: 20px;
-      box-shadow: 0 15px 35px rgba(0,0,0,0.1);
+      overflow: hidden;
+      box-shadow: 0 15px 35px rgba(0,0,0,0.2);
     }
 
     .slider {
@@ -213,13 +217,16 @@
     .slide {
       min-width: 100%;
       position: relative;
+      background: #1A0F0A;
     }
 
     .slide img {
       width: 100%;
-      height: 300px;
-      object-fit: cover;
+      height: auto;
+      max-height: 500px;
+      object-fit: contain;
       display: block;
+      background: #1A0F0A;
     }
 
     .slide-caption {
@@ -227,19 +234,27 @@
       bottom: 0;
       left: 0;
       right: 0;
-      background: linear-gradient(transparent, rgba(0,0,0,0.7));
+      background: linear-gradient(transparent, rgba(0,0,0,0.85));
       color: white;
       padding: 2rem 1rem 1rem;
       text-align: center;
-      font-weight: 600;
     }
 
-    /* Slider Buttons */
+    .slide-caption h3 {
+      font-size: 1.3rem;
+      margin-bottom: 0.3rem;
+    }
+
+    .slide-caption p {
+      font-size: 0.8rem;
+      opacity: 0.9;
+    }
+
     .slider-btn {
       position: absolute;
       top: 50%;
       transform: translateY(-50%);
-      background: rgba(0,0,0,0.5);
+      background: rgba(0,0,0,0.6);
       color: white;
       border: none;
       width: 40px;
@@ -263,7 +278,6 @@
       right: 10px;
     }
 
-    /* Dots Navigation */
     .dots-container {
       display: flex;
       justify-content: center;
@@ -287,7 +301,47 @@
       border-radius: 10px;
     }
 
-    /* Products Grid - Mobile Friendly */
+    .product-detail-card {
+      background: white;
+      border-radius: 20px;
+      padding: 1.5rem;
+      margin: 1.5rem 0;
+      box-shadow: 0 10px 20px rgba(0,0,0,0.08);
+    }
+
+    .product-detail-card h3 {
+      color: #C68B5E;
+      font-size: 1.3rem;
+      margin-bottom: 1rem;
+      border-left: 4px solid #C68B5E;
+      padding-left: 1rem;
+    }
+
+    .product-detail-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 1rem;
+    }
+
+    .detail-item {
+      background: #F5EDE5;
+      padding: 0.8rem;
+      border-radius: 12px;
+    }
+
+    .detail-item strong {
+      color: #2C1810;
+      font-size: 0.75rem;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+    }
+
+    .detail-item p {
+      font-size: 0.9rem;
+      font-weight: 600;
+      margin-top: 0.3rem;
+    }
+
     .products-grid {
       display: grid;
       grid-template-columns: 1fr;
@@ -308,7 +362,7 @@
     }
 
     .product-img {
-      height: 200px;
+      height: 180px;
       display: flex;
       align-items: center;
       justify-content: center;
@@ -328,7 +382,6 @@
     .product-info p {
       font-size: 0.85rem;
       color: #5a4a3a;
-      line-height: 1.4;
     }
 
     .product-taste {
@@ -343,10 +396,8 @@
       padding: 0.2rem 0.7rem;
       border-radius: 50px;
       font-size: 0.7rem;
-      color: #2C1810;
     }
 
-    /* Stats Grid - Mobile */
     .stats-grid {
       display: grid;
       grid-template-columns: 1fr;
@@ -369,10 +420,8 @@
 
     .stat-card h3 {
       font-size: 1.5rem;
-      margin-bottom: 0.3rem;
     }
 
-    /* Story Section - Mobile */
     .story-content {
       display: flex;
       flex-direction: column;
@@ -385,7 +434,6 @@
       margin-bottom: 1rem;
     }
 
-    /* Footer */
     footer {
       background: #1A0F0A;
       color: #B8A99A;
@@ -399,11 +447,6 @@
       text-align: center;
     }
 
-    .footer-logo h2 {
-      font-size: 1.5rem;
-      margin-bottom: 0.5rem;
-    }
-
     .social-icons a {
       color: #B8A99A;
       font-size: 1.3rem;
@@ -411,15 +454,10 @@
       transition: 0.3s;
     }
 
-    .footer-bottom {
-      text-align: center;
-      padding-top: 1.5rem;
-      margin-top: 1.5rem;
-      border-top: 1px solid rgba(255,255,255,0.1);
-      font-size: 0.75rem;
+    .social-icons a:hover {
+      color: #C68B5E;
     }
 
-    /* WhatsApp Float */
     .whatsapp-float {
       position: fixed;
       bottom: 20px;
@@ -432,17 +470,16 @@
       line-height: 50px;
       font-size: 26px;
       color: white;
-      box-shadow: 0 4px 10px rgba(0,0,0,0.2);
       z-index: 999;
       transition: 0.3s;
     }
 
-    /* Tablet and Desktop */
-    @media (min-width: 768px) {
-      .menu-icon {
-        display: none;
-      }
+    .whatsapp-float:hover {
+      transform: scale(1.1);
+    }
 
+    @media (min-width: 768px) {
+      .menu-icon { display: none; }
       .nav-links {
         display: flex !important;
         position: static;
@@ -453,60 +490,21 @@
         box-shadow: none;
         border-top: none;
       }
-
-      .hero-content h1 {
-        font-size: 3.5rem;
-      }
-
-      .hero-content p {
-        font-size: 1.2rem;
-      }
-
-      .products-grid {
-        grid-template-columns: repeat(2, 1fr);
-        gap: 2rem;
-      }
-
-      .stats-grid {
-        grid-template-columns: repeat(3, 1fr);
-        gap: 2rem;
-      }
-
-      .story-content {
-        flex-direction: row;
-        gap: 4rem;
-        align-items: center;
-      }
-
-      .footer-content {
-        flex-direction: row;
-        justify-content: space-between;
-        text-align: left;
-      }
-
-      .section {
-        padding: 5rem 2rem;
-      }
-
-      .section-title {
-        font-size: 3rem;
-      }
-
-      .slide img {
-        height: 450px;
-      }
-    }
-
-    @media (min-width: 1024px) {
-      .products-grid {
-        grid-template-columns: repeat(3, 1fr);
-      }
+      .hero-content h1 { font-size: 3.5rem; }
+      .hero-content p { font-size: 1.2rem; }
+      .products-grid { grid-template-columns: repeat(3, 1fr); gap: 2rem; }
+      .stats-grid { grid-template-columns: repeat(3, 1fr); gap: 2rem; }
+      .story-content { flex-direction: row; gap: 4rem; align-items: center; }
+      .section { padding: 5rem 2rem; }
+      .section-title { font-size: 3rem; }
+      .slide img { max-height: 550px; }
+      .footer-content { flex-direction: row; justify-content: space-between; text-align: left; }
     }
   </style>
 </head>
 <body>
 
-<a href="https://wa.me/251911223344?text=Hello%20Bean%20to%20Bag!%20I'd%20like%20to%20order%20coffee." class="whatsapp-float" target="_blank">
+<a href="https://wa.me/251911223344?text=Hello%20Bean%20to%20Bag!" class="whatsapp-float" target="_blank">
   <i class="fab fa-whatsapp"></i>
 </a>
 
@@ -524,7 +522,7 @@
   </ul>
 </nav>
 
-<!-- Hero Section -->
+<!-- Hero Section with MOVING/PARALLAX Background -->
 <section class="hero">
   <div class="hero-content">
     <h1>From Bean to Bag<br>Premium Ethiopian Coffee</h1>
@@ -536,26 +534,35 @@
   </div>
 </section>
 
-<!-- MOVABLE IMAGE SLIDER / CAROUSEL Section -->
+<!-- Image Slider Section -->
 <section class="section">
   <div class="container">
     <h2 class="section-title">Our Premium Packaging</h2>
-    <p class="section-subtitle">Slide to explore our elegant coffee bags</p>
+    <p class="section-subtitle">Elegant design that preserves freshness</p>
     
     <div class="slider-container">
       <button class="slider-btn prev-btn" onclick="prevSlide()">❮</button>
       <div class="slider" id="imageSlider">
         <div class="slide">
-          <img src="packaging.jpg" alt="Bean to Bag Signature Coffee Bag" onerror="this.src='https://placehold.co/600x400?text=Signature+Coffee+Bag'">
-          <div class="slide-caption">Signature Coffee Bag</div>
+          <img src="packaging.jpg" alt="Caskara Packaging" onerror="this.src='https://placehold.co/800x500?text=Caskara+Coffee+Packaging'">
+          <div class="slide-caption">
+            <h3>Caskara - Dried Coffee Cherry</h3>
+            <p>Altitude: 1900-2200M | Medium-Dark Roast</p>
+          </div>
         </div>
         <div class="slide">
-          <img src="packaging2.jpg" alt="Bean to Bag Premium Roast Collection" onerror="this.src='https://placehold.co/600x400?text=Premium+Roast+Collection'">
-          <div class="slide-caption">Premium Roast Collection</div>
+          <img src="packaging2.jpg" alt="Chemina Packaging" onerror="this.src='https://placehold.co/800x500?text=Chemina+Whole+Bean+Coffee'">
+          <div class="slide-caption">
+            <h3>Chemina - Whole Bean Coffee</h3>
+            <p>Medium-Dark Roast | Bold & Cocoa Notes</p>
+          </div>
         </div>
         <div class="slide">
-          <img src="packaging3.jpg" alt="Bean to Bag Specialty Series" onerror="this.src='https://placehold.co/600x400?text=Specialty+Series'">
-          <div class="slide-caption">Specialty Series</div>
+          <img src="packaging3.jpg" alt="Qalid's Choice Packaging" onerror="this.src='https://placehold.co/800x500?text=Qalid%27s+Choice+House+Blend'">
+          <div class="slide-caption">
+            <h3>Qalid's Choice - House Blend</h3>
+            <p>Ground Coffee | Balanced & Smooth</p>
+          </div>
         </div>
       </div>
       <button class="slider-btn next-btn" onclick="nextSlide()">❯</button>
@@ -568,8 +575,49 @@
   </div>
 </section>
 
-<!-- Featured Products -->
+<!-- Product Details -->
 <section class="section" style="background: #F5EDE5;">
+  <div class="container">
+    <h2 class="section-title">Product Details</h2>
+    <p class="section-subtitle">From the highlands to your cup</p>
+    
+    <div class="product-detail-card">
+      <h3>Caskara - Dried Coffee Cherry</h3>
+      <div class="product-detail-grid">
+        <div class="detail-item"><strong>Product Name</strong><p>Bean to Bag - Caskara</p></div>
+        <div class="detail-item"><strong>Product Type</strong><p>Dried Coffee Cherry</p></div>
+        <div class="detail-item"><strong>Roast Level</strong><p>Medium-Dark Roast</p></div>
+        <div class="detail-item"><strong>Altitude</strong><p>1900 - 2200M</p></div>
+        <div class="detail-item"><strong>Taste Profile</strong><p>Fruity · Sweet · Floral</p></div>
+      </div>
+    </div>
+
+    <div class="product-detail-card">
+      <h3>Chemina - Whole Bean Coffee</h3>
+      <div class="product-detail-grid">
+        <div class="detail-item"><strong>Product Name</strong><p>Bean to Bag - Chemina</p></div>
+        <div class="detail-item"><strong>Product Type</strong><p>Whole Bean Coffee</p></div>
+        <div class="detail-item"><strong>Roast Level</strong><p>Medium-Dark Roast</p></div>
+        <div class="detail-item"><strong>Taste Profile</strong><p>Bold · Cocoa · Smooth Finish</p></div>
+        <div class="detail-item"><strong>Best For</strong><p>Espresso · Macchiato · Milk Drinks</p></div>
+      </div>
+    </div>
+
+    <div class="product-detail-card">
+      <h3>Qalid's Choice - House Blend</h3>
+      <div class="product-detail-grid">
+        <div class="detail-item"><strong>Product Name</strong><p>Bean to Bag - Qalid's Choice</p></div>
+        <div class="detail-item"><strong>Product Type</strong><p>Ground Coffee</p></div>
+        <div class="detail-item"><strong>Roast Level</strong><p>Medium-Dark Roast</p></div>
+        <div class="detail-item"><strong>Grind Options</strong><p>Jebena · French Press · Espresso</p></div>
+        <div class="detail-item"><strong>Taste Profile</strong><p>Balanced · Smooth · Chocolate Notes</p></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Featured Products -->
+<section class="section">
   <div class="container">
     <h2 class="section-title">Our Signature Collection</h2>
     <p class="section-subtitle">Crafted with passion, roasted to perfection</p>
@@ -580,9 +628,9 @@
           <h3>Caskara</h3>
           <p>Dried coffee cherry infusion with sweet, fruity, floral notes.</p>
           <div class="product-taste">
-            <span class="taste-tag">🍊 Fruity</span>
-            <span class="taste-tag">🌸 Floral</span>
-            <span class="taste-tag">🍯 Sweet</span>
+            <span class="taste-tag">Fruity</span>
+            <span class="taste-tag">Floral</span>
+            <span class="taste-tag">Sweet</span>
           </div>
         </div>
       </div>
@@ -592,9 +640,9 @@
           <h3>Qalid's Choice</h3>
           <p>House blend ground coffee with balanced chocolate notes.</p>
           <div class="product-taste">
-            <span class="taste-tag">🍫 Chocolate</span>
-            <span class="taste-tag">⚖️ Balanced</span>
-            <span class="taste-tag">✨ Smooth</span>
+            <span class="taste-tag">Chocolate</span>
+            <span class="taste-tag">Balanced</span>
+            <span class="taste-tag">Smooth</span>
           </div>
         </div>
       </div>
@@ -604,9 +652,9 @@
           <h3>Chemina</h3>
           <p>Whole bean espresso roast with bold cocoa body.</p>
           <div class="product-taste">
-            <span class="taste-tag">☕ Bold</span>
-            <span class="taste-tag">🍫 Cocoa</span>
-            <span class="taste-tag">💨 Smooth finish</span>
+            <span class="taste-tag">Bold</span>
+            <span class="taste-tag">Cocoa</span>
+            <span class="taste-tag">Smooth Finish</span>
           </div>
         </div>
       </div>
@@ -614,7 +662,7 @@
   </div>
 </section>
 
-<!-- Origin Story Preview -->
+<!-- Origin Story -->
 <section class="section section-dark">
   <div class="container">
     <div class="story-content">
@@ -622,30 +670,17 @@
         <h2 class="section-title" style="text-align: left; margin-bottom: 1rem;">Ethiopian Highlands</h2>
         <p>Our 100% Arabica coffee is cultivated by small-scale farmers in traditional garden farms at 1,900–2,200 meters above sea level.</p>
         <p>From floral aromas to bright citrus notes — every cup tells the story of Ethiopian coffee heritage.</p>
-        <a href="origin.html" style="margin-top: 1rem; display: inline-block;" class="btn-primary">Discover Our Origin</a>
+        <a href="origin.html" class="btn-primary" style="margin-top: 1rem; display: inline-block;">Discover Our Origin</a>
       </div>
       <div class="stats-grid">
-        <div class="stat-card">
-          <i class="fas fa-chart-line"></i>
-          <h3>1,900-2,200m</h3>
-          <p>Altitude</p>
-        </div>
-        <div class="stat-card">
-          <i class="fas fa-leaf"></i>
-          <h3>100%</h3>
-          <p>Arabica</p>
-        </div>
-        <div class="stat-card">
-          <i class="fas fa-certificate"></i>
-          <h3>Medium-Dark</h3>
-          <p>Roast Profile</p>
-        </div>
+        <div class="stat-card"><i class="fas fa-chart-line"></i><h3>1,900-2,200m</h3><p>Altitude</p></div>
+        <div class="stat-card"><i class="fas fa-leaf"></i><h3>100%</h3><p>Arabica</p></div>
+        <div class="stat-card"><i class="fas fa-certificate"></i><h3>Medium-Dark</h3><p>Roast Profile</p></div>
       </div>
     </div>
   </div>
 </section>
 
-<!-- Footer -->
 <footer>
   <div class="footer-content">
     <div class="footer-logo">
@@ -666,9 +701,8 @@
         <a href="#"><i class="fab fa-instagram"></i></a>
         <a href="#"><i class="fab fa-facebook"></i></a>
         <a href="#"><i class="fab fa-telegram"></i></a>
-        <a href="#"><i class="fab fa-twitter"></i></a>
       </div>
-      <p style="margin-top: 0.8rem;"><i class="fas fa-envelope"></i> hello@beantobag.com</p>
+      <p><i class="fas fa-envelope"></i> hello@beantobag.com</p>
       <p><i class="fab fa-whatsapp"></i> +251 911 223344</p>
     </div>
   </div>
@@ -680,8 +714,7 @@
 <script>
   // Mobile menu toggle
   function toggleMenu() {
-    const navLinks = document.getElementById('navLinks');
-    navLinks.classList.toggle('active');
+    document.getElementById('navLinks').classList.toggle('active');
   }
 
   document.querySelectorAll('.nav-links a').forEach(link => {
@@ -690,41 +723,27 @@
     });
   });
 
-  // ========== IMAGE SLIDER / CAROUSEL CODE ==========
+  // Image Slider
   let currentSlide = 0;
   const slides = document.querySelectorAll('.slide');
   const dots = document.querySelectorAll('.dot');
   const slider = document.getElementById('imageSlider');
 
   function updateSlider() {
-    if (slider) {
-      slider.style.transform = `translateX(-${currentSlide * 100}%)`;
-    }
-    // Update dots
+    if (slider) slider.style.transform = `translateX(-${currentSlide * 100}%)`;
     dots.forEach((dot, index) => {
-      if (index === currentSlide) {
-        dot.classList.add('active');
-      } else {
-        dot.classList.remove('active');
-      }
+      if (index === currentSlide) dot.classList.add('active');
+      else dot.classList.remove('active');
     });
   }
 
   function nextSlide() {
-    if (slides.length - 1 > currentSlide) {
-      currentSlide++;
-    } else {
-      currentSlide = 0;
-    }
+    currentSlide = (currentSlide + 1) % slides.length;
     updateSlider();
   }
 
   function prevSlide() {
-    if (currentSlide > 0) {
-      currentSlide--;
-    } else {
-      currentSlide = slides.length - 1;
-    }
+    currentSlide = (currentSlide - 1 + slides.length) % slides.length;
     updateSlider();
   }
 
@@ -733,29 +752,12 @@
     updateSlider();
   }
 
-  // Auto-slide every 4 seconds (optional)
-  let autoSlideInterval;
-  function startAutoSlide() {
-    autoSlideInterval = setInterval(() => {
-      nextSlide();
-    }, 4000);
-  }
-  function stopAutoSlide() {
-    clearInterval(autoSlideInterval);
-  }
-
-  // Start auto-sliding when page loads
-  if (slides.length > 0) {
-    startAutoSlide();
-    // Pause on hover
-    const sliderContainer = document.querySelector('.slider-container');
-    if (sliderContainer) {
-      sliderContainer.addEventListener('mouseenter', stopAutoSlide);
-      sliderContainer.addEventListener('mouseleave', startAutoSlide);
-      // For touch devices
-      sliderContainer.addEventListener('touchstart', stopAutoSlide);
-      sliderContainer.addEventListener('touchend', startAutoSlide);
-    }
+  // Auto slide every 5 seconds
+  let autoInterval = setInterval(nextSlide, 5000);
+  const sliderContainer = document.querySelector('.slider-container');
+  if (sliderContainer) {
+    sliderContainer.addEventListener('mouseenter', () => clearInterval(autoInterval));
+    sliderContainer.addEventListener('mouseleave', () => { autoInterval = setInterval(nextSlide, 5000); });
   }
 </script>
 </body>
