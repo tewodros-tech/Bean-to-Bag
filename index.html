@@ -3,16 +3,9 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
-  <title>Bean to Bag | The Ultimate Coffee Experience</title>
+  <title>Bean to Bag | Premium Ethiopian Coffee</title>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
   <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700;800;900&family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
-  <script type="importmap">
-    {
-      "imports": {
-        "three": "https://unpkg.com/three@0.128.0/build/three.module.js"
-      }
-    }
-  </script>
   <style>
     * {
       margin: 0;
@@ -31,16 +24,16 @@
       font-family: 'Playfair Display', serif;
     }
 
-    /* Canvas 3D Background - Full visible */
-    #canvas-container {
+    /* Scroll Progress */
+    .scroll-progress {
       position: fixed;
       top: 0;
       left: 0;
-      width: 100%;
-      height: 100%;
-      z-index: 0;
-      pointer-events: none;
-      background: radial-gradient(circle at center, #1A0F0A 0%, #0A0A0A 100%);
+      width: 0%;
+      height: 3px;
+      background: linear-gradient(90deg, #C68B5E, #E8A87C, #FFD4A8);
+      z-index: 1001;
+      transition: width 0.1s;
     }
 
     /* Custom Cursor */
@@ -52,17 +45,7 @@
       position: fixed;
       pointer-events: none;
       z-index: 9999;
-      transition: transform 0.05s;
       box-shadow: 0 0 15px #C68B5E;
-    }
-    .cursor-trail {
-      position: fixed;
-      width: 6px;
-      height: 6px;
-      background: rgba(198,139,94,0.8);
-      border-radius: 50%;
-      pointer-events: none;
-      z-index: 9998;
     }
 
     /* Navigation */
@@ -72,7 +55,7 @@
       left: 5%;
       right: 5%;
       width: 90%;
-      background: rgba(10, 10, 10, 0.8);
+      background: rgba(10, 10, 10, 0.85);
       backdrop-filter: blur(20px);
       border-radius: 60px;
       z-index: 1000;
@@ -121,19 +104,7 @@
     .nav-links a:hover::before, .nav-links a.active::before { width: 100%; }
     .nav-links a:hover { color: #C68B5E; }
 
-    /* Scroll Progress */
-    .scroll-progress {
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 0%;
-      height: 3px;
-      background: linear-gradient(90deg, #C68B5E, #E8A87C, #FFD4A8);
-      z-index: 1001;
-      transition: width 0.1s;
-    }
-
-    /* Hero Section */
+    /* Hero Section with Real Coffee Background */
     .hero {
       min-height: 100vh;
       position: relative;
@@ -141,8 +112,11 @@
       align-items: center;
       justify-content: space-between;
       padding: 0 10%;
-      z-index: 2;
       flex-wrap: wrap;
+      background: linear-gradient(135deg, rgba(0,0,0,0.6), rgba(44,24,16,0.7)), url('coffee1.JPG');
+      background-size: cover;
+      background-position: center;
+      background-attachment: fixed;
     }
     .hero-left {
       flex: 1;
@@ -155,14 +129,12 @@
     }
     .hero-left h1 { font-size: 4.5rem; font-weight: 800; line-height: 1.1; margin-bottom: 1rem; }
     .hero-gradient-text { background: linear-gradient(135deg, #C68B5E, #E8A87C); -webkit-background-clip: text; background-clip: text; color: transparent; }
-    .hero-left p { font-size: 1.1rem; margin-bottom: 2rem; opacity: 0.9; }
+    .hero-left p { font-size: 1.1rem; margin-bottom: 2rem; opacity: 0.9; line-height: 1.6; }
     .hero-right { flex: 1; z-index: 2; animation: slideInRight 0.8s ease; text-align: center; }
     @keyframes slideInRight {
       from { opacity: 0; transform: translateX(80px); }
       to { opacity: 1; transform: translateX(0); }
     }
-    .floating-cup { width: 100%; max-width: 400px; animation: float 3s ease-in-out infinite; }
-    @keyframes float { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-20px); } }
     .btn-group { display: flex; gap: 1rem; flex-wrap: wrap; }
     .btn-primary {
       background: linear-gradient(135deg, #C68B5E, #A06B42);
@@ -172,21 +144,8 @@
       text-decoration: none;
       font-weight: 600;
       transition: 0.3s;
-      position: relative;
-      overflow: hidden;
       display: inline-block;
     }
-    .btn-primary::before {
-      content: '';
-      position: absolute;
-      top: 0;
-      left: -100%;
-      width: 100%;
-      height: 100%;
-      background: linear-gradient(90deg, transparent, rgba(255,255,255,0.3), transparent);
-      transition: 0.5s;
-    }
-    .btn-primary:hover::before { left: 100%; }
     .btn-primary:hover { transform: translateY(-3px); box-shadow: 0 10px 30px rgba(198,139,94,0.5); }
     .btn-outline {
       background: transparent;
@@ -200,112 +159,206 @@
     }
     .btn-outline:hover { background: #C68B5E; color: white; transform: translateY(-3px); }
 
-    /* Parallax Section */
-    .parallax-section {
-      position: relative;
-      min-height: 70vh;
-      background-attachment: fixed;
-      background-size: cover;
-      background-position: center;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      text-align: center;
-      z-index: 1;
+    /* Floating Coffee Beans Animation - REALISTIC */
+    .floating-beans-container {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      pointer-events: none;
+      z-index: 0;
+      overflow: hidden;
     }
-    .parallax-content {
-      background: rgba(0,0,0,0.6);
-      backdrop-filter: blur(10px);
-      padding: 3rem;
-      border-radius: 30px;
-      max-width: 700px;
+    .floating-bean {
+      position: absolute;
+      width: 30px;
+      height: 30px;
+      background: url('data:image/svg+xml,<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 100 100\"><ellipse cx=\"50\" cy=\"50\" rx=\"35\" ry=\"25\" fill=\"%23C68B5E\" stroke=\"%238B5E3C\" stroke-width=\"2\"/><path d=\"M50 30 Q60 50 50 70\" stroke=\"%238B5E3C\" stroke-width=\"2\" fill=\"none\"/><ellipse cx=\"50\" cy=\"50\" rx=\"35\" ry=\"25\" fill=\"url(%23grad)\"/><defs><radialGradient id=\"grad\"><stop offset=\"0%\" stop-color=\"%23E8A87C\"/><stop offset=\"100%\" stop-color=\"%23C68B5E\"/></radialGradient></defs></svg>');
+      background-size: contain;
+      background-repeat: no-repeat;
+      opacity: 0.6;
+      animation: floatBeanRandom linear infinite;
+      filter: drop-shadow(0 5px 10px rgba(0,0,0,0.3));
+    }
+    @keyframes floatBeanRandom {
+      0% { transform: translateY(-10%) rotate(0deg); opacity: 0; }
+      10% { opacity: 0.6; }
+      90% { opacity: 0.6; }
+      100% { transform: translateY(110vh) rotate(360deg); opacity: 0; }
     }
 
-    /* Products Section */
-    .products-section { padding: 5rem 5%; position: relative; z-index: 2; }
+    /* Steam Animation */
+    .steam-container {
+      position: fixed;
+      bottom: 20%;
+      right: 15%;
+      pointer-events: none;
+      z-index: 1;
+    }
+    .steam {
+      position: absolute;
+      width: 60px;
+      height: 60px;
+      background: radial-gradient(circle, rgba(255,255,255,0.3) 0%, rgba(255,255,255,0) 70%);
+      border-radius: 50%;
+      animation: steamRise 3s ease-out infinite;
+    }
+    .steam:nth-child(1) { animation-delay: 0s; left: 0; }
+    .steam:nth-child(2) { animation-delay: 0.8s; left: 30px; }
+    .steam:nth-child(3) { animation-delay: 1.6s; left: 60px; }
+    @keyframes steamRise {
+      0% { opacity: 0; transform: translateY(0) scale(0.5); }
+      50% { opacity: 0.5; transform: translateY(-40px) scale(1); }
+      100% { opacity: 0; transform: translateY(-80px) scale(1.5); }
+    }
+
+    /* Pouring Coffee Animation */
+    .pouring-coffee {
+      position: fixed;
+      bottom: 15%;
+      left: 10%;
+      pointer-events: none;
+      z-index: 1;
+    }
+    .pour-stream {
+      width: 4px;
+      height: 80px;
+      background: linear-gradient(180deg, #C68B5E, #8B5E3C);
+      border-radius: 2px;
+      animation: pourFlow 1.5s ease-in-out infinite;
+    }
+    @keyframes pourFlow {
+      0%, 100% { height: 80px; opacity: 0.8; }
+      50% { height: 100px; opacity: 1; }
+    }
+
+    /* Section Styles */
+    .section { padding: 5rem 5%; position: relative; z-index: 2; background: #0A0A0A; }
+    .container { max-width: 1400px; margin: 0 auto; }
     .section-title { text-align: center; font-size: 3rem; margin-bottom: 1rem; background: linear-gradient(135deg, #FFFFFF, #C68B5E); -webkit-background-clip: text; background-clip: text; color: transparent; }
     .section-subtitle { text-align: center; color: #C68B5E; letter-spacing: 3px; margin-bottom: 3rem; }
+
+    /* Products Grid */
     .products-grid {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
       gap: 2rem;
+      margin-top: 2rem;
     }
-    .product-3d {
+    .product-card {
       background: rgba(255,255,255,0.05);
       backdrop-filter: blur(10px);
       border-radius: 20px;
       padding: 2rem;
       text-align: center;
-      transition: all 0.4s;
+      transition: 0.4s;
       border: 1px solid rgba(198,139,94,0.2);
       cursor: pointer;
     }
-    .product-3d:hover {
+    .product-card:hover {
       transform: translateY(-10px);
       border-color: #C68B5E;
       box-shadow: 0 20px 40px rgba(198,139,94,0.2);
     }
-    .product-3d i { font-size: 4rem; color: #C68B5E; margin-bottom: 1rem; }
+    .product-card i { font-size: 4rem; color: #C68B5E; margin-bottom: 1rem; }
+    .product-card h3 { font-size: 1.5rem; margin-bottom: 0.5rem; }
+    .taste-tags { display: flex; gap: 0.5rem; justify-content: center; flex-wrap: wrap; margin-top: 1rem; }
+    .taste-tag { background: rgba(198,139,94,0.2); padding: 0.3rem 0.8rem; border-radius: 50px; font-size: 0.7rem; }
 
-    /* Counter Section */
-    .counter-section {
+    /* VISIBLE GALLERY - LARGE IMAGES */
+    .gallery-section {
+      padding: 5rem 5%;
       background: linear-gradient(135deg, #1A0F0A, #2C1810);
-      padding: 4rem 5%;
       position: relative;
       z-index: 2;
     }
-    .counter-grid {
+    .gallery-grid {
       display: grid;
       grid-template-columns: repeat(4, 1fr);
-      gap: 2rem;
-      text-align: center;
+      gap: 1.5rem;
+      margin-top: 2rem;
     }
-    .counter-card {
-      padding: 1.5rem;
-      background: rgba(255,255,255,0.05);
+    .gallery-item {
+      position: relative;
+      overflow: hidden;
       border-radius: 20px;
+      background: #1A1A1A;
+      cursor: pointer;
       transition: 0.3s;
     }
-    .counter-card:hover { transform: translateY(-5px); background: rgba(198,139,94,0.1); }
-    .counter-card i { font-size: 2.5rem; color: #C68B5E; }
-    .counter-num { font-size: 3rem; font-weight: 800; font-family: 'Playfair Display', serif; }
+    .gallery-item img {
+      width: 100%;
+      height: 280px;
+      object-fit: cover;
+      transition: 0.5s;
+      display: block;
+    }
+    .gallery-item:hover img { transform: scale(1.05); }
+    .gallery-item:hover { box-shadow: 0 15px 35px rgba(198,139,94,0.3); }
+    .gallery-overlay {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      background: linear-gradient(transparent, rgba(0,0,0,0.8));
+      padding: 1rem;
+      text-align: center;
+      transform: translateY(100%);
+      transition: 0.3s;
+    }
+    .gallery-item:hover .gallery-overlay { transform: translateY(0); }
+    .gallery-overlay p { font-weight: 600; letter-spacing: 1px; }
 
-    /* Infinite Gallery */
-    .gallery-section { padding: 4rem 0; overflow: hidden; position: relative; z-index: 2; }
-    .infinite-scroll {
-      display: flex;
-      animation: scrollInfinite 25s linear infinite;
-      width: fit-content;
-    }
-    .infinite-scroll:hover { animation-play-state: paused; }
-    @keyframes scrollInfinite {
-      0% { transform: translateX(0); }
-      100% { transform: translateX(-50%); }
-    }
-    .scroll-item {
-      width: 350px;
-      height: 250px;
-      margin: 0 10px;
-      border-radius: 15px;
-      overflow: hidden;
+    /* Lightbox Modal */
+    .lightbox {
+      display: none;
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0,0,0,0.95);
+      z-index: 2000;
+      justify-content: center;
+      align-items: center;
       cursor: pointer;
     }
-    .scroll-item img { width: 100%; height: 100%; object-fit: cover; transition: 0.5s; }
-    .scroll-item:hover img { transform: scale(1.1); }
+    .lightbox.active { display: flex; }
+    .lightbox img { max-width: 90%; max-height: 90%; border-radius: 10px; object-fit: contain; }
+    .lightbox-close {
+      position: absolute;
+      top: 20px;
+      right: 40px;
+      font-size: 40px;
+      color: white;
+      cursor: pointer;
+    }
 
-    /* Glitch Text */
-    .glitch-text {
-      font-size: 3rem;
-      font-weight: 800;
-      text-align: center;
-      padding: 3rem 2rem;
-      animation: glitch 3s infinite;
+    /* Counter Section */
+    .counter-section { padding: 4rem 5%; background: #0A0A0A; position: relative; z-index: 2; }
+    .counter-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 2rem; text-align: center; }
+    .counter-card { padding: 1.5rem; background: rgba(255,255,255,0.05); border-radius: 20px; transition: 0.3s; }
+    .counter-card:hover { transform: translateY(-5px); background: rgba(198,139,94,0.1); }
+    .counter-card i { font-size: 2.5rem; color: #C68B5E; margin-bottom: 0.5rem; }
+    .counter-num { font-size: 3rem; font-weight: 800; font-family: 'Playfair Display', serif; }
+
+    /* Origin Preview */
+    .origin-preview {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 2rem;
+      align-items: center;
+      background: linear-gradient(135deg, #1A0F0A, #2C1810);
+      border-radius: 30px;
+      padding: 2rem;
+      margin-top: 2rem;
     }
-    @keyframes glitch {
-      0%, 100% { text-shadow: 3px 0 #C68B5E, -3px 0 #E8A87C; }
-      33% { text-shadow: -3px 0 #C68B5E, 3px 0 #E8A87C; }
-      66% { text-shadow: 3px 3px #C68B5E, -3px -3px #E8A87C; }
-    }
+    .origin-preview-text { flex: 1; }
+    .origin-preview-text h3 { font-size: 2rem; margin-bottom: 1rem; }
+    .origin-preview-img { flex: 1; border-radius: 20px; overflow: hidden; }
+    .origin-preview-img img { width: 100%; height: 250px; object-fit: cover; transition: 0.3s; }
+    .origin-preview-img:hover img { transform: scale(1.05); }
 
     /* WhatsApp Float */
     .whatsapp-float {
@@ -371,31 +424,39 @@
       .nav-links.active { display: flex; }
       .hero { flex-direction: column; text-align: center; padding: 6rem 5% 2rem; }
       .hero-left h1 { font-size: 2.5rem; }
-      .counter-grid { grid-template-columns: repeat(2, 1fr); }
-      .glitch-text { font-size: 1.8rem; }
       .section-title { font-size: 2rem; }
+      .counter-grid { grid-template-columns: repeat(2, 1fr); }
+      .gallery-grid { grid-template-columns: repeat(2, 1fr); }
+      .gallery-item img { height: 200px; }
       .btn-group { justify-content: center; }
-      .scroll-item { width: 250px; height: 180px; }
+      .origin-preview { flex-direction: column; text-align: center; }
     }
   </style>
 </head>
 <body>
 
-<!-- 3D Canvas Background -->
-<div id="canvas-container"></div>
-
-<!-- Scroll Progress -->
 <div class="scroll-progress" id="scrollProgress"></div>
-
-<!-- Custom Cursor -->
 <div class="cursor"></div>
 
-<!-- WhatsApp Float -->
+<!-- Floating Coffee Beans - REAL MOVEMENT -->
+<div class="floating-beans-container" id="floatingBeans"></div>
+
+<!-- Steam Animation -->
+<div class="steam-container">
+  <div class="steam"></div>
+  <div class="steam"></div>
+  <div class="steam"></div>
+</div>
+
+<!-- Pouring Coffee Animation -->
+<div class="pouring-coffee">
+  <div class="pour-stream"></div>
+</div>
+
 <div class="whatsapp-float" onclick="window.open('https://wa.me/251911223344?text=Hello%20Bean%20to%20Bag!', '_blank')">
   <i class="fab fa-whatsapp"></i>
 </div>
 
-<!-- Navigation -->
 <nav id="nav">
   <div class="logo">Bean <span style="color:#C68B5E;">to Bag</span></div>
   <button class="menu-icon" onclick="toggleMenu()"><i class="fas fa-bars"></i></button>
@@ -419,78 +480,111 @@
     </div>
   </div>
   <div class="hero-right">
-    <svg class="floating-cup" viewBox="0 0 200 200" fill="none" xmlns="http://www.w3.org/2000/svg">
-      <path d="M60 140 L60 50 L140 50 L140 140 C140 160 120 170 100 170 C80 170 60 160 60 140Z" fill="url(#cupGrad)" stroke="#C68B5E" stroke-width="2"/>
-      <path d="M140 70 L160 70 C170 70 175 80 170 90 L155 105" stroke="#C68B5E" stroke-width="3" fill="none"/>
-      <ellipse cx="100" cy="50" rx="40" ry="10" fill="#A06B42"/>
+    <svg width="300" height="300" viewBox="0 0 300 300" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <path d="M90 210 L90 75 L210 75 L210 210 C210 240 180 255 150 255 C120 255 90 240 90 210Z" fill="url(#cupGrad)" stroke="#C68B5E" stroke-width="3"/>
+      <path d="M210 105 L240 105 C255 105 262 120 255 135 L232 157" stroke="#C68B5E" stroke-width="4" fill="none"/>
+      <ellipse cx="150" cy="75" rx="60" ry="15" fill="#A06B42"/>
       <defs>
         <linearGradient id="cupGrad" x1="0%" y1="0%" x2="100%" y2="100%">
-          <stop offset="0%" style="stop-color:#C68B5E;stop-opacity:0.4"/>
-          <stop offset="100%" style="stop-color:#E8A87C;stop-opacity:0.2"/>
+          <stop offset="0%" stop-color="#C68B5E" stop-opacity="0.3"/>
+          <stop offset="100%" stop-color="#E8A87C" stop-opacity="0.1"/>
         </linearGradient>
       </defs>
     </svg>
   </div>
 </section>
 
-<!-- Parallax Section 1 -->
-<section class="parallax-section" style="background-image: url('coffee1.JPG'); background-attachment: fixed;">
-  <div class="parallax-content">
-    <h2 style="font-size: 2.5rem; margin-bottom: 1rem;">100% Coffea Arabica</h2>
-    <p>Cultivated by small-scale farmers in traditional garden farms at 1,900–2,200 meters above sea level.</p>
-  </div>
-</section>
-
 <!-- Products Section -->
-<section class="products-section">
+<section class="section">
   <div class="container">
     <h2 class="section-title">Our Signature Collection</h2>
     <p class="section-subtitle">Crafted with passion • Roasted to perfection</p>
     <div class="products-grid">
-      <div class="product-3d"><i class="fas fa-mug-hot"></i><h3>Caskara</h3><p>Dried Coffee Cherry • Fruity • Floral</p></div>
-      <div class="product-3d"><i class="fas fa-mortar-pestle"></i><h3>Qalid's Choice</h3><p>House Blend • Chocolate • Balanced</p></div>
-      <div class="product-3d"><i class="fas fa-seedling"></i><h3>Chemina</h3><p>Whole Bean • Bold • Cocoa</p></div>
-      <div class="product-3d"><i class="fas fa-leaf"></i><h3>Origin Green</h3><p>Raw Green • Natural • Traceable</p></div>
+      <div class="product-card"><i class="fas fa-mug-hot"></i><h3>Caskara</h3><p>Dried Coffee Cherry</p><div class="taste-tags"><span class="taste-tag">Fruity</span><span class="taste-tag">Floral</span><span class="taste-tag">Sweet</span></div></div>
+      <div class="product-card"><i class="fas fa-mortar-pestle"></i><h3>Qalid's Choice</h3><p>House Blend</p><div class="taste-tags"><span class="taste-tag">Chocolate</span><span class="taste-tag">Balanced</span><span class="taste-tag">Smooth</span></div></div>
+      <div class="product-card"><i class="fas fa-seedling"></i><h3>Chemina</h3><p>Whole Bean Coffee</p><div class="taste-tags"><span class="taste-tag">Bold</span><span class="taste-tag">Cocoa</span><span class="taste-tag">Smooth</span></div></div>
+      <div class="product-card"><i class="fas fa-leaf"></i><h3>Origin Green</h3><p>Raw Green Coffee</p><div class="taste-tags"><span class="taste-tag">Natural</span><span class="taste-tag">Traceable</span><span class="taste-tag">Fresh</span></div></div>
     </div>
   </div>
 </section>
+
+<!-- FULLY VISIBLE GALLERY - LARGE CLEAR IMAGES -->
+<section class="gallery-section">
+  <div class="container">
+    <h2 class="section-title">Visual Journey</h2>
+    <p class="section-subtitle">From bean to bag — captured moments</p>
+    <div class="gallery-grid" id="galleryGrid">
+      <div class="gallery-item" data-image="packaging.jpg">
+        <img src="packaging.jpg" onerror="this.src='https://placehold.co/400x300?text=Signature+Coffee+Bag'">
+        <div class="gallery-overlay"><p><i class="fas fa-search-plus"></i> Signature Coffee Bag</p></div>
+      </div>
+      <div class="gallery-item" data-image="packaging2.jpg">
+        <img src="packaging2.jpg" onerror="this.src='https://placehold.co/400x300?text=Premium+Roast+Collection'">
+        <div class="gallery-overlay"><p><i class="fas fa-search-plus"></i> Premium Roast Collection</p></div>
+      </div>
+      <div class="gallery-item" data-image="packaging3.jpg">
+        <img src="packaging3.jpg" onerror="this.src='https://placehold.co/400x300?text=Specialty+Series'">
+        <div class="gallery-overlay"><p><i class="fas fa-search-plus"></i> Specialty Series</p></div>
+      </div>
+      <div class="gallery-item" data-image="steaming-cup-coffee-saucer-with-coffee-beans-scattered-around.jpg">
+        <img src="steaming-cup-coffee-saucer-with-coffee-beans-scattered-around.jpg" onerror="this.src='https://placehold.co/400x300?text=Perfect+Brew'">
+        <div class="gallery-overlay"><p><i class="fas fa-search-plus"></i> The Perfect Brew</p></div>
+      </div>
+      <div class="gallery-item" data-image="dark-coffee-beans-bowl-brown-table.jpg">
+        <img src="dark-coffee-beans-bowl-brown-table.jpg" onerror="this.src='https://placehold.co/400x300?text=Premium+Beans'">
+        <div class="gallery-overlay"><p><i class="fas fa-search-plus"></i> Premium Beans</p></div>
+      </div>
+      <div class="gallery-item" data-image="coffee-beans-top-view-background.jpg">
+        <img src="coffee-beans-top-view-background.jpg" onerror="this.src='https://placehold.co/400x300?text=Coffee+Beans+Top'">
+        <div class="gallery-overlay"><p><i class="fas fa-search-plus"></i> Fresh Coffee Beans</p></div>
+      </div>
+      <div class="gallery-item" data-image="coffee1.JPG">
+        <img src="coffee1.JPG" onerror="this.src='https://placehold.co/400x300?text=Ethiopian+Highlands'">
+        <div class="gallery-overlay"><p><i class="fas fa-search-plus"></i> Ethiopian Highlands</p></div>
+      </div>
+      <div class="gallery-item" data-image="19.JPG">
+        <img src="19.JPG" onerror="this.src='https://placehold.co/400x300?text=Coffee+Experience'">
+        <div class="gallery-overlay"><p><i class="fas fa-search-plus"></i> Coffee Experience</p></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Lightbox Modal -->
+<div class="lightbox" id="lightbox">
+  <span class="lightbox-close" onclick="closeLightbox()">&times;</span>
+  <img id="lightbox-img" src="">
+</div>
 
 <!-- Counter Section -->
 <section class="counter-section">
   <div class="container">
     <h2 class="section-title">Our Journey in Numbers</h2>
     <div class="counter-grid">
-      <div class="counter-card"><i class="fas fa-mountain"></i><div class="counter-num" data-target="2200">0</div><div>Meters Altitude</div></div>
-      <div class="counter-card"><i class="fas fa-leaf"></i><div class="counter-num" data-target="100">0</div><div>Arabica %</div></div>
-      <div class="counter-card"><i class="fas fa-chart-line"></i><div class="counter-num" data-target="200">0</div><div>Monthly kg</div></div>
-      <div class="counter-card"><i class="fas fa-users"></i><div class="counter-num" data-target="50">0</div><div>Partner Farmers</div></div>
+      <div class="counter-card"><i class="fas fa-mountain"></i><div class="counter-num" data-target="2200">0</div><p>Meters Altitude</p></div>
+      <div class="counter-card"><i class="fas fa-leaf"></i><div class="counter-num" data-target="100">0</div><p>Arabica %</p></div>
+      <div class="counter-card"><i class="fas fa-chart-line"></i><div class="counter-num" data-target="200">0</div><p>Monthly kg</p></div>
+      <div class="counter-card"><i class="fas fa-users"></i><div class="counter-num" data-target="50">0</div><p>Partner Farmers</p></div>
     </div>
   </div>
 </section>
 
-<!-- Infinite Gallery -->
-<section class="gallery-section">
-  <h2 class="section-title">Visual Journey</h2>
-  <p class="section-subtitle">From bean to bag — captured moments</p>
-  <div class="infinite-scroll" id="infiniteScroll">
-    <div class="scroll-item"><img src="packaging.jpg" onerror="this.src='https://placehold.co/350x250?text=Packaging'"></div>
-    <div class="scroll-item"><img src="packaging2.jpg" onerror="this.src='https://placehold.co/350x250?text=Packaging+2'"></div>
-    <div class="scroll-item"><img src="packaging3.jpg" onerror="this.src='https://placehold.co/350x250?text=Packaging+3'"></div>
-    <div class="scroll-item"><img src="dark-coffee-beans-bowl-brown-table.jpg" onerror="this.src='https://placehold.co/350x250?text=Coffee+Beans'"></div>
-    <div class="scroll-item"><img src="steaming-cup-coffee-saucer-with-coffee-beans-scattered-around.jpg" onerror="this.src='https://placehold.co/350x250?text=Steaming+Cup'"></div>
-    <!-- Duplicate for seamless loop -->
-    <div class="scroll-item"><img src="packaging.jpg" onerror="this.src='https://placehold.co/350x250?text=Packaging'"></div>
-    <div class="scroll-item"><img src="packaging2.jpg" onerror="this.src='https://placehold.co/350x250?text=Packaging+2'"></div>
-    <div class="scroll-item"><img src="packaging3.jpg" onerror="this.src='https://placehold.co/350x250?text=Packaging+3'"></div>
-    <div class="scroll-item"><img src="dark-coffee-beans-bowl-brown-table.jpg" onerror="this.src='https://placehold.co/350x250?text=Coffee+Beans'"></div>
-    <div class="scroll-item"><img src="steaming-cup-coffee-saucer-with-coffee-beans-scattered-around.jpg" onerror="this.src='https://placehold.co/350x250?text=Steaming+Cup'"></div>
+<!-- Origin Preview -->
+<section class="section" style="background: linear-gradient(135deg, #1A0F0A, #2C1810);">
+  <div class="container">
+    <div class="origin-preview">
+      <div class="origin-preview-text">
+        <h3>Ethiopian Highlands</h3>
+        <p>100% Coffea Arabica cultivated by small-scale farmers at 1,900–2,200 meters above sea level. The cool highland climate creates refined, complex flavors.</p>
+        <a href="origin.html" class="btn-primary" style="display: inline-block; margin-top: 1rem;">Discover Origin →</a>
+      </div>
+      <div class="origin-preview-img">
+        <img src="coffee1.JPG" onerror="this.src='https://placehold.co/500x300?text=Ethiopian+Highlands'">
+      </div>
+    </div>
   </div>
 </section>
 
-<!-- Glitch Text -->
-<div class="glitch-text">Ethiopian Coffee Heritage</div>
-
-<!-- Footer -->
 <footer>
   <div class="footer-content">
     <div><h2>Bean <span style="color:#C68B5E;">to Bag</span></h2><p>Premium Ethiopian Coffee<br>Roasted in Addis Ababa</p></div>
@@ -499,177 +593,6 @@
   </div>
   <div style="text-align: center; margin-top: 2rem;"><p>&copy; 2025 Bean to Bag Coffee. All rights reserved.</p></div>
 </footer>
-
-<script type="module">
-  import * as THREE from 'three';
-
-  // Setup scene with visible dark background
-  const container = document.getElementById('canvas-container');
-  const scene = new THREE.Scene();
-  scene.background = new THREE.Color(0x0A0A0A);
-  scene.fog = new THREE.FogExp2(0x0A0A0A, 0.008);
-  
-  const camera = new THREE.PerspectiveCamera(60, window.innerWidth / window.innerHeight, 0.1, 1000);
-  camera.position.z = 25;
-  
-  const renderer = new THREE.WebGLRenderer({ antialias: true, alpha: false });
-  renderer.setSize(window.innerWidth, window.innerHeight);
-  renderer.setPixelRatio(window.devicePixelRatio);
-  container.appendChild(renderer.domElement);
-  
-  // Create VISIBLE coffee bean geometry - elongated shape like real coffee bean
-  const createCoffeeBean = () => {
-    const group = new THREE.Group();
-    // Main body of coffee bean
-    const geometry = new THREE.SphereGeometry(0.45, 32, 32);
-    const material = new THREE.MeshStandardMaterial({
-      color: 0xC68B5E,
-      roughness: 0.3,
-      metalness: 0.1,
-      emissive: 0x5A2A0A,
-      emissiveIntensity: 0.3
-    });
-    const beanBody = new THREE.Mesh(geometry, material);
-    beanBody.scale.set(1.4, 0.8, 0.9);
-    group.add(beanBody);
-    
-    // The center line (crease) of coffee bean
-    const lineGeometry = new THREE.BoxGeometry(0.08, 0.6, 0.1);
-    const lineMaterial = new THREE.MeshStandardMaterial({ color: 0x8B4513, emissive: 0x3A1A0A, emissiveIntensity: 0.2 });
-    const crease = new THREE.Mesh(lineGeometry, lineMaterial);
-    crease.position.z = 0.05;
-    group.add(crease);
-    
-    return group;
-  };
-  
-  // Create LARGE visible floating beans with glow
-  const beans = [];
-  const beanCount = 150;
-  
-  for (let i = 0; i < beanCount; i++) {
-    const bean = createCoffeeBean();
-    // Position in a 3D space that's clearly visible
-    bean.position.x = (Math.random() - 0.5) * 45;
-    bean.position.y = (Math.random() - 0.5) * 30;
-    bean.position.z = (Math.random() - 0.5) * 25 - 10;
-    // Random scale for variety
-    const scale = 0.6 + Math.random() * 0.6;
-    bean.scale.set(scale, scale, scale);
-    // Store animation properties
-    bean.userData = {
-      speedX: (Math.random() - 0.5) * 0.008,
-      speedY: (Math.random() - 0.5) * 0.008,
-      rotSpeed: 0.008 + Math.random() * 0.015,
-      rotY: Math.random() * Math.PI * 2,
-      floatSpeed: 0.5 + Math.random(),
-      floatOffset: Math.random() * Math.PI * 2
-    };
-    scene.add(bean);
-    beans.push(bean);
-  }
-  
-  // Add additional floating particles for ambiance
-  const particleCount = 800;
-  const particlesGeometry = new THREE.BufferGeometry();
-  const particlesPositions = new Float32Array(particleCount * 3);
-  const particlesColors = new Float32Array(particleCount * 3);
-  
-  for (let i = 0; i < particleCount; i++) {
-    particlesPositions[i * 3] = (Math.random() - 0.5) * 80;
-    particlesPositions[i * 3 + 1] = (Math.random() - 0.5) * 50;
-    particlesPositions[i * 3 + 2] = (Math.random() - 0.5) * 40 - 20;
-    particlesColors[i * 3] = 0.8 + Math.random() * 0.2;
-    particlesColors[i * 3 + 1] = 0.5 + Math.random() * 0.3;
-    particlesColors[i * 3 + 2] = 0.3 + Math.random() * 0.2;
-  }
-  particlesGeometry.setAttribute('position', new THREE.BufferAttribute(particlesPositions, 3));
-  particlesGeometry.setAttribute('color', new THREE.BufferAttribute(particlesColors, 3));
-  
-  const particlesMaterial = new THREE.PointsMaterial({ size: 0.08, vertexColors: true, transparent: true, opacity: 0.6 });
-  const particleSystem = new THREE.Points(particlesGeometry, particlesMaterial);
-  scene.add(particleSystem);
-  
-  // Lighting to make beans POP
-  const ambientLight = new THREE.AmbientLight(0x404040);
-  scene.add(ambientLight);
-  
-  const mainLight = new THREE.DirectionalLight(0xC68B5E, 1.2);
-  mainLight.position.set(5, 10, 7);
-  scene.add(mainLight);
-  
-  const fillLight = new THREE.PointLight(0xE8A87C, 0.6);
-  fillLight.position.set(-3, 2, 5);
-  scene.add(fillLight);
-  
-  const backLight = new THREE.PointLight(0x8B5E3C, 0.5);
-  backLight.position.set(0, 0, -8);
-  scene.add(backLight);
-  
-  const rimLight = new THREE.PointLight(0xFFD4A8, 0.4);
-  rimLight.position.set(3, 5, -5);
-  scene.add(rimLight);
-  
-  // Add a subtle rotating ring around the scene
-  const ringGeometry = new THREE.TorusGeometry(12, 0.05, 64, 1000);
-  const ringMaterial = new THREE.MeshStandardMaterial({ color: 0xC68B5E, emissive: 0x3A1A0A, emissiveIntensity: 0.2 });
-  const ring = new THREE.Mesh(ringGeometry, ringMaterial);
-  ring.rotation.x = Math.PI / 2;
-  scene.add(ring);
-  
-  const ring2 = new THREE.Mesh(ringGeometry, ringMaterial);
-  ring2.rotation.z = Math.PI / 3;
-  ring2.rotation.x = Math.PI / 3;
-  scene.add(ring2);
-  
-  // Animation loop
-  let time = 0;
-  
-  function animate() {
-    requestAnimationFrame(animate);
-    time += 0.016;
-    
-    // Animate beans - rotate and float
-    beans.forEach(bean => {
-      bean.rotation.x += bean.userData.rotSpeed;
-      bean.rotation.y += bean.userData.rotSpeed * 0.8;
-      bean.rotation.z += bean.userData.rotSpeed * 0.5;
-      
-      // Gentle floating motion
-      bean.position.y += Math.sin(time * bean.userData.floatSpeed + bean.userData.floatOffset) * 0.003;
-      
-      // Slow drift
-      bean.position.x += bean.userData.speedX;
-      bean.position.y += bean.userData.speedY;
-      
-      // Wrap around edges for infinite feel
-      if (bean.position.x > 28) bean.position.x = -28;
-      if (bean.position.x < -28) bean.position.x = 28;
-      if (bean.position.y > 20) bean.position.y = -20;
-      if (bean.position.y < -20) bean.position.y = 20;
-    });
-    
-    // Rotate particle system slowly
-    particleSystem.rotation.y += 0.0005;
-    particleSystem.rotation.x += 0.0003;
-    
-    // Rotate rings
-    ring.rotation.z += 0.002;
-    ring2.rotation.x += 0.001;
-    ring2.rotation.y += 0.001;
-    
-    renderer.render(scene, camera);
-  }
-  
-  animate();
-  
-  // Handle window resize
-  window.addEventListener('resize', () => {
-    camera.aspect = window.innerWidth / window.innerHeight;
-    camera.updateProjectionMatrix();
-    renderer.setSize(window.innerWidth, window.innerHeight);
-  });
-</script>
 
 <script>
   // Mobile menu
@@ -684,12 +607,16 @@
   window.addEventListener('scroll', () => {
     const winScroll = document.body.scrollTop || document.documentElement.scrollTop;
     const height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
-    const scrolled = (winScroll / height) * 100;
-    document.getElementById('scrollProgress').style.width = scrolled + '%';
-    
+    document.getElementById('scrollProgress').style.width = (winScroll / height) * 100 + '%';
     const nav = document.getElementById('nav');
     if (window.scrollY > 100) nav.classList.add('scrolled');
     else nav.classList.remove('scrolled');
+  });
+
+  // Custom cursor
+  const cursor = document.querySelector('.cursor');
+  document.addEventListener('mousemove', (e) => {
+    cursor.style.transform = `translate(${e.clientX - 10}px, ${e.clientY - 10}px)`;
   });
 
   // Counter animation
@@ -717,52 +644,36 @@
   }, observerOptions);
   counters.forEach(counter => observer.observe(counter));
 
-  // Custom cursor trail
-  const cursor = document.querySelector('.cursor');
-  const trails = [];
-  for (let i = 0; i < 15; i++) {
-    const trail = document.createElement('div');
-    trail.className = 'cursor-trail';
-    document.body.appendChild(trail);
-    trails.push({ element: trail, x: 0, y: 0 });
+  // Create floating coffee beans - REAL RANDOM MOVEMENT
+  const beanContainer = document.getElementById('floatingBeans');
+  for (let i = 0; i < 40; i++) {
+    const bean = document.createElement('div');
+    bean.className = 'floating-bean';
+    const size = 20 + Math.random() * 25;
+    bean.style.width = size + 'px';
+    bean.style.height = size + 'px';
+    bean.style.left = Math.random() * 100 + '%';
+    bean.style.animationDuration = 8 + Math.random() * 10 + 's';
+    bean.style.animationDelay = Math.random() * 15 + 's';
+    bean.style.opacity = 0.4 + Math.random() * 0.4;
+    beanContainer.appendChild(bean);
   }
-  
-  let mouseX = 0, mouseY = 0;
-  document.addEventListener('mousemove', (e) => {
-    mouseX = e.clientX;
-    mouseY = e.clientY;
-    cursor.style.transform = `translate(${mouseX - 10}px, ${mouseY - 10}px)`;
+
+  // Lightbox gallery
+  const lightbox = document.getElementById('lightbox');
+  const lightboxImg = document.getElementById('lightbox-img');
+  document.querySelectorAll('.gallery-item').forEach(item => {
+    item.addEventListener('click', () => {
+      const imgSrc = item.getAttribute('data-image');
+      lightboxImg.src = imgSrc;
+      lightbox.classList.add('active');
+    });
   });
-  
-  let trailPositions = [];
-  function animateTrails() {
-    trailPositions.unshift({ x: mouseX, y: mouseY });
-    if (trailPositions.length > trails.length) trailPositions.pop();
-    
-    trails.forEach((trail, index) => {
-      if (trailPositions[index]) {
-        trail.element.style.transform = `translate(${trailPositions[index].x - 3}px, ${trailPositions[index].y - 3}px)`;
-        trail.element.style.opacity = 1 - (index / trails.length);
-      }
-    });
-    requestAnimationFrame(animateTrails);
+  function closeLightbox() {
+    lightbox.classList.remove('active');
   }
-  animateTrails();
-
-  // Infinite scroll duplication
-  const scrollContainer = document.getElementById('infiniteScroll');
-  if (scrollContainer) {
-    const clone = scrollContainer.cloneNode(true);
-    scrollContainer.parentElement.appendChild(clone);
-  }
-
-  // Parallax effect
-  window.addEventListener('scroll', () => {
-    const parallaxSections = document.querySelectorAll('.parallax-section');
-    parallaxSections.forEach(section => {
-      const scrolled = window.pageYOffset;
-      section.style.backgroundPositionY = `${scrolled * 0.4}px`;
-    });
+  lightbox.addEventListener('click', (e) => {
+    if (e.target === lightbox) closeLightbox();
   });
 </script>
 </body>
