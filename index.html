@@ -24,7 +24,6 @@
       font-family: 'Playfair Display', serif;
     }
 
-    /* Remove all bullet points */
     ul, ol, li {
       list-style: none;
     }
@@ -53,7 +52,6 @@
       color: #C68B5E;
     }
 
-    /* Hamburger Menu Button */
     .menu-icon {
       display: block;
       font-size: 1.8rem;
@@ -63,7 +61,6 @@
       border: none;
     }
 
-    /* Mobile Navigation Links - Hidden by default */
     .nav-links {
       display: none;
       position: absolute;
@@ -79,13 +76,8 @@
       border-top: 1px solid #EDE3D8;
     }
 
-    /* Show when active */
     .nav-links.active {
       display: flex;
-    }
-
-    .nav-links li {
-      margin: 0;
     }
 
     .nav-links a {
@@ -94,7 +86,6 @@
       font-weight: 500;
       padding: 0.5rem;
       font-size: 1rem;
-      display: inline-block;
       transition: 0.3s;
     }
 
@@ -103,25 +94,54 @@
       color: #C68B5E;
     }
 
-    /* Hero Section with Parallax Background */
+    /* Hero Section */
     .hero {
       min-height: 100vh;
-      background: linear-gradient(135deg, rgba(44, 24, 16, 0.8), rgba(74, 44, 26, 0.7)), url('coffee1.JPG');
+      background: linear-gradient(135deg, rgba(44, 24, 16, 0.7), rgba(74, 44, 26, 0.6)), url('coffee1.JPG');
       background-size: cover;
       background-position: center;
       background-attachment: fixed;
-      background-repeat: no-repeat;
       display: flex;
       align-items: center;
       justify-content: center;
       text-align: center;
       color: white;
       padding: 6rem 1.5rem;
+      position: relative;
+    }
+
+    .hero::before {
+      content: '';
+      position: absolute;
+      bottom: 20px;
+      left: 20px;
+      width: 150px;
+      height: 150px;
+      background: url('coffee-beans-top-view-background.jpg');
+      background-size: cover;
+      opacity: 0.3;
+      border-radius: 20px;
+      pointer-events: none;
+    }
+
+    .hero::after {
+      content: '';
+      position: absolute;
+      top: 20px;
+      right: 20px;
+      width: 120px;
+      height: 120px;
+      background: url('dark-coffee-beans-bowl-brown-table.jpg');
+      background-size: cover;
+      opacity: 0.25;
+      border-radius: 20px;
+      pointer-events: none;
     }
 
     .hero-content {
       max-width: 800px;
-      padding: 0;
+      position: relative;
+      z-index: 2;
     }
 
     .hero-content h1 {
@@ -135,7 +155,6 @@
       font-size: 1rem;
       margin-bottom: 2rem;
       line-height: 1.6;
-      opacity: 0.95;
     }
 
     .btn-group {
@@ -182,7 +201,8 @@
     }
 
     .section {
-      padding: 3rem 1.5rem;
+      padding: 4rem 1.5rem;
+      position: relative;
     }
 
     .section-dark {
@@ -209,6 +229,30 @@
     .container {
       max-width: 1200px;
       margin: 0 auto;
+      position: relative;
+      z-index: 2;
+    }
+
+    /* Image Gallery Grid */
+    .image-gallery {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 1rem;
+      margin: 2rem 0;
+    }
+
+    .gallery-img {
+      width: 100%;
+      height: 180px;
+      object-fit: cover;
+      border-radius: 15px;
+      transition: 0.3s;
+      cursor: pointer;
+    }
+
+    .gallery-img:hover {
+      transform: scale(1.03);
+      box-shadow: 0 10px 25px rgba(0,0,0,0.15);
     }
 
     /* Image Slider */
@@ -239,7 +283,6 @@
       max-height: 450px;
       object-fit: contain;
       display: block;
-      background: #1A0F0A;
     }
 
     .slide-caption {
@@ -251,16 +294,6 @@
       color: white;
       padding: 2rem 1rem 1rem;
       text-align: center;
-    }
-
-    .slide-caption h3 {
-      font-size: 1.2rem;
-      margin-bottom: 0.3rem;
-    }
-
-    .slide-caption p {
-      font-size: 0.75rem;
-      opacity: 0.9;
     }
 
     .slider-btn {
@@ -275,7 +308,6 @@
       border-radius: 50%;
       cursor: pointer;
       font-size: 1.2rem;
-      transition: 0.3s;
       z-index: 10;
     }
 
@@ -283,20 +315,14 @@
       background: #C68B5E;
     }
 
-    .prev-btn {
-      left: 10px;
-    }
-
-    .next-btn {
-      right: 10px;
-    }
+    .prev-btn { left: 10px; }
+    .next-btn { right: 10px; }
 
     .dots-container {
       display: flex;
       justify-content: center;
       gap: 0.6rem;
       margin-top: 1rem;
-      padding-bottom: 1rem;
     }
 
     .dot {
@@ -305,7 +331,6 @@
       border-radius: 50%;
       background: #D4C4B0;
       cursor: pointer;
-      transition: 0.3s;
     }
 
     .dot.active {
@@ -314,7 +339,7 @@
       border-radius: 10px;
     }
 
-    /* ========== CASKARA FEATURE CARD (NEW) ========== */
+    /* Caskara Feature */
     .caskara-feature {
       background: linear-gradient(135deg, #FFF5EB, #FEE8D6);
       border-radius: 30px;
@@ -324,7 +349,21 @@
       flex-wrap: wrap;
       gap: 2rem;
       align-items: center;
-      box-shadow: 0 15px 35px rgba(0,0,0,0.08);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .caskara-feature::before {
+      content: '';
+      position: absolute;
+      bottom: -50px;
+      right: -50px;
+      width: 200px;
+      height: 200px;
+      background: url('steaming-cup-coffee-saucer-with-coffee-beans-scattered-around.jpg');
+      background-size: cover;
+      opacity: 0.15;
+      border-radius: 50%;
     }
 
     .caskara-icon {
@@ -333,11 +372,6 @@
       background: linear-gradient(135deg, #E8A87C, #D4845A);
       border-radius: 30px;
       padding: 2rem;
-      transition: transform 0.3s;
-    }
-
-    .caskara-icon:hover {
-      transform: scale(1.02);
     }
 
     .caskara-icon i {
@@ -345,34 +379,12 @@
       margin: 0 0.3rem;
     }
 
-    .caskara-icon i:first-child {
-      color: #FF6B6B;
-    }
+    .caskara-icon i:first-child { color: #FF6B6B; }
+    .caskara-icon i:nth-child(2) { color: white; }
+    .caskara-icon i:last-child { color: #FFB347; }
 
-    .caskara-icon i:nth-child(2) {
-      color: white;
-    }
-
-    .caskara-icon i:last-child {
-      color: #FFB347;
-    }
-
-    .caskara-info {
-      flex: 2;
-    }
-
-    .caskara-info h2 {
-      color: #C68B5E;
-      font-size: 2rem;
-      margin-bottom: 0.5rem;
-    }
-
-    .caskara-info p {
-      font-size: 1rem;
-      color: #2C1810;
-      line-height: 1.6;
-      margin-bottom: 1rem;
-    }
+    .caskara-info { flex: 2; }
+    .caskara-info h2 { color: #C68B5E; font-size: 2rem; }
 
     .caskara-tags {
       display: flex;
@@ -387,59 +399,6 @@
       padding: 0.3rem 1rem;
       border-radius: 50px;
       font-size: 0.85rem;
-      font-weight: 500;
-    }
-
-    .caskara-badge {
-      display: inline-block;
-      background: #2C1810;
-      color: white;
-      padding: 0.5rem 1rem;
-      border-radius: 50px;
-      font-size: 0.8rem;
-      margin-top: 1rem;
-    }
-
-    /* Product Detail Cards */
-    .product-detail-card {
-      background: white;
-      border-radius: 20px;
-      padding: 1.5rem;
-      margin: 1.5rem 0;
-      box-shadow: 0 10px 20px rgba(0,0,0,0.08);
-    }
-
-    .product-detail-card h3 {
-      color: #C68B5E;
-      font-size: 1.3rem;
-      margin-bottom: 1rem;
-      border-left: 4px solid #C68B5E;
-      padding-left: 1rem;
-    }
-
-    .product-detail-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-      gap: 1rem;
-    }
-
-    .detail-item {
-      background: #F5EDE5;
-      padding: 0.8rem;
-      border-radius: 12px;
-    }
-
-    .detail-item strong {
-      color: #2C1810;
-      font-size: 0.7rem;
-      text-transform: uppercase;
-      letter-spacing: 1px;
-    }
-
-    .detail-item p {
-      font-size: 0.85rem;
-      font-weight: 600;
-      margin-top: 0.3rem;
     }
 
     /* Products Grid */
@@ -456,6 +415,7 @@
       overflow: hidden;
       box-shadow: 0 10px 20px rgba(0,0,0,0.08);
       transition: 0.3s;
+      position: relative;
     }
 
     .product-card:hover {
@@ -480,12 +440,6 @@
       margin-bottom: 0.5rem;
     }
 
-    .product-info p {
-      font-size: 0.85rem;
-      color: #5a4a3a;
-      line-height: 1.5;
-    }
-
     .product-taste {
       display: flex;
       gap: 0.5rem;
@@ -500,7 +454,7 @@
       font-size: 0.7rem;
     }
 
-    /* Stats */
+    /* Stats Grid */
     .stats-grid {
       display: grid;
       grid-template-columns: 1fr;
@@ -518,12 +472,6 @@
     .stat-card i {
       font-size: 2rem;
       color: #C68B5E;
-      margin-bottom: 0.5rem;
-    }
-
-    .stat-card h3 {
-      font-size: 1.3rem;
-      margin-bottom: 0.3rem;
     }
 
     .story-content {
@@ -532,17 +480,12 @@
       gap: 2rem;
     }
 
-    .story-text p {
-      font-size: 0.95rem;
-      line-height: 1.6;
-      margin-bottom: 1rem;
-    }
-
     /* Footer */
     footer {
       background: #1A0F0A;
       color: #B8A99A;
       padding: 2rem 1.5rem 1.5rem;
+      position: relative;
     }
 
     .footer-content {
@@ -552,24 +495,11 @@
       text-align: center;
     }
 
-    .footer-links a {
-      display: block;
-      color: #B8A99A;
-      text-decoration: none;
-      margin-bottom: 0.4rem;
-      font-size: 0.85rem;
-    }
-
-    .footer-links a:hover {
-      color: #C68B5E;
-    }
-
     .social-icons a {
       color: #B8A99A;
       font-size: 1.3rem;
       margin: 0 0.6rem;
       transition: 0.3s;
-      display: inline-block;
     }
 
     .social-icons a:hover {
@@ -589,19 +519,19 @@
       font-size: 26px;
       color: white;
       z-index: 999;
-      transition: 0.3s;
     }
 
-    .whatsapp-float:hover {
-      transform: scale(1.1);
+    /* Floating Images Decoration */
+    .float-img {
+      position: absolute;
+      opacity: 0.4;
+      border-radius: 15px;
+      pointer-events: none;
+      z-index: 0;
     }
 
-    /* Tablet and Desktop */
     @media (min-width: 768px) {
-      .menu-icon {
-        display: none;
-      }
-
+      .menu-icon { display: none; }
       .nav-links {
         display: flex !important;
         position: static;
@@ -609,64 +539,27 @@
         flex-direction: row;
         padding: 0;
         gap: 2rem;
-        box-shadow: none;
-        border-top: none;
         background: transparent;
       }
-
-      .hero-content h1 {
-        font-size: 3.5rem;
-      }
-
-      .hero-content p {
-        font-size: 1.2rem;
-      }
-
-      .products-grid {
-        grid-template-columns: repeat(3, 1fr);
-        gap: 2rem;
-      }
-
-      .stats-grid {
-        grid-template-columns: repeat(3, 1fr);
-        gap: 2rem;
-      }
-
-      .story-content {
-        flex-direction: row;
-        gap: 4rem;
-        align-items: center;
-      }
-
-      .section {
-        padding: 5rem 2rem;
-      }
-
-      .section-title {
-        font-size: 3rem;
-      }
-
-      .footer-content {
-        flex-direction: row;
-        justify-content: space-between;
-        text-align: left;
-      }
+      .hero-content h1 { font-size: 3.5rem; }
+      .products-grid { grid-template-columns: repeat(3, 1fr); }
+      .stats-grid { grid-template-columns: repeat(3, 1fr); }
+      .story-content { flex-direction: row; gap: 4rem; align-items: center; }
+      .section-title { font-size: 3rem; }
+      .footer-content { flex-direction: row; justify-content: space-between; text-align: left; }
+      .image-gallery { grid-template-columns: repeat(4, 1fr); }
     }
   </style>
 </head>
 <body>
 
-<!-- WhatsApp Float Button -->
-<a href="https://wa.me/251911223344?text=Hello%20Bean%20to%20Bag!%20I'd%20like%20to%20order%20coffee." class="whatsapp-float" target="_blank">
+<a href="https://wa.me/251911223344?text=Hello%20Bean%20to%20Bag!" class="whatsapp-float" target="_blank">
   <i class="fab fa-whatsapp"></i>
 </a>
 
-<!-- Navigation -->
 <nav>
   <div class="logo">Bean <span>to Bag</span></div>
-  <button class="menu-icon" onclick="toggleMenu()">
-    <i class="fas fa-bars"></i>
-  </button>
+  <button class="menu-icon" onclick="toggleMenu()"><i class="fas fa-bars"></i></button>
   <ul class="nav-links" id="navLinks">
     <li><a href="index.html" class="active">Home</a></li>
     <li><a href="about.html">About</a></li>
@@ -688,8 +581,26 @@
   </div>
 </section>
 
-<!-- ========== CASKARA FEATURE SECTION (NEW) ========== -->
+<!-- Image Gallery Section -->
 <section class="section">
+  <div class="container">
+    <h2 class="section-title">Our Coffee Journey</h2>
+    <p class="section-subtitle">From bean to bag — captured moments</p>
+    <div class="image-gallery">
+      <img src="10.JPG" class="gallery-img" onerror="this.src='https://placehold.co/300x200?text=Coffee+10'">
+      <img src="11.JPG" class="gallery-img" onerror="this.src='https://placehold.co/300x200?text=Coffee+11'">
+      <img src="12.JPG" class="gallery-img" onerror="this.src='https://placehold.co/300x200?text=Coffee+12'">
+      <img src="13.JPG" class="gallery-img" onerror="this.src='https://placehold.co/300x200?text=Coffee+13'">
+      <img src="14.JPG" class="gallery-img" onerror="this.src='https://placehold.co/300x200?text=Coffee+14'">
+      <img src="15.JPG" class="gallery-img" onerror="this.src='https://placehold.co/300x200?text=Coffee+15'">
+      <img src="16.JPG" class="gallery-img" onerror="this.src='https://placehold.co/300x200?text=Coffee+16'">
+      <img src="17.JPG" class="gallery-img" onerror="this.src='https://placehold.co/300x200?text=Coffee+17'">
+    </div>
+  </div>
+</section>
+
+<!-- Caskara Feature -->
+<section class="section" style="background: #F5EDE5;">
   <div class="container">
     <div class="caskara-feature">
       <div class="caskara-icon">
@@ -699,98 +610,34 @@
       </div>
       <div class="caskara-info">
         <h2>✨ Caskara ✨</h2>
-        <p>Dried coffee cherry infusion with naturally sweet, fruity, and delicate floral notes. Made from the dried skin of coffee cherries, Caskara produces a naturally sweet and refreshing beverage — completely caffeine-free.</p>
+        <p>Dried coffee cherry infusion with naturally sweet, fruity, and delicate floral notes. Made from the dried skin of coffee cherries — completely caffeine-free.</p>
         <div class="caskara-tags">
-          <span class="caskara-tag">🍊 Fruity</span>
-          <span class="caskara-tag">🌸 Floral</span>
-          <span class="caskara-tag">🍯 Sweet</span>
-          <span class="caskara-tag">✨ Caffeine-Free</span>
+          <span class="caskara-tag">Fruity</span>
+          <span class="caskara-tag">Floral</span>
+          <span class="caskara-tag">Sweet</span>
+          <span class="caskara-tag">Caffeine-Free</span>
         </div>
-        <span class="caskara-badge"><i class="fas fa-star"></i> Ethiopian Specialty Product</span>
       </div>
     </div>
   </div>
 </section>
 
-<!-- Image Slider Section -->
-<section class="section" style="background: #F5EDE5;">
+<!-- Packaging Slider -->
+<section class="section">
   <div class="container">
     <h2 class="section-title">Our Premium Packaging</h2>
     <p class="section-subtitle">Elegant design that preserves freshness</p>
-    
     <div class="slider-container">
       <button class="slider-btn prev-btn" onclick="prevSlide()">❮</button>
       <div class="slider" id="imageSlider">
-        <div class="slide">
-          <img src="packaging.jpg" alt="Caskara Packaging" onerror="this.src='https://placehold.co/800x500?text=Caskara+Coffee+Packaging'">
-          <div class="slide-caption">
-            <h3>Caskara - Dried Coffee Cherry</h3>
-            <p>Altitude: 1900-2200M | Medium-Dark Roast</p>
-          </div>
-        </div>
-        <div class="slide">
-          <img src="packaging2.jpg" alt="Chemina Packaging" onerror="this.src='https://placehold.co/800x500?text=Chemina+Whole+Bean+Coffee'">
-          <div class="slide-caption">
-            <h3>Chemina - Whole Bean Coffee</h3>
-            <p>Medium-Dark Roast | Bold & Cocoa Notes</p>
-          </div>
-        </div>
-        <div class="slide">
-          <img src="packaging3.jpg" alt="Qalid's Choice Packaging" onerror="this.src='https://placehold.co/800x500?text=Qalid%27s+Choice+House+Blend'">
-          <div class="slide-caption">
-            <h3>Qalid's Choice - House Blend</h3>
-            <p>Ground Coffee | Balanced & Smooth</p>
-          </div>
-        </div>
+        <div class="slide"><img src="packaging.jpg" alt="Packaging"><div class="slide-caption"><h3>Signature Coffee Bag</h3></div></div>
+        <div class="slide"><img src="packaging2.jpg" alt="Packaging 2"><div class="slide-caption"><h3>Premium Roast Collection</h3></div></div>
+        <div class="slide"><img src="packaging3.jpg" alt="Packaging 3"><div class="slide-caption"><h3>Specialty Series</h3></div></div>
+        <div class="slide"><img src="19.JPG" alt="Packaging 19"><div class="slide-caption"><h3>Limited Edition</h3></div></div>
       </div>
       <button class="slider-btn next-btn" onclick="nextSlide()">❯</button>
     </div>
-    <div class="dots-container" id="dotsContainer">
-      <span class="dot active" onclick="goToSlide(0)"></span>
-      <span class="dot" onclick="goToSlide(1)"></span>
-      <span class="dot" onclick="goToSlide(2)"></span>
-    </div>
-  </div>
-</section>
-
-<!-- Product Details -->
-<section class="section">
-  <div class="container">
-    <h2 class="section-title">Product Details</h2>
-    <p class="section-subtitle">From the highlands to your cup</p>
-    
-    <div class="product-detail-card">
-      <h3>Caskara - Dried Coffee Cherry</h3>
-      <div class="product-detail-grid">
-        <div class="detail-item"><strong>Product Name</strong><p>Bean to Bag - Caskara</p></div>
-        <div class="detail-item"><strong>Product Type</strong><p>Dried Coffee Cherry</p></div>
-        <div class="detail-item"><strong>Roast Level</strong><p>Medium-Dark Roast</p></div>
-        <div class="detail-item"><strong>Altitude</strong><p>1900 - 2200M</p></div>
-        <div class="detail-item"><strong>Taste Profile</strong><p>Fruity · Sweet · Floral</p></div>
-      </div>
-    </div>
-
-    <div class="product-detail-card">
-      <h3>Chemina - Whole Bean Coffee</h3>
-      <div class="product-detail-grid">
-        <div class="detail-item"><strong>Product Name</strong><p>Bean to Bag - Chemina</p></div>
-        <div class="detail-item"><strong>Product Type</strong><p>Whole Bean Coffee</p></div>
-        <div class="detail-item"><strong>Roast Level</strong><p>Medium-Dark Roast</p></div>
-        <div class="detail-item"><strong>Taste Profile</strong><p>Bold · Cocoa · Smooth Finish</p></div>
-        <div class="detail-item"><strong>Best For</strong><p>Espresso · Macchiato · Milk Drinks</p></div>
-      </div>
-    </div>
-
-    <div class="product-detail-card">
-      <h3>Qalid's Choice - House Blend</h3>
-      <div class="product-detail-grid">
-        <div class="detail-item"><strong>Product Name</strong><p>Bean to Bag - Qalid's Choice</p></div>
-        <div class="detail-item"><strong>Product Type</strong><p>Ground Coffee</p></div>
-        <div class="detail-item"><strong>Roast Level</strong><p>Medium-Dark Roast</p></div>
-        <div class="detail-item"><strong>Grind Options</strong><p>Jebena · French Press · Espresso</p></div>
-        <div class="detail-item"><strong>Taste Profile</strong><p>Balanced · Smooth · Chocolate Notes</p></div>
-      </div>
-    </div>
+    <div class="dots-container" id="dotsContainer"></div>
   </div>
 </section>
 
@@ -798,44 +645,10 @@
 <section class="section" style="background: #F5EDE5;">
   <div class="container">
     <h2 class="section-title">Our Signature Collection</h2>
-    <p class="section-subtitle">Crafted with passion, roasted to perfection</p>
     <div class="products-grid">
-      <div class="product-card">
-        <div class="product-img" style="background: linear-gradient(135deg, #E8A87C, #D4845A);"><i class="fas fa-mug-hot"></i></div>
-        <div class="product-info">
-          <h3>Caskara</h3>
-          <p>Dried coffee cherry infusion with sweet, fruity, floral notes.</p>
-          <div class="product-taste">
-            <span class="taste-tag">Fruity</span>
-            <span class="taste-tag">Floral</span>
-            <span class="taste-tag">Sweet</span>
-          </div>
-        </div>
-      </div>
-      <div class="product-card">
-        <div class="product-img" style="background: linear-gradient(135deg, #8B5E3C, #6B3E1A);"><i class="fas fa-mortar-pestle"></i></div>
-        <div class="product-info">
-          <h3>Qalid's Choice</h3>
-          <p>House blend ground coffee with balanced chocolate notes.</p>
-          <div class="product-taste">
-            <span class="taste-tag">Chocolate</span>
-            <span class="taste-tag">Balanced</span>
-            <span class="taste-tag">Smooth</span>
-          </div>
-        </div>
-      </div>
-      <div class="product-card">
-        <div class="product-img" style="background: linear-gradient(135deg, #4A3728, #2C1810);"><i class="fas fa-seedling"></i></div>
-        <div class="product-info">
-          <h3>Chemina</h3>
-          <p>Whole bean espresso roast with bold cocoa body.</p>
-          <div class="product-taste">
-            <span class="taste-tag">Bold</span>
-            <span class="taste-tag">Cocoa</span>
-            <span class="taste-tag">Smooth Finish</span>
-          </div>
-        </div>
-      </div>
+      <div class="product-card"><div class="product-img" style="background: linear-gradient(135deg, #E8A87C, #D4845A);"><i class="fas fa-mug-hot"></i></div><div class="product-info"><h3>Caskara</h3><p>Dried coffee cherry infusion</p><div class="product-taste"><span class="taste-tag">Fruity</span><span class="taste-tag">Floral</span></div></div></div>
+      <div class="product-card"><div class="product-img" style="background: linear-gradient(135deg, #8B5E3C, #6B3E1A);"><i class="fas fa-mortar-pestle"></i></div><div class="product-info"><h3>Qalid's Choice</h3><p>House blend ground coffee</p><div class="product-taste"><span class="taste-tag">Chocolate</span><span class="taste-tag">Balanced</span></div></div></div>
+      <div class="product-card"><div class="product-img" style="background: linear-gradient(135deg, #4A3728, #2C1810);"><i class="fas fa-seedling"></i></div><div class="product-info"><h3>Chemina</h3><p>Whole bean espresso</p><div class="product-taste"><span class="taste-tag">Bold</span><span class="taste-tag">Cocoa</span></div></div></div>
     </div>
   </div>
 </section>
@@ -845,107 +658,57 @@
   <div class="container">
     <div class="story-content">
       <div class="story-text">
-        <h2 class="section-title" style="text-align: left; margin-bottom: 1rem;">Ethiopian Highlands</h2>
-        <p>Our 100% Arabica coffee is cultivated by small-scale farmers in traditional garden farms at 1,900–2,200 meters above sea level.</p>
-        <p>From floral aromas to bright citrus notes — every cup tells the story of Ethiopian coffee heritage.</p>
-        <a href="origin.html" class="btn-primary" style="margin-top: 1rem; display: inline-block;">Discover Our Origin</a>
+        <h2 style="font-size: 2rem; margin-bottom: 1rem;">Ethiopian Highlands</h2>
+        <p>Our 100% Arabica coffee is cultivated by small-scale farmers at 1,900–2,200 meters above sea level.</p>
+        <a href="origin.html" class="btn-primary" style="margin-top: 1rem;">Discover Our Origin</a>
       </div>
       <div class="stats-grid">
         <div class="stat-card"><i class="fas fa-chart-line"></i><h3>1,900-2,200m</h3><p>Altitude</p></div>
         <div class="stat-card"><i class="fas fa-leaf"></i><h3>100%</h3><p>Arabica</p></div>
-        <div class="stat-card"><i class="fas fa-certificate"></i><h3>Medium-Dark</h3><p>Roast Profile</p></div>
+        <div class="stat-card"><i class="fas fa-certificate"></i><h3>Medium-Dark</h3><p>Roast</p></div>
       </div>
     </div>
   </div>
 </section>
 
-<!-- Footer -->
 <footer>
   <div class="footer-content">
-    <div class="footer-logo">
-      <h2>Bean <span style="color: #C68B5E;">to Bag</span></h2>
-      <p>Premium Ethiopian Coffee<br>Roasted in Addis Ababa</p>
-    </div>
-    <div class="footer-links">
-      <h4>Quick Links</h4>
-      <a href="index.html">Home</a>
-      <a href="about.html">About</a>
-      <a href="products.html">Products</a>
-      <a href="origin.html">Origin</a>
-      <a href="contact.html">Contact</a>
-    </div>
-    <div class="footer-social">
-      <h4>Follow Us</h4>
-      <div class="social-icons">
-        <a href="#"><i class="fab fa-instagram"></i></a>
-        <a href="#"><i class="fab fa-facebook"></i></a>
-        <a href="#"><i class="fab fa-telegram"></i></a>
-      </div>
-      <p><i class="fas fa-envelope"></i> hello@beantobag.com</p>
-      <p><i class="fab fa-whatsapp"></i> +251 911 223344</p>
-    </div>
+    <div><h2>Bean <span style="color:#C68B5E;">to Bag</span></h2><p>Premium Ethiopian Coffee</p></div>
+    <div><h4>Quick Links</h4><a href="index.html">Home</a><br><a href="about.html">About</a><br><a href="products.html">Products</a></div>
+    <div><h4>Follow Us</h4><div class="social-icons"><a href="#"><i class="fab fa-instagram"></i></a><a href="#"><i class="fab fa-facebook"></i></a></div><p><i class="fas fa-envelope"></i> hello@beantobag.com</p></div>
   </div>
-  <div class="footer-bottom">
-    <p>&copy; 2025 Bean to Bag Coffee. All rights reserved.</p>
-  </div>
+  <div class="footer-bottom"><p>© 2025 Bean to Bag Coffee</p></div>
 </footer>
 
 <script>
-  // Mobile menu toggle function
   function toggleMenu() {
-    const navLinks = document.getElementById('navLinks');
-    navLinks.classList.toggle('active');
+    document.getElementById('navLinks').classList.toggle('active');
   }
-
-  // Close menu when clicking a link (mobile)
   document.querySelectorAll('.nav-links a').forEach(link => {
-    link.addEventListener('click', () => {
-      document.getElementById('navLinks').classList.remove('active');
-    });
+    link.addEventListener('click', () => document.getElementById('navLinks').classList.remove('active'));
   });
 
-  // Image Slider
   let currentSlide = 0;
   const slides = document.querySelectorAll('.slide');
+  const dotsContainer = document.getElementById('dotsContainer');
+  
+  slides.forEach((_, i) => {
+    const dot = document.createElement('span');
+    dot.className = 'dot';
+    dot.onclick = () => goToSlide(i);
+    dotsContainer.appendChild(dot);
+  });
+  
   const dots = document.querySelectorAll('.dot');
-  const slider = document.getElementById('imageSlider');
-
   function updateSlider() {
-    if (slider) slider.style.transform = `translateX(-${currentSlide * 100}%)`;
-    dots.forEach((dot, index) => {
-      if (index === currentSlide) dot.classList.add('active');
-      else dot.classList.remove('active');
-    });
+    document.querySelector('.slider').style.transform = `translateX(-${currentSlide * 100}%)`;
+    dots.forEach((dot, i) => dot.classList.toggle('active', i === currentSlide));
   }
-
-  function nextSlide() {
-    if (slides.length > 0) {
-      currentSlide = (currentSlide + 1) % slides.length;
-      updateSlider();
-    }
-  }
-
-  function prevSlide() {
-    if (slides.length > 0) {
-      currentSlide = (currentSlide - 1 + slides.length) % slides.length;
-      updateSlider();
-    }
-  }
-
-  function goToSlide(index) {
-    currentSlide = index;
-    updateSlider();
-  }
-
-  // Auto slide every 5 seconds
-  if (slides.length > 0) {
-    let autoInterval = setInterval(nextSlide, 5000);
-    const sliderContainer = document.querySelector('.slider-container');
-    if (sliderContainer) {
-      sliderContainer.addEventListener('mouseenter', () => clearInterval(autoInterval));
-      sliderContainer.addEventListener('mouseleave', () => { autoInterval = setInterval(nextSlide, 5000); });
-    }
-  }
+  function nextSlide() { currentSlide = (currentSlide + 1) % slides.length; updateSlider(); }
+  function prevSlide() { currentSlide = (currentSlide - 1 + slides.length) % slides.length; updateSlider(); }
+  function goToSlide(i) { currentSlide = i; updateSlider(); }
+  updateSlider();
+  setInterval(nextSlide, 5000);
 </script>
 </body>
 </html>
