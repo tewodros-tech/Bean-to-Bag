@@ -48,6 +48,15 @@
       color: #C68B5E;
     }
 
+    /* Hamburger Menu */
+    .menu-icon {
+      display: block;
+      font-size: 1.8rem;
+      cursor: pointer;
+      color: #2C1810;
+      z-index: 1001;
+    }
+
     .nav-links {
       display: none;
       position: absolute;
@@ -81,6 +90,560 @@
       color: #C68B5E;
     }
 
-    .menu-icon {
+    /* Hero Section */
+    .hero {
+      min-height: 100vh;
+      background: linear-gradient(135deg, rgba(44, 24, 16, 0.85), rgba(74, 44, 26, 0.8)), url('coffee1.JPG');
+      background-size: cover;
+      background-position: center;
+      background-attachment: scroll;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      color: white;
+      padding: 5rem 1rem;
+    }
+
+    .hero-content {
+      max-width: 800px;
+      padding: 0 1rem;
+    }
+
+    .hero-content h1 {
+      font-size: 2.2rem;
+      font-weight: 800;
+      margin-bottom: 1rem;
+    }
+
+    .hero-content p {
+      font-size: 1rem;
+      margin-bottom: 1.5rem;
+      line-height: 1.5;
+    }
+
+    .btn-group {
+      display: flex;
+      gap: 0.8rem;
+      justify-content: center;
+      flex-wrap: wrap;
+    }
+
+    .btn-primary {
+      background: #C68B5E;
+      color: white;
+      padding: 0.8rem 1.5rem;
+      border-radius: 50px;
+      text-decoration: none;
+      font-weight: 600;
+      transition: 0.3s;
+      display: inline-block;
+      font-size: 0.9rem;
+    }
+
+    .btn-primary:hover {
+      background: #A06B42;
+      transform: translateY(-2px);
+    }
+
+    .btn-outline {
+      background: transparent;
+      border: 2px solid white;
+      color: white;
+      padding: 0.8rem 1.5rem;
+      border-radius: 50px;
+      text-decoration: none;
+      font-weight: 600;
+      transition: 0.3s;
+      font-size: 0.9rem;
+    }
+
+    .btn-outline:hover {
+      background: white;
+      color: #2C1810;
+    }
+
+    /* Section Styles */
+    .section {
+      padding: 3rem 1rem;
+    }
+
+    .section-dark {
+      background: #2C1810;
+      color: white;
+    }
+
+    .section-title {
+      text-align: center;
+      font-size: 2rem;
+      font-weight: 700;
+      margin-bottom: 0.5rem;
+    }
+
+    .section-subtitle {
+      text-align: center;
+      color: #C68B5E;
+      text-transform: uppercase;
+      letter-spacing: 2px;
+      font-size: 0.75rem;
+      margin-bottom: 2rem;
+    }
+
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 0.5rem;
+    }
+
+    /* Products Grid - Mobile Friendly */
+    .products-grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 1.5rem;
+      margin-top: 1.5rem;
+    }
+
+    .product-card {
+      background: white;
+      border-radius: 20px;
+      overflow: hidden;
+      box-shadow: 0 10px 20px rgba(0,0,0,0.08);
+      transition: 0.3s;
+    }
+
+    .product-card:hover {
+      transform: translateY(-5px);
+    }
+
+    .product-img {
+      height: 200px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 4rem;
+      color: white;
+    }
+
+    .product-info {
+      padding: 1.2rem;
+    }
+
+    .product-info h3 {
+      font-size: 1.4rem;
+      margin-bottom: 0.5rem;
+    }
+
+    .product-info p {
+      font-size: 0.85rem;
+      color: #5a4a3a;
+      line-height: 1.4;
+    }
+
+    .product-taste {
+      display: flex;
+      gap: 0.5rem;
+      flex-wrap: wrap;
+      margin-top: 0.8rem;
+    }
+
+    .taste-tag {
+      background: #F5EDE5;
+      padding: 0.2rem 0.7rem;
+      border-radius: 50px;
+      font-size: 0.7rem;
+      color: #2C1810;
+    }
+
+    /* Packaging Gallery - Mobile */
+    .packaging-gallery {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 1rem;
+      margin: 2rem 0;
+    }
+
+    .packaging-item {
+      background: white;
+      border-radius: 15px;
+      overflow: hidden;
+      box-shadow: 0 5px 10px rgba(0,0,0,0.08);
+    }
+
+    .packaging-item img {
+      width: 100%;
+      height: 200px;
+      object-fit: cover;
+    }
+
+    .packaging-item p {
+      text-align: center;
+      padding: 0.8rem;
+      font-weight: 600;
+      background: white;
+      font-size: 0.9rem;
+    }
+
+    /* Stats Grid - Mobile */
+    .stats-grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 1rem;
+      margin: 2rem 0;
+    }
+
+    .stat-card {
+      text-align: center;
+      padding: 1.5rem;
+      background: rgba(255,255,255,0.1);
+      border-radius: 15px;
+    }
+
+    .stat-card i {
+      font-size: 2rem;
+      color: #C68B5E;
+      margin-bottom: 0.5rem;
+    }
+
+    .stat-card h3 {
+      font-size: 1.5rem;
+      margin-bottom: 0.3rem;
+    }
+
+    .stat-card p {
+      font-size: 0.8rem;
+    }
+
+    /* Story Section - Mobile */
+    .story-content {
+      display: flex;
+      flex-direction: column;
+      gap: 2rem;
+    }
+
+    .story-text p {
+      font-size: 0.95rem;
+      line-height: 1.6;
+      margin-bottom: 1rem;
+    }
+
+    .story-icon {
+      font-size: 2.5rem;
+      color: #C68B5E;
+      margin-top: 1rem;
+    }
+
+    /* Footer - Mobile */
+    footer {
+      background: #1A0F0A;
+      color: #B8A99A;
+      padding: 2rem 1rem 1.5rem;
+    }
+
+    .footer-content {
+      display: flex;
+      flex-direction: column;
+      gap: 1.5rem;
+      text-align: center;
+    }
+
+    .footer-logo h2 {
+      font-size: 1.5rem;
+      margin-bottom: 0.5rem;
+    }
+
+    .footer-links h4, .footer-social h4 {
+      margin-bottom: 0.8rem;
+      color: white;
+      font-size: 1rem;
+    }
+
+    .footer-links a {
       display: block;
-      font
+      color: #B8A99A;
+      text-decoration: none;
+      margin-bottom: 0.4rem;
+      font-size: 0.85rem;
+    }
+
+    .social-icons a {
+      color: #B8A99A;
+      font-size: 1.3rem;
+      margin: 0 0.6rem;
+      transition: 0.3s;
+    }
+
+    .footer-bottom {
+      text-align: center;
+      padding-top: 1.5rem;
+      margin-top: 1.5rem;
+      border-top: 1px solid rgba(255,255,255,0.1);
+      font-size: 0.75rem;
+    }
+
+    /* WhatsApp Float - Mobile */
+    .whatsapp-float {
+      position: fixed;
+      bottom: 20px;
+      right: 20px;
+      background: #25D366;
+      width: 50px;
+      height: 50px;
+      border-radius: 50%;
+      text-align: center;
+      line-height: 50px;
+      font-size: 26px;
+      color: white;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+      z-index: 999;
+      transition: 0.3s;
+    }
+
+    /* Tablet and Desktop */
+    @media (min-width: 768px) {
+      .menu-icon {
+        display: none;
+      }
+
+      .nav-links {
+        display: flex !important;
+        position: static;
+        width: auto;
+        flex-direction: row;
+        padding: 0;
+        gap: 2rem;
+        box-shadow: none;
+        border-top: none;
+      }
+
+      .hero-content h1 {
+        font-size: 3.5rem;
+      }
+
+      .hero-content p {
+        font-size: 1.2rem;
+      }
+
+      .products-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 2rem;
+      }
+
+      .packaging-gallery {
+        grid-template-columns: repeat(3, 1fr);
+        gap: 1.5rem;
+      }
+
+      .stats-grid {
+        grid-template-columns: repeat(3, 1fr);
+        gap: 2rem;
+      }
+
+      .story-content {
+        flex-direction: row;
+        gap: 4rem;
+        align-items: center;
+      }
+
+      .footer-content {
+        flex-direction: row;
+        justify-content: space-between;
+        text-align: left;
+      }
+
+      .section {
+        padding: 5rem 2rem;
+      }
+
+      .section-title {
+        font-size: 3rem;
+      }
+    }
+
+    @media (min-width: 1024px) {
+      .products-grid {
+        grid-template-columns: repeat(3, 1fr);
+      }
+    }
+  </style>
+</head>
+<body>
+
+<a href="https://wa.me/251911223344?text=Hello%20Bean%20to%20Bag!%20I'd%20like%20to%20order%20coffee." class="whatsapp-float" target="_blank">
+  <i class="fab fa-whatsapp"></i>
+</a>
+
+<nav>
+  <div class="logo">Bean <span>to Bag</span></div>
+  <div class="menu-icon" onclick="toggleMenu()">
+    <i class="fas fa-bars"></i>
+  </div>
+  <ul class="nav-links" id="navLinks">
+    <li><a href="index.html" class="active">Home</a></li>
+    <li><a href="about.html">About</a></li>
+    <li><a href="products.html">Products</a></li>
+    <li><a href="origin.html">Origin</a></li>
+    <li><a href="contact.html">Contact</a></li>
+  </ul>
+</nav>
+
+<!-- Hero Section -->
+<section class="hero">
+  <div class="hero-content">
+    <h1>From Bean to Bag<br>Premium Ethiopian Coffee</h1>
+    <p>Carefully sourced Ethiopian Arabica coffee roasted to a balanced medium-dark profile for a rich and smooth cup.</p>
+    <div class="btn-group">
+      <a href="products.html" class="btn-primary">Explore Collection</a>
+      <a href="contact.html" class="btn-outline">Shop Now</a>
+    </div>
+  </div>
+</section>
+
+<!-- Packaging Gallery Section -->
+<section class="section">
+  <div class="container">
+    <h2 class="section-title">Our Premium Packaging</h2>
+    <p class="section-subtitle">Elegant design that preserves freshness</p>
+    <div class="packaging-gallery">
+      <div class="packaging-item">
+        <img src="packaging.jpg" alt="Bean to Bag Coffee Packaging" onerror="this.src='https://placehold.co/400x300?text=Coffee+Packaging'">
+        <p>Signature Coffee Bag</p>
+      </div>
+      <div class="packaging-item">
+        <img src="packaging2.jpg" alt="Bean to Bag Coffee Packaging Collection" onerror="this.src='https://placehold.co/400x300?text=Premium+Roast'">
+        <p>Premium Roast Collection</p>
+      </div>
+      <div class="packaging-item">
+        <img src="packaging3.jpg" alt="Bean to Bag Specialty Packaging" onerror="this.src='https://placehold.co/400x300?text=Specialty+Series'">
+        <p>Specialty Series</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Featured Products -->
+<section class="section" style="background: #F5EDE5;">
+  <div class="container">
+    <h2 class="section-title">Our Signature Collection</h2>
+    <p class="section-subtitle">Crafted with passion, roasted to perfection</p>
+    <div class="products-grid">
+      <div class="product-card">
+        <div class="product-img" style="background: linear-gradient(135deg, #E8A87C, #D4845A);"><i class="fas fa-mug-hot"></i></div>
+        <div class="product-info">
+          <h3>Caskara</h3>
+          <p>Dried coffee cherry infusion with sweet, fruity, floral notes.</p>
+          <div class="product-taste">
+            <span class="taste-tag">🍊 Fruity</span>
+            <span class="taste-tag">🌸 Floral</span>
+            <span class="taste-tag">🍯 Sweet</span>
+          </div>
+        </div>
+      </div>
+      <div class="product-card">
+        <div class="product-img" style="background: linear-gradient(135deg, #8B5E3C, #6B3E1A);"><i class="fas fa-mortar-pestle"></i></div>
+        <div class="product-info">
+          <h3>Qalid's Choice</h3>
+          <p>House blend ground coffee with balanced chocolate notes.</p>
+          <div class="product-taste">
+            <span class="taste-tag">🍫 Chocolate</span>
+            <span class="taste-tag">⚖️ Balanced</span>
+            <span class="taste-tag">✨ Smooth</span>
+          </div>
+        </div>
+      </div>
+      <div class="product-card">
+        <div class="product-img" style="background: linear-gradient(135deg, #4A3728, #2C1810);"><i class="fas fa-seedling"></i></div>
+        <div class="product-info">
+          <h3>Chemina</h3>
+          <p>Whole bean espresso roast with bold cocoa body.</p>
+          <div class="product-taste">
+            <span class="taste-tag">☕ Bold</span>
+            <span class="taste-tag">🍫 Cocoa</span>
+            <span class="taste-tag">💨 Smooth finish</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Origin Story Preview -->
+<section class="section section-dark">
+  <div class="container">
+    <div class="story-content">
+      <div class="story-text">
+        <h2 class="section-title" style="text-align: left; margin-bottom: 1rem;">Ethiopian Highlands</h2>
+        <p>Our 100% Arabica coffee is cultivated by small-scale farmers in traditional garden farms at 1,900–2,200 meters above sea level.</p>
+        <p>From floral aromas to bright citrus notes — every cup tells the story of Ethiopian coffee heritage.</p>
+        <div class="story-icon">
+          <i class="fas fa-mountain"></i> <i class="fas fa-cloud-sun"></i>
+        </div>
+        <a href="origin.html" style="margin-top: 1.5rem; display: inline-block;" class="btn-primary">Discover Our Origin</a>
+      </div>
+      <div class="stats-grid">
+        <div class="stat-card">
+          <i class="fas fa-chart-line"></i>
+          <h3>1,900-2,200m</h3>
+          <p>Altitude</p>
+        </div>
+        <div class="stat-card">
+          <i class="fas fa-leaf"></i>
+          <h3>100%</h3>
+          <p>Arabica</p>
+        </div>
+        <div class="stat-card">
+          <i class="fas fa-certificate"></i>
+          <h3>Medium-Dark</h3>
+          <p>Roast Profile</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Footer -->
+<footer>
+  <div class="footer-content">
+    <div class="footer-logo">
+      <h2>Bean <span style="color: #C68B5E;">to Bag</span></h2>
+      <p>Premium Ethiopian Coffee<br>Roasted in Addis Ababa</p>
+    </div>
+    <div class="footer-links">
+      <h4>Quick Links</h4>
+      <a href="index.html">Home</a>
+      <a href="about.html">About</a>
+      <a href="products.html">Products</a>
+      <a href="origin.html">Origin</a>
+      <a href="contact.html">Contact</a>
+    </div>
+    <div class="footer-social">
+      <h4>Follow Us</h4>
+      <div class="social-icons">
+        <a href="#"><i class="fab fa-instagram"></i></a>
+        <a href="#"><i class="fab fa-facebook"></i></a>
+        <a href="#"><i class="fab fa-telegram"></i></a>
+        <a href="#"><i class="fab fa-twitter"></i></a>
+      </div>
+      <p style="margin-top: 0.8rem;"><i class="fas fa-envelope"></i> hello@beantobag.com</p>
+      <p><i class="fab fa-whatsapp"></i> +251 911 223344</p>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <p>&copy; 2025 Bean to Bag Coffee. All rights reserved.</p>
+  </div>
+</footer>
+
+<script>
+  function toggleMenu() {
+    const navLinks = document.getElementById('navLinks');
+    navLinks.classList.toggle('active');
+  }
+
+  // Close menu when clicking a link
+  document.querySelectorAll('.nav-links a').forEach(link => {
+    link.addEventListener('click', () => {
+      document.getElementById('navLinks').classList.remove('active');
+    });
+  });
+</script>
+</body>
+</html>
