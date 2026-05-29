@@ -3,154 +3,496 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
-  <title>Bean to Bag | Premium Ethiopian Coffee - Home</title>
+  <title>Bean to Bag | The Ultimate Coffee Experience</title>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
   <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700;800;900&family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+  <!-- Three.js for 3D Effects -->
+  <script type="importmap">
+    {
+      "imports": {
+        "three": "https://unpkg.com/three@0.128.0/build/three.module.js"
+      }
+    }
+  </script>
   <style>
-    * { margin: 0; padding: 0; box-sizing: border-box; }
-    body { font-family: 'Poppins', sans-serif; background: #0A0A0A; color: #FFFFFF; overflow-x: hidden; }
-    h1, h2, h3, .logo { font-family: 'Playfair Display', serif; }
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
 
-    /* Custom Cursor */
-    .cursor { width: 15px; height: 15px; background: #C68B5E; border-radius: 50%; position: fixed; pointer-events: none; z-index: 9999; transition: 0.05s; }
-    .cursor-follower { width: 35px; height: 35px; border: 2px solid #C68B5E; border-radius: 50%; position: fixed; pointer-events: none; z-index: 9998; transition: 0.1s; }
+    body {
+      font-family: 'Poppins', sans-serif;
+      background: #0A0A0A;
+      color: #FFFFFF;
+      overflow-x: hidden;
+    }
 
-    /* Navigation */
-    nav {
+    h1, h2, h3, .logo {
+      font-family: 'Playfair Display', serif;
+    }
+
+    /* Canvas 3D Background */
+    #canvas-container {
       position: fixed;
       top: 0;
+      left: 0;
       width: 100%;
-      background: rgba(10, 10, 10, 0.95);
-      backdrop-filter: blur(15px);
+      height: 100%;
+      z-index: 0;
+      pointer-events: none;
+    }
+
+    /* Custom Cursor with Trails */
+    .cursor {
+      width: 20px;
+      height: 20px;
+      background: #C68B5E;
+      border-radius: 50%;
+      position: fixed;
+      pointer-events: none;
+      z-index: 9999;
+      transition: transform 0.05s;
+      box-shadow: 0 0 10px rgba(198,139,94,0.5);
+    }
+    .cursor-trail {
+      position: fixed;
+      width: 8px;
+      height: 8px;
+      background: rgba(198,139,94,0.6);
+      border-radius: 50%;
+      pointer-events: none;
+      z-index: 9998;
+      transition: 0.1s;
+    }
+
+    /* Navigation - Morphing Glass */
+    nav {
+      position: fixed;
+      top: 20px;
+      left: 5%;
+      right: 5%;
+      width: 90%;
+      background: rgba(10, 10, 10, 0.7);
+      backdrop-filter: blur(20px);
+      border-radius: 60px;
       z-index: 1000;
-      padding: 1rem 5%;
+      padding: 0.8rem 2rem;
       display: flex;
       justify-content: space-between;
       align-items: center;
-      border-bottom: 1px solid rgba(198, 139, 94, 0.3);
+      border: 1px solid rgba(198, 139, 94, 0.3);
+      transition: all 0.3s;
+      box-shadow: 0 0 30px rgba(0,0,0,0.3);
     }
-    .logo { font-size: 1.5rem; font-weight: 800; background: linear-gradient(135deg, #FFFFFF, #C68B5E); -webkit-background-clip: text; background-clip: text; color: transparent; }
+    nav.scrolled {
+      top: 0;
+      left: 0;
+      right: 0;
+      width: 100%;
+      border-radius: 0;
+      background: rgba(10, 10, 10, 0.95);
+    }
+    .logo {
+      font-size: 1.6rem;
+      font-weight: 800;
+      background: linear-gradient(135deg, #FFFFFF, #C68B5E, #E8A87C);
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+      animation: logoPulse 3s ease-in-out infinite;
+    }
+    @keyframes logoPulse {
+      0%, 100% { opacity: 1; }
+      50% { opacity: 0.8; text-shadow: 0 0 10px rgba(198,139,94,0.5); }
+    }
     .menu-icon { display: none; font-size: 1.8rem; cursor: pointer; background: none; border: none; color: white; }
-    .nav-links { display: flex; gap: 2rem; list-style: none; }
-    .nav-links a { text-decoration: none; color: white; font-weight: 500; transition: 0.3s; position: relative; }
-    .nav-links a::after { content: ''; position: absolute; bottom: -5px; left: 0; width: 0; height: 2px; background: #C68B5E; transition: 0.3s; }
-    .nav-links a:hover::after, .nav-links a.active::after { width: 100%; }
+    .nav-links { display: flex; gap: 2.5rem; list-style: none; }
+    .nav-links a {
+      text-decoration: none;
+      color: white;
+      font-weight: 500;
+      transition: 0.3s;
+      position: relative;
+      letter-spacing: 1px;
+    }
+    .nav-links a::before {
+      content: '';
+      position: absolute;
+      bottom: -5px;
+      left: 0;
+      width: 0;
+      height: 2px;
+      background: linear-gradient(90deg, #C68B5E, #E8A87C);
+      transition: 0.3s;
+    }
+    .nav-links a:hover::before, .nav-links a.active::before { width: 100%; }
     .nav-links a:hover { color: #C68B5E; }
 
-    /* Hero Section */
+    /* Hero Section - Split Screen */
     .hero {
       min-height: 100vh;
       position: relative;
       display: flex;
       align-items: center;
-      justify-content: center;
-      text-align: center;
-      overflow: hidden;
+      justify-content: space-between;
+      padding: 0 10%;
+      z-index: 2;
+      flex-wrap: wrap;
     }
-    .hero-bg {
+    .hero-left {
+      flex: 1;
+      z-index: 2;
+      animation: slideInLeft 1s ease;
+    }
+    @keyframes slideInLeft {
+      from { opacity: 0; transform: translateX(-100px); }
+      to { opacity: 1; transform: translateX(0); }
+    }
+    .hero-left h1 {
+      font-size: 4.5rem;
+      font-weight: 800;
+      line-height: 1.1;
+      margin-bottom: 1rem;
+    }
+    .hero-gradient-text {
+      background: linear-gradient(135deg, #C68B5E, #E8A87C, #FFD4A8);
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+    }
+    .hero-left p {
+      font-size: 1.1rem;
+      margin-bottom: 2rem;
+      opacity: 0.9;
+      line-height: 1.6;
+    }
+    .hero-right {
+      flex: 1;
+      position: relative;
+      z-index: 2;
+      animation: slideInRight 1s ease;
+    }
+    @keyframes slideInRight {
+      from { opacity: 0; transform: translateX(100px); }
+      to { opacity: 1; transform: translateX(0); }
+    }
+    .floating-cup {
+      width: 100%;
+      max-width: 400px;
+      margin: 0 auto;
+      animation: float 3s ease-in-out infinite;
+    }
+    @keyframes float {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-20px); }
+    }
+    .btn-group { display: flex; gap: 1rem; flex-wrap: wrap; }
+    .btn-primary {
+      background: linear-gradient(135deg, #C68B5E, #A06B42);
+      color: white;
+      padding: 1rem 2.5rem;
+      border-radius: 50px;
+      text-decoration: none;
+      font-weight: 600;
+      transition: 0.3s;
+      position: relative;
+      overflow: hidden;
+      border: none;
+      cursor: pointer;
+      display: inline-block;
+    }
+    .btn-primary::before {
+      content: '';
       position: absolute;
       top: 0;
+      left: -100%;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(90deg, transparent, rgba(255,255,255,0.3), transparent);
+      transition: 0.5s;
+    }
+    .btn-primary:hover::before { left: 100%; }
+    .btn-primary:hover { transform: translateY(-3px); box-shadow: 0 10px 30px rgba(198,139,94,0.5); }
+    .btn-outline {
+      background: transparent;
+      border: 2px solid #C68B5E;
+      color: #C68B5E;
+      padding: 1rem 2.5rem;
+      border-radius: 50px;
+      text-decoration: none;
+      font-weight: 600;
+      transition: 0.3s;
+    }
+    .btn-outline:hover { background: #C68B5E; color: white; transform: translateY(-3px); }
+
+    /* Scroll Progress Indicator */
+    .scroll-progress {
+      position: fixed;
+      top: 0;
       left: 0;
+      width: 0%;
+      height: 3px;
+      background: linear-gradient(90deg, #C68B5E, #E8A87C);
+      z-index: 1001;
+      transition: width 0.1s;
+    }
+
+    /* Parallax Section */
+    .parallax-section {
+      position: relative;
+      min-height: 80vh;
+      background-attachment: fixed;
+      background-size: cover;
+      background-position: center;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      z-index: 1;
+    }
+    .parallax-content {
+      background: rgba(0,0,0,0.6);
+      backdrop-filter: blur(10px);
+      padding: 3rem;
+      border-radius: 30px;
+      max-width: 700px;
+      margin: 2rem;
+    }
+
+    /* 3D Product Cards */
+    .products-section {
+      padding: 5rem 5%;
+      background: #0A0A0A;
+      position: relative;
+      z-index: 2;
+    }
+    .section-title {
+      text-align: center;
+      font-size: 3rem;
+      margin-bottom: 1rem;
+      background: linear-gradient(135deg, #FFFFFF, #C68B5E);
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+    }
+    .section-subtitle {
+      text-align: center;
+      color: #C68B5E;
+      letter-spacing: 3px;
+      margin-bottom: 3rem;
+    }
+    .products-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 2rem;
+      perspective: 1000px;
+    }
+    .product-3d {
+      background: rgba(255,255,255,0.05);
+      backdrop-filter: blur(10px);
+      border-radius: 20px;
+      padding: 2rem;
+      text-align: center;
+      transition: all 0.5s;
+      transform-style: preserve-3d;
+      cursor: pointer;
+      border: 1px solid rgba(198,139,94,0.2);
+    }
+    .product-3d:hover {
+      transform: rotateY(5deg) rotateX(5deg) translateY(-10px);
+      border-color: #C68B5E;
+      box-shadow: 0 20px 40px rgba(0,0,0,0.3);
+    }
+    .product-3d i { font-size: 4rem; color: #C68B5E; margin-bottom: 1rem; }
+    .product-3d h3 { font-size: 1.5rem; margin-bottom: 0.5rem; }
+
+    /* Animated Counter Section */
+    .counter-section {
+      background: linear-gradient(135deg, #1A0F0A, #2C1810);
+      padding: 4rem 5%;
+      position: relative;
+      z-index: 2;
+    }
+    .counter-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 2rem;
+      text-align: center;
+    }
+    .counter-card {
+      padding: 1.5rem;
+      background: rgba(255,255,255,0.05);
+      border-radius: 20px;
+      transition: 0.3s;
+    }
+    .counter-card:hover { transform: translateY(-5px); background: rgba(198,139,94,0.1); }
+    .counter-card i { font-size: 2.5rem; color: #C68B5E; margin-bottom: 0.5rem; }
+    .counter-num { font-size: 3rem; font-weight: 800; font-family: 'Playfair Display', serif; }
+    .counter-label { font-size: 0.9rem; opacity: 0.8; }
+
+    /* Infinite Auto-Scroll Gallery */
+    .gallery-section {
+      padding: 4rem 0;
+      overflow: hidden;
+      position: relative;
+      z-index: 2;
+    }
+    .infinite-scroll {
+      display: flex;
+      animation: scrollInfinite 30s linear infinite;
+      width: fit-content;
+    }
+    .infinite-scroll:hover { animation-play-state: paused; }
+    @keyframes scrollInfinite {
+      0% { transform: translateX(0); }
+      100% { transform: translateX(-50%); }
+    }
+    .scroll-item {
+      width: 350px;
+      height: 250px;
+      margin: 0 10px;
+      border-radius: 15px;
+      overflow: hidden;
+      transition: 0.3s;
+      cursor: pointer;
+    }
+    .scroll-item img {
       width: 100%;
       height: 100%;
       object-fit: cover;
-      z-index: 0;
-      animation: zoomSlow 20s ease-in-out infinite;
+      transition: 0.5s;
     }
-    @keyframes zoomSlow {
-      0% { transform: scale(1); }
-      50% { transform: scale(1.05); }
-      100% { transform: scale(1); }
+    .scroll-item:hover img { transform: scale(1.1); }
+
+    /* Particle Text Effect */
+    .particle-text {
+      text-align: center;
+      padding: 4rem 2rem;
+      background: linear-gradient(135deg, #0A0A0A, #1A0F0A);
     }
-    .hero-overlay { position: absolute; top: 0; left: 0; width: 100%; height: 100%; background: linear-gradient(135deg, rgba(0,0,0,0.6), rgba(44,24,16,0.7)); z-index: 1; }
-    .hero-content { position: relative; z-index: 2; max-width: 900px; padding: 0 2rem; }
-    .hero-content h1 { font-size: 3.5rem; font-weight: 800; margin-bottom: 1rem; animation: fadeInUp 0.8s ease; }
-    .hero-content p { font-size: 1.1rem; margin-bottom: 2rem; animation: fadeInUp 0.8s ease 0.2s backwards; }
-    @keyframes fadeInUp { from { opacity: 0; transform: translateY(30px); } to { opacity: 1; transform: translateY(0); } }
-    .btn-group { display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap; animation: fadeInUp 0.8s ease 0.4s backwards; }
-    .btn-primary { background: linear-gradient(135deg, #C68B5E, #A06B42); color: white; padding: 0.8rem 2rem; border-radius: 50px; text-decoration: none; font-weight: 600; transition: 0.3s; box-shadow: 0 5px 20px rgba(198,139,94,0.3); }
-    .btn-primary:hover { transform: translateY(-3px); box-shadow: 0 10px 30px rgba(198,139,94,0.5); }
-    .btn-outline { background: transparent; border: 2px solid white; color: white; padding: 0.8rem 2rem; border-radius: 50px; text-decoration: none; font-weight: 600; transition: 0.3s; }
-    .btn-outline:hover { background: white; color: #2C1810; transform: translateY(-3px); }
+    .glitch-text {
+      font-size: 4rem;
+      font-weight: 800;
+      position: relative;
+      animation: glitch 3s infinite;
+    }
+    @keyframes glitch {
+      0%, 100% { text-shadow: 2px 0 #C68B5E, -2px 0 #E8A87C; }
+      33% { text-shadow: -2px 0 #C68B5E, 2px 0 #E8A87C; }
+      66% { text-shadow: 2px 2px #C68B5E, -2px -2px #E8A87C; }
+    }
 
-    /* Section */
-    .section { padding: 5rem 5%; }
-    .container { max-width: 1400px; margin: 0 auto; }
-    .section-title { text-align: center; font-size: 2.5rem; font-weight: 700; margin-bottom: 0.5rem; background: linear-gradient(135deg, #FFFFFF, #C68B5E); -webkit-background-clip: text; background-clip: text; color: transparent; }
-    .section-subtitle { text-align: center; color: #C68B5E; text-transform: uppercase; letter-spacing: 3px; font-size: 0.8rem; margin-bottom: 2rem; }
+    /* Magnetic Button */
+    .magnetic-btn {
+      display: inline-block;
+      padding: 1rem 2rem;
+      background: linear-gradient(135deg, #C68B5E, #A06B42);
+      border: none;
+      border-radius: 50px;
+      color: white;
+      font-weight: 600;
+      cursor: pointer;
+      transition: 0.1s;
+      text-decoration: none;
+    }
 
-    /* Products Grid */
-    .products-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 1.5rem; margin-top: 2rem; }
-    .product-card { background: rgba(255,255,255,0.05); backdrop-filter: blur(10px); border-radius: 20px; padding: 1.5rem; text-align: center; transition: 0.3s; border: 1px solid rgba(198,139,94,0.2); cursor: pointer; }
-    .product-card:hover { transform: translateY(-10px); border-color: #C68B5E; box-shadow: 0 20px 40px rgba(0,0,0,0.3); }
-    .product-card i { font-size: 3.5rem; color: #C68B5E; margin-bottom: 1rem; }
-    .product-card h3 { font-size: 1.3rem; margin-bottom: 0.5rem; }
-    .taste-tags { display: flex; gap: 0.5rem; justify-content: center; flex-wrap: wrap; margin-top: 1rem; }
-    .taste-tag { background: rgba(198,139,94,0.2); padding: 0.2rem 0.7rem; border-radius: 50px; font-size: 0.7rem; }
-
-    /* Gallery Grid */
-    .gallery-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 1rem; margin-top: 2rem; }
-    .gallery-item { position: relative; overflow: hidden; border-radius: 15px; height: 200px; cursor: pointer; }
-    .gallery-item img { width: 100%; height: 100%; object-fit: cover; transition: 0.5s; }
-    .gallery-item:hover img { transform: scale(1.1); }
-    .gallery-overlay { position: absolute; bottom: 0; left: 0; right: 0; background: linear-gradient(transparent, rgba(0,0,0,0.8)); padding: 0.8rem; text-align: center; transform: translateY(100%); transition: 0.3s; }
-    .gallery-item:hover .gallery-overlay { transform: translateY(0); }
-
-    /* Lightbox */
-    .lightbox { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.95); z-index: 2000; justify-content: center; align-items: center; cursor: pointer; }
-    .lightbox.active { display: flex; }
-    .lightbox img { max-width: 90%; max-height: 90%; border-radius: 10px; }
-    .lightbox-close { position: absolute; top: 20px; right: 40px; font-size: 40px; color: white; cursor: pointer; }
-
-    /* Stats */
-    .stats-container { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 1.5rem; margin: 2rem 0; }
-    .stat-card { text-align: center; padding: 1.5rem; background: rgba(255,255,255,0.05); border-radius: 15px; border: 1px solid rgba(198,139,94,0.2); transition: 0.3s; }
-    .stat-card:hover { transform: translateY(-5px); border-color: #C68B5E; }
-    .stat-card i { font-size: 2.5rem; color: #C68B5E; margin-bottom: 0.5rem; }
-    .counter { font-size: 2rem; font-weight: 800; }
-
-    /* Origin Preview */
-    .origin-preview { display: flex; flex-wrap: wrap; gap: 2rem; align-items: center; background: linear-gradient(135deg, #1A0F0A, #2C1810); border-radius: 20px; padding: 2rem; margin-top: 2rem; }
-    .origin-preview-text { flex: 1; }
-    .origin-preview-text h3 { font-size: 1.8rem; margin-bottom: 1rem; }
-    .origin-preview-img { flex: 1; border-radius: 15px; overflow: hidden; }
-    .origin-preview-img img { width: 100%; height: 200px; object-fit: cover; transition: 0.3s; }
-    .origin-preview-img:hover img { transform: scale(1.05); }
+    /* 3D Tilt Card Effect */
+    .tilt-container {
+      perspective: 1000px;
+    }
 
     /* WhatsApp Float */
-    .whatsapp-float { position: fixed; bottom: 20px; right: 20px; background: #25D366; width: 50px; height: 50px; border-radius: 50%; text-align: center; line-height: 50px; font-size: 26px; color: white; z-index: 999; animation: pulse 2s infinite; }
-    @keyframes pulse { 0% { transform: scale(1); } 50% { transform: scale(1.1); } 100% { transform: scale(1); } }
+    .whatsapp-float {
+      position: fixed;
+      bottom: 20px;
+      right: 20px;
+      background: #25D366;
+      width: 55px;
+      height: 55px;
+      border-radius: 50%;
+      text-align: center;
+      line-height: 55px;
+      font-size: 28px;
+      color: white;
+      z-index: 999;
+      animation: pulse 2s infinite;
+      cursor: pointer;
+    }
+    @keyframes pulse {
+      0% { transform: scale(1); box-shadow: 0 0 0 0 rgba(37,211,102,0.7); }
+      70% { transform: scale(1.05); box-shadow: 0 0 0 15px rgba(37,211,102,0); }
+      100% { transform: scale(1); box-shadow: 0 0 0 0 rgba(37,211,102,0); }
+    }
 
     /* Footer */
-    footer { background: #0A0A0A; border-top: 1px solid rgba(198,139,94,0.3); padding: 2rem 5% 1.5rem; }
-    .footer-content { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 1.5rem; max-width: 1200px; margin: 0 auto; }
-    .social-icons a { color: white; font-size: 1.3rem; margin-right: 0.8rem; transition: 0.3s; display: inline-block; }
+    footer {
+      background: #0A0A0A;
+      border-top: 1px solid rgba(198,139,94,0.3);
+      padding: 3rem 5%;
+      position: relative;
+      z-index: 2;
+    }
+    .footer-content {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 2rem;
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+    .social-icons a {
+      color: white;
+      font-size: 1.5rem;
+      margin-right: 1rem;
+      transition: 0.3s;
+      display: inline-block;
+    }
     .social-icons a:hover { color: #C68B5E; transform: translateY(-3px); }
 
     /* Mobile */
     @media (max-width: 768px) {
       .menu-icon { display: block; }
-      .nav-links { display: none; position: absolute; top: 70px; left: 0; width: 100%; background: rgba(10,10,10,0.95); flex-direction: column; padding: 1.5rem; text-align: center; gap: 1rem; }
+      .nav-links {
+        display: none;
+        position: absolute;
+        top: 70px;
+        left: 0;
+        width: 100%;
+        background: rgba(10,10,10,0.95);
+        flex-direction: column;
+        padding: 1.5rem;
+        text-align: center;
+        gap: 1rem;
+        border-radius: 0;
+      }
       .nav-links.active { display: flex; }
-      .hero-content h1 { font-size: 2rem; }
-      .hero-content p { font-size: 0.9rem; }
-      .section-title { font-size: 1.8rem; }
-      .gallery-grid { grid-template-columns: repeat(2, 1fr); }
-      .gallery-item { height: 150px; }
-      .origin-preview { flex-direction: column; text-align: center; }
-      .stats-container { grid-template-columns: repeat(2, 1fr); }
-      .products-grid { gap: 1rem; }
+      .hero { flex-direction: column; text-align: center; padding: 6rem 5% 2rem; }
+      .hero-left h1 { font-size: 2.5rem; }
+      .counter-grid { grid-template-columns: repeat(2, 1fr); }
+      .glitch-text { font-size: 2rem; }
+      .section-title { font-size: 2rem; }
+      .btn-group { justify-content: center; }
     }
   </style>
 </head>
 <body>
 
+<!-- 3D Canvas Background -->
+<div id="canvas-container"></div>
+
+<!-- Scroll Progress -->
+<div class="scroll-progress" id="scrollProgress"></div>
+
+<!-- Custom Cursor -->
 <div class="cursor"></div>
-<div class="cursor-follower"></div>
 
-<a href="https://wa.me/251911223344?text=Hello%20Bean%20to%20Bag!" class="whatsapp-float" target="_blank"><i class="fab fa-whatsapp"></i></a>
+<!-- WhatsApp Float -->
+<div class="whatsapp-float" onclick="window.open('https://wa.me/251911223344?text=Hello%20Bean%20to%20Bag!', '_blank')">
+  <i class="fab fa-whatsapp"></i>
+</div>
 
-<nav>
+<!-- Navigation -->
+<nav id="nav">
   <div class="logo">Bean <span style="color:#C68B5E;">to Bag</span></div>
   <button class="menu-icon" onclick="toggleMenu()"><i class="fas fa-bars"></i></button>
   <ul class="nav-links" id="navLinks">
@@ -164,75 +506,101 @@
 
 <!-- Hero Section -->
 <section class="hero">
-  <img src="coffee1.JPG" class="hero-bg" onerror="this.src='https://placehold.co/1920x1080?text=Coffee+Background'">
-  <div class="hero-overlay"></div>
-  <div class="hero-content">
-    <h1>From Bean to Bag<br>Premium Ethiopian Coffee</h1>
+  <div class="hero-left">
+    <h1>From Bean to <span class="hero-gradient-text">Bag</span><br>Premium Ethiopian Coffee</h1>
     <p>Carefully sourced Ethiopian Arabica coffee roasted to a balanced medium-dark profile for a rich and smooth cup.</p>
     <div class="btn-group">
-      <a href="products.html" class="btn-primary">Explore Collection</a>
-      <a href="contact.html" class="btn-outline">Shop Coffee</a>
+      <a href="products.html" class="btn-primary" id="magneticBtn1">Explore Collection</a>
+      <a href="contact.html" class="btn-outline" id="magneticBtn2">Shop Coffee</a>
     </div>
+  </div>
+  <div class="hero-right">
+    <svg class="floating-cup" viewBox="0 0 200 200" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <path d="M60 140 L60 50 L140 50 L140 140 C140 160 120 170 100 170 C80 170 60 160 60 140Z" fill="url(#cupGrad)" stroke="#C68B5E" stroke-width="2"/>
+      <path d="M140 70 L160 70 C170 70 175 80 170 90 L155 105" stroke="#C68B5E" stroke-width="3" fill="none"/>
+      <ellipse cx="100" cy="50" rx="40" ry="10" fill="#A06B42"/>
+      <defs>
+        <linearGradient id="cupGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+          <stop offset="0%" style="stop-color:#C68B5E;stop-opacity:0.3"/>
+          <stop offset="100%" style="stop-color:#E8A87C;stop-opacity:0.1"/>
+        </linearGradient>
+      </defs>
+    </svg>
   </div>
 </section>
 
-<!-- Products Section -->
-<section class="section">
+<!-- Parallax Section 1 -->
+<section class="parallax-section" style="background-image: url('coffee1.JPG'); background-attachment: fixed;">
+  <div class="parallax-content">
+    <h2 style="font-size: 2.5rem; margin-bottom: 1rem;">100% Coffea Arabica</h2>
+    <p>Cultivated by small-scale farmers in traditional garden farms at 1,900–2,200 meters above sea level.</p>
+  </div>
+</section>
+
+<!-- 3D Products Section -->
+<section class="products-section">
   <div class="container">
     <h2 class="section-title">Our Signature Collection</h2>
     <p class="section-subtitle">Crafted with passion • Roasted to perfection</p>
     <div class="products-grid">
-      <div class="product-card"><i class="fas fa-mug-hot"></i><h3>Caskara</h3><p>Dried Coffee Cherry • Fruity • Sweet • Floral</p><div class="taste-tags"><span class="taste-tag">🍊 Fruity</span><span class="taste-tag">🌸 Floral</span><span class="taste-tag">🍯 Sweet</span></div></div>
-      <div class="product-card"><i class="fas fa-mortar-pestle"></i><h3>Qalid's Choice</h3><p>House Blend • Balanced • Smooth • Chocolate</p><div class="taste-tags"><span class="taste-tag">🍫 Chocolate</span><span class="taste-tag">⚖️ Balanced</span><span class="taste-tag">✨ Smooth</span></div></div>
-      <div class="product-card"><i class="fas fa-seedling"></i><h3>Chemina</h3><p>Whole Bean • Bold • Cocoa • Espresso</p><div class="taste-tags"><span class="taste-tag">☕ Bold</span><span class="taste-tag">🍫 Cocoa</span><span class="taste-tag">💨 Smooth</span></div></div>
-      <div class="product-card"><i class="fas fa-leaf"></i><h3>Origin Green</h3><p>Raw Green Coffee • Natural • Traceable</p><div class="taste-tags"><span class="taste-tag">🌱 Natural</span><span class="taste-tag">🔍 Traceable</span><span class="taste-tag">📦 Fresh</span></div></div>
+      <div class="product-3d"><i class="fas fa-mug-hot"></i><h3>Caskara</h3><p>Dried Coffee Cherry</p><div class="taste-tags"><span style="background:rgba(198,139,94,0.2); padding:0.2rem 0.5rem; border-radius:50px; font-size:0.7rem;">Fruity</span><span style="background:rgba(198,139,94,0.2); padding:0.2rem 0.5rem; border-radius:50px; font-size:0.7rem;">Floral</span></div></div>
+      <div class="product-3d"><i class="fas fa-mortar-pestle"></i><h3>Qalid's Choice</h3><p>House Blend</p><div class="taste-tags"><span style="background:rgba(198,139,94,0.2); padding:0.2rem 0.5rem; border-radius:50px; font-size:0.7rem;">Chocolate</span><span style="background:rgba(198,139,94,0.2); padding:0.2rem 0.5rem; border-radius:50px; font-size:0.7rem;">Balanced</span></div></div>
+      <div class="product-3d"><i class="fas fa-seedling"></i><h3>Chemina</h3><p>Whole Bean Coffee</p><div class="taste-tags"><span style="background:rgba(198,139,94,0.2); padding:0.2rem 0.5rem; border-radius:50px; font-size:0.7rem;">Bold</span><span style="background:rgba(198,139,94,0.2); padding:0.2rem 0.5rem; border-radius:50px; font-size:0.7rem;">Cocoa</span></div></div>
+      <div class="product-3d"><i class="fas fa-leaf"></i><h3>Origin Green</h3><p>Raw Green Coffee</p><div class="taste-tags"><span style="background:rgba(198,139,94,0.2); padding:0.2rem 0.5rem; border-radius:50px; font-size:0.7rem;">Natural</span><span style="background:rgba(198,139,94,0.2); padding:0.2rem 0.5rem; border-radius:50px; font-size:0.7rem;">Traceable</span></div></div>
     </div>
   </div>
 </section>
 
-<!-- Gallery Section -->
-<section class="section" style="background: linear-gradient(135deg, #1A0F0A, #2C1810);">
-  <div class="container">
-    <h2 class="section-title">Visual Journey</h2>
-    <p class="section-subtitle">From bean to bag — captured moments</p>
-    <div class="gallery-grid">
-      <div class="gallery-item" data-image="packaging.jpg"><img src="packaging.jpg" onerror="this.src='https://placehold.co/400x300?text=Packaging'"><div class="gallery-overlay"><p>Signature Coffee Bag</p><i class="fas fa-search-plus"></i></div></div>
-      <div class="gallery-item" data-image="packaging2.jpg"><img src="packaging2.jpg" onerror="this.src='https://placehold.co/400x300?text=Packaging+2'"><div class="gallery-overlay"><p>Premium Roast Collection</p><i class="fas fa-search-plus"></i></div></div>
-      <div class="gallery-item" data-image="packaging3.jpg"><img src="packaging3.jpg" onerror="this.src='https://placehold.co/400x300?text=Packaging+3'"><div class="gallery-overlay"><p>Specialty Series</p><i class="fas fa-search-plus"></i></div></div>
-      <div class="gallery-item" data-image="steaming-cup-coffee-saucer-with-coffee-beans-scattered-around.jpg"><img src="steaming-cup-coffee-saucer-with-coffee-beans-scattered-around.jpg" onerror="this.src='https://placehold.co/400x300?text=Steaming+Cup'"><div class="gallery-overlay"><p>The Perfect Brew</p><i class="fas fa-search-plus"></i></div></div>
-    </div>
-  </div>
-</section>
-
-<!-- Stats Section -->
-<section class="section">
+<!-- Counter Section with Auto-Animation -->
+<section class="counter-section">
   <div class="container">
     <h2 class="section-title">Our Journey in Numbers</h2>
-    <div class="stats-container">
-      <div class="stat-card"><i class="fas fa-mountain"></i><div class="counter" data-target="2200">0</div><p>Altitude (m)</p></div>
-      <div class="stat-card"><i class="fas fa-leaf"></i><div class="counter" data-target="100">0</div><p>Arabica %</p></div>
-      <div class="stat-card"><i class="fas fa-chart-line"></i><div class="counter" data-target="200">0</div><p>Monthly kg</p></div>
-      <div class="stat-card"><i class="fas fa-users"></i><div class="counter" data-target="50">0</div><p>Farmers</p></div>
+    <div class="counter-grid">
+      <div class="counter-card"><i class="fas fa-mountain"></i><div class="counter-num" data-target="2200">0</div><div class="counter-label">Meters Altitude</div></div>
+      <div class="counter-card"><i class="fas fa-leaf"></i><div class="counter-num" data-target="100">0</div><div class="counter-label">Arabica %</div></div>
+      <div class="counter-card"><i class="fas fa-chart-line"></i><div class="counter-num" data-target="200">0</div><div class="counter-label">Monthly kg</div></div>
+      <div class="counter-card"><i class="fas fa-users"></i><div class="counter-num" data-target="50">0</div><div class="counter-label">Partner Farmers</div></div>
     </div>
   </div>
 </section>
 
-<!-- Origin Preview -->
-<section class="section">
-  <div class="container">
-    <div class="origin-preview">
-      <div class="origin-preview-text">
-        <h3>Ethiopian Highlands</h3>
-        <p>100% Coffea Arabica cultivated by small-scale farmers at 1,900–2,200 meters above sea level. The cool highland climate creates refined, complex flavors.</p>
-        <a href="origin.html" class="btn-primary" style="display: inline-block; margin-top: 1rem;">Discover Origin →</a>
-      </div>
-      <div class="origin-preview-img">
-        <img src="dark-coffee-beans-bowl-brown-table.jpg" onerror="this.src='https://placehold.co/400x300?text=Coffee+Beans'">
-      </div>
-    </div>
+<!-- Parallax Section 2 -->
+<section class="parallax-section" style="background-image: url('steaming-cup-coffee-saucer-with-coffee-beans-scattered-around.jpg'); background-attachment: fixed;">
+  <div class="parallax-content">
+    <h2 style="font-size: 2rem; margin-bottom: 1rem;">From Highlands to Your Cup</h2>
+    <p>Experience the rich heritage of Ethiopian coffee with every sip.</p>
+    <a href="origin.html" class="magnetic-btn" style="margin-top: 1rem; display: inline-block;">Discover Origin →</a>
   </div>
 </section>
 
+<!-- Infinite Auto-Scroll Gallery -->
+<section class="gallery-section">
+  <h2 class="section-title">Visual Journey</h2>
+  <p class="section-subtitle">From bean to bag — captured moments</p>
+  <div class="infinite-scroll" id="infiniteScroll">
+    <div class="scroll-item"><img src="packaging.jpg" onerror="this.src='https://placehold.co/350x250?text=Packaging'"></div>
+    <div class="scroll-item"><img src="packaging2.jpg" onerror="this.src='https://placehold.co/350x250?text=Packaging+2'"></div>
+    <div class="scroll-item"><img src="packaging3.jpg" onerror="this.src='https://placehold.co/350x250?text=Packaging+3'"></div>
+    <div class="scroll-item"><img src="dark-coffee-beans-bowl-brown-table.jpg" onerror="this.src='https://placehold.co/350x250?text=Coffee+Beans'"></div>
+    <div class="scroll-item"><img src="coffee-beans-top-view-background.jpg" onerror="this.src='https://placehold.co/350x250?text=Coffee+Beans+Top'"></div>
+    <div class="scroll-item"><img src="10.JPG" onerror="this.src='https://placehold.co/350x250?text=Coffee+10'"></div>
+    <!-- Duplicate for seamless loop -->
+    <div class="scroll-item"><img src="packaging.jpg" onerror="this.src='https://placehold.co/350x250?text=Packaging'"></div>
+    <div class="scroll-item"><img src="packaging2.jpg" onerror="this.src='https://placehold.co/350x250?text=Packaging+2'"></div>
+    <div class="scroll-item"><img src="packaging3.jpg" onerror="this.src='https://placehold.co/350x250?text=Packaging+3'"></div>
+    <div class="scroll-item"><img src="dark-coffee-beans-bowl-brown-table.jpg" onerror="this.src='https://placehold.co/350x250?text=Coffee+Beans'"></div>
+    <div class="scroll-item"><img src="coffee-beans-top-view-background.jpg" onerror="this.src='https://placehold.co/350x250?text=Coffee+Beans+Top'"></div>
+    <div class="scroll-item"><img src="10.JPG" onerror="this.src='https://placehold.co/350x250?text=Coffee+10'"></div>
+  </div>
+</section>
+
+<!-- Particle Text Effect -->
+<section class="particle-text">
+  <h2 class="glitch-text">Ethiopian Coffee Heritage</h2>
+  <p style="margin-top: 1rem; opacity: 0.8;">100% Traceable • 100% Authentic • 100% Ethiopian</p>
+</section>
+
+<!-- Footer -->
 <footer>
   <div class="footer-content">
     <div><h2>Bean <span style="color:#C68B5E;">to Bag</span></h2><p>Premium Ethiopian Coffee<br>Roasted in Addis Ababa</p></div>
@@ -242,49 +610,219 @@
   <div style="text-align: center; margin-top: 2rem;"><p>&copy; 2025 Bean to Bag Coffee. All rights reserved.</p></div>
 </footer>
 
-<div class="lightbox" id="lightbox"><span class="lightbox-close" onclick="closeLightbox()">&times;</span><img id="lightbox-img" src=""></div>
+<script type="module">
+  // THREE.JS 3D BACKGROUND - ROTATING COFFEE BEANS
+  import * as THREE from 'three';
+
+  const container = document.getElementById('canvas-container');
+  const scene = new THREE.Scene();
+  scene.background = new THREE.Color(0x0A0A0A);
+  
+  const camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
+  camera.position.z = 30;
+  
+  const renderer = new THREE.WebGLRenderer({ antialias: true, alpha: false });
+  renderer.setSize(window.innerWidth, window.innerHeight);
+  renderer.setPixelRatio(window.devicePixelRatio);
+  container.appendChild(renderer.domElement);
+  
+  // Create rotating coffee beans geometry
+  const beanGeometry = new THREE.SphereGeometry(0.3, 32, 32);
+  const beanMaterial = new THREE.MeshStandardMaterial({ color: 0xC68B5E, roughness: 0.3, metalness: 0.1, emissive: 0x3A1A0A, emissiveIntensity: 0.2 });
+  
+  const beans = [];
+  for (let i = 0; i < 200; i++) {
+    const bean = new THREE.Mesh(beanGeometry, beanMaterial.clone());
+    bean.position.x = (Math.random() - 0.5) * 60;
+    bean.position.y = (Math.random() - 0.5) * 40;
+    bean.position.z = (Math.random() - 0.5) * 30 - 20;
+    bean.scale.setScalar(0.5 + Math.random() * 0.5);
+    bean.userData = { speedX: (Math.random() - 0.5) * 0.01, speedY: (Math.random() - 0.5) * 0.01, rotSpeed: 0.01 + Math.random() * 0.02 };
+    scene.add(bean);
+    beans.push(bean);
+  }
+  
+  // Add ambient and point lights
+  const ambientLight = new THREE.AmbientLight(0x404040);
+  scene.add(ambientLight);
+  const pointLight = new THREE.PointLight(0xC68B5E, 1, 50);
+  pointLight.position.set(5, 10, 7);
+  scene.add(pointLight);
+  const backLight = new THREE.PointLight(0xE8A87C, 0.5);
+  backLight.position.set(-5, -5, -10);
+  scene.add(backLight);
+  
+  // Add floating particles
+  const particleCount = 500;
+  const particlesGeometry = new THREE.BufferGeometry();
+  const particlesPositions = new Float32Array(particleCount * 3);
+  for (let i = 0; i < particleCount; i++) {
+    particlesPositions[i * 3] = (Math.random() - 0.5) * 100;
+    particlesPositions[i * 3 + 1] = (Math.random() - 0.5) * 60;
+    particlesPositions[i * 3 + 2] = (Math.random() - 0.5) * 50 - 30;
+  }
+  particlesGeometry.setAttribute('position', new THREE.BufferAttribute(particlesPositions, 3));
+  const particlesMaterial = new THREE.PointsMaterial({ color: 0xC68B5E, size: 0.1, transparent: true, opacity: 0.5 });
+  const particleSystem = new THREE.Points(particlesGeometry, particlesMaterial);
+  scene.add(particleSystem);
+  
+  function animate() {
+    requestAnimationFrame(animate);
+    beans.forEach(bean => {
+      bean.rotation.x += bean.userData.rotSpeed;
+      bean.rotation.y += bean.userData.rotSpeed;
+      bean.position.x += bean.userData.speedX;
+      bean.position.y += bean.userData.speedY;
+      if (Math.abs(bean.position.x) > 35) bean.userData.speedX *= -1;
+      if (Math.abs(bean.position.y) > 25) bean.userData.speedY *= -1;
+    });
+    particleSystem.rotation.y += 0.001;
+    particleSystem.rotation.x += 0.0005;
+    renderer.render(scene, camera);
+  }
+  animate();
+  
+  window.addEventListener('resize', () => {
+    camera.aspect = window.innerWidth / window.innerHeight;
+    camera.updateProjectionMatrix();
+    renderer.setSize(window.innerWidth, window.innerHeight);
+  });
+</script>
 
 <script>
-  function toggleMenu() { document.getElementById('navLinks').classList.toggle('active'); }
+  // Mobile Menu
+  function toggleMenu() {
+    document.getElementById('navLinks').classList.toggle('active');
+  }
   document.querySelectorAll('.nav-links a').forEach(link => {
     link.addEventListener('click', () => document.getElementById('navLinks').classList.remove('active'));
   });
 
-  // Custom cursor
+  // Scroll Progress Bar
+  window.addEventListener('scroll', () => {
+    const winScroll = document.body.scrollTop || document.documentElement.scrollTop;
+    const height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+    const scrolled = (winScroll / height) * 100;
+    document.getElementById('scrollProgress').style.width = scrolled + '%';
+    
+    // Navbar shrink
+    const nav = document.getElementById('nav');
+    if (window.scrollY > 100) {
+      nav.classList.add('scrolled');
+    } else {
+      nav.classList.remove('scrolled');
+    }
+  });
+
+  // Counter Animation with Intersection Observer
+  const counters = document.querySelectorAll('.counter-num');
+  const speed = 100;
+  
+  const observerOptions = { threshold: 0.5, rootMargin: '0px' };
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        const counter = entry.target;
+        const updateCount = () => {
+          const target = parseInt(counter.getAttribute('data-target'));
+          const count = parseInt(counter.innerText);
+          const increment = target / 50;
+          if (count < target) {
+            counter.innerText = Math.ceil(count + increment);
+            setTimeout(updateCount, 20);
+          } else {
+            counter.innerText = target;
+          }
+        };
+        updateCount();
+        observer.unobserve(counter);
+      }
+    });
+  }, observerOptions);
+  
+  counters.forEach(counter => observer.observe(counter));
+
+  // Custom cursor with trail
   const cursor = document.querySelector('.cursor');
-  const cursorFollower = document.querySelector('.cursor-follower');
+  const trails = [];
+  for (let i = 0; i < 10; i++) {
+    const trail = document.createElement('div');
+    trail.className = 'cursor-trail';
+    document.body.appendChild(trail);
+    trails.push({ element: trail, x: 0, y: 0 });
+  }
+  
+  let mouseX = 0, mouseY = 0;
   document.addEventListener('mousemove', (e) => {
-    cursor.style.transform = `translate(${e.clientX - 7}px, ${e.clientY - 7}px)`;
-    cursorFollower.style.transform = `translate(${e.clientX - 17}px, ${e.clientY - 17}px)`;
+    mouseX = e.clientX;
+    mouseY = e.clientY;
+    cursor.style.transform = `translate(${mouseX - 10}px, ${mouseY - 10}px)`;
   });
+  
+  function animateTrails() {
+    let currentX = mouseX;
+    let currentY = mouseY;
+    trails.forEach((trail, index) => {
+      setTimeout(() => {
+        trail.element.style.transform = `translate(${currentX - 4}px, ${currentY - 4}px)`;
+        trail.element.style.opacity = 1 - (index / trails.length);
+      }, index * 20);
+    });
+    requestAnimationFrame(animateTrails);
+  }
+  animateTrails();
 
-  // Counter animation
-  const counters = document.querySelectorAll('.counter');
-  counters.forEach(counter => {
-    const updateCount = () => {
-      const target = parseInt(counter.getAttribute('data-target'));
-      const count = parseInt(counter.innerText);
-      const increment = target / 100;
-      if (count < target) {
-        counter.innerText = Math.ceil(count + increment);
-        setTimeout(updateCount, 20);
-      } else { counter.innerText = target; }
-    };
-    updateCount();
-  });
-
-  // Lightbox
-  const lightbox = document.getElementById('lightbox');
-  const lightboxImg = document.getElementById('lightbox-img');
-  document.querySelectorAll('.gallery-item').forEach(item => {
-    item.addEventListener('click', () => {
-      const imgSrc = item.getAttribute('data-image');
-      lightboxImg.src = imgSrc;
-      lightbox.classList.add('active');
+  // Magnetic Button Effect
+  const magneticBtns = document.querySelectorAll('.magnetic-btn, .btn-primary');
+  magneticBtns.forEach(btn => {
+    btn.addEventListener('mousemove', (e) => {
+      const rect = btn.getBoundingClientRect();
+      const x = e.clientX - rect.left - rect.width / 2;
+      const y = e.clientY - rect.top - rect.height / 2;
+      btn.style.transform = `translate(${x * 0.3}px, ${y * 0.3}px)`;
+    });
+    btn.addEventListener('mouseleave', () => {
+      btn.style.transform = 'translate(0, 0)';
     });
   });
-  function closeLightbox() { lightbox.classList.remove('active'); }
-  lightbox.addEventListener('click', (e) => { if (e.target === lightbox) closeLightbox(); });
+
+  // Auto-scroll gallery - duplicate content for seamless loop
+  const scrollContainer = document.getElementById('infiniteScroll');
+  if (scrollContainer) {
+    const clone = scrollContainer.cloneNode(true);
+    scrollContainer.parentElement.appendChild(clone);
+  }
+
+  // Typing animation for hero
+  const heroText = document.querySelector('.hero-left h1');
+  if (heroText) {
+    const originalText = heroText.innerHTML;
+    heroText.innerHTML = originalText;
+  }
+
+  // Parallax effect on scroll for background images
+  window.addEventListener('scroll', () => {
+    const parallaxSections = document.querySelectorAll('.parallax-section');
+    parallaxSections.forEach(section => {
+      const scrolled = window.pageYOffset;
+      const rate = scrolled * -0.3;
+      section.style.backgroundPositionY = `${rate}px`;
+    });
+  });
+
+  // 3D tilt effect on product cards
+  const tiltCards = document.querySelectorAll('.product-3d');
+  tiltCards.forEach(card => {
+    card.addEventListener('mousemove', (e) => {
+      const rect = card.getBoundingClientRect();
+      const x = (e.clientX - rect.left) / rect.width - 0.5;
+      const y = (e.clientY - rect.top) / rect.height - 0.5;
+      card.style.transform = `rotateY(${x * 10}deg) rotateX(${y * -10}deg) translateY(-10px)`;
+    });
+    card.addEventListener('mouseleave', () => {
+      card.style.transform = 'rotateY(0deg) rotateX(0deg) translateY(0)';
+    });
+  });
 </script>
 </body>
 </html>
