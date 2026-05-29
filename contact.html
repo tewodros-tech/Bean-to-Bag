@@ -2,45 +2,74 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
   <title>Bean to Bag | Contact Us</title>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
   <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700;800&family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
   <style>
     * { margin: 0; padding: 0; box-sizing: border-box; }
-    body { font-family: 'Poppins', sans-serif; background: #FFF9F5; color: #2C1810; }
+    body { font-family: 'Poppins', sans-serif; background: #FFF9F5; color: #2C1810; overflow-x: hidden; }
     h1, h2, h3, .logo { font-family: 'Playfair Display', serif; }
-    nav { position: fixed; top: 0; width: 100%; background: rgba(255, 249, 245, 0.95); backdrop-filter: blur(10px); z-index: 1000; padding: 1rem 5%; display: flex; justify-content: space-between; align-items: center; }
-    .logo { font-size: 1.8rem; font-weight: 800; }
+
+    nav {
+      position: fixed;
+      top: 0;
+      width: 100%;
+      background: rgba(255, 249, 245, 0.98);
+      backdrop-filter: blur(10px);
+      z-index: 1000;
+      padding: 0.8rem 5%;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      box-shadow: 0 2px 15px rgba(0,0,0,0.05);
+    }
+    .logo { font-size: 1.4rem; font-weight: 800; }
     .logo span { color: #C68B5E; }
-    .nav-links { display: flex; gap: 2.5rem; list-style: none; }
-    .nav-links a { text-decoration: none; color: #2C1810; font-weight: 500; transition: 0.3s; }
+    .menu-icon { display: block; font-size: 1.8rem; cursor: pointer; color: #2C1810; }
+    .nav-links {
+      display: none;
+      position: absolute;
+      top: 65px;
+      left: 0;
+      width: 100%;
+      background: #FFF9F5;
+      flex-direction: column;
+      padding: 1.5rem;
+      text-align: center;
+      gap: 1.2rem;
+      box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+      border-top: 1px solid #EDE3D8;
+    }
+    .nav-links.active { display: flex; }
+    .nav-links a { text-decoration: none; color: #2C1810; font-weight: 500; padding: 0.5rem; font-size: 1rem; }
     .nav-links a:hover, .nav-links a.active { color: #C68B5E; }
-    .menu-icon { display: none; font-size: 1.8rem; cursor: pointer; }
-    .btn-primary { background: #C68B5E; color: white; padding: 0.8rem 2rem; border-radius: 50px; border: none; cursor: pointer; font-weight: 600; transition: 0.3s; }
-    .btn-primary:hover { background: #A06B42; transform: translateY(-3px); }
-    .whatsapp-float { position: fixed; bottom: 30px; right: 30px; background: #25D366; width: 60px; height: 60px; border-radius: 50%; text-align: center; line-height: 60px; font-size: 32px; color: white; z-index: 999; }
-    footer { background: #1A0F0A; color: #B8A99A; padding: 3rem 5% 2rem; margin-top: 4rem; text-align: center; }
-    .section { padding: 8rem 5% 4rem; }
+
+    .btn-primary { background: #C68B5E; color: white; padding: 0.8rem 1.5rem; border-radius: 50px; border: none; cursor: pointer; font-weight: 600; font-size: 0.9rem; transition: 0.3s; }
+    .whatsapp-float { position: fixed; bottom: 20px; right: 20px; background: #25D366; width: 50px; height: 50px; border-radius: 50%; text-align: center; line-height: 50px; font-size: 26px; color: white; z-index: 999; }
+    footer { background: #1A0F0A; color: #B8A99A; padding: 2rem 1rem; margin-top: 2rem; text-align: center; }
+    .section { padding: 6rem 1rem 3rem; }
     .container { max-width: 1200px; margin: 0 auto; }
-    .contact-hero { background: linear-gradient(135deg, #C68B5E, #8B5E3C); color: white; text-align: center; padding: 4rem 2rem; border-radius: 30px; margin-bottom: 3rem; }
-    .contact-hero h1 { font-size: 3.5rem; margin-bottom: 1rem; }
-    .contact-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 3rem; }
-    .contact-form { background: white; padding: 2rem; border-radius: 20px; box-shadow: 0 10px 30px rgba(0,0,0,0.05); }
-    .contact-form input, .contact-form textarea { width: 100%; padding: 1rem; margin: 0.5rem 0 1rem; border: 1px solid #E0D4C8; border-radius: 10px; font-family: inherit; }
-    .contact-form textarea { resize: vertical; }
-    .contact-info { background: #F5EDE5; padding: 2rem; border-radius: 20px; }
-    .info-item { display: flex; align-items: center; gap: 1rem; margin-bottom: 1.5rem; }
-    .info-item i { font-size: 1.5rem; color: #C68B5E; width: 30px; }
-    .map-container { margin: 2rem 0; border-radius: 20px; overflow: hidden; height: 250px; }
+    .contact-hero { background: linear-gradient(135deg, #C68B5E, #8B5E3C); color: white; text-align: center; padding: 2.5rem 1rem; border-radius: 20px; margin-bottom: 2rem; }
+    .contact-hero h1 { font-size: 2rem; margin-bottom: 0.5rem; }
+    .contact-grid { display: flex; flex-direction: column; gap: 1.5rem; margin: 1.5rem 0; }
+    .contact-form, .contact-info { background: white; padding: 1.5rem; border-radius: 20px; box-shadow: 0 10px 20px rgba(0,0,0,0.05); }
+    .contact-form input, .contact-form textarea { width: 100%; padding: 0.8rem; margin: 0.5rem 0; border: 1px solid #E0D4C8; border-radius: 10px; font-family: inherit; }
+    .info-item { display: flex; align-items: center; gap: 0.8rem; margin-bottom: 1rem; font-size: 0.9rem; }
+    .info-item i { font-size: 1.2rem; color: #C68B5E; width: 25px; }
+    .map-container { margin: 1.5rem 0; border-radius: 15px; overflow: hidden; height: 200px; }
     .map-container iframe { width: 100%; height: 100%; border: 0; }
-    .comment-section { margin-top: 3rem; background: white; padding: 2rem; border-radius: 20px; }
-    .comment-item { background: #F5EDE5; padding: 1rem; border-radius: 15px; margin-bottom: 1rem; }
-    @media (max-width: 768px) {
-      .nav-links { display: none; position: absolute; top: 70px; left: 0; width: 100%; background: #FFF9F5; flex-direction: column; padding: 1rem; text-align: center; }
-      .menu-icon { display: block; }
-      .contact-grid { grid-template-columns: 1fr; }
-      .contact-hero h1 { font-size: 2.5rem; }
+    .comment-section { margin-top: 2rem; background: white; padding: 1.5rem; border-radius: 20px; }
+    .comment-item { background: #F5EDE5; padding: 1rem; border-radius: 15px; margin-bottom: 1rem; font-size: 0.85rem; }
+    .comment-item strong { font-size: 0.9rem; }
+    .social-icons a { color: #B8A99A; font-size: 1.3rem; margin: 0 0.4rem; }
+
+    @media (min-width: 768px) {
+      .menu-icon { display: none; }
+      .nav-links { display: flex !important; position: static; width: auto; flex-direction: row; padding: 0; gap: 2rem; box-shadow: none; border-top: none; }
+      .contact-hero h1 { font-size: 3rem; }
+      .contact-grid { flex-direction: row; gap: 2rem; }
+      .section { padding: 8rem 2rem 4rem; }
     }
   </style>
 </head>
@@ -50,6 +79,7 @@
 
 <nav>
   <div class="logo">Bean <span>to Bag</span></div>
+  <div class="menu-icon" onclick="toggleMenu()"><i class="fas fa-bars"></i></div>
   <ul class="nav-links" id="navLinks">
     <li><a href="index.html">Home</a></li>
     <li><a href="about.html">About</a></li>
@@ -57,31 +87,30 @@
     <li><a href="origin.html">Origin</a></li>
     <li><a href="contact.html" class="active">Contact</a></li>
   </ul>
-  <div class="menu-icon" onclick="document.getElementById('navLinks').classList.toggle('active')"><i class="fas fa-bars"></i></div>
 </nav>
 
 <section class="section">
   <div class="container">
     <div class="contact-hero">
       <h1>Get in Touch</h1>
-      <p>We'd love to hear from you — whether it's an order, partnership, or just coffee talk</p>
+      <p>Orders, partnerships, or just coffee talk — we'd love to hear from you</p>
     </div>
 
     <div class="contact-grid">
       <div class="contact-form">
-        <h2 style="margin-bottom: 1.5rem;">Send us a message</h2>
+        <h2 style="margin-bottom: 1rem;">Send us a message</h2>
         <form id="messageForm">
           <input type="text" id="name" placeholder="Your name" required>
           <input type="email" id="email" placeholder="Email address" required>
-          <input type="tel" id="phone" placeholder="Phone number (optional)">
-          <textarea id="message" rows="4" placeholder="Tell us about your order, wholesale inquiry, or anything else..."></textarea>
+          <input type="tel" id="phone" placeholder="Phone number">
+          <textarea id="message" rows="4" placeholder="Tell us about your order or inquiry..."></textarea>
           <button type="submit" class="btn-primary">Send Message</button>
         </form>
-        <p id="formFeedback" style="margin-top: 1rem; color: #C68B5E;"></p>
+        <p id="formFeedback" style="margin-top: 0.8rem; color: #C68B5E; font-size: 0.85rem;"></p>
       </div>
 
       <div class="contact-info">
-        <h2 style="margin-bottom: 1.5rem;">Visit or Connect</h2>
+        <h2 style="margin-bottom: 1rem;">Visit or Connect</h2>
         <div class="info-item"><i class="fas fa-map-marker-alt"></i><span><strong>Bole Medhanealem</strong><br>Addis Ababa, Ethiopia</span></div>
         <div class="info-item"><i class="fab fa-whatsapp"></i><span><strong>+251 911 223344</strong><br>WhatsApp business</span></div>
         <div class="info-item"><i class="fas fa-envelope"></i><span><strong>hello@beantobag.com</strong><br>Email us anytime</span></div>
@@ -92,17 +121,16 @@
       </div>
     </div>
 
-    <!-- Comments Section -->
     <div class="comment-section">
-      <h2 style="margin-bottom: 1.5rem;"><i class="fas fa-comments"></i> Customer Reviews</h2>
+      <h2 style="margin-bottom: 1rem;"><i class="fas fa-comments"></i> Customer Reviews</h2>
       <div id="commentsList">
-        <div class="comment-item"><strong>⭐ Meron T.</strong><p>"The Chemina espresso is absolutely incredible! Best coffee I've had in Addis."</p><small>★★★★★</small></div>
+        <div class="comment-item"><strong>⭐ Meron T.</strong><p>"The Chemina espresso is incredible! Best coffee in Addis."</p><small>★★★★★</small></div>
         <div class="comment-item"><strong>⭐ Samson K.</strong><p>"Qalid's Choice is authentic Ethiopian taste. Smooth and delicious."</p><small>★★★★☆</small></div>
         <div class="comment-item"><strong>⭐ Hanna D.</strong><p>"Caskara is unique and refreshing. Love the fruity notes!"</p><small>★★★★★</small></div>
       </div>
-      <form id="commentForm" style="margin-top: 2rem;">
-        <input type="text" id="commentName" placeholder="Your name" required style="width: 100%; padding: 0.8rem; margin-bottom: 1rem; border: 1px solid #E0D4C8; border-radius: 10px;">
-        <textarea id="commentText" rows="2" placeholder="Share your coffee experience..." style="width: 100%; padding: 0.8rem; margin-bottom: 1rem; border: 1px solid #E0D4C8; border-radius: 10px;"></textarea>
+      <form id="commentForm" style="margin-top: 1.5rem;">
+        <input type="text" id="commentName" placeholder="Your name" required style="width: 100%; padding: 0.8rem; margin-bottom: 0.8rem; border: 1px solid #E0D4C8; border-radius: 10px;">
+        <textarea id="commentText" rows="2" placeholder="Share your coffee experience..." style="width: 100%; padding: 0.8rem; margin-bottom: 0.8rem; border: 1px solid #E0D4C8; border-radius: 10px;"></textarea>
         <button type="submit" class="btn-primary">Post Review</button>
       </form>
     </div>
@@ -112,12 +140,25 @@
 <footer>
   <div class="container">
     <h2 style="color: white;">Bean <span style="color: #C68B5E;">to Bag</span></h2>
-    <p style="margin-top: 1rem;">Brewed with heritage, roasted with purpose</p>
+    <p style="margin-top: 0.5rem;">Brewed with heritage, roasted with purpose</p>
+    <div class="social-icons" style="margin-top: 0.8rem;">
+      <a href="#"><i class="fab fa-instagram"></i></a>
+      <a href="#"><i class="fab fa-facebook"></i></a>
+      <a href="#"><i class="fab fa-telegram"></i></a>
+    </div>
   </div>
 </footer>
 
 <script>
-  // Contact form handler
+  function toggleMenu() {
+    document.getElementById('navLinks').classList.toggle('active');
+  }
+  document.querySelectorAll('.nav-links a').forEach(link => {
+    link.addEventListener('click', () => {
+      document.getElementById('navLinks').classList.remove('active');
+    });
+  });
+
   document.getElementById('messageForm').addEventListener('submit', function(e) {
     e.preventDefault();
     let name = document.getElementById('name').value;
@@ -125,7 +166,6 @@
     this.reset();
   });
 
-  // Comment handler
   function escapeHtml(str) {
     return str.replace(/[&<>]/g, function(m) {
       if (m === '&') return '&amp;';
@@ -146,12 +186,6 @@
       document.getElementById('commentsList').prepend(commentDiv);
       this.reset();
     }
-  });
-
-  window.addEventListener('scroll', function() {
-    const nav = document.querySelector('nav');
-    if (window.scrollY > 50) nav.style.background = 'rgba(255, 249, 245, 0.98)';
-    else nav.style.background = 'rgba(255, 249, 245, 0.95)';
   });
 </script>
 </body>
