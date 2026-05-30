@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
-  <title>Bean to Bag | Premium Ethiopian Coffee</title>
+  <title>Bean to Bag | Ethiopian Coffee - Infinite Visual Journey</title>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
   <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700;800;900&family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
   
@@ -267,85 +267,98 @@
     .taste-tags { display: flex; gap: 0.5rem; justify-content: center; flex-wrap: wrap; margin-top: 1rem; }
     .taste-tag { background: rgba(198,139,94,0.2); padding: 0.3rem 0.8rem; border-radius: 50px; font-size: 0.7rem; }
 
-    /* Gallery Section - Super smooth draggable & auto-scroll inertia */
+    /* Gallery Section - AUTO ROTATING CAROUSEL + INFINITE FIFO + DRAG OVERRIDE */
     .gallery-section {
       padding: 5rem 5%;
       background: linear-gradient(135deg, #1A0F0A, #2C1810);
       position: relative;
       z-index: 2;
+      overflow: hidden;
     }
-    .gallery-scroll-container {
+    .gallery-track-container {
+      position: relative;
       width: 100%;
-      overflow-x: auto;
-      overflow-y: visible;
-      cursor: grab;
-      scroll-behavior: smooth;
-      user-select: none;
-      padding: 1rem 0 2rem 0;
+      overflow: hidden;
       border-radius: 32px;
-      scrollbar-width: thin;
-      scrollbar-color: #C68B5E #2C1A10;
+      padding: 1rem 0;
     }
-    .gallery-scroll-container:active { cursor: grabbing; }
-    .gallery-scroll-container::-webkit-scrollbar { height: 6px; }
-    .gallery-scroll-container::-webkit-scrollbar-track { background: #2C1A10; border-radius: 10px; }
-    .gallery-scroll-container::-webkit-scrollbar-thumb { background: #C68B5E; border-radius: 10px; }
-    
-    .gallery-grid {
+    .gallery-scroll-auto {
       display: flex;
-      gap: 1.8rem;
-      padding: 0.5rem 1rem 1rem 1rem;
+      gap: 2rem;
       width: max-content;
-      min-width: 100%;
+      will-change: transform;
+      transition: transform 0.05s linear;
+      cursor: grab;
+    }
+    .gallery-scroll-auto:active {
+      cursor: grabbing;
     }
     .gallery-item {
       position: relative;
-      overflow: hidden;
-      border-radius: 28px;
-      background: #1A1A1A;
-      cursor: pointer;
-      transition: all 0.35s cubic-bezier(0.2, 0.9, 0.4, 1.1);
       flex-shrink: 0;
-      width: 300px;
-      height: 350px;
-      box-shadow: 0 15px 25px -10px rgba(0,0,0,0.5);
+      width: 320px;
+      height: 380px;
+      border-radius: 28px;
+      overflow: hidden;
+      background: #1A1A1A;
+      box-shadow: 0 20px 30px -12px rgba(0,0,0,0.6);
+      transition: transform 0.3s ease, box-shadow 0.3s;
+      cursor: pointer;
     }
     @media (min-width: 1024px) {
-      .gallery-item { width: 340px; height: 390px; }
+      .gallery-item { width: 360px; height: 420px; }
     }
     .gallery-item img {
       width: 100%;
       height: 100%;
       object-fit: cover;
-      transition: transform 0.6s ease;
-      display: block;
+      transition: transform 0.5s cubic-bezier(0.2, 0.9, 0.4, 1.1);
     }
-    .gallery-item:hover img { transform: scale(1.06); }
-    .gallery-item:hover { transform: translateY(-8px) scale(1.01); box-shadow: 0 30px 40px rgba(198,139,94,0.4); border: 1px solid rgba(198,139,94,0.6); }
+    .gallery-item:hover {
+      transform: scale(1.02) translateY(-6px);
+      box-shadow: 0 30px 40px rgba(198,139,94,0.35);
+      z-index: 10;
+    }
+    .gallery-item:hover img {
+      transform: scale(1.05);
+    }
     .gallery-overlay {
       position: absolute;
       bottom: 0;
       left: 0;
       right: 0;
       background: linear-gradient(transparent, rgba(0,0,0,0.85));
-      padding: 1rem;
+      padding: 1.2rem;
       text-align: center;
       transform: translateY(100%);
-      transition: 0.4s ease;
-      font-weight: 500;
+      transition: 0.35s ease;
+      font-weight: 600;
+      letter-spacing: 0.5px;
     }
-    .gallery-item:hover .gallery-overlay { transform: translateY(0); }
+    .gallery-item:hover .gallery-overlay {
+      transform: translateY(0);
+    }
     .drag-hint {
       text-align: center;
-      margin-top: 0.8rem;
+      margin-top: 1.5rem;
       color: #E8A87C;
-      font-size: 0.85rem;
+      font-size: 0.9rem;
       display: flex;
       align-items: center;
       justify-content: center;
-      gap: 0.7rem;
-      letter-spacing: 1px;
+      gap: 0.8rem;
+      background: rgba(0,0,0,0.4);
+      width: fit-content;
+      margin-left: auto;
+      margin-right: auto;
+      padding: 0.5rem 1.5rem;
+      border-radius: 40px;
+      backdrop-filter: blur(4px);
     }
+    .drag-hint i {
+      font-size: 1.1rem;
+    }
+
     /* Lightbox */
     .lightbox {
       display: none;
@@ -361,7 +374,7 @@
       cursor: pointer;
     }
     .lightbox.active { display: flex; }
-    .lightbox img { max-width: 90%; max-height: 90%; border-radius: 20px; box-shadow: 0 0 30px rgba(198,139,94,0.4); }
+    .lightbox img { max-width: 90%; max-height: 90%; border-radius: 20px; box-shadow: 0 0 40px rgba(198,139,94,0.5); }
     .lightbox-close { position: absolute; top: 25px; right: 40px; font-size: 45px; color: #C68B5E; cursor: pointer; transition: 0.2s; }
     .lightbox-close:hover { color: white; }
 
@@ -423,10 +436,8 @@
       .nav-links.active { display: flex; }
       .hero { flex-direction: column; text-align: center; padding: 8rem 5% 4rem; background-attachment: scroll; }
       .hero-left { text-align: center; }
-      .hero-right { margin-top: 1rem; }
-      .section-title { font-size: 2rem; }
       .counter-grid { grid-template-columns: repeat(2, 1fr); }
-      .gallery-item { width: 250px; height: 300px; }
+      .gallery-item { width: 260px; height: 320px; }
     }
   </style>
 </head>
@@ -448,7 +459,7 @@
   </ul>
 </nav>
 
-<!-- Hero with cup & steam animation -->
+<!-- Hero with cup & steam -->
 <section class="hero">
   <div class="hero-left">
     <h1>From Bean to <span class="hero-gradient-text">Bag</span><br>Premium Ethiopian Coffee</h1>
@@ -460,12 +471,8 @@
   </div>
   <div class="hero-right">
     <div class="animated-cup-wrapper">
-      <div class="coffee-cup">
-        <div class="cup-handle"></div>
-      </div>
-      <div class="steam">
-        <span></span><span></span><span></span><span></span><span></span>
-      </div>
+      <div class="coffee-cup"><div class="cup-handle"></div></div>
+      <div class="steam"><span></span><span></span><span></span><span></span><span></span></div>
     </div>
   </div>
 </section>
@@ -484,30 +491,23 @@
   </div>
 </section>
 
-<!-- Visual Journey Gallery - Movable with enhanced drag & inertia effect -->
+<!-- EXTREME AUTO ROTATING GALLERY - FIFO INFINITE MOTION -->
 <section class="gallery-section">
   <div class="container">
     <h2 class="section-title">Visual Journey</h2>
-    <p class="section-subtitle">From bean to bag — captured moments</p>
-    <div class="gallery-scroll-container" id="galleryScrollContainer">
-      <div class="gallery-grid" id="galleryGrid">
-        <div class="gallery-item" data-image="packaging.jpg"><img src="packaging.jpg" onerror="this.src='https://placehold.co/500x600?text=Coffee+Elegance'"><div class="gallery-overlay"><p><i class="fas fa-search-plus"></i> Signature Coffee Bag</p></div></div>
-        <div class="gallery-item" data-image="packaging2.jpg"><img src="packaging2.jpg" onerror="this.src='https://placehold.co/500x600?text=Premium+Roast'"><div class="gallery-overlay"><p><i class="fas fa-search-plus"></i> Premium Roast</p></div></div>
-        <div class="gallery-item" data-image="packaging3.jpg"><img src="packaging3.jpg" onerror="this.src='https://placehold.co/500x600?text=Specialty+Series'"><div class="gallery-overlay"><p><i class="fas fa-search-plus"></i> Specialty Series</p></div></div>
-        <div class="gallery-item" data-image="steaming-cup-coffee-saucer-with-coffee-beans-scattered-around.jpg"><img src="steaming-cup-coffee-saucer-with-coffee-beans-scattered-around.jpg" onerror="this.src='https://placehold.co/500x600?text=Perfect+Brew'"><div class="gallery-overlay"><p><i class="fas fa-search-plus"></i> The Perfect Brew</p></div></div>
-        <div class="gallery-item" data-image="dark-coffee-beans-bowl-brown-table.jpg"><img src="dark-coffee-beans-bowl-brown-table.jpg" onerror="this.src='https://placehold.co/500x600?text=Organic+Beans'"><div class="gallery-overlay"><p><i class="fas fa-search-plus"></i> Premium Beans</p></div></div>
-        <div class="gallery-item" data-image="coffee-beans-top-view-background.jpg"><img src="coffee-beans-top-view-background.jpg" onerror="this.src='https://placehold.co/500x600?text=Fresh+Coffee'"><div class="gallery-overlay"><p><i class="fas fa-search-plus"></i> Fresh Coffee Beans</p></div></div>
-        <div class="gallery-item" data-image="coffee1.JPG"><img src="coffee1.JPG" onerror="this.src='https://placehold.co/500x600?text=Ethiopian+Highlands'"><div class="gallery-overlay"><p><i class="fas fa-search-plus"></i> Ethiopian Highlands</p></div></div>
-        <div class="gallery-item" data-image="19.JPG"><img src="19.JPG" onerror="this.src='https://placehold.co/500x600?text=Coffee+Experience'"><div class="gallery-overlay"><p><i class="fas fa-search-plus"></i> Coffee Experience</p></div></div>
-        <div class="gallery-item" data-image="fresh-roast.jpg"><img src="fresh-roast.jpg" onerror="this.src='https://placehold.co/500x600?text=Fresh+Roast'"><div class="gallery-overlay"><p><i class="fas fa-search-plus"></i> Fresh Roast</p></div></div>
-        <div class="gallery-item" data-image="coffee-farm.jpg"><img src="coffee-farm.jpg" onerror="this.src='https://placehold.co/500x600?text=Coffee+Farm'"><div class="gallery-overlay"><p><i class="fas fa-search-plus"></i> Coffee Plantation</p></div></div>
+    <p class="section-subtitle">From bean to bag — cinematic motion gallery</p>
+    <div class="gallery-track-container" id="galleryTrackWrapper">
+      <div class="gallery-scroll-auto" id="infiniteGallery">
+        <!-- Dynamic images will be injected via JS, but we define base array -->
       </div>
     </div>
-    <div class="drag-hint"><i class="fas fa-arrows-alt-h"></i> Drag to slide — smooth & responsive <i class="fas fa-hand-peace"></i></div>
+    <div class="drag-hint">
+      <i class="fas fa-hand-pointer"></i> Drag to control speed • Infinite rotation <i class="fas fa-sync-alt"></i>
+    </div>
   </div>
 </section>
 
-<!-- Lightbox Modal -->
+<!-- Lightbox -->
 <div class="lightbox" id="lightbox"><span class="lightbox-close" onclick="closeLightbox()">&times;</span><img id="lightbox-img" src=""></div>
 
 <!-- Counter Section -->
@@ -519,71 +519,198 @@
 <footer><div class="footer-content"><div><h2>Bean <span style="color:#C68B5E;">to Bag</span></h2><p>Premium Ethiopian Coffee<br>Roasted in Addis Ababa</p></div><div><h4>Quick Links</h4><a href="#">Home</a><br><a href="#">About</a><br><a href="#">Products</a><br><a href="#">Origin</a></div><div><h4>Follow Us</h4><div class="social-icons"><a href="#"><i class="fab fa-instagram"></i></a><a href="#"><i class="fab fa-facebook"></i></a><a href="#"><i class="fab fa-telegram"></i></a></div><p><i class="fas fa-envelope"></i> hello@beantobag.com</p><p><i class="fab fa-whatsapp"></i> +251 911 223344</p></div></div><div style="text-align: center; margin-top: 2rem;"><p>&copy; 2025 Bean to Bag Coffee. All rights reserved.</p></div></footer>
 
 <script>
+  // Mobile menu toggle
   function toggleMenu() { document.getElementById('navLinks').classList.toggle('active'); }
   document.querySelectorAll('.nav-links a').forEach(link => link.addEventListener('click', () => document.getElementById('navLinks')?.classList.remove('active')));
   window.addEventListener('scroll', () => { const nav=document.getElementById('nav'); if(window.scrollY>100) nav.classList.add('scrolled'); else nav.classList.remove('scrolled'); });
   
-  // DRAG TO SCROLL (Enhanced with momentum/inertia effect)
-  const container = document.getElementById('galleryScrollContainer');
-  if(container){
-    let isDown=false, startX, scrollLeft, velocity=0, lastX, lastTime, momentumId=null;
-    container.style.cursor='grab';
-    const onDragStart = (e) => {
-      isDown=true; if(momentumId) cancelAnimationFrame(momentumId);
-      container.style.cursor='grabbing';
-      const pageX = e.pageX || (e.touches ? e.touches[0].pageX : 0);
-      startX = pageX - container.offsetLeft;
-      scrollLeft = container.scrollLeft;
-      lastX = pageX; lastTime = Date.now(); velocity=0;
-    };
-    const onDragMove = (e) => {
-      if(!isDown) return; e.preventDefault();
-      const pageX = e.pageX || (e.touches ? e.touches[0].pageX : 0);
-      const x = pageX - container.offsetLeft;
-      const walk = (x - startX) * 1.5;
-      container.scrollLeft = scrollLeft - walk;
-      const now = Date.now(); const dt = Math.max(16, now - lastTime);
-      velocity = (pageX - lastX) / dt;
-      lastX = pageX; lastTime = now;
-    };
-    const onDragEnd = () => {
-      isDown=false; container.style.cursor='grab';
-      if(Math.abs(velocity) > 0.2){
-        const momentumScroll = () => {
-          velocity *= 0.97;
-          if(Math.abs(velocity) < 0.05) { momentumId=null; return; }
-          container.scrollLeft -= velocity * 12;
-          if(container.scrollLeft<0) container.scrollLeft=0;
-          if(container.scrollLeft > container.scrollWidth - container.clientWidth) container.scrollLeft = container.scrollWidth - container.clientWidth;
-          momentumId = requestAnimationFrame(momentumScroll);
-        };
-        momentumId = requestAnimationFrame(momentumScroll);
-      } else momentumId=null;
-    };
-    container.addEventListener('mousedown', onDragStart); window.addEventListener('mousemove', onDragMove); window.addEventListener('mouseup', onDragEnd);
-    container.addEventListener('touchstart', onDragStart, {passive:false}); container.addEventListener('touchmove', onDragMove, {passive:false}); container.addEventListener('touchend', onDragEnd);
+  // --- EXTREME INFINITE AUTO-ROTATING GALLERY WITH DRAG INTERACTION ---
+  // List of high-quality coffee images (removed coffee-farm & fresh-roast)
+  const galleryImages = [
+    { src: "packaging.jpg", title: "Signature Coffee Bag" },
+    { src: "packaging2.jpg", title: "Premium Roast Collection" },
+    { src: "packaging3.jpg", title: "Specialty Series" },
+    { src: "steaming-cup-coffee-saucer-with-coffee-beans-scattered-around.jpg", title: "The Perfect Brew" },
+    { src: "dark-coffee-beans-bowl-brown-table.jpg", title: "Premium Beans" },
+    { src: "coffee-beans-top-view-background.jpg", title: "Fresh Coffee Beans" },
+    { src: "coffee1.JPG", title: "Ethiopian Highlands" },
+    { src: "19.JPG", title: "Coffee Experience" }
+  ];
+  // Duplicate to make seamless loop (FIFO illusion)
+  let duplicatedItems = [...galleryImages, ...galleryImages, ...galleryImages]; // 3x for smooth infinite
+
+  const galleryContainer = document.getElementById('infiniteGallery');
+  function buildGallery() {
+    galleryContainer.innerHTML = '';
+    duplicatedItems.forEach((img, idx) => {
+      const item = document.createElement('div');
+      item.className = 'gallery-item';
+      item.setAttribute('data-image', img.src);
+      const imgEl = document.createElement('img');
+      imgEl.src = img.src;
+      imgEl.alt = img.title;
+      imgEl.onerror = function() { this.src = 'https://placehold.co/600x700?text=Ethiopian+Coffee'; };
+      const overlay = document.createElement('div');
+      overlay.className = 'gallery-overlay';
+      overlay.innerHTML = `<p><i class="fas fa-search-plus"></i> ${img.title}</p>`;
+      item.appendChild(imgEl);
+      item.appendChild(overlay);
+      galleryContainer.appendChild(item);
+    });
+  }
+  buildGallery();
+
+  let isDragging = false;
+  let startX = 0;
+  let currentTranslateX = 0;
+  let prevTranslateX = 0;
+  let animationId = null;
+  let autoSpeed = -0.75; // negative for leftwards motion (smooth)
+  let dragSpeedFactor = 0;
+  let lastDragX = 0;
+  let momentum = 0;
+  
+  const trackWrapper = document.getElementById('galleryTrackWrapper');
+  const scrollTrack = galleryContainer;
+  
+  // get total width of one full set
+  const getSetWidth = () => {
+    const items = document.querySelectorAll('.gallery-item');
+    if(items.length === 0) return 4000;
+    let total = 0;
+    const firstItemWidth = items[0]?.offsetWidth || 360;
+    const gap = 32; // 2rem gap
+    return (galleryImages.length * (firstItemWidth + gap));
+  };
+  
+  // Reset transform to create infinite illusion
+  function manageInfiniteLoop(translateVal) {
+    const setWidth = getSetWidth();
+    const totalWidth = setWidth * 3; // because tripled
+    if(translateVal <= -setWidth * 2) {
+      translateVal += setWidth;
+      prevTranslateX = translateVal;
+      currentTranslateX = translateVal;
+    } else if(translateVal > 0) {
+      translateVal -= setWidth;
+      prevTranslateX = translateVal;
+      currentTranslateX = translateVal;
+    }
+    return translateVal;
   }
   
-  // Lightbox 
-  const lightbox = document.getElementById('lightbox'), lightboxImg = document.getElementById('lightbox-img');
-  if(lightbox && lightboxImg){
-    document.querySelectorAll('.gallery-item').forEach(item => {
-      item.addEventListener('click', (e) => { e.stopPropagation(); let imgSrc = item.getAttribute('data-image') || (item.querySelector('img')?.src); if(imgSrc) { lightboxImg.src = imgSrc; lightbox.classList.add('active'); } });
-    });
-    window.closeLightbox = () => lightbox.classList.remove('active');
-    lightbox.addEventListener('click', (e) => { if(e.target===lightbox) closeLightbox(); });
+  function animate() {
+    if(!isDragging) {
+      // apply auto speed + small momentum decay
+      let speed = autoSpeed;
+      if(Math.abs(momentum) > 0.05) {
+        speed += momentum;
+        momentum *= 0.96;
+      } else momentum = 0;
+      currentTranslateX += speed;
+      currentTranslateX = manageInfiniteLoop(currentTranslateX);
+      prevTranslateX = currentTranslateX;
+      scrollTrack.style.transform = `translateX(${currentTranslateX}px)`;
+    }
+    animationId = requestAnimationFrame(animate);
   }
+  
+  // Drag handlers for mouse & touch
+  function onDragStart(e) {
+    isDragging = true;
+    const clientX = e.type === 'mousedown' ? e.clientX : e.touches[0].clientX;
+    startX = clientX;
+    prevTranslateX = currentTranslateX;
+    dragSpeedFactor = 0;
+    momentum = 0;
+    scrollTrack.style.transition = 'none';
+  }
+  
+  function onDragMove(e) {
+    if(!isDragging) return;
+    e.preventDefault();
+    const clientX = e.type === 'mousemove' ? e.clientX : e.touches[0].clientX;
+    const deltaX = clientX - startX;
+    let newTranslate = prevTranslateX + deltaX;
+    newTranslate = manageInfiniteLoop(newTranslate);
+    currentTranslateX = newTranslate;
+    scrollTrack.style.transform = `translateX(${currentTranslateX}px)`;
+    lastDragX = clientX;
+    // momentum accumulation
+    dragSpeedFactor = deltaX * 0.2;
+  }
+  
+  function onDragEnd(e) {
+    if(!isDragging) return;
+    isDragging = false;
+    momentum = dragSpeedFactor * 0.9;
+    if(Math.abs(momentum) < 0.1) momentum = 0;
+    scrollTrack.style.transition = '';
+    // after drag, auto continues naturally
+  }
+  
+  // attach events
+  scrollTrack.addEventListener('mousedown', onDragStart);
+  window.addEventListener('mousemove', onDragMove);
+  window.addEventListener('mouseup', onDragEnd);
+  scrollTrack.addEventListener('touchstart', onDragStart, {passive: false});
+  window.addEventListener('touchmove', onDragMove, {passive: false});
+  window.addEventListener('touchend', onDragEnd);
+  
+  // ensure cursor styling
+  scrollTrack.style.cursor = 'grab';
+  scrollTrack.addEventListener('dragstart', (e) => e.preventDefault());
+  
+  // start infinite animation
+  animationId = requestAnimationFrame(animate);
+  
+  // Lightbox for new gallery items
+  const lightbox = document.getElementById('lightbox');
+  const lightboxImg = document.getElementById('lightbox-img');
+  function attachLightboxEvents() {
+    document.querySelectorAll('.gallery-item').forEach(item => {
+      item.removeEventListener('click', lightboxHandler);
+      item.addEventListener('click', lightboxHandler);
+    });
+  }
+  function lightboxHandler(e) {
+    e.stopPropagation();
+    const imgElem = this.querySelector('img');
+    if(imgElem && imgElem.src) {
+      lightboxImg.src = imgElem.src;
+      lightbox.classList.add('active');
+    }
+  }
+  window.closeLightbox = () => lightbox.classList.remove('active');
+  lightbox.addEventListener('click', (e) => { if(e.target === lightbox) closeLightbox(); });
+  
+  // observer to rebind lightbox after dynamic rebuild (but we built once)
+  attachLightboxEvents();
+  
+  // resize observer to update infinite boundaries
+  let resizeTimeout;
+  window.addEventListener('resize', () => {
+    clearTimeout(resizeTimeout);
+    resizeTimeout = setTimeout(() => {
+      const currentPos = currentTranslateX;
+      currentTranslateX = manageInfiniteLoop(currentPos);
+      scrollTrack.style.transform = `translateX(${currentTranslateX}px)`;
+    }, 100);
+  });
+  
   // Counter Animation
   const counters = document.querySelectorAll('.counter-num');
+  let counted = false;
   const animateCounters = () => {
-    counters.forEach(c => { const target = +c.getAttribute('data-target'); let current = +c.innerText; const inc = target/50; if(current<target){ c.innerText = Math.ceil(current+inc); setTimeout(animateCounters, 20); } else c.innerText = target; });
+    if(counted) return;
+    counted = true;
+    counters.forEach(c => { const target = +c.getAttribute('data-target'); let current = 0; const step = Math.ceil(target/55); const interval = setInterval(() => { current += step; if(current >= target) { c.innerText = target; clearInterval(interval); } else c.innerText = current; }, 20); });
   };
-  const observer = new IntersectionObserver((entries) => { entries.forEach(entry => { if(entry.isIntersecting){ animateCounters(); observer.disconnect(); } }); }, {threshold:0.5});
+  const observer = new IntersectionObserver((entries) => { entries.forEach(entry => { if(entry.isIntersecting && !counted) animateCounters(); }); }, {threshold:0.4});
   const counterSection = document.querySelector('.counter-section'); if(counterSection) observer.observe(counterSection);
-  else setTimeout(animateCounters, 500);
   
-  // product card hint
-  document.querySelectorAll('.product-card').forEach(card => card.addEventListener('click', () => console.log('product')));
+  // Product card nice click
+  document.querySelectorAll('.product-card').forEach(card => card.addEventListener('click', () => { console.log('Explore product'); }));
 </script>
 </body>
 </html>
