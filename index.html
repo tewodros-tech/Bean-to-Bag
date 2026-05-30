@@ -7,8 +7,6 @@
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
   <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700;800;900&family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
   
-  <!-- No animations: GSAP and ScrollTrigger scripts removed -->
-  
   <style>
     * {
       margin: 0;
@@ -27,20 +25,12 @@
       font-family: 'Playfair Display', serif;
     }
 
-    /* Scroll Progress (hidden/disabled but keep structure if needed, set to 0 width always) */
+    /* Scroll progress (hidden) */
     .scroll-progress {
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 0%;
-      height: 3px;
-      background: linear-gradient(90deg, #C68B5E, #E8A87C, #FFD4A8);
-      z-index: 1001;
-      transition: none;
-      display: none; /* completely hidden */
+      display: none;
     }
 
-    /* Custom Cursor (hidden for simplicity) */
+    /* Custom Cursor (hidden) */
     .cursor {
       display: none;
     }
@@ -101,34 +91,32 @@
     .nav-links a:hover::before, .nav-links a.active::before { width: 100%; }
     .nav-links a:hover { color: #C68B5E; }
 
-    /* Hero Section */
+    /* Hero Section - Clean layout without cup/bean */
     .hero {
       min-height: 100vh;
       position: relative;
       display: flex;
       align-items: center;
-      justify-content: space-between;
+      justify-content: flex-start;
       padding: 0 10%;
-      flex-wrap: wrap;
-      background: linear-gradient(135deg, rgba(0,0,0,0.6), rgba(44,24,16,0.7)), url('coffee1.JPG');
+      background: linear-gradient(135deg, rgba(0,0,0,0.75), rgba(44,24,16,0.85)), url('coffee1.JPG');
       background-size: cover;
       background-position: center;
       background-attachment: fixed;
     }
     .hero-left {
-      flex: 1;
+      max-width: 700px;
       z-index: 2;
-      /* removed animation */
     }
     .hero-left h1 { font-size: 4.5rem; font-weight: 800; line-height: 1.1; margin-bottom: 1rem; }
     .hero-gradient-text { background: linear-gradient(135deg, #C68B5E, #E8A87C); -webkit-background-clip: text; background-clip: text; color: transparent; }
     .hero-left p { font-size: 1.1rem; margin-bottom: 2rem; opacity: 0.9; line-height: 1.6; }
-    .hero-right {
-      flex: 1;
-      z-index: 2;
-      text-align: center;
-      position: relative;
+    
+    /* Completely removed hero-right, animated-cup, and floating bean */
+    .hero-right, .animated-cup, .coffee-bean-float {
+      display: none;
     }
+    
     .btn-group { display: flex; gap: 1rem; flex-wrap: wrap; }
     .btn-primary {
       background: linear-gradient(135deg, #C68B5E, #A06B42);
@@ -153,33 +141,8 @@
     }
     .btn-outline:hover { background: #C68B5E; color: white; transform: translateY(-3px); }
 
-    /* Static cup (no float animation) */
-    .animated-cup {
-      position: relative;
-      z-index: 2;
-      /* No animation */
-    }
-    
-    /* Single coffee bean - static, no floating animation */
-    .coffee-bean-float {
-      position: absolute;
-      width: 65px;
-      height: 65px;
-      z-index: 10;
-      pointer-events: none;
-      filter: drop-shadow(0 8px 15px rgba(0,0,0,0.3));
-      top: 100px;
-      right: -45px;
-      /* No animation: static position */
-    }
-    
-    /* Background Floating Beans - removed completely */
-    .floating-beans-container {
-      display: none;
-    }
-    
-    /* Steam container removed */
-    .steam-container {
+    /* Remove any floating or animated containers */
+    .floating-beans-container, .steam-container, .morphing-bg {
       display: none;
     }
 
@@ -309,19 +272,9 @@
     .origin-preview-img img { width: 100%; height: 250px; object-fit: cover; transition: 0.3s; }
     .origin-preview-img:hover img { transform: scale(1.05); }
 
-    /* Morphing BG removed (no animations) */
-    .morphing-bg {
-      display: none;
-    }
-
-    /* Magnetic Buttons - removed animation but keep style */
+    /* Magnetic Buttons - visual only */
     .magnetic-btn {
       display: inline-block;
-    }
-
-    /* Particle effect removed */
-    .particle {
-      display: none;
     }
 
     /* WhatsApp */
@@ -384,7 +337,8 @@
         gap: 1rem;
       }
       .nav-links.active { display: flex; }
-      .hero { flex-direction: column; text-align: center; padding: 6rem 5% 2rem; }
+      .hero { flex-direction: column; text-align: center; padding: 8rem 5% 4rem; justify-content: center; background-attachment: scroll; }
+      .hero-left { text-align: center; }
       .hero-left h1 { font-size: 2.5rem; }
       .section-title { font-size: 2rem; }
       .counter-grid { grid-template-columns: repeat(2, 1fr); }
@@ -392,22 +346,17 @@
       .gallery-item img { height: 200px; }
       .btn-group { justify-content: center; }
       .origin-preview { flex-direction: column; text-align: center; }
-      .coffee-bean-float { width: 40px; height: 40px; top: 70px; right: -25px; }
     }
   </style>
 </head>
 <body>
 
-<div class="scroll-progress" id="scrollProgress"></div>
+<div class="scroll-progress"></div>
 <div class="cursor"></div>
 
-<!-- Morphing SVG Background (hidden) -->
+<!-- Removed morphing, floating beans, steam containers -->
 <div class="morphing-bg"></div>
-
-<!-- Background Floating Beans (removed) -->
-<div class="floating-beans-container" id="floatingBeans"></div>
-
-<!-- Steam Animation (removed) -->
+<div class="floating-beans-container"></div>
 <div class="steam-container"></div>
 
 <div class="whatsapp-float" onclick="window.open('https://wa.me/251911223344?text=Hello%20Bean%20to%20Bag!', '_blank')">
@@ -426,7 +375,7 @@
   </ul>
 </nav>
 
-<!-- Hero Section (no animations) -->
+<!-- Hero Section: Cup and floating bean icon completely removed -->
 <section class="hero">
   <div class="hero-left">
     <h1>From Bean to <span class="hero-gradient-text">Bag</span><br>Premium Ethiopian Coffee</h1>
@@ -436,27 +385,7 @@
       <a href="contact.html" class="btn-outline magnetic-btn">Shop Coffee</a>
     </div>
   </div>
-  <div class="hero-right">
-    <!-- Static Cup (no floating) -->
-    <div class="animated-cup">
-      <svg width="300" height="300" viewBox="0 0 300 300" fill="none">
-        <path d="M90 210 L90 75 L210 75 L210 210 C210 240 180 255 150 255 C120 255 90 240 90 210Z" fill="url(#cupGrad)" stroke="#C68B5E" stroke-width="3"/>
-        <path d="M210 105 L240 105 C255 105 262 120 255 135 L232 157" stroke="#C68B5E" stroke-width="4" fill="none"/>
-        <ellipse cx="150" cy="75" rx="60" ry="15" fill="#A06B42"/>
-        <defs>
-          <linearGradient id="cupGrad" x1="0%" y1="0%" x2="100%" y2="100%">
-            <stop offset="0%" stop-color="#C68B5E" stop-opacity="0.3"/>
-            <stop offset="100%" stop-color="#E8A87C" stop-opacity="0.1"/>
-          </linearGradient>
-        </defs>
-      </svg>
-    </div>
-    
-    <!-- Single static coffee bean (no float animation) -->
-    <img src="coffee-bean-real.png" class="coffee-bean-float" 
-         onerror="this.src='https://cdn-icons-png.flaticon.com/512/2246/2246548.png'"
-         alt="Coffee Bean">
-  </div>
+  <!-- Removed hero-right div and everything inside (cup svg, bean icon) -->
 </section>
 
 <!-- Products Section -->
@@ -521,7 +450,7 @@
   <img id="lightbox-img" src="">
 </div>
 
-<!-- Counter Section (numbers set to static values, no counting animation) -->
+<!-- Counter Section (static numbers, no animations) -->
 <section class="counter-section">
   <div class="container">
     <h2 class="section-title">Our Journey in Numbers</h2>
@@ -560,52 +489,64 @@
 </footer>
 
 <script>
-  // Minimal JavaScript: only essential functionality (no animations, no GSAP, no particle effect, no counter animation)
-
+  // Minimal JavaScript: no animations, no GSAP, no particles, no cup or bean elements
+  
   // Mobile menu toggle
   function toggleMenu() {
-    document.getElementById('navLinks').classList.toggle('active');
+    const navLinks = document.getElementById('navLinks');
+    if (navLinks) navLinks.classList.toggle('active');
   }
+  
+  // Close mobile menu when clicking on a link
   document.querySelectorAll('.nav-links a').forEach(link => {
-    link.addEventListener('click', () => document.getElementById('navLinks').classList.remove('active'));
-  });
-
-  // Simple scroll progress removal: we disabled display none, but keep no-op.
-  window.addEventListener('scroll', () => {
-    const nav = document.getElementById('nav');
-    if (window.scrollY > 100) nav.classList.add('scrolled');
-    else nav.classList.remove('scrolled');
-  });
-
-  // Lightbox functionality (static but interactive)
-  const lightbox = document.getElementById('lightbox');
-  const lightboxImg = document.getElementById('lightbox-img');
-  document.querySelectorAll('.gallery-item').forEach(item => {
-    item.addEventListener('click', () => {
-      const imgSrc = item.getAttribute('data-image');
-      if(imgSrc) {
-        lightboxImg.src = imgSrc;
-        lightbox.classList.add('active');
-      } else {
-        // fallback: try to get from img src
-        const actualImg = item.querySelector('img');
-        if(actualImg && actualImg.src) {
-          lightboxImg.src = actualImg.src;
-          lightbox.classList.add('active');
-        }
-      }
+    link.addEventListener('click', () => {
+      document.getElementById('navLinks')?.classList.remove('active');
     });
   });
-  function closeLightbox() {
-    lightbox.classList.remove('active');
-  }
-  lightbox.addEventListener('click', (e) => {
-    if (e.target === lightbox) closeLightbox();
+
+  // Navbar scroll effect: add scrolled class on scroll
+  window.addEventListener('scroll', () => {
+    const nav = document.getElementById('nav');
+    if (nav) {
+      if (window.scrollY > 100) nav.classList.add('scrolled');
+      else nav.classList.remove('scrolled');
+    }
   });
 
-  // Simple magnetic effect removed; keep only basic hover/ no transform dynamics (kept as static)
-  // But we keep class but no js magnetic movement to avoid any "animation".
-  // No particle effect, no counter animations, no floating.
+  // Lightbox functionality for gallery
+  const lightbox = document.getElementById('lightbox');
+  const lightboxImg = document.getElementById('lightbox-img');
+  
+  if (lightbox && lightboxImg) {
+    document.querySelectorAll('.gallery-item').forEach(item => {
+      item.addEventListener('click', (e) => {
+        // Get data-image attribute or fallback to img src
+        let imgSrc = item.getAttribute('data-image');
+        if (!imgSrc) {
+          const actualImg = item.querySelector('img');
+          if (actualImg && actualImg.src) imgSrc = actualImg.src;
+        }
+        if (imgSrc) {
+          lightboxImg.src = imgSrc;
+          lightbox.classList.add('active');
+        }
+      });
+    });
+    
+    window.closeLightbox = function() {
+      lightbox.classList.remove('active');
+    };
+    
+    lightbox.addEventListener('click', (e) => {
+      if (e.target === lightbox) closeLightbox();
+    });
+  } else {
+    // fallback definition for closeLightbox if lightbox missing
+    window.closeLightbox = function() {};
+  }
+  
+  // No particle effect, no counter animations, no floating coffee bean icons, no cup.
+  // All animated visual elements (cup SVG, floating bean image, steam, floating beans) have been removed from DOM and CSS.
 </script>
 </body>
 </html>
