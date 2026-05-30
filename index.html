@@ -25,16 +25,6 @@
       font-family: 'Playfair Display', serif;
     }
 
-    /* Scroll progress (hidden) */
-    .scroll-progress {
-      display: none;
-    }
-
-    /* Custom Cursor (hidden) */
-    .cursor {
-      display: none;
-    }
-
     /* Navigation */
     nav {
       position: fixed;
@@ -91,7 +81,7 @@
     .nav-links a:hover::before, .nav-links a.active::before { width: 100%; }
     .nav-links a:hover { color: #C68B5E; }
 
-    /* Hero Section - Clean layout without cup/bean */
+    /* Hero Section */
     .hero {
       min-height: 100vh;
       position: relative;
@@ -111,11 +101,6 @@
     .hero-left h1 { font-size: 4.5rem; font-weight: 800; line-height: 1.1; margin-bottom: 1rem; }
     .hero-gradient-text { background: linear-gradient(135deg, #C68B5E, #E8A87C); -webkit-background-clip: text; background-clip: text; color: transparent; }
     .hero-left p { font-size: 1.1rem; margin-bottom: 2rem; opacity: 0.9; line-height: 1.6; }
-    
-    /* Completely removed hero-right, animated-cup, and floating bean */
-    .hero-right, .animated-cup, .coffee-bean-float {
-      display: none;
-    }
     
     .btn-group { display: flex; gap: 1rem; flex-wrap: wrap; }
     .btn-primary {
@@ -141,18 +126,13 @@
     }
     .btn-outline:hover { background: #C68B5E; color: white; transform: translateY(-3px); }
 
-    /* Remove any floating or animated containers */
-    .floating-beans-container, .steam-container, .morphing-bg {
-      display: none;
-    }
-
     /* Sections */
     .section { padding: 5rem 5%; position: relative; z-index: 2; background: #0A0A0A; }
     .container { max-width: 1400px; margin: 0 auto; }
     .section-title { text-align: center; font-size: 3rem; margin-bottom: 1rem; background: linear-gradient(135deg, #FFFFFF, #C68B5E); -webkit-background-clip: text; background-clip: text; color: transparent; }
     .section-subtitle { text-align: center; color: #C68B5E; letter-spacing: 3px; margin-bottom: 3rem; }
 
-    /* Products Grid - Enhanced with product images */
+    /* Products Grid */
     .products-grid {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
@@ -189,24 +169,43 @@
       transform: scale(1.05);
       border-color: #E8A87C;
     }
-    .product-card i { display: none; } /* Hide default icon, use images instead */
     .product-card h3 { font-size: 1.5rem; margin-bottom: 0.5rem; }
     .taste-tags { display: flex; gap: 0.5rem; justify-content: center; flex-wrap: wrap; margin-top: 1rem; }
     .taste-tag { background: rgba(198,139,94,0.2); padding: 0.3rem 0.8rem; border-radius: 50px; font-size: 0.7rem; }
 
-    /* Gallery */
+    /* Gallery Section - Draggable/Movable Images */
     .gallery-section {
       padding: 5rem 5%;
       background: linear-gradient(135deg, #1A0F0A, #2C1810);
       position: relative;
       z-index: 2;
+      overflow-x: auto;
+      overflow-y: visible;
     }
+    
+    /* Horizontal scrollable gallery container */
+    .gallery-scroll-container {
+      width: 100%;
+      overflow-x: auto;
+      overflow-y: visible;
+      cursor: grab;
+      scroll-behavior: smooth;
+      user-select: none;
+      padding: 1rem 0;
+    }
+    
+    .gallery-scroll-container:active {
+      cursor: grabbing;
+    }
+    
     .gallery-grid {
-      display: grid;
-      grid-template-columns: repeat(4, 1fr);
+      display: flex;
       gap: 1.5rem;
-      margin-top: 2rem;
+      padding: 0.5rem 0.5rem 1rem 0.5rem;
+      width: max-content;
+      min-width: 100%;
     }
+    
     .gallery-item {
       position: relative;
       overflow: hidden;
@@ -214,16 +213,29 @@
       background: #1A1A1A;
       cursor: pointer;
       transition: 0.3s;
+      flex-shrink: 0;
+      width: 280px;
+      height: 320px;
     }
+    
+    @media (min-width: 1024px) {
+      .gallery-item {
+        width: 320px;
+        height: 360px;
+      }
+    }
+    
     .gallery-item img {
       width: 100%;
-      height: 280px;
+      height: 100%;
       object-fit: cover;
       transition: 0.5s;
       display: block;
     }
+    
     .gallery-item:hover img { transform: scale(1.05); }
     .gallery-item:hover { box-shadow: 0 15px 35px rgba(198,139,94,0.3); }
+    
     .gallery-overlay {
       position: absolute;
       bottom: 0;
@@ -236,6 +248,23 @@
       transition: 0.3s;
     }
     .gallery-item:hover .gallery-overlay { transform: translateY(0); }
+    
+    /* Drag scroll indicators */
+    .drag-hint {
+      text-align: center;
+      margin-top: 1rem;
+      color: #C68B5E;
+      font-size: 0.85rem;
+      opacity: 0.8;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.5rem;
+    }
+    
+    .drag-hint i {
+      font-size: 1rem;
+    }
 
     /* Lightbox */
     .lightbox {
@@ -287,11 +316,6 @@
     .origin-preview-img img { width: 100%; height: 250px; object-fit: cover; transition: 0.3s; }
     .origin-preview-img:hover img { transform: scale(1.05); }
 
-    /* Magnetic Buttons - visual only */
-    .magnetic-btn {
-      display: inline-block;
-    }
-
     /* WhatsApp */
     .whatsapp-float {
       position: fixed;
@@ -337,6 +361,11 @@
     }
     .social-icons a:hover { color: #C68B5E; transform: translateY(-3px); }
 
+    /* Hide unused elements */
+    .hero-right, .animated-cup, .coffee-bean-float, .floating-beans-container, .steam-container, .morphing-bg, .scroll-progress, .cursor {
+      display: none;
+    }
+
     @media (max-width: 768px) {
       .menu-icon { display: block; }
       .nav-links {
@@ -357,20 +386,18 @@
       .hero-left h1 { font-size: 2.5rem; }
       .section-title { font-size: 2rem; }
       .counter-grid { grid-template-columns: repeat(2, 1fr); }
-      .gallery-grid { grid-template-columns: repeat(2, 1fr); }
-      .gallery-item img { height: 200px; }
       .btn-group { justify-content: center; }
       .origin-preview { flex-direction: column; text-align: center; }
       .product-img { width: 100px; height: 100px; }
+      .gallery-item { width: 240px; height: 280px; }
     }
   </style>
 </head>
 <body>
 
+<!-- Hidden containers -->
 <div class="scroll-progress"></div>
 <div class="cursor"></div>
-
-<!-- Removed morphing, floating beans, steam containers -->
 <div class="morphing-bg"></div>
 <div class="floating-beans-container"></div>
 <div class="steam-container"></div>
@@ -391,114 +418,104 @@
   </ul>
 </nav>
 
-<!-- Hero Section: Cup and floating bean icon completely removed -->
+<!-- Hero Section -->
 <section class="hero">
   <div class="hero-left">
     <h1>From Bean to <span class="hero-gradient-text">Bag</span><br>Premium Ethiopian Coffee</h1>
     <p>Carefully sourced Ethiopian Arabica coffee roasted to a balanced medium-dark profile for a rich and smooth cup.</p>
     <div class="btn-group">
-      <a href="products.html" class="btn-primary magnetic-btn">Explore Collection</a>
-      <a href="contact.html" class="btn-outline magnetic-btn">Shop Coffee</a>
+      <a href="products.html" class="btn-primary">Explore Collection</a>
+      <a href="contact.html" class="btn-outline">Shop Coffee</a>
     </div>
   </div>
-  <!-- Removed hero-right div and everything inside (cup svg, bean icon) -->
 </section>
 
-<!-- Products Section with custom images: caskara.jfif, caskara1.jfif, chemia.jfif, green.jfif -->
+<!-- Products Section -->
 <section class="section">
   <div class="container">
     <h2 class="section-title">Our Signature Collection</h2>
     <p class="section-subtitle">Crafted with passion • Roasted to perfection</p>
     <div class="products-grid">
-      <!-- Caskara Product - using caskara.jfif -->
       <div class="product-card">
-        <img src="caskara.jfif" alt="Caskara Dried Coffee Cherry" class="product-img" onerror="this.src='https://placehold.co/200x200?text=Caskara'">
+        <img src="caskara.jfif" alt="Caskara" class="product-img" onerror="this.src='https://placehold.co/200x200?text=Caskara'">
         <h3>Caskara</h3>
         <p>Dried Coffee Cherry</p>
-        <div class="taste-tags">
-          <span class="taste-tag">Fruity</span>
-          <span class="taste-tag">Floral</span>
-          <span class="taste-tag">Sweet</span>
-        </div>
+        <div class="taste-tags"><span class="taste-tag">Fruity</span><span class="taste-tag">Floral</span><span class="taste-tag">Sweet</span></div>
       </div>
-      
-      <!-- Qalid's Choice (using caskara1.jfif as it represents premium house blend) -->
       <div class="product-card">
-        <img src="caskara1.jfif" alt="Qalid's Choice House Blend" class="product-img" onerror="this.src='https://placehold.co/200x200?text=Qalids+Choice'">
+        <img src="caskara1.jfif" alt="Qalid's Choice" class="product-img" onerror="this.src='https://placehold.co/200x200?text=Qalids+Choice'">
         <h3>Qalid's Choice</h3>
         <p>House Blend</p>
-        <div class="taste-tags">
-          <span class="taste-tag">Chocolate</span>
-          <span class="taste-tag">Balanced</span>
-          <span class="taste-tag">Smooth</span>
-        </div>
+        <div class="taste-tags"><span class="taste-tag">Chocolate</span><span class="taste-tag">Balanced</span><span class="taste-tag">Smooth</span></div>
       </div>
-      
-      <!-- Chemina Product - using chemia.jfif -->
       <div class="product-card">
-        <img src="chemia.jfif" alt="Chemina Whole Bean Coffee" class="product-img" onerror="this.src='https://placehold.co/200x200?text=Chemina'">
+        <img src="chemia.jfif" alt="Chemina" class="product-img" onerror="this.src='https://placehold.co/200x200?text=Chemina'">
         <h3>Chemina</h3>
         <p>Whole Bean Coffee</p>
-        <div class="taste-tags">
-          <span class="taste-tag">Bold</span>
-          <span class="taste-tag">Cocoa</span>
-          <span class="taste-tag">Smooth</span>
-        </div>
+        <div class="taste-tags"><span class="taste-tag">Bold</span><span class="taste-tag">Cocoa</span><span class="taste-tag">Smooth</span></div>
       </div>
-      
-      <!-- Origin Green Product - using green.jfif -->
       <div class="product-card">
-        <img src="green.jfif" alt="Origin Green Raw Green Coffee" class="product-img" onerror="this.src='https://placehold.co/200x200?text=Origin+Green'">
+        <img src="green.jfif" alt="Origin Green" class="product-img" onerror="this.src='https://placehold.co/200x200?text=Origin+Green'">
         <h3>Origin Green</h3>
         <p>Raw Green Coffee</p>
-        <div class="taste-tags">
-          <span class="taste-tag">Natural</span>
-          <span class="taste-tag">Traceable</span>
-          <span class="taste-tag">Fresh</span>
-        </div>
+        <div class="taste-tags"><span class="taste-tag">Natural</span><span class="taste-tag">Traceable</span><span class="taste-tag">Fresh</span></div>
       </div>
     </div>
   </div>
 </section>
 
-<!-- Gallery Section -->
+<!-- Gallery Section with Draggable/Movable Images -->
 <section class="gallery-section">
   <div class="container">
     <h2 class="section-title">Visual Journey</h2>
     <p class="section-subtitle">From bean to bag — captured moments</p>
-    <div class="gallery-grid" id="galleryGrid">
-      <div class="gallery-item" data-image="packaging.jpg">
-        <img src="packaging.jpg" onerror="this.src='https://placehold.co/400x300?text=Signature+Coffee+Bag'">
-        <div class="gallery-overlay"><p><i class="fas fa-search-plus"></i> Signature Coffee Bag</p></div>
+    
+    <div class="gallery-scroll-container" id="galleryScrollContainer">
+      <div class="gallery-grid" id="galleryGrid">
+        <div class="gallery-item" data-image="packaging.jpg">
+          <img src="packaging.jpg" onerror="this.src='https://placehold.co/400x500?text=Coffee+Bag'">
+          <div class="gallery-overlay"><p><i class="fas fa-search-plus"></i> Signature Coffee Bag</p></div>
+        </div>
+        <div class="gallery-item" data-image="packaging2.jpg">
+          <img src="packaging2.jpg" onerror="this.src='https://placehold.co/400x500?text=Premium+Roast'">
+          <div class="gallery-overlay"><p><i class="fas fa-search-plus"></i> Premium Roast Collection</p></div>
+        </div>
+        <div class="gallery-item" data-image="packaging3.jpg">
+          <img src="packaging3.jpg" onerror="this.src='https://placehold.co/400x500?text=Specialty+Series'">
+          <div class="gallery-overlay"><p><i class="fas fa-search-plus"></i> Specialty Series</p></div>
+        </div>
+        <div class="gallery-item" data-image="steaming-cup-coffee-saucer-with-coffee-beans-scattered-around.jpg">
+          <img src="steaming-cup-coffee-saucer-with-coffee-beans-scattered-around.jpg" onerror="this.src='https://placehold.co/400x500?text=Perfect+Brew'">
+          <div class="gallery-overlay"><p><i class="fas fa-search-plus"></i> The Perfect Brew</p></div>
+        </div>
+        <div class="gallery-item" data-image="dark-coffee-beans-bowl-brown-table.jpg">
+          <img src="dark-coffee-beans-bowl-brown-table.jpg" onerror="this.src='https://placehold.co/400x500?text=Premium+Beans'">
+          <div class="gallery-overlay"><p><i class="fas fa-search-plus"></i> Premium Beans</p></div>
+        </div>
+        <div class="gallery-item" data-image="coffee-beans-top-view-background.jpg">
+          <img src="coffee-beans-top-view-background.jpg" onerror="this.src='https://placehold.co/400x500?text=Coffee+Beans'">
+          <div class="gallery-overlay"><p><i class="fas fa-search-plus"></i> Fresh Coffee Beans</p></div>
+        </div>
+        <div class="gallery-item" data-image="coffee1.JPG">
+          <img src="coffee1.JPG" onerror="this.src='https://placehold.co/400x500?text=Ethiopian+Highlands'">
+          <div class="gallery-overlay"><p><i class="fas fa-search-plus"></i> Ethiopian Highlands</p></div>
+        </div>
+        <div class="gallery-item" data-image="19.JPG">
+          <img src="19.JPG" onerror="this.src='https://placehold.co/400x500?text=Coffee+Experience'">
+          <div class="gallery-overlay"><p><i class="fas fa-search-plus"></i> Coffee Experience</p></div>
+        </div>
+        <div class="gallery-item" data-image="fresh-roast.jpg">
+          <img src="fresh-roast.jpg" onerror="this.src='https://placehold.co/400x500?text=Fresh+Roast'">
+          <div class="gallery-overlay"><p><i class="fas fa-search-plus"></i> Fresh Roast</p></div>
+        </div>
+        <div class="gallery-item" data-image="coffee-farm.jpg">
+          <img src="coffee-farm.jpg" onerror="this.src='https://placehold.co/400x500?text=Coffee+Farm'">
+          <div class="gallery-overlay"><p><i class="fas fa-search-plus"></i> Coffee Plantation</p></div>
+        </div>
       </div>
-      <div class="gallery-item" data-image="packaging2.jpg">
-        <img src="packaging2.jpg" onerror="this.src='https://placehold.co/400x300?text=Premium+Roast+Collection'">
-        <div class="gallery-overlay"><p><i class="fas fa-search-plus"></i> Premium Roast Collection</p></div>
-      </div>
-      <div class="gallery-item" data-image="packaging3.jpg">
-        <img src="packaging3.jpg" onerror="this.src='https://placehold.co/400x300?text=Specialty+Series'">
-        <div class="gallery-overlay"><p><i class="fas fa-search-plus"></i> Specialty Series</p></div>
-      </div>
-      <div class="gallery-item" data-image="steaming-cup-coffee-saucer-with-coffee-beans-scattered-around.jpg">
-        <img src="steaming-cup-coffee-saucer-with-coffee-beans-scattered-around.jpg" onerror="this.src='https://placehold.co/400x300?text=Perfect+Brew'">
-        <div class="gallery-overlay"><p><i class="fas fa-search-plus"></i> The Perfect Brew</p></div>
-      </div>
-      <div class="gallery-item" data-image="dark-coffee-beans-bowl-brown-table.jpg">
-        <img src="dark-coffee-beans-bowl-brown-table.jpg" onerror="this.src='https://placehold.co/400x300?text=Premium+Beans'">
-        <div class="gallery-overlay"><p><i class="fas fa-search-plus"></i> Premium Beans</p></div>
-      </div>
-      <div class="gallery-item" data-image="coffee-beans-top-view-background.jpg">
-        <img src="coffee-beans-top-view-background.jpg" onerror="this.src='https://placehold.co/400x300?text=Coffee+Beans+Top'">
-        <div class="gallery-overlay"><p><i class="fas fa-search-plus"></i> Fresh Coffee Beans</p></div>
-      </div>
-      <div class="gallery-item" data-image="coffee1.JPG">
-        <img src="coffee1.JPG" onerror="this.src='https://placehold.co/400x300?text=Ethiopian+Highlands'">
-        <div class="gallery-overlay"><p><i class="fas fa-search-plus"></i> Ethiopian Highlands</p></div>
-      </div>
-      <div class="gallery-item" data-image="19.JPG">
-        <img src="19.JPG" onerror="this.src='https://placehold.co/400x300?text=Coffee+Experience'">
-        <div class="gallery-overlay"><p><i class="fas fa-search-plus"></i> Coffee Experience</p></div>
-      </div>
+    </div>
+    <div class="drag-hint">
+      <i class="fas fa-arrows-alt-h"></i> Drag horizontally to explore more <i class="fas fa-mouse-pointer"></i>
     </div>
   </div>
 </section>
@@ -509,7 +526,7 @@
   <img id="lightbox-img" src="">
 </div>
 
-<!-- Counter Section (static numbers, no animations) -->
+<!-- Counter Section -->
 <section class="counter-section">
   <div class="container">
     <h2 class="section-title">Our Journey in Numbers</h2>
@@ -529,7 +546,7 @@
       <div class="origin-preview-text">
         <h3>Ethiopian Highlands</h3>
         <p>100% Coffea Arabica cultivated by small-scale farmers at 1,900–2,200 meters above sea level. The cool highland climate creates refined, complex flavors.</p>
-        <a href="origin.html" class="btn-primary magnetic-btn" style="display: inline-block; margin-top: 1rem;">Discover Origin →</a>
+        <a href="origin.html" class="btn-primary" style="display: inline-block; margin-top: 1rem;">Discover Origin →</a>
       </div>
       <div class="origin-preview-img">
         <img src="coffee1.JPG" onerror="this.src='https://placehold.co/500x300?text=Ethiopian+Highlands'">
@@ -548,22 +565,16 @@
 </footer>
 
 <script>
-  // Minimal JavaScript: no animations, no GSAP, no particles, no cup or bean elements
-  
   // Mobile menu toggle
   function toggleMenu() {
-    const navLinks = document.getElementById('navLinks');
-    if (navLinks) navLinks.classList.toggle('active');
+    document.getElementById('navLinks').classList.toggle('active');
   }
   
-  // Close mobile menu when clicking on a link
   document.querySelectorAll('.nav-links a').forEach(link => {
-    link.addEventListener('click', () => {
-      document.getElementById('navLinks')?.classList.remove('active');
-    });
+    link.addEventListener('click', () => document.getElementById('navLinks')?.classList.remove('active'));
   });
 
-  // Navbar scroll effect: add scrolled class on scroll
+  // Navbar scroll effect
   window.addEventListener('scroll', () => {
     const nav = document.getElementById('nav');
     if (nav) {
@@ -572,14 +583,71 @@
     }
   });
 
-  // Lightbox functionality for gallery
+  // DRAG TO SCROLL FUNCTIONALITY - Makes images movable horizontally
+  const scrollContainer = document.getElementById('galleryScrollContainer');
+  
+  if (scrollContainer) {
+    let isDown = false;
+    let startX;
+    let scrollLeft;
+    
+    // Mouse/Touch drag events
+    scrollContainer.addEventListener('mousedown', (e) => {
+      isDown = true;
+      scrollContainer.style.cursor = 'grabbing';
+      startX = e.pageX - scrollContainer.offsetLeft;
+      scrollLeft = scrollContainer.scrollLeft;
+    });
+    
+    scrollContainer.addEventListener('mouseleave', () => {
+      isDown = false;
+      scrollContainer.style.cursor = 'grab';
+    });
+    
+    scrollContainer.addEventListener('mouseup', () => {
+      isDown = false;
+      scrollContainer.style.cursor = 'grab';
+    });
+    
+    scrollContainer.addEventListener('mousemove', (e) => {
+      if (!isDown) return;
+      e.preventDefault();
+      const x = e.pageX - scrollContainer.offsetLeft;
+      const walk = (x - startX) * 1.5; // Scroll speed multiplier
+      scrollContainer.scrollLeft = scrollLeft - walk;
+    });
+    
+    // Touch events for mobile
+    scrollContainer.addEventListener('touchstart', (e) => {
+      isDown = true;
+      startX = e.touches[0].pageX - scrollContainer.offsetLeft;
+      scrollLeft = scrollContainer.scrollLeft;
+    });
+    
+    scrollContainer.addEventListener('touchend', () => {
+      isDown = false;
+    });
+    
+    scrollContainer.addEventListener('touchmove', (e) => {
+      if (!isDown) return;
+      e.preventDefault();
+      const x = e.touches[0].pageX - scrollContainer.offsetLeft;
+      const walk = (x - startX) * 1.5;
+      scrollContainer.scrollLeft = scrollLeft - walk;
+    });
+    
+    // Set initial cursor
+    scrollContainer.style.cursor = 'grab';
+  }
+
+  // Lightbox functionality
   const lightbox = document.getElementById('lightbox');
   const lightboxImg = document.getElementById('lightbox-img');
   
   if (lightbox && lightboxImg) {
     document.querySelectorAll('.gallery-item').forEach(item => {
       item.addEventListener('click', (e) => {
-        // Get data-image attribute or fallback to img src
+        e.stopPropagation();
         let imgSrc = item.getAttribute('data-image');
         if (!imgSrc) {
           const actualImg = item.querySelector('img');
@@ -599,14 +667,15 @@
     lightbox.addEventListener('click', (e) => {
       if (e.target === lightbox) closeLightbox();
     });
-  } else {
-    // fallback definition for closeLightbox if lightbox missing
-    window.closeLightbox = function() {};
   }
   
-  // No particle effect, no counter animations, no floating coffee bean icons, no cup.
-  // All animated visual elements (cup SVG, floating bean image, steam, floating beans) have been removed from DOM and CSS.
-  // Product images are integrated: caskara.jfif, caskara1.jfif, chemia.jfif, green.jfif are used respectively.
+  // Product cards click handler (optional)
+  document.querySelectorAll('.product-card').forEach(card => {
+    card.addEventListener('click', () => {
+      // Optional: redirect or show modal
+      console.log('Product clicked');
+    });
+  });
 </script>
 </body>
 </html>
