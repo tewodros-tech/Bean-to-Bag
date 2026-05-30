@@ -152,7 +152,7 @@
     .section-title { text-align: center; font-size: 3rem; margin-bottom: 1rem; background: linear-gradient(135deg, #FFFFFF, #C68B5E); -webkit-background-clip: text; background-clip: text; color: transparent; }
     .section-subtitle { text-align: center; color: #C68B5E; letter-spacing: 3px; margin-bottom: 3rem; }
 
-    /* Products Grid */
+    /* Products Grid - Enhanced with product images */
     .products-grid {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
@@ -174,7 +174,22 @@
       border-color: #C68B5E;
       box-shadow: 0 20px 40px rgba(198,139,94,0.2);
     }
-    .product-card i { font-size: 4rem; color: #C68B5E; margin-bottom: 1rem; }
+    .product-img {
+      width: 120px;
+      height: 120px;
+      object-fit: cover;
+      border-radius: 50%;
+      margin-bottom: 1rem;
+      border: 2px solid #C68B5E;
+      padding: 5px;
+      background: #1A1A1A;
+      transition: 0.3s;
+    }
+    .product-card:hover .product-img {
+      transform: scale(1.05);
+      border-color: #E8A87C;
+    }
+    .product-card i { display: none; } /* Hide default icon, use images instead */
     .product-card h3 { font-size: 1.5rem; margin-bottom: 0.5rem; }
     .taste-tags { display: flex; gap: 0.5rem; justify-content: center; flex-wrap: wrap; margin-top: 1rem; }
     .taste-tag { background: rgba(198,139,94,0.2); padding: 0.3rem 0.8rem; border-radius: 50px; font-size: 0.7rem; }
@@ -346,6 +361,7 @@
       .gallery-item img { height: 200px; }
       .btn-group { justify-content: center; }
       .origin-preview { flex-direction: column; text-align: center; }
+      .product-img { width: 100px; height: 100px; }
     }
   </style>
 </head>
@@ -388,16 +404,59 @@
   <!-- Removed hero-right div and everything inside (cup svg, bean icon) -->
 </section>
 
-<!-- Products Section -->
+<!-- Products Section with custom images: caskara.jfif, caskara1.jfif, chemia.jfif, green.jfif -->
 <section class="section">
   <div class="container">
     <h2 class="section-title">Our Signature Collection</h2>
     <p class="section-subtitle">Crafted with passion • Roasted to perfection</p>
     <div class="products-grid">
-      <div class="product-card"><i class="fas fa-mug-hot"></i><h3>Caskara</h3><p>Dried Coffee Cherry</p><div class="taste-tags"><span class="taste-tag">Fruity</span><span class="taste-tag">Floral</span><span class="taste-tag">Sweet</span></div></div>
-      <div class="product-card"><i class="fas fa-mortar-pestle"></i><h3>Qalid's Choice</h3><p>House Blend</p><div class="taste-tags"><span class="taste-tag">Chocolate</span><span class="taste-tag">Balanced</span><span class="taste-tag">Smooth</span></div></div>
-      <div class="product-card"><i class="fas fa-seedling"></i><h3>Chemina</h3><p>Whole Bean Coffee</p><div class="taste-tags"><span class="taste-tag">Bold</span><span class="taste-tag">Cocoa</span><span class="taste-tag">Smooth</span></div></div>
-      <div class="product-card"><i class="fas fa-leaf"></i><h3>Origin Green</h3><p>Raw Green Coffee</p><div class="taste-tags"><span class="taste-tag">Natural</span><span class="taste-tag">Traceable</span><span class="taste-tag">Fresh</span></div></div>
+      <!-- Caskara Product - using caskara.jfif -->
+      <div class="product-card">
+        <img src="caskara.jfif" alt="Caskara Dried Coffee Cherry" class="product-img" onerror="this.src='https://placehold.co/200x200?text=Caskara'">
+        <h3>Caskara</h3>
+        <p>Dried Coffee Cherry</p>
+        <div class="taste-tags">
+          <span class="taste-tag">Fruity</span>
+          <span class="taste-tag">Floral</span>
+          <span class="taste-tag">Sweet</span>
+        </div>
+      </div>
+      
+      <!-- Qalid's Choice (using caskara1.jfif as it represents premium house blend) -->
+      <div class="product-card">
+        <img src="caskara1.jfif" alt="Qalid's Choice House Blend" class="product-img" onerror="this.src='https://placehold.co/200x200?text=Qalids+Choice'">
+        <h3>Qalid's Choice</h3>
+        <p>House Blend</p>
+        <div class="taste-tags">
+          <span class="taste-tag">Chocolate</span>
+          <span class="taste-tag">Balanced</span>
+          <span class="taste-tag">Smooth</span>
+        </div>
+      </div>
+      
+      <!-- Chemina Product - using chemia.jfif -->
+      <div class="product-card">
+        <img src="chemia.jfif" alt="Chemina Whole Bean Coffee" class="product-img" onerror="this.src='https://placehold.co/200x200?text=Chemina'">
+        <h3>Chemina</h3>
+        <p>Whole Bean Coffee</p>
+        <div class="taste-tags">
+          <span class="taste-tag">Bold</span>
+          <span class="taste-tag">Cocoa</span>
+          <span class="taste-tag">Smooth</span>
+        </div>
+      </div>
+      
+      <!-- Origin Green Product - using green.jfif -->
+      <div class="product-card">
+        <img src="green.jfif" alt="Origin Green Raw Green Coffee" class="product-img" onerror="this.src='https://placehold.co/200x200?text=Origin+Green'">
+        <h3>Origin Green</h3>
+        <p>Raw Green Coffee</p>
+        <div class="taste-tags">
+          <span class="taste-tag">Natural</span>
+          <span class="taste-tag">Traceable</span>
+          <span class="taste-tag">Fresh</span>
+        </div>
+      </div>
     </div>
   </div>
 </section>
@@ -547,6 +606,7 @@
   
   // No particle effect, no counter animations, no floating coffee bean icons, no cup.
   // All animated visual elements (cup SVG, floating bean image, steam, floating beans) have been removed from DOM and CSS.
+  // Product images are integrated: caskara.jfif, caskara1.jfif, chemia.jfif, green.jfif are used respectively.
 </script>
 </body>
 </html>
