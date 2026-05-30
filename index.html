@@ -7,9 +7,7 @@
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
   <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700;800;900&family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
   
-  <!-- GSAP for Smooth Animations -->
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+  <!-- No animations: GSAP and ScrollTrigger scripts removed -->
   
   <style>
     * {
@@ -29,7 +27,7 @@
       font-family: 'Playfair Display', serif;
     }
 
-    /* Scroll Progress */
+    /* Scroll Progress (hidden/disabled but keep structure if needed, set to 0 width always) */
     .scroll-progress {
       position: fixed;
       top: 0;
@@ -38,19 +36,13 @@
       height: 3px;
       background: linear-gradient(90deg, #C68B5E, #E8A87C, #FFD4A8);
       z-index: 1001;
-      transition: width 0.1s;
+      transition: none;
+      display: none; /* completely hidden */
     }
 
-    /* Custom Cursor */
+    /* Custom Cursor (hidden for simplicity) */
     .cursor {
-      width: 20px;
-      height: 20px;
-      background: #C68B5E;
-      border-radius: 50%;
-      position: fixed;
-      pointer-events: none;
-      z-index: 9999;
-      box-shadow: 0 0 15px #C68B5E;
+      display: none;
     }
 
     /* Navigation */
@@ -69,7 +61,7 @@
       justify-content: space-between;
       align-items: center;
       border: 1px solid rgba(198, 139, 94, 0.4);
-      transition: all 0.3s;
+      transition: none;
     }
     nav.scrolled {
       top: 0;
@@ -126,11 +118,7 @@
     .hero-left {
       flex: 1;
       z-index: 2;
-      animation: slideInLeft 0.8s ease;
-    }
-    @keyframes slideInLeft {
-      from { opacity: 0; transform: translateX(-80px); }
-      to { opacity: 1; transform: translateX(0); }
+      /* removed animation */
     }
     .hero-left h1 { font-size: 4.5rem; font-weight: 800; line-height: 1.1; margin-bottom: 1rem; }
     .hero-gradient-text { background: linear-gradient(135deg, #C68B5E, #E8A87C); -webkit-background-clip: text; background-clip: text; color: transparent; }
@@ -138,13 +126,8 @@
     .hero-right {
       flex: 1;
       z-index: 2;
-      animation: slideInRight 0.8s ease;
       text-align: center;
       position: relative;
-    }
-    @keyframes slideInRight {
-      from { opacity: 0; transform: translateX(80px); }
-      to { opacity: 1; transform: translateX(0); }
     }
     .btn-group { display: flex; gap: 1rem; flex-wrap: wrap; }
     .btn-primary {
@@ -170,18 +153,14 @@
     }
     .btn-outline:hover { background: #C68B5E; color: white; transform: translateY(-3px); }
 
-    /* Animated Cup - Gentle Floating */
+    /* Static cup (no float animation) */
     .animated-cup {
       position: relative;
       z-index: 2;
-      animation: gentleFloat 3s ease-in-out infinite;
-    }
-    @keyframes gentleFloat {
-      0%, 100% { transform: translateY(0); }
-      50% { transform: translateY(-12px); }
+      /* No animation */
     }
     
-    /* ========== SINGLE REAL COFFEE BEAN - NATURAL FLOATING ========== */
+    /* Single coffee bean - static, no floating animation */
     .coffee-bean-float {
       position: absolute;
       width: 65px;
@@ -189,96 +168,19 @@
       z-index: 10;
       pointer-events: none;
       filter: drop-shadow(0 8px 15px rgba(0,0,0,0.3));
-      transition: filter 0.3s ease;
-    }
-    
-    /* Position - exactly next to the cup */
-    .coffee-bean-float {
       top: 100px;
       right: -45px;
+      /* No animation: static position */
     }
     
-    /* Natural floating animation - just up and down */
-    .coffee-bean-float {
-      animation: naturalFloat 2.5s ease-in-out infinite;
-    }
-    
-    @keyframes naturalFloat {
-      0% {
-        transform: translate(0, 0) rotate(0deg);
-      }
-      25% {
-        transform: translate(8px, -8px) rotate(5deg);
-      }
-      50% {
-        transform: translate(0, -12px) rotate(0deg);
-      }
-      75% {
-        transform: translate(-5px, -5px) rotate(-5deg);
-      }
-      100% {
-        transform: translate(0, 0) rotate(0deg);
-      }
-    }
-    
-    /* Glow effect on hover */
-    .coffee-bean-float:hover {
-      filter: drop-shadow(0 0 20px rgba(198,139,94,0.6));
-      transform: scale(1.05);
-      transition: all 0.3s ease;
-    }
-
-    /* Background Floating Beans (subtle) */
+    /* Background Floating Beans - removed completely */
     .floating-beans-container {
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      pointer-events: none;
-      z-index: 0;
-      overflow: hidden;
+      display: none;
     }
-    .floating-bean-bg {
-      position: absolute;
-      width: 25px;
-      height: 25px;
-      background: url('data:image/svg+xml,<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 100 100\"><ellipse cx=\"50\" cy=\"50\" rx=\"35\" ry=\"25\" fill=\"%23C68B5E\" stroke=\"%238B5E3C\" stroke-width=\"2\"/><path d=\"M50 30 Q60 50 50 70\" stroke=\"%238B5E3C\" stroke-width=\"2\" fill=\"none\"/><ellipse cx=\"50\" cy=\"50\" rx=\"35\" ry=\"25\" fill=\"url(%23grad)\"/><defs><radialGradient id=\"grad\"><stop offset=\"0%\" stop-color=\"%23E8A87C\"/><stop offset=\"100%\" stop-color=\"%23C68B5E\"/></radialGradient></defs></svg>');
-      background-size: contain;
-      background-repeat: no-repeat;
-      opacity: 0.2;
-      animation: floatUpSlow linear infinite;
-    }
-    @keyframes floatUpSlow {
-      0% { transform: translateY(100vh) rotate(0deg); opacity: 0; }
-      10% { opacity: 0.2; }
-      90% { opacity: 0.2; }
-      100% { transform: translateY(-10vh) rotate(360deg); opacity: 0; }
-    }
-
-    /* Steam Animation */
+    
+    /* Steam container removed */
     .steam-container {
-      position: fixed;
-      bottom: 20%;
-      right: 15%;
-      pointer-events: none;
-      z-index: 1;
-    }
-    .steam {
-      position: absolute;
-      width: 60px;
-      height: 60px;
-      background: radial-gradient(circle, rgba(255,255,255,0.15) 0%, rgba(255,255,255,0) 70%);
-      border-radius: 50%;
-      animation: steamRise 3s ease-out infinite;
-    }
-    .steam:nth-child(1) { animation-delay: 0s; left: 0; }
-    .steam:nth-child(2) { animation-delay: 0.8s; left: 30px; }
-    .steam:nth-child(3) { animation-delay: 1.6s; left: 60px; }
-    @keyframes steamRise {
-      0% { opacity: 0; transform: translateY(0) scale(0.5); }
-      50% { opacity: 0.3; transform: translateY(-40px) scale(1); }
-      100% { opacity: 0; transform: translateY(-80px) scale(1.5); }
+      display: none;
     }
 
     /* Sections */
@@ -407,51 +309,19 @@
     .origin-preview-img img { width: 100%; height: 250px; object-fit: cover; transition: 0.3s; }
     .origin-preview-img:hover img { transform: scale(1.05); }
 
-    /* Morphing SVG */
+    /* Morphing BG removed (no animations) */
     .morphing-bg {
-      position: fixed;
-      bottom: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      z-index: 0;
-      pointer-events: none;
-      opacity: 0.1;
-    }
-    .morphing-bg svg {
-      position: absolute;
-      bottom: 0;
-      left: 0;
-      width: 100%;
-      height: auto;
-      animation: morph 10s ease-in-out infinite;
-    }
-    @keyframes morph {
-      0% { transform: translateY(0) scale(1); opacity: 0.3; }
-      50% { transform: translateY(-20px) scale(1.05); opacity: 0.5; }
-      100% { transform: translateY(0) scale(1); opacity: 0.3; }
+      display: none;
     }
 
-    /* Magnetic Buttons */
+    /* Magnetic Buttons - removed animation but keep style */
     .magnetic-btn {
-      transition: transform 0.2s ease;
       display: inline-block;
     }
 
-    /* Particle Effect */
+    /* Particle effect removed */
     .particle {
-      position: fixed;
-      width: 8px;
-      height: 8px;
-      background: #C68B5E;
-      border-radius: 50%;
-      pointer-events: none;
-      z-index: 10000;
-      animation: particleExplode 0.8s ease-out forwards;
-    }
-    @keyframes particleExplode {
-      0% { opacity: 1; transform: scale(1); }
-      100% { opacity: 0; transform: translate(var(--tx), var(--ty)) scale(0); }
+      display: none;
     }
 
     /* WhatsApp */
@@ -468,13 +338,11 @@
       font-size: 28px;
       color: white;
       z-index: 999;
-      animation: pulse 2s infinite;
       cursor: pointer;
+      transition: 0.2s;
     }
-    @keyframes pulse {
-      0% { transform: scale(1); box-shadow: 0 0 0 0 rgba(37,211,102,0.7); }
-      70% { transform: scale(1.05); box-shadow: 0 0 0 15px rgba(37,211,102,0); }
-      100% { transform: scale(1); box-shadow: 0 0 0 0 rgba(37,211,102,0); }
+    .whatsapp-float:hover {
+      transform: scale(1.05);
     }
 
     /* Footer */
@@ -533,29 +401,14 @@
 <div class="scroll-progress" id="scrollProgress"></div>
 <div class="cursor"></div>
 
-<!-- Morphing SVG Background -->
-<div class="morphing-bg">
-  <svg viewBox="0 0 1200 800" xmlns="http://www.w3.org/2000/svg">
-    <path fill="#C68B5E" opacity="0.3">
-      <animate attributeName="d" dur="10s" repeatCount="indefinite" values="
-        M0,800 L0,600 C100,550 200,650 350,600 C500,550 550,450 700,500 C850,550 900,650 1050,600 L1200,550 L1200,800 Z;
-        M0,800 L0,550 C150,500 200,600 350,550 C500,500 600,400 750,450 C900,500 950,600 1100,550 L1200,500 L1200,800 Z;
-        M0,800 L0,600 C120,550 220,650 370,580 C520,510 570,420 720,470 C870,520 920,620 1070,570 L1200,520 L1200,800 Z;
-        M0,800 L0,600 C100,550 200,650 350,600 C500,550 550,450 700,500 C850,550 900,650 1050,600 L1200,550 L1200,800 Z
-      "/>
-    </path>
-  </svg>
-</div>
+<!-- Morphing SVG Background (hidden) -->
+<div class="morphing-bg"></div>
 
-<!-- Background Floating Beans -->
+<!-- Background Floating Beans (removed) -->
 <div class="floating-beans-container" id="floatingBeans"></div>
 
-<!-- Steam Animation -->
-<div class="steam-container">
-  <div class="steam"></div>
-  <div class="steam"></div>
-  <div class="steam"></div>
-</div>
+<!-- Steam Animation (removed) -->
+<div class="steam-container"></div>
 
 <div class="whatsapp-float" onclick="window.open('https://wa.me/251911223344?text=Hello%20Bean%20to%20Bag!', '_blank')">
   <i class="fab fa-whatsapp"></i>
@@ -573,7 +426,7 @@
   </ul>
 </nav>
 
-<!-- Hero Section -->
+<!-- Hero Section (no animations) -->
 <section class="hero">
   <div class="hero-left">
     <h1>From Bean to <span class="hero-gradient-text">Bag</span><br>Premium Ethiopian Coffee</h1>
@@ -584,7 +437,7 @@
     </div>
   </div>
   <div class="hero-right">
-    <!-- Animated Cup -->
+    <!-- Static Cup (no floating) -->
     <div class="animated-cup">
       <svg width="300" height="300" viewBox="0 0 300 300" fill="none">
         <path d="M90 210 L90 75 L210 75 L210 210 C210 240 180 255 150 255 C120 255 90 240 90 210Z" fill="url(#cupGrad)" stroke="#C68B5E" stroke-width="3"/>
@@ -599,7 +452,7 @@
       </svg>
     </div>
     
-    <!-- SINGLE REAL COFFEE BEAN - Removed any blue icon; purely natural coffee bean graphic -->
+    <!-- Single static coffee bean (no float animation) -->
     <img src="coffee-bean-real.png" class="coffee-bean-float" 
          onerror="this.src='https://cdn-icons-png.flaticon.com/512/2246/2246548.png'"
          alt="Coffee Bean">
@@ -668,15 +521,15 @@
   <img id="lightbox-img" src="">
 </div>
 
-<!-- Counter Section -->
+<!-- Counter Section (numbers set to static values, no counting animation) -->
 <section class="counter-section">
   <div class="container">
     <h2 class="section-title">Our Journey in Numbers</h2>
     <div class="counter-grid">
-      <div class="counter-card"><i class="fas fa-mountain"></i><div class="counter-num" data-target="2200">0</div><p>Meters Altitude</p></div>
-      <div class="counter-card"><i class="fas fa-leaf"></i><div class="counter-num" data-target="100">0</div><p>Arabica %</p></div>
-      <div class="counter-card"><i class="fas fa-chart-line"></i><div class="counter-num" data-target="200">0</div><p>Monthly kg</p></div>
-      <div class="counter-card"><i class="fas fa-users"></i><div class="counter-num" data-target="50">0</div><p>Partner Farmers</p></div>
+      <div class="counter-card"><i class="fas fa-mountain"></i><div class="counter-num">2200</div><p>Meters Altitude</p></div>
+      <div class="counter-card"><i class="fas fa-leaf"></i><div class="counter-num">100</div><p>Arabica %</p></div>
+      <div class="counter-card"><i class="fas fa-chart-line"></i><div class="counter-num">200</div><p>Monthly kg</p></div>
+      <div class="counter-card"><i class="fas fa-users"></i><div class="counter-num">50</div><p>Partner Farmers</p></div>
     </div>
   </div>
 </section>
@@ -707,7 +560,9 @@
 </footer>
 
 <script>
-  // Mobile menu
+  // Minimal JavaScript: only essential functionality (no animations, no GSAP, no particle effect, no counter animation)
+
+  // Mobile menu toggle
   function toggleMenu() {
     document.getElementById('navLinks').classList.toggle('active');
   }
@@ -715,70 +570,30 @@
     link.addEventListener('click', () => document.getElementById('navLinks').classList.remove('active'));
   });
 
-  // Scroll progress
+  // Simple scroll progress removal: we disabled display none, but keep no-op.
   window.addEventListener('scroll', () => {
-    const winScroll = document.body.scrollTop || document.documentElement.scrollTop;
-    const height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
-    document.getElementById('scrollProgress').style.width = (winScroll / height) * 100 + '%';
     const nav = document.getElementById('nav');
     if (window.scrollY > 100) nav.classList.add('scrolled');
     else nav.classList.remove('scrolled');
   });
 
-  // Custom cursor
-  const cursor = document.querySelector('.cursor');
-  document.addEventListener('mousemove', (e) => {
-    cursor.style.transform = `translate(${e.clientX - 10}px, ${e.clientY - 10}px)`;
-  });
-
-  // Counter animation
-  const counters = document.querySelectorAll('.counter-num');
-  const observerOptions = { threshold: 0.5 };
-  const observer = new IntersectionObserver((entries) => {
-    entries.forEach(entry => {
-      if (entry.isIntersecting) {
-        const counter = entry.target;
-        const updateCount = () => {
-          const target = parseInt(counter.getAttribute('data-target'));
-          const count = parseInt(counter.innerText);
-          const increment = target / 60;
-          if (count < target) {
-            counter.innerText = Math.ceil(count + increment);
-            setTimeout(updateCount, 20);
-          } else {
-            counter.innerText = target;
-          }
-        };
-        updateCount();
-        observer.unobserve(counter);
-      }
-    });
-  }, observerOptions);
-  counters.forEach(counter => observer.observe(counter));
-
-  // Create background floating beans
-  const beanContainer = document.getElementById('floatingBeans');
-  for (let i = 0; i < 50; i++) {
-    const bean = document.createElement('div');
-    bean.className = 'floating-bean-bg';
-    const size = 20 + Math.random() * 25;
-    bean.style.width = size + 'px';
-    bean.style.height = size + 'px';
-    bean.style.left = Math.random() * 100 + '%';
-    bean.style.animationDuration = 15 + Math.random() * 20 + 's';
-    bean.style.animationDelay = Math.random() * 10 + 's';
-    bean.style.opacity = 0.15 + Math.random() * 0.15;
-    beanContainer.appendChild(bean);
-  }
-
-  // Lightbox
+  // Lightbox functionality (static but interactive)
   const lightbox = document.getElementById('lightbox');
   const lightboxImg = document.getElementById('lightbox-img');
   document.querySelectorAll('.gallery-item').forEach(item => {
     item.addEventListener('click', () => {
       const imgSrc = item.getAttribute('data-image');
-      lightboxImg.src = imgSrc;
-      lightbox.classList.add('active');
+      if(imgSrc) {
+        lightboxImg.src = imgSrc;
+        lightbox.classList.add('active');
+      } else {
+        // fallback: try to get from img src
+        const actualImg = item.querySelector('img');
+        if(actualImg && actualImg.src) {
+          lightboxImg.src = actualImg.src;
+          lightbox.classList.add('active');
+        }
+      }
     });
   });
   function closeLightbox() {
@@ -788,83 +603,9 @@
     if (e.target === lightbox) closeLightbox();
   });
 
-  // Magnetic buttons
-  const magneticBtns = document.querySelectorAll('.magnetic-btn');
-  magneticBtns.forEach(btn => {
-    btn.addEventListener('mousemove', (e) => {
-      const rect = btn.getBoundingClientRect();
-      const x = e.clientX - rect.left - rect.width / 2;
-      const y = e.clientY - rect.top - rect.height / 2;
-      btn.style.transform = `translate(${x * 0.3}px, ${y * 0.3}px)`;
-    });
-    btn.addEventListener('mouseleave', () => {
-      btn.style.transform = 'translate(0, 0)';
-    });
-  });
-
-  // Particle explosion on click
-  function createParticleExplosion(x, y) {
-    for (let i = 0; i < 30; i++) {
-      const particle = document.createElement('div');
-      particle.className = 'particle';
-      const angle = Math.random() * Math.PI * 2;
-      const velocity = 50 + Math.random() * 100;
-      const tx = Math.cos(angle) * velocity;
-      const ty = Math.sin(angle) * velocity;
-      particle.style.setProperty('--tx', tx + 'px');
-      particle.style.setProperty('--ty', ty + 'px');
-      particle.style.left = x + 'px';
-      particle.style.top = y + 'px';
-      particle.style.background = `hsl(${30 + Math.random() * 20}, 70%, 60%)`;
-      document.body.appendChild(particle);
-      setTimeout(() => particle.remove(), 800);
-    }
-  }
-  document.addEventListener('click', (e) => {
-    createParticleExplosion(e.clientX, e.clientY);
-  });
-
-  // GSAP Scroll Animations
-  gsap.registerPlugin(ScrollTrigger);
-  
-  gsap.utils.toArray('.product-card').forEach((card, i) => {
-    gsap.from(card, {
-      scrollTrigger: {
-        trigger: card,
-        start: 'top 85%',
-        toggleActions: 'play none none reverse'
-      },
-      y: 50,
-      opacity: 0,
-      duration: 0.6,
-      delay: i * 0.1
-    });
-  });
-
-  gsap.utils.toArray('.counter-card').forEach((card, i) => {
-    gsap.from(card, {
-      scrollTrigger: {
-        trigger: card,
-        start: 'top 85%',
-        toggleActions: 'play none none reverse'
-      },
-      scale: 0.8,
-      opacity: 0,
-      duration: 0.5,
-      delay: i * 0.1
-    });
-  });
-
-  gsap.from('.origin-preview', {
-    scrollTrigger: {
-      trigger: '.origin-preview',
-      start: 'top 80%',
-      toggleActions: 'play none none reverse'
-    },
-    x: -50,
-    opacity: 0,
-    duration: 0.8
-  });
+  // Simple magnetic effect removed; keep only basic hover/ no transform dynamics (kept as static)
+  // But we keep class but no js magnetic movement to avoid any "animation".
+  // No particle effect, no counter animations, no floating.
 </script>
 </body>
 </html>
