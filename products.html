@@ -3,19 +3,16 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
-  <title>Bean to Bag | Our Coffee Products - Ethiopian Premium Roasts</title>
+  <title>Bean to Bag | Our Coffee Products</title>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
   <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700;800;900&family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
   <style>
     * { margin: 0; padding: 0; box-sizing: border-box; }
     body { font-family: 'Poppins', sans-serif; background: #0A0A0A; color: #FFFFFF; overflow-x: hidden; }
-    h1, h2, h3, .logo { font-family: 'Playfair Display', serif; }
+    h1, h2, .logo { font-family: 'Playfair Display', serif; }
 
-    .scroll-progress { position: fixed; top: 0; left: 0; width: 0%; height: 3px; background: linear-gradient(90deg, #C68B5E, #E8A87C, #FFD4A8); z-index: 1001; }
+    .scroll-progress { position: fixed; top: 0; left: 0; width: 0%; height: 3px; background: linear-gradient(90deg, #C68B5E, #E8A87C); z-index: 1001; }
     .cursor { width: 20px; height: 20px; background: #C68B5E; border-radius: 50%; position: fixed; pointer-events: none; z-index: 9999; }
-    .cursor-follower { width: 40px; height: 40px; border: 2px solid #C68B5E; border-radius: 50%; position: fixed; pointer-events: none; z-index: 9998; }
     .whatsapp-float { position: fixed; bottom: 20px; right: 20px; background: #25D366; width: 55px; height: 55px; border-radius: 50%; text-align: center; line-height: 55px; font-size: 28px; color: white; z-index: 999; animation: pulse 2s infinite; cursor: pointer; }
     @keyframes pulse { 0% { transform: scale(1); } 50% { transform: scale(1.1); } 100% { transform: scale(1); } }
 
@@ -25,7 +22,7 @@
       left: 5%;
       right: 5%;
       width: 90%;
-      background: rgba(10, 10, 10, 0.85);
+      background: rgba(10, 10, 10, 0.8);
       backdrop-filter: blur(20px);
       border-radius: 60px;
       z-index: 1000;
@@ -34,27 +31,25 @@
       justify-content: space-between;
       align-items: center;
       border: 1px solid rgba(198, 139, 94, 0.4);
-      transition: all 0.4s;
+      transition: all 0.3s;
     }
     nav.scrolled { top: 0; left: 0; right: 0; width: 100%; border-radius: 0; }
     .logo { font-size: 1.6rem; font-weight: 800; background: linear-gradient(135deg, #FFFFFF, #C68B5E, #E8A87C); -webkit-background-clip: text; background-clip: text; color: transparent; }
-    .menu-icon { display: none; font-size: 1.8rem; cursor: pointer; background: none; border: none; color: white; transition: 0.3s; }
-    .menu-icon:hover { color: #C68B5E; transform: rotate(90deg); }
+    .menu-icon { display: none; font-size: 1.8rem; cursor: pointer; background: none; border: none; color: white; }
     .nav-links { display: flex; gap: 2.5rem; list-style: none; }
     .nav-links a { text-decoration: none; color: white; font-weight: 500; transition: 0.3s; position: relative; }
     .nav-links a::before { content: ''; position: absolute; bottom: -5px; left: 0; width: 0; height: 2px; background: linear-gradient(90deg, #C68B5E, #E8A87C); transition: 0.3s; }
     .nav-links a:hover::before, .nav-links a.active::before { width: 100%; }
     .nav-links a:hover { color: #C68B5E; }
 
-    .hero-products { min-height: 50vh; background: linear-gradient(135deg, #C68B5E, #8B5E3C); display: flex; align-items: center; justify-content: center; text-align: center; position: relative; }
+    .hero-products { min-height: 50vh; background: linear-gradient(135deg, #C68B5E, #8B5E3C); display: flex; align-items: center; justify-content: center; text-align: center; position: relative; z-index: 1; }
     .hero-products h1 { font-size: 5rem; animation: fadeInUp 0.8s ease; }
     @keyframes fadeInUp { from { opacity: 0; transform: translateY(30px); } to { opacity: 1; transform: translateY(0); } }
 
-    .section { padding: 5rem 5%; position: relative; }
+    .section { padding: 4rem 5%; position: relative; z-index: 1; }
     .container { max-width: 1200px; margin: 0 auto; }
     .section-title { text-align: center; font-size: 3rem; margin-bottom: 1rem; background: linear-gradient(135deg, #FFFFFF, #C68B5E); -webkit-background-clip: text; background-clip: text; color: transparent; }
 
-    /* Product Grid Enhanced */
     .product-showcase { display: grid; grid-template-columns: repeat(2, 1fr); gap: 2rem; margin: 3rem 0; }
     .product-card-3d {
       background: rgba(255,255,255,0.05);
@@ -65,56 +60,36 @@
       border: 1px solid rgba(198,139,94,0.2);
       cursor: pointer;
     }
-    .product-card-3d:hover { transform: translateY(-10px) scale(1.02); border-color: #C68B5E; box-shadow: 0 20px 40px rgba(0,0,0,0.3); }
+    .product-card-3d:hover { transform: translateY(-10px) scale(1.02); border-color: #C68B5E; }
     .product-header { padding: 2rem; text-align: center; background: linear-gradient(135deg, rgba(198,139,94,0.2), rgba(0,0,0,0.3)); }
     .product-header i { font-size: 4rem; color: #C68B5E; }
     .product-body { padding: 2rem; }
     .roast-bar { height: 8px; background: #333; border-radius: 10px; margin: 1rem 0; overflow: hidden; }
-    .roast-fill { height: 100%; background: linear-gradient(90deg, #C68B5E, #E8A87C); border-radius: 10px; }
-    .size-buttons { display: flex; gap: 0.8rem; flex-wrap: wrap; margin: 1rem 0; }
-    .size-btn { background: rgba(198,139,94,0.2); padding: 0.5rem 1rem; border-radius: 50px; font-size: 0.8rem; transition: 0.3s; cursor: pointer; border: none; color: white; }
-    .size-btn:hover, .size-btn.active { background: #C68B5E; color: white; }
-    .price-display { font-size: 1.5rem; font-weight: bold; color: #C68B5E; margin: 1rem 0; }
-    .add-to-cart { background: linear-gradient(135deg, #C68B5E, #A06B42); width: 100%; padding: 0.8rem; border: none; border-radius: 50px; color: white; font-weight: 600; cursor: pointer; transition: 0.3s; }
-    .add-to-cart:hover { transform: scale(1.02); box-shadow: 0 4px 15px rgba(198,139,94,0.4); }
+    .roast-fill { height: 100%; width: 70%; background: linear-gradient(90deg, #C68B5E, #E8A87C); border-radius: 10px; }
+    .sizes { display: flex; gap: 0.8rem; flex-wrap: wrap; margin: 1rem 0; }
+    .size-btn { background: rgba(198,139,94,0.2); padding: 0.3rem 1rem; border-radius: 50px; font-size: 0.8rem; transition: 0.3s; cursor: pointer; }
+    .size-btn:hover { background: #C68B5E; color: white; }
 
-    /* Cart Sidebar */
-    .cart-sidebar {
-      position: fixed;
-      top: 0;
-      right: -400px;
-      width: 380px;
-      height: 100vh;
-      background: #0A0A0A;
-      border-left: 2px solid #C68B5E;
-      z-index: 1002;
-      transition: 0.3s;
-      padding: 2rem;
-      overflow-y: auto;
-    }
-    .cart-sidebar.open { right: 0; }
-    .cart-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 2rem; }
-    .cart-close { background: none; border: none; color: white; font-size: 1.5rem; cursor: pointer; }
-    .cart-item { display: flex; justify-content: space-between; padding: 1rem 0; border-bottom: 1px solid rgba(198,139,94,0.2); }
-    .cart-total { margin: 1rem 0; font-size: 1.2rem; font-weight: bold; }
-    .cart-checkout { background: #25D366; width: 100%; padding: 1rem; border: none; border-radius: 50px; color: white; font-weight: 600; cursor: pointer; }
+    .gallery-3d { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1rem; margin: 3rem 0; }
+    .gallery-item { position: relative; overflow: hidden; border-radius: 15px; height: 250px; cursor: pointer; }
+    .gallery-item img { width: 100%; height: 100%; object-fit: cover; transition: 0.5s; }
+    .gallery-item:hover img { transform: scale(1.1); }
+    .gallery-overlay { position: absolute; bottom: 0; left: 0; right: 0; background: linear-gradient(transparent, rgba(0,0,0,0.8)); padding: 1rem; text-align: center; transform: translateY(100%); transition: 0.3s; }
+    .gallery-item:hover .gallery-overlay { transform: translateY(0); }
 
-    .cart-icon { position: fixed; bottom: 20px; left: 20px; background: #C68B5E; width: 55px; height: 55px; border-radius: 50%; text-align: center; line-height: 55px; font-size: 24px; color: white; z-index: 999; cursor: pointer; box-shadow: 0 4px 15px rgba(198,139,94,0.3); }
-    .cart-count { position: absolute; top: -5px; right: -5px; background: #25D366; color: white; border-radius: 50%; width: 22px; height: 22px; font-size: 12px; line-height: 22px; }
-
-    footer { background: #0A0A0A; border-top: 1px solid rgba(198,139,94,0.3); padding: 3rem 5%; }
+    footer { background: #0A0A0A; border-top: 1px solid rgba(198,139,94,0.3); padding: 3rem 5%; position: relative; z-index: 1; }
     .footer-content { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 2rem; max-width: 1200px; margin: 0 auto; }
     .social-icons a { color: white; font-size: 1.5rem; margin-right: 1rem; transition: 0.3s; display: inline-block; }
     .social-icons a:hover { color: #C68B5E; transform: translateY(-3px); }
 
     @media (max-width: 768px) {
       .menu-icon { display: block; }
-      .nav-links { display: none; position: absolute; top: 70px; left: 0; width: 100%; background: rgba(10,10,10,0.98); flex-direction: column; padding: 1.5rem; text-align: center; gap: 1rem; border-radius: 0 0 20px 20px; }
+      .nav-links { display: none; position: absolute; top: 70px; left: 0; width: 100%; background: rgba(10,10,10,0.95); flex-direction: column; padding: 1.5rem; text-align: center; gap: 1rem; border-radius: 0 0 20px 20px; }
       .nav-links.active { display: flex; }
       .hero-products h1 { font-size: 2.5rem; }
       .section-title { font-size: 2rem; }
       .product-showcase { grid-template-columns: 1fr; }
-      .cart-sidebar { width: 100%; right: -100%; }
+      .gallery-3d { grid-template-columns: repeat(2, 1fr); }
     }
   </style>
 </head>
@@ -122,9 +97,7 @@
 
 <div class="scroll-progress" id="scrollProgress"></div>
 <div class="cursor"></div>
-<div class="cursor-follower"></div>
-<div class="whatsapp-float" onclick="window.open('https://wa.me/251911223344?text=Hello%20Bean%20to%20Bag!%20I%27d%20like%20to%20order%20coffee!', '_blank')"><i class="fab fa-whatsapp"></i></div>
-<div class="cart-icon" onclick="toggleCart()"><i class="fas fa-shopping-cart"></i><span class="cart-count" id="cartCount">0</span></div>
+<div class="whatsapp-float" onclick="window.open('https://wa.me/251911223344?text=Hello%20Bean%20to%20Bag!', '_blank')"><i class="fab fa-whatsapp"></i></div>
 
 <nav id="nav">
   <div class="logo">Bean <span style="color:#C68B5E;">to Bag</span></div>
@@ -145,7 +118,23 @@
 <section class="section">
   <div class="container">
     <h2 class="section-title">Explore Our Range</h2>
-    <div class="product-showcase" id="productsContainer"></div>
+    <div class="product-showcase">
+      <div class="product-card-3d"><div class="product-header"><i class="fas fa-mug-hot"></i><h2 style="color:#E67E22;">Caskara</h2></div><div class="product-body"><p>Dried coffee cherry infusion. Naturally sweet with fruity & floral notes.</p><div class="roast-bar"><div class="roast-fill" style="width: 40%;"></div></div><p><strong>Taste:</strong> Fruity • Sweet • Floral</p><div class="sizes"><span class="size-btn">250g</span><span class="size-btn">500g</span><span class="size-btn">1kg</span></div></div></div>
+      <div class="product-card-3d"><div class="product-header"><i class="fas fa-mortar-pestle"></i><h2 style="color:#8B5E3C;">Qalid's Choice</h2></div><div class="product-body"><p>House blend ground coffee. Balanced with chocolate notes.</p><div class="roast-bar"><div class="roast-fill" style="width: 70%;"></div></div><p><strong>Taste:</strong> Balanced • Smooth • Chocolate</p><div class="sizes"><span class="size-btn">250g</span><span class="size-btn">500g</span><span class="size-btn">1kg</span></div></div></div>
+      <div class="product-card-3d"><div class="product-header"><i class="fas fa-seedling"></i><h2 style="color:#1F1D1B;">Chemina</h2></div><div class="product-body"><p>Whole bean espresso roast. Bold body with cocoa notes.</p><div class="roast-bar"><div class="roast-fill" style="width: 70%;"></div></div><p><strong>Taste:</strong> Bold • Cocoa • Smooth</p><div class="sizes"><span class="size-btn">250g</span><span class="size-btn">500g</span><span class="size-btn">1kg</span></div></div></div>
+      <div class="product-card-3d"><div class="product-header"><i class="fas fa-leaf"></i><h2 style="color:#4F6D4A;">Origin Green</h2></div><div class="product-body"><p>Raw green coffee beans for home roasters and cafés.</p><div class="roast-bar"><div class="roast-fill" style="width: 10%; background: #4F6D4A;"></div></div><div class="sizes"><span class="size-btn">500g</span><span class="size-btn">1kg</span><span class="size-btn">5kg</span></div></div></div>
+    </div>
+  </div>
+</section>
+
+<section class="section" style="background: linear-gradient(135deg, #1A0F0A, #2C1810);">
+  <div class="container">
+    <h2 class="section-title">Packaging Gallery</h2>
+    <div class="gallery-3d">
+      <div class="gallery-item"><img src="packaging.jpg" onerror="this.src='https://placehold.co/400x300?text=Packaging'"><div class="gallery-overlay"><p>Signature Coffee Bag</p></div></div>
+      <div class="gallery-item"><img src="packaging2.jpg" onerror="this.src='https://placehold.co/400x300?text=Packaging+2'"><div class="gallery-overlay"><p>Premium Roast Collection</p></div></div>
+      <div class="gallery-item"><img src="packaging3.jpg" onerror="this.src='https://placehold.co/400x300?text=Packaging+3'"><div class="gallery-overlay"><p>Specialty Series</p></div></div>
+    </div>
   </div>
 </section>
 
@@ -153,142 +142,13 @@
   <div class="footer-content">
     <div><h2>Bean <span style="color:#C68B5E;">to Bag</span></h2><p>Premium Ethiopian Coffee<br>Roasted in Addis Ababa</p></div>
     <div><h4>Quick Links</h4><a href="index.html" style="color:#B8A99A; text-decoration:none;">Home</a><br><a href="about.html" style="color:#B8A99A; text-decoration:none;">About</a><br><a href="products.html" style="color:#B8A99A; text-decoration:none;">Products</a><br><a href="origin.html" style="color:#B8A99A; text-decoration:none;">Origin</a><br><a href="contact.html" style="color:#B8A99A; text-decoration:none;">Contact</a></div>
-    <div><h4>Follow Us</h4><div class="social-icons"><a href="#"><i class="fab fa-instagram"></i></a><a href="#"><i class="fab fa-facebook"></i></a><a href="#"><i class="fab fa-telegram"></i></a><a href="#"><i class="fab fa-tiktok"></i></a></div><p><i class="fas fa-envelope"></i> hello@beantobag.com</p><p><i class="fab fa-whatsapp"></i> +251 911 223344</p></div>
+    <div><h4>Follow Us</h4><div class="social-icons"><a href="#"><i class="fab fa-instagram"></i></a><a href="#"><i class="fab fa-facebook"></i></a><a href="#"><i class="fab fa-telegram"></i></a></div><p><i class="fas fa-envelope"></i> hello@beantobag.com</p><p><i class="fab fa-whatsapp"></i> +251 911 223344</p></div>
   </div>
-  <div style="text-align: center; margin-top: 2rem;"><p>&copy; 2025 Bean to Bag Coffee. All rights reserved. ☕ Ethiopia</p></div>
+  <div style="text-align: center; margin-top: 2rem;"><p>&copy; 2025 Bean to Bag Coffee. All rights reserved.</p></div>
 </footer>
 
-<!-- Cart Sidebar -->
-<div class="cart-sidebar" id="cartSidebar">
-  <div class="cart-header"><h3><i class="fas fa-shopping-cart"></i> Your Cart</h3><button class="cart-close" onclick="toggleCart()">✕</button></div>
-  <div id="cartItems"></div>
-  <div class="cart-total" id="cartTotal">Total: 0 ETB</div>
-  <button class="cart-checkout" onclick="checkout()"><i class="fab fa-whatsapp"></i> Order via WhatsApp</button>
-</div>
-
 <script>
-  // Product Data
-  const products = [
-    { id: 1, name: "Caskara", desc: "Dried coffee cherry infusion. Naturally sweet with fruity & floral notes.", icon: "fa-mug-hot", roast: 40, prices: {250: 250, 500: 450, 1000: 800} },
-    { id: 2, name: "Qalid's Choice", desc: "House blend ground coffee. Balanced with chocolate notes.", icon: "fa-mortar-pestle", roast: 70, prices: {250: 180, 500: 320, 1000: 580} },
-    { id: 3, name: "Chemina", desc: "Whole bean espresso roast. Bold body with cocoa notes.", icon: "fa-seedling", roast: 70, prices: {250: 220, 500: 400, 1000: 720} },
-    { id: 4, name: "Origin Green", desc: "Raw green coffee beans for home roasters and cafés.", icon: "fa-leaf", roast: 10, prices: {500: 300, 1000: 550, 5000: 2500} }
-  ];
-  
-  let cart = [];
-  let selectedSizes = {1: 250, 2: 250, 3: 250, 4: 500};
-  
-  function renderProducts() {
-    const container = document.getElementById('productsContainer');
-    container.innerHTML = products.map(p => `
-      <div class="product-card-3d">
-        <div class="product-header"><i class="fas ${p.icon}"></i><h2 style="color:#E67E22;">${p.name}</h2></div>
-        <div class="product-body">
-          <p>${p.desc}</p>
-          <div class="roast-bar"><div class="roast-fill" style="width: ${p.roast}%;"></div></div>
-          <p><strong>Taste:</strong> ${p.roast > 60 ? 'Bold • Chocolate • Smooth' : p.roast > 30 ? 'Balanced • Smooth • Chocolate' : 'Fruity • Sweet • Floral'}</p>
-          <div class="size-buttons" id="sizes-${p.id}"></div>
-          <div class="price-display" id="price-${p.id}">${p.prices[selectedSizes[p.id]]} ETB</div>
-          <button class="add-to-cart" onclick="addToCart(${p.id})"><i class="fas fa-cart-plus"></i> Add to Cart</button>
-        </div>
-      </div>
-    `).join('');
-    
-    // Render size buttons for each product
-    products.forEach(p => {
-      const sizeContainer = document.getElementById(`sizes-${p.id}`);
-      if (sizeContainer) {
-        Object.keys(p.prices).forEach(size => {
-          const btn = document.createElement('button');
-          btn.className = `size-btn ${selectedSizes[p.id] == size ? 'active' : ''}`;
-          btn.textContent = size + 'g';
-          btn.onclick = () => updateSize(p.id, parseInt(size));
-          sizeContainer.appendChild(btn);
-        });
-      }
-    });
-  }
-  
-  function updateSize(productId, size) {
-    selectedSizes[productId] = size;
-    const product = products.find(p => p.id === productId);
-    document.getElementById(`price-${productId}`).textContent = product.prices[size] + ' ETB';
-    
-    // Update active class on size buttons
-    const container = document.getElementById(`sizes-${productId}`);
-    const btns = container.querySelectorAll('.size-btn');
-    btns.forEach(btn => {
-      const btnSize = parseInt(btn.textContent);
-      btn.classList.toggle('active', btnSize === size);
-    });
-  }
-  
-  function addToCart(productId) {
-    const product = products.find(p => p.id === productId);
-    const size = selectedSizes[productId];
-    const price = product.prices[size];
-    const existing = cart.find(item => item.id === productId && item.size === size);
-    
-    if (existing) {
-      existing.quantity++;
-    } else {
-      cart.push({ ...product, size, price, quantity: 1 });
-    }
-    
-    updateCart();
-    toggleCart();
-  }
-  
-  function updateCart() {
-    const cartItemsDiv = document.getElementById('cartItems');
-    const cartCount = document.getElementById('cartCount');
-    const cartTotalDiv = document.getElementById('cartTotal');
-    
-    let total = 0;
-    let itemCount = 0;
-    
-    cartItemsDiv.innerHTML = cart.map((item, idx) => {
-      total += item.price * item.quantity;
-      itemCount += item.quantity;
-      return `
-        <div class="cart-item">
-          <div><strong>${item.name}</strong><br>${item.size}g x ${item.quantity}</div>
-          <div>${item.price * item.quantity} ETB<br>
-          <button onclick="removeFromCart(${idx})" style="background:none; border:none; color:#C68B5E; cursor:pointer;">Remove</button></div>
-        </div>
-      `;
-    }).join('');
-    
-    cartCount.textContent = itemCount;
-    cartTotalDiv.innerHTML = `Total: ${total} ETB`;
-  }
-  
-  function removeFromCart(index) {
-    cart.splice(index, 1);
-    updateCart();
-  }
-  
-  function toggleCart() {
-    document.getElementById('cartSidebar').classList.toggle('open');
-  }
-  
-  function checkout() {
-    if (cart.length === 0) {
-      alert('Your cart is empty!');
-      return;
-    }
-    let message = "Hello Bean to Bag! I'd like to order:\n";
-    cart.forEach(item => {
-      message += `\n• ${item.name} - ${item.size}g x ${item.quantity} = ${item.price * item.quantity} ETB`;
-    });
-    const total = cart.reduce((sum, item) => sum + (item.price * item.quantity), 0);
-    message += `\n\nTotal: ${total} ETB`;
-    message += `\n\nName: \nPhone: \nAddress: `;
-    window.open(`https://wa.me/251911223344?text=${encodeURIComponent(message)}`, '_blank');
-  }
-  
   function toggleMenu() { document.getElementById('navLinks').classList.toggle('active'); }
-  
   document.querySelectorAll('.nav-links a').forEach(link => {
     link.addEventListener('click', () => document.getElementById('navLinks').classList.remove('active'));
   });
@@ -303,22 +163,9 @@
   });
   
   const cursor = document.querySelector('.cursor');
-  const follower = document.querySelector('.cursor-follower');
   document.addEventListener('mousemove', (e) => {
     cursor.style.transform = `translate(${e.clientX - 10}px, ${e.clientY - 10}px)`;
-    follower.style.transform = `translate(${e.clientX - 20}px, ${e.clientY - 20}px)`;
   });
-  
-  gsap.registerPlugin(ScrollTrigger);
-  gsap.from('.product-card-3d', {
-    scrollTrigger: { trigger: '.product-showcase', start: 'top 80%' },
-    duration: 0.8,
-    y: 50,
-    opacity: 0,
-    stagger: 0.2
-  });
-  
-  renderProducts();
 </script>
 </body>
 </html>
