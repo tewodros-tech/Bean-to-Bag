@@ -50,6 +50,7 @@
     .container { max-width: 1200px; margin: 0 auto; }
     .section-title { text-align: center; font-size: 3rem; margin-bottom: 1rem; background: linear-gradient(135deg, #FFFFFF, #C68B5E); -webkit-background-clip: text; background-clip: text; color: transparent; }
 
+    /* 3D Product Showcase */
     .product-showcase { display: grid; grid-template-columns: repeat(2, 1fr); gap: 2rem; margin: 3rem 0; }
     .product-card-3d {
       background: rgba(255,255,255,0.05);
@@ -66,10 +67,13 @@
     .product-body { padding: 2rem; }
     .roast-bar { height: 8px; background: #333; border-radius: 10px; margin: 1rem 0; overflow: hidden; }
     .roast-fill { height: 100%; width: 70%; background: linear-gradient(90deg, #C68B5E, #E8A87C); border-radius: 10px; }
+    .price-slider { margin: 1rem 0; }
+    .price-range { width: 100%; height: 4px; background: #333; border-radius: 5px; }
     .sizes { display: flex; gap: 0.8rem; flex-wrap: wrap; margin: 1rem 0; }
     .size-btn { background: rgba(198,139,94,0.2); padding: 0.3rem 1rem; border-radius: 50px; font-size: 0.8rem; transition: 0.3s; cursor: pointer; }
     .size-btn:hover { background: #C68B5E; color: white; }
 
+    /* Interactive Gallery */
     .gallery-3d { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1rem; margin: 3rem 0; }
     .gallery-item { position: relative; overflow: hidden; border-radius: 15px; height: 250px; cursor: pointer; }
     .gallery-item img { width: 100%; height: 100%; object-fit: cover; transition: 0.5s; }
@@ -84,7 +88,7 @@
 
     @media (max-width: 768px) {
       .menu-icon { display: block; }
-      .nav-links { display: none; position: absolute; top: 70px; left: 0; width: 100%; background: rgba(10,10,10,0.95); flex-direction: column; padding: 1.5rem; text-align: center; gap: 1rem; border-radius: 0 0 20px 20px; }
+      .nav-links { display: none; position: absolute; top: 70px; left: 0; width: 100%; background: rgba(10,10,10,0.95); flex-direction: column; padding: 1.5rem; text-align: center; gap: 1rem; }
       .nav-links.active { display: flex; }
       .hero-products h1 { font-size: 2.5rem; }
       .section-title { font-size: 2rem; }
