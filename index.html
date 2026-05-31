@@ -3,29 +3,28 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
-  <title>Bean to Bag | Premium Ethiopian Coffee</title>
+  <title>Bean to Bag | Premium Ethiopian Coffee - Home</title>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
   <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700;800;900&family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
-  
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
   <style>
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-    }
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body { font-family: 'Poppins', sans-serif; background: #0A0A0A; color: #FFFFFF; overflow-x: hidden; }
+    h1, h2, h3, .logo { font-family: 'Playfair Display', serif; }
 
-    body {
-      font-family: 'Poppins', sans-serif;
-      background: #0A0A0A;
-      color: #FFFFFF;
-      overflow-x: hidden;
-    }
+    /* Scroll Progress */
+    .scroll-progress { position: fixed; top: 0; left: 0; width: 0%; height: 3px; background: linear-gradient(90deg, #C68B5E, #E8A87C, #FFD4A8); z-index: 1001; box-shadow: 0 0 10px #C68B5E; }
+    
+    /* Custom Cursor */
+    .cursor { width: 20px; height: 20px; background: #C68B5E; border-radius: 50%; position: fixed; pointer-events: none; z-index: 9999; box-shadow: 0 0 15px #C68B5E; transition: transform 0.1s; }
+    .cursor-follower { width: 40px; height: 40px; border: 2px solid #C68B5E; border-radius: 50%; position: fixed; pointer-events: none; z-index: 9998; transition: transform 0.2s; }
+    
+    /* WhatsApp Float */
+    .whatsapp-float { position: fixed; bottom: 20px; right: 20px; background: #25D366; width: 55px; height: 55px; border-radius: 50%; text-align: center; line-height: 55px; font-size: 28px; color: white; z-index: 999; animation: pulse 2s infinite; cursor: pointer; box-shadow: 0 4px 15px rgba(37,211,102,0.3); }
+    @keyframes pulse { 0% { transform: scale(1); box-shadow: 0 0 0 0 rgba(37,211,102,0.7); } 50% { transform: scale(1.05); box-shadow: 0 0 0 15px rgba(37,211,102,0); } 100% { transform: scale(1); box-shadow: 0 0 0 0 rgba(37,211,102,0); } }
 
-    h1, h2, h3, .logo {
-      font-family: 'Playfair Display', serif;
-    }
-
-    /* Navigation */
+    /* Navigation - Premium Glassmorphism */
     nav {
       position: fixed;
       top: 20px;
@@ -41,173 +40,71 @@
       justify-content: space-between;
       align-items: center;
       border: 1px solid rgba(198, 139, 94, 0.4);
-      transition: all 0.3s ease;
+      transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+      box-shadow: 0 4px 20px rgba(0,0,0,0.2);
     }
-    nav.scrolled {
-      top: 0;
-      left: 0;
-      right: 0;
-      width: 100%;
-      border-radius: 0;
-      background: rgba(10, 10, 10, 0.96);
-    }
-    .logo {
-      font-size: 1.6rem;
-      font-weight: 800;
-      background: linear-gradient(135deg, #FFFFFF, #C68B5E, #E8A87C);
-      -webkit-background-clip: text;
-      background-clip: text;
-      color: transparent;
-    }
-    .menu-icon { display: none; font-size: 1.8rem; cursor: pointer; background: none; border: none; color: white; }
+    nav.scrolled { top: 0; left: 0; right: 0; width: 100%; border-radius: 0; background: rgba(10, 10, 10, 0.98); padding: 0.6rem 5%; }
+    .logo { font-size: 1.6rem; font-weight: 800; background: linear-gradient(135deg, #FFFFFF, #C68B5E, #E8A87C); -webkit-background-clip: text; background-clip: text; color: transparent; letter-spacing: 1px; }
+    .menu-icon { display: none; font-size: 1.8rem; cursor: pointer; background: none; border: none; color: white; transition: 0.3s; }
+    .menu-icon:hover { color: #C68B5E; transform: rotate(90deg); }
     .nav-links { display: flex; gap: 2.5rem; list-style: none; }
-    .nav-links a {
-      text-decoration: none;
-      color: white;
-      font-weight: 500;
-      transition: 0.3s;
-      position: relative;
-    }
-    .nav-links a::before {
-      content: '';
-      position: absolute;
-      bottom: -5px;
-      left: 0;
-      width: 0;
-      height: 2px;
-      background: linear-gradient(90deg, #C68B5E, #E8A87C);
-      transition: 0.3s;
-    }
+    .nav-links a { text-decoration: none; color: white; font-weight: 500; transition: 0.3s; position: relative; font-size: 1rem; letter-spacing: 0.5px; }
+    .nav-links a::before { content: ''; position: absolute; bottom: -5px; left: 0; width: 0; height: 2px; background: linear-gradient(90deg, #C68B5E, #E8A87C); transition: 0.3s; }
     .nav-links a:hover::before, .nav-links a.active::before { width: 100%; }
     .nav-links a:hover { color: #C68B5E; }
 
-    /* Hero Section */
+    /* Hero Section - Video Background */
     .hero {
       min-height: 100vh;
-      position: relative;
       display: flex;
       align-items: center;
-      justify-content: space-between;
-      padding: 0 10%;
-      background: linear-gradient(135deg, rgba(0,0,0,0.75), rgba(44,24,16,0.85)), url('coffee1.JPG');
-      background-size: cover;
-      background-position: center;
-      background-attachment: fixed;
-      gap: 2rem;
+      justify-content: center;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+    }
+    .hero-video {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      z-index: 0;
+    }
+    .hero-overlay {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(135deg, rgba(0,0,0,0.7), rgba(44,24,16,0.8));
+      z-index: 1;
+    }
+    .hero-content {
+      position: relative;
+      z-index: 2;
+      padding: 0 1.5rem;
+    }
+    .hero h1 {
+      font-size: 5rem;
+      margin-bottom: 1rem;
+      animation: fadeInUp 0.8s ease;
+      text-shadow: 0 4px 20px rgba(0,0,0,0.3);
+    }
+    .hero p {
+      font-size: 1.2rem;
+      max-width: 600px;
+      margin: 0 auto 2rem;
+      animation: fadeInUp 0.8s 0.2s backwards;
+    }
+    .hero-buttons {
+      display: flex;
+      gap: 1rem;
+      justify-content: center;
       flex-wrap: wrap;
     }
-    .hero-left {
-      flex: 1;
-      min-width: 280px;
-      z-index: 2;
-    }
-    .hero-left h1 { font-size: 4rem; font-weight: 800; line-height: 1.1; margin-bottom: 1rem; }
-    @media (max-width: 900px) { .hero-left h1 { font-size: 2.8rem; } }
-    .hero-gradient-text { background: linear-gradient(135deg, #C68B5E, #E8A87C); -webkit-background-clip: text; background-clip: text; color: transparent; }
-    .hero-left p { font-size: 1.1rem; margin-bottom: 2rem; opacity: 0.9; line-height: 1.6; }
-    
-    /* SMALL CUP ANIMATION - Elegant & Compact */
-    .hero-right {
-      flex: 0.4;
-      min-width: 160px;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      position: relative;
-      z-index: 5;
-    }
-    .small-cup-wrapper {
-      position: relative;
-      width: 140px;
-      height: 140px;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      filter: drop-shadow(0 10px 15px rgba(0,0,0,0.4));
-      transition: transform 0.3s ease;
-    }
-    .small-cup-wrapper:hover {
-      transform: translateY(-5px);
-    }
-    .coffee-cup-small {
-      width: 95px;
-      height: 85px;
-      background: linear-gradient(145deg, #2C1A10, #4A2E1E);
-      border-radius: 0 0 28px 28px;
-      position: relative;
-      z-index: 2;
-      box-shadow: 0 8px 18px rgba(0,0,0,0.5), inset 0 1px 2px rgba(255,255,255,0.2);
-    }
-    .coffee-cup-small:before {
-      content: "";
-      position: absolute;
-      top: -10px;
-      left: 12px;
-      width: 70px;
-      height: 18px;
-      background: #3E2618;
-      border-radius: 50%;
-      box-shadow: inset 0 2px 4px rgba(0,0,0,0.4);
-    }
-    .coffee-cup-small:after {
-      content: "☕";
-      position: absolute;
-      top: 18px;
-      left: 50%;
-      transform: translateX(-50%);
-      font-size: 42px;
-      opacity: 0.9;
-      filter: drop-shadow(2px 3px 4px black);
-    }
-    .cup-handle-small {
-      position: absolute;
-      right: -18px;
-      top: 18px;
-      width: 22px;
-      height: 42px;
-      border: 4px solid #B87C4F;
-      border-left: none;
-      border-radius: 0 28px 28px 0;
-      background: transparent;
-    }
-    /* Gentle Steam for small cup */
-    .steam-small {
-      position: absolute;
-      bottom: 45px;
-      left: 50%;
-      transform: translateX(-50%);
-      width: 70px;
-      height: 70px;
-      pointer-events: none;
-      z-index: 10;
-    }
-    .steam-small span {
-      position: absolute;
-      bottom: 0;
-      left: 50%;
-      width: 6px;
-      height: 28px;
-      background: rgba(255,240,210,0.5);
-      border-radius: 50%;
-      filter: blur(5px);
-      animation: smallSteamRise 2.2s infinite ease-out;
-      opacity: 0;
-    }
-    .steam-small span:nth-child(1) { left: 35%; animation-delay: 0s; width: 8px; height: 32px; }
-    .steam-small span:nth-child(2) { left: 50%; animation-delay: 0.6s; width: 7px; height: 28px; }
-    .steam-small span:nth-child(3) { left: 65%; animation-delay: 1.1s; width: 9px; height: 35px; }
-    .steam-small span:nth-child(4) { left: 42%; animation-delay: 0.3s; width: 6px; height: 26px; }
-    .steam-small span:nth-child(5) { left: 58%; animation-delay: 1.5s; width: 7px; height: 30px; }
-
-    @keyframes smallSteamRise {
-      0% { transform: translateY(0) scale(1); opacity: 0.5; }
-      100% { transform: translateY(-55px) scale(1.6); opacity: 0; }
-    }
-
-    .btn-group { display: flex; gap: 1rem; flex-wrap: wrap; }
-    .btn-primary {
-      background: linear-gradient(135deg, #C68B5E, #A06B42);
-      color: white;
+    .btn-primary, .btn-secondary {
       padding: 1rem 2.5rem;
       border-radius: 50px;
       text-decoration: none;
@@ -215,27 +112,31 @@
       transition: 0.3s;
       display: inline-block;
     }
-    .btn-primary:hover { transform: translateY(-3px); box-shadow: 0 10px 30px rgba(198,139,94,0.5); }
-    .btn-outline {
-      background: transparent;
-      border: 2px solid #C68B5E;
-      color: #C68B5E;
-      padding: 1rem 2.5rem;
-      border-radius: 50px;
-      text-decoration: none;
-      font-weight: 600;
-      transition: 0.3s;
+    .btn-primary {
+      background: linear-gradient(135deg, #C68B5E, #A06B42);
+      color: white;
+      box-shadow: 0 4px 15px rgba(198,139,94,0.3);
     }
-    .btn-outline:hover { background: #C68B5E; color: white; transform: translateY(-3px); }
+    .btn-primary:hover { transform: translateY(-3px); box-shadow: 0 8px 25px rgba(198,139,94,0.4); }
+    .btn-secondary {
+      border: 2px solid #C68B5E;
+      color: white;
+    }
+    .btn-secondary:hover { background: #C68B5E; transform: translateY(-3px); }
+    
+    @keyframes fadeInUp {
+      from { opacity: 0; transform: translateY(30px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
 
-    /* Sections */
-    .section { padding: 5rem 5%; position: relative; z-index: 2; background: #0A0A0A; }
-    .container { max-width: 1400px; margin: 0 auto; }
+    /* Section Styles */
+    .section { padding: 5rem 5%; position: relative; }
+    .container { max-width: 1200px; margin: 0 auto; }
     .section-title { text-align: center; font-size: 3rem; margin-bottom: 1rem; background: linear-gradient(135deg, #FFFFFF, #C68B5E); -webkit-background-clip: text; background-clip: text; color: transparent; }
-    .section-subtitle { text-align: center; color: #C68B5E; letter-spacing: 3px; margin-bottom: 3rem; }
+    .section-subtitle { text-align: center; color: #B8A99A; margin-bottom: 3rem; }
 
-    /* Products Grid */
-    .products-grid {
+    /* Featured Products */
+    .featured-grid {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
       gap: 2rem;
@@ -245,437 +146,264 @@
       background: rgba(255,255,255,0.05);
       backdrop-filter: blur(10px);
       border-radius: 20px;
-      padding: 2rem;
-      text-align: center;
+      overflow: hidden;
       transition: 0.4s;
       border: 1px solid rgba(198,139,94,0.2);
       cursor: pointer;
     }
-    .product-card:hover {
-      transform: translateY(-10px);
-      border-color: #C68B5E;
-      box-shadow: 0 20px 40px rgba(198,139,94,0.2);
+    .product-card:hover { transform: translateY(-10px) scale(1.02); border-color: #C68B5E; box-shadow: 0 20px 40px rgba(0,0,0,0.3); }
+    .product-icon { padding: 2rem; text-align: center; background: linear-gradient(135deg, rgba(198,139,94,0.2), rgba(0,0,0,0.3)); }
+    .product-icon i { font-size: 3.5rem; color: #C68B5E; }
+    .product-info { padding: 1.5rem; text-align: center; }
+
+    /* Stats Counter */
+    .stats-container {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 2rem;
+      margin: 3rem 0;
     }
-    .product-img {
-      width: 120px;
-      height: 120px;
-      object-fit: cover;
-      border-radius: 50%;
-      margin-bottom: 1rem;
-      border: 2px solid #C68B5E;
-      padding: 5px;
-      background: #1A1A1A;
+    .stat-item {
+      text-align: center;
+      padding: 2rem;
+      background: rgba(255,255,255,0.05);
+      border-radius: 20px;
       transition: 0.3s;
     }
-    .product-card:hover .product-img { transform: scale(1.05); border-color: #E8A87C; }
-    .product-card h3 { font-size: 1.5rem; margin-bottom: 0.5rem; }
-    .taste-tags { display: flex; gap: 0.5rem; justify-content: center; flex-wrap: wrap; margin-top: 1rem; }
-    .taste-tag { background: rgba(198,139,94,0.2); padding: 0.3rem 0.8rem; border-radius: 50px; font-size: 0.7rem; }
+    .stat-item:hover { transform: translateY(-5px); background: rgba(198,139,94,0.1); }
+    .stat-number { font-size: 3rem; font-weight: 800; color: #C68B5E; }
+    .stat-label { font-size: 0.9rem; color: #B8A99A; }
 
-    /* Gallery Section - AUTO ROTATING CAROUSEL INFINITE + DRAG */
-    .gallery-section {
-      padding: 5rem 5%;
-      background: linear-gradient(135deg, #1A0F0A, #2C1810);
-      position: relative;
-      z-index: 2;
-      overflow: hidden;
-    }
-    .gallery-track-container {
-      position: relative;
-      width: 100%;
-      overflow: hidden;
-      border-radius: 32px;
-      padding: 1rem 0;
-    }
-    .gallery-scroll-auto {
-      display: flex;
+    /* Testimonials */
+    .testimonial-slider {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
       gap: 2rem;
-      width: max-content;
-      will-change: transform;
-      cursor: grab;
+      margin: 3rem 0;
     }
-    .gallery-scroll-auto:active { cursor: grabbing; }
-    .gallery-item {
-      position: relative;
-      flex-shrink: 0;
-      width: 320px;
-      height: 380px;
-      border-radius: 28px;
-      overflow: hidden;
-      background: #1A1A1A;
-      box-shadow: 0 20px 30px -12px rgba(0,0,0,0.6);
-      transition: transform 0.3s ease, box-shadow 0.3s;
-      cursor: pointer;
-    }
-    @media (min-width: 1024px) {
-      .gallery-item { width: 360px; height: 420px; }
-    }
-    .gallery-item img {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-      transition: transform 0.5s cubic-bezier(0.2, 0.9, 0.4, 1.1);
-    }
-    .gallery-item:hover {
-      transform: scale(1.02) translateY(-6px);
-      box-shadow: 0 30px 40px rgba(198,139,94,0.35);
-      z-index: 10;
-    }
-    .gallery-item:hover img { transform: scale(1.05); }
-    .gallery-overlay {
-      position: absolute;
-      bottom: 0;
-      left: 0;
-      right: 0;
-      background: linear-gradient(transparent, rgba(0,0,0,0.85));
-      padding: 1.2rem;
+    .testimonial-card {
+      background: rgba(255,255,255,0.05);
+      border-radius: 20px;
+      padding: 2rem;
       text-align: center;
-      transform: translateY(100%);
-      transition: 0.35s ease;
+      transition: 0.3s;
+    }
+    .testimonial-card:hover { transform: translateY(-5px); background: rgba(198,139,94,0.1); }
+    .testimonial-card i { font-size: 2rem; color: #C68B5E; margin-bottom: 1rem; }
+    .stars { color: #FFD700; margin: 1rem 0; }
+
+    /* Newsletter */
+    .newsletter {
+      background: linear-gradient(135deg, rgba(198,139,94,0.2), rgba(0,0,0,0.5));
+      border-radius: 30px;
+      padding: 3rem;
+      text-align: center;
+      margin-top: 3rem;
+    }
+    .newsletter-form {
+      display: flex;
+      max-width: 500px;
+      margin: 2rem auto 0;
+      gap: 1rem;
+    }
+    .newsletter-form input {
+      flex: 1;
+      padding: 1rem;
+      background: rgba(255,255,255,0.1);
+      border: 1px solid rgba(198,139,94,0.3);
+      border-radius: 50px;
+      color: white;
+    }
+    .newsletter-form button {
+      padding: 1rem 2rem;
+      background: linear-gradient(135deg, #C68B5E, #A06B42);
+      border: none;
+      border-radius: 50px;
+      color: white;
+      cursor: pointer;
       font-weight: 600;
     }
-    .gallery-item:hover .gallery-overlay { transform: translateY(0); }
-    .drag-hint {
-      text-align: center;
-      margin-top: 1.5rem;
-      color: #E8A87C;
-      font-size: 0.9rem;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      gap: 0.8rem;
-      background: rgba(0,0,0,0.4);
-      width: fit-content;
-      margin-left: auto;
-      margin-right: auto;
-      padding: 0.5rem 1.5rem;
-      border-radius: 40px;
-      backdrop-filter: blur(4px);
-    }
-    /* Lightbox */
-    .lightbox {
-      display: none;
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      background: rgba(0,0,0,0.96);
-      z-index: 2000;
-      justify-content: center;
-      align-items: center;
-      cursor: pointer;
-    }
-    .lightbox.active { display: flex; }
-    .lightbox img { max-width: 90%; max-height: 90%; border-radius: 20px; box-shadow: 0 0 40px rgba(198,139,94,0.5); }
-    .lightbox-close { position: absolute; top: 25px; right: 40px; font-size: 45px; color: #C68B5E; cursor: pointer; transition: 0.2s; }
-    .lightbox-close:hover { color: white; }
 
-    /* Counter */
-    .counter-section { padding: 4rem 5%; background: #0A0A0A; }
-    .counter-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 2rem; text-align: center; }
-    .counter-card { padding: 1.5rem; background: rgba(255,255,255,0.05); border-radius: 20px; transition: 0.3s; }
-    .counter-card:hover { transform: translateY(-5px); background: rgba(198,139,94,0.1); }
-    .counter-card i { font-size: 2.5rem; color: #C68B5E; margin-bottom: 0.5rem; }
-    .counter-num { font-size: 3rem; font-weight: 800; font-family: 'Playfair Display', serif; }
-
-    /* Origin Preview */
-    .origin-preview {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 2rem;
-      align-items: center;
-      background: linear-gradient(135deg, #1A0F0A, #2C1810);
-      border-radius: 30px;
-      padding: 2rem;
-      margin-top: 2rem;
-    }
-    .origin-preview-text { flex: 1; }
-    .origin-preview-text h3 { font-size: 2rem; margin-bottom: 1rem; }
-    .origin-preview-img { flex: 1; border-radius: 20px; overflow: hidden; }
-    .origin-preview-img img { width: 100%; height: 250px; object-fit: cover; transition: 0.3s; }
-    .origin-preview-img:hover img { transform: scale(1.02); }
-
-    .whatsapp-float {
-      position: fixed;
-      bottom: 20px;
-      right: 20px;
-      background: #25D366;
-      width: 55px;
-      height: 55px;
-      border-radius: 50%;
-      text-align: center;
-      line-height: 55px;
-      font-size: 28px;
-      color: white;
-      z-index: 999;
-      cursor: pointer;
-      transition: 0.2s;
-      box-shadow: 0 4px 12px rgba(0,0,0,0.3);
-    }
-    .whatsapp-float:hover { transform: scale(1.07); }
-
-    footer {
-      background: #0A0A0A;
-      border-top: 1px solid rgba(198,139,94,0.3);
-      padding: 3rem 5%;
-    }
+    /* Footer */
+    footer { background: #0A0A0A; border-top: 1px solid rgba(198,139,94,0.3); padding: 3rem 5%; }
     .footer-content { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 2rem; max-width: 1200px; margin: 0 auto; }
     .social-icons a { color: white; font-size: 1.5rem; margin-right: 1rem; transition: 0.3s; display: inline-block; }
     .social-icons a:hover { color: #C68B5E; transform: translateY(-3px); }
+
     @media (max-width: 768px) {
       .menu-icon { display: block; }
-      .nav-links { display: none; position: absolute; top: 70px; left: 0; width: 100%; background: rgba(10,10,10,0.98); flex-direction: column; padding: 1.5rem; text-align: center; gap: 1rem; backdrop-filter: blur(12px); }
+      .nav-links { display: none; position: absolute; top: 70px; left: 0; width: 100%; background: rgba(10,10,10,0.98); backdrop-filter: blur(20px); flex-direction: column; padding: 1.5rem; text-align: center; gap: 1rem; border-radius: 0 0 20px 20px; }
       .nav-links.active { display: flex; }
-      .hero { flex-direction: column; text-align: center; padding: 8rem 5% 4rem; background-attachment: scroll; }
-      .hero-left { text-align: center; }
-      .hero-right { margin-top: 0.5rem; }
-      .counter-grid { grid-template-columns: repeat(2, 1fr); }
-      .gallery-item { width: 260px; height: 320px; }
+      .hero h1 { font-size: 2.5rem; }
+      .section-title { font-size: 2rem; }
+      .stats-container { grid-template-columns: repeat(2, 1fr); }
+      .newsletter-form { flex-direction: column; }
     }
   </style>
 </head>
 <body>
 
-<div class="whatsapp-float" onclick="window.open('https://wa.me/251911223344?text=Hello%20Bean%20to%20Bag!', '_blank')">
-  <i class="fab fa-whatsapp"></i>
-</div>
+<div class="scroll-progress" id="scrollProgress"></div>
+<div class="cursor"></div>
+<div class="cursor-follower"></div>
+<div class="whatsapp-float" onclick="window.open('https://wa.me/251911223344?text=Hello%20Bean%20to%20Bag!%20I%20love%20your%20coffee!', '_blank')"><i class="fab fa-whatsapp"></i></div>
 
 <nav id="nav">
   <div class="logo">Bean <span style="color:#C68B5E;">to Bag</span></div>
   <button class="menu-icon" onclick="toggleMenu()"><i class="fas fa-bars"></i></button>
   <ul class="nav-links" id="navLinks">
-    <li><a href="#" class="active">Home</a></li>
-    <li><a href="#">About</a></li>
-    <li><a href="#">Products</a></li>
-    <li><a href="#">Origin</a></li>
-    <li><a href="#">Contact</a></li>
+    <li><a href="index.html" class="active">Home</a></li>
+    <li><a href="about.html">About</a></li>
+    <li><a href="products.html">Products</a></li>
+    <li><a href="origin.html">Origin</a></li>
+    <li><a href="contact.html">Contact</a></li>
   </ul>
 </nav>
 
-<!-- Hero Section with SMALL Cup & Steam -->
 <section class="hero">
-  <div class="hero-left">
-    <h1>From Bean to <span class="hero-gradient-text">Bag</span><br>Premium Ethiopian Coffee</h1>
-    <p>Carefully sourced Ethiopian Arabica coffee roasted to a balanced medium-dark profile for a rich and smooth cup.</p>
-    <div class="btn-group">
-      <a href="#" class="btn-primary">Explore Collection</a>
-      <a href="#" class="btn-outline">Shop Coffee</a>
-    </div>
-  </div>
-  <div class="hero-right">
-    <div class="small-cup-wrapper">
-      <div class="coffee-cup-small">
-        <div class="cup-handle-small"></div>
-      </div>
-      <div class="steam-small">
-        <span></span><span></span><span></span><span></span><span></span>
-      </div>
+  <video class="hero-video" autoplay muted loop playsinline poster="https://placehold.co/1920x1080">
+    <source src="https://assets.mixkit.co/videos/preview/mixkit-pouring-hot-coffee-into-a-glass-28756-large.mp4" type="video/mp4">
+  </video>
+  <div class="hero-overlay"></div>
+  <div class="hero-content">
+    <h1>Bean to Bag<br><span style="color:#C68B5E;">Ethiopian Coffee</span></h1>
+    <p>100% Premium Arabica • Single Origin • Freshly Roasted</p>
+    <div class="hero-buttons">
+      <a href="products.html" class="btn-primary">Shop Now</a>
+      <a href="origin.html" class="btn-secondary">Our Story</a>
     </div>
   </div>
 </section>
 
-<!-- Products Section -->
 <section class="section">
   <div class="container">
     <h2 class="section-title">Our Signature Collection</h2>
-    <p class="section-subtitle">Crafted with passion • Roasted to perfection</p>
-    <div class="products-grid">
-      <div class="product-card"><img src="caskara.jfif" alt="Caskara" class="product-img" onerror="this.src='https://placehold.co/200x200?text=Caskara'"><h3>Caskara</h3><p>Dried Coffee Cherry</p><div class="taste-tags"><span class="taste-tag">Fruity</span><span class="taste-tag">Floral</span></div></div>
-      <div class="product-card"><img src="caskara1.jfif" alt="Qalid's Choice" class="product-img" onerror="this.src='https://placehold.co/200x200?text=Qalids+Choice'"><h3>Qalid's Choice</h3><p>House Blend</p><div class="taste-tags"><span class="taste-tag">Chocolate</span><span class="taste-tag">Balanced</span></div></div>
-      <div class="product-card"><img src="chemia.jfif" alt="Chemina" class="product-img" onerror="this.src='https://placehold.co/200x200?text=Chemina'"><h3>Chemina</h3><p>Whole Bean Coffee</p><div class="taste-tags"><span class="taste-tag">Bold</span><span class="taste-tag">Cocoa</span></div></div>
-      <div class="product-card"><img src="green.jfif" alt="Origin Green" class="product-img" onerror="this.src='https://placehold.co/200x200?text=Origin+Green'"><h3>Origin Green</h3><p>Raw Green Coffee</p><div class="taste-tags"><span class="taste-tag">Natural</span><span class="taste-tag">Traceable</span></div></div>
+    <p class="section-subtitle">Discover the taste of Ethiopian highlands</p>
+    <div class="featured-grid">
+      <div class="product-card" onclick="location.href='products.html'">
+        <div class="product-icon"><i class="fas fa-mug-hot"></i></div>
+        <div class="product-info"><h3>Caskara</h3><p>Dried coffee cherry infusion • Fruity & Floral</p><span style="color:#C68B5E;">From 250 ETB</span></div>
+      </div>
+      <div class="product-card" onclick="location.href='products.html'">
+        <div class="product-icon"><i class="fas fa-mortar-pestle"></i></div>
+        <div class="product-info"><h3>Qalid's Choice</h3><p>House blend • Chocolate & Smooth</p><span style="color:#C68B5E;">From 180 ETB</span></div>
+      </div>
+      <div class="product-card" onclick="location.href='products.html'">
+        <div class="product-icon"><i class="fas fa-seedling"></i></div>
+        <div class="product-info"><h3>Chemina</h3><p>Espresso roast • Bold & Cocoa</p><span style="color:#C68B5E;">From 220 ETB</span></div>
+      </div>
     </div>
   </div>
 </section>
 
-<!-- AUTO-ROTATING INFINITE GALLERY - Removed coffee-farm & fresh-roast, pure elegance -->
-<section class="gallery-section">
+<section class="section" style="background: linear-gradient(135deg, #1A0F0A, #2C1810);">
   <div class="container">
-    <h2 class="section-title">Visual Journey</h2>
-    <p class="section-subtitle">From bean to bag — cinematic infinite gallery</p>
-    <div class="gallery-track-container" id="galleryTrackWrapper">
-      <div class="gallery-scroll-auto" id="infiniteGallery"></div>
-    </div>
-    <div class="drag-hint">
-      <i class="fas fa-hand-pointer"></i> Drag to control • Auto-rotating • Infinite smooth motion <i class="fas fa-infinity"></i>
+    <div class="stats-container">
+      <div class="stat-item"><div class="stat-number" id="stat1">0</div><div class="stat-label">Happy Customers</div></div>
+      <div class="stat-item"><div class="stat-number" id="stat2">0</div><div class="stat-label">KG Exported</div></div>
+      <div class="stat-item"><div class="stat-number" id="stat3">0</div><div class="stat-label">Partner Farms</div></div>
+      <div class="stat-item"><div class="stat-number" id="stat4">0</div><div class="stat-label">Coffee Varieties</div></div>
     </div>
   </div>
 </section>
 
-<!-- Lightbox -->
-<div class="lightbox" id="lightbox"><span class="lightbox-close" onclick="closeLightbox()">&times;</span><img id="lightbox-img" src=""></div>
+<section class="section">
+  <div class="container">
+    <h2 class="section-title">What Coffee Lovers Say</h2>
+    <div class="testimonial-slider">
+      <div class="testimonial-card"><i class="fas fa-quote-left"></i><p>"The most authentic Ethiopian coffee I've ever had outside of Ethiopia!"</p><div class="stars">★★★★★</div><strong>- Sarah M.</strong></div>
+      <div class="testimonial-card"><i class="fas fa-quote-left"></i><p>"Chemina espresso is absolutely perfect. Rich crema, amazing aroma."</p><div class="stars">★★★★★</div><strong>- David K.</strong></div>
+      <div class="testimonial-card"><i class="fas fa-quote-left"></i><p>"Finally found my go-to coffee roaster. Qalid's Choice daily driver!"</p><div class="stars">★★★★★</div><strong>- Meron T.</strong></div>
+    </div>
+  </div>
+</section>
 
-<!-- Counter Section -->
-<section class="counter-section"><div class="container"><h2 class="section-title">Our Journey in Numbers</h2><div class="counter-grid"><div class="counter-card"><i class="fas fa-mountain"></i><div class="counter-num" data-target="2200">0</div><p>Meters Altitude</p></div><div class="counter-card"><i class="fas fa-leaf"></i><div class="counter-num" data-target="100">0</div><p>Arabica %</p></div><div class="counter-card"><i class="fas fa-chart-line"></i><div class="counter-num" data-target="200">0</div><p>Monthly kg</p></div><div class="counter-card"><i class="fas fa-users"></i><div class="counter-num" data-target="50">0</div><p>Partner Farmers</p></div></div></div></section>
+<section class="section">
+  <div class="container">
+    <div class="newsletter">
+      <h3>Join the Bean to Bag Family</h3>
+      <p>Get 10% off your first order + exclusive coffee brewing tips</p>
+      <form class="newsletter-form" onsubmit="event.preventDefault(); alert('Thanks for subscribing! Check your email for 10% off.');">
+        <input type="email" placeholder="Your email address" required>
+        <button type="submit">Subscribe</button>
+      </form>
+    </div>
+  </div>
+</section>
 
-<!-- Origin Preview -->
-<section class="section" style="background: linear-gradient(135deg, #1A0F0A, #2C1810);"><div class="container"><div class="origin-preview"><div class="origin-preview-text"><h3>Ethiopian Highlands</h3><p>100% Coffea Arabica cultivated by small-scale farmers at 1,900–2,200 meters above sea level. The cool highland climate creates refined, complex flavors.</p><a href="#" class="btn-primary" style="display: inline-block; margin-top: 1rem;">Discover Origin →</a></div><div class="origin-preview-img"><img src="coffee1.JPG" onerror="this.src='https://placehold.co/500x300?text=Ethiopian+Highlands'"></div></div></div></section>
-
-<footer><div class="footer-content"><div><h2>Bean <span style="color:#C68B5E;">to Bag</span></h2><p>Premium Ethiopian Coffee<br>Roasted in Addis Ababa</p></div><div><h4>Quick Links</h4><a href="#">Home</a><br><a href="#">About</a><br><a href="#">Products</a><br><a href="#">Origin</a></div><div><h4>Follow Us</h4><div class="social-icons"><a href="#"><i class="fab fa-instagram"></i></a><a href="#"><i class="fab fa-facebook"></i></a><a href="#"><i class="fab fa-telegram"></i></a></div><p><i class="fas fa-envelope"></i> hello@beantobag.com</p><p><i class="fab fa-whatsapp"></i> +251 911 223344</p></div></div><div style="text-align: center; margin-top: 2rem;"><p>&copy; 2025 Bean to Bag Coffee. All rights reserved.</p></div></footer>
+<footer>
+  <div class="footer-content">
+    <div><h2>Bean <span style="color:#C68B5E;">to Bag</span></h2><p>Premium Ethiopian Coffee<br>Roasted in Addis Ababa</p></div>
+    <div><h4>Quick Links</h4><a href="index.html" style="color:#B8A99A; text-decoration:none;">Home</a><br><a href="about.html" style="color:#B8A99A; text-decoration:none;">About</a><br><a href="products.html" style="color:#B8A99A; text-decoration:none;">Products</a><br><a href="origin.html" style="color:#B8A99A; text-decoration:none;">Origin</a><br><a href="contact.html" style="color:#B8A99A; text-decoration:none;">Contact</a></div>
+    <div><h4>Follow Us</h4><div class="social-icons"><a href="#"><i class="fab fa-instagram"></i></a><a href="#"><i class="fab fa-facebook"></i></a><a href="#"><i class="fab fa-telegram"></i></a><a href="#"><i class="fab fa-tiktok"></i></a></div><p><i class="fas fa-envelope"></i> hello@beantobag.com</p><p><i class="fab fa-whatsapp"></i> +251 911 223344</p></div>
+  </div>
+  <div style="text-align: center; margin-top: 2rem;"><p>&copy; 2025 Bean to Bag Coffee. All rights reserved. ☕ Ethiopia</p></div>
+</footer>
 
 <script>
   function toggleMenu() { document.getElementById('navLinks').classList.toggle('active'); }
-  document.querySelectorAll('.nav-links a').forEach(link => link.addEventListener('click', () => document.getElementById('navLinks')?.classList.remove('active')));
-  window.addEventListener('scroll', () => { const nav=document.getElementById('nav'); if(window.scrollY>100) nav.classList.add('scrolled'); else nav.classList.remove('scrolled'); });
+  document.querySelectorAll('.nav-links a').forEach(link => {
+    link.addEventListener('click', () => document.getElementById('navLinks').classList.remove('active'));
+  });
   
-  // ---------- EXTREME AUTO-ROTATING INFINITE GALLERY (removed coffee-farm & fresh-roast) ----------
-  const galleryImageSet = [
-    { src: "packaging.jpg", title: "Signature Coffee Bag" },
-    { src: "packaging2.jpg", title: "Premium Roast Collection" },
-    { src: "packaging3.jpg", title: "Specialty Series" },
-    { src: "steaming-cup-coffee-saucer-with-coffee-beans-scattered-around.jpg", title: "The Perfect Brew" },
-    { src: "dark-coffee-beans-bowl-brown-table.jpg", title: "Premium Beans" },
-    { src: "coffee-beans-top-view-background.jpg", title: "Fresh Coffee Beans" },
-    { src: "coffee1.JPG", title: "Ethiopian Highlands" },
-    { src: "19.JPG", title: "Coffee Experience" }
-  ];
-  // Triple for seamless infinite loop
-  let infiniteItems = [...galleryImageSet, ...galleryImageSet, ...galleryImageSet];
-  const galleryContainer = document.getElementById('infiniteGallery');
-  function buildInfiniteGallery() {
-    galleryContainer.innerHTML = '';
-    infiniteItems.forEach((img, idx) => {
-      const item = document.createElement('div');
-      item.className = 'gallery-item';
-      item.setAttribute('data-image', img.src);
-      const imgEl = document.createElement('img');
-      imgEl.src = img.src;
-      imgEl.alt = img.title;
-      imgEl.onerror = function() { this.src = 'https://placehold.co/600x700?text=Ethiopian+Coffee'; };
-      const overlay = document.createElement('div');
-      overlay.className = 'gallery-overlay';
-      overlay.innerHTML = `<p><i class="fas fa-search-plus"></i> ${img.title}</p>`;
-      item.appendChild(imgEl);
-      item.appendChild(overlay);
-      galleryContainer.appendChild(item);
-    });
-  }
-  buildInfiniteGallery();
-
-  let isDraggingGallery = false;
-  let startDragX = 0;
-  let currentTranslate = 0;
-  let prevTranslate = 0;
-  let autoAnimId = null;
-  let autoSpeedVal = -0.65; // smooth leftward motion
-  let momentumVal = 0;
-  let lastDragClientX = 0;
+  window.addEventListener('scroll', () => {
+    const winScroll = document.body.scrollTop || document.documentElement.scrollTop;
+    const height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+    document.getElementById('scrollProgress').style.width = (winScroll / height) * 100 + '%';
+    const nav = document.getElementById('nav');
+    if (window.scrollY > 100) nav.classList.add('scrolled');
+    else nav.classList.remove('scrolled');
+  });
   
-  const scrollTrack = galleryContainer;
-  const getSetWidth = () => {
-    const items = document.querySelectorAll('.gallery-item');
-    if(items.length === 0) return 3000;
-    const firstW = items[0]?.offsetWidth || 360;
-    const gap = 32;
-    return (galleryImageSet.length * (firstW + gap));
-  };
+  // Custom cursor
+  const cursor = document.querySelector('.cursor');
+  const follower = document.querySelector('.cursor-follower');
+  document.addEventListener('mousemove', (e) => {
+    cursor.style.transform = `translate(${e.clientX - 10}px, ${e.clientY - 10}px)`;
+    follower.style.transform = `translate(${e.clientX - 20}px, ${e.clientY - 20}px)`;
+  });
   
-  function manageInfiniteLoop(translateVal) {
-    const setW = getSetWidth();
-    const totalBound = setW * 3;
-    if(translateVal <= -setW * 2) translateVal += setW;
-    else if(translateVal > 0) translateVal -= setW;
-    return translateVal;
-  }
+  // GSAP Animations
+  gsap.registerPlugin(ScrollTrigger);
   
-  function animateGallery() {
-    if(!isDraggingGallery) {
-      let speed = autoSpeedVal;
-      if(Math.abs(momentumVal) > 0.05) {
-        speed += momentumVal;
-        momentumVal *= 0.96;
-      } else momentumVal = 0;
-      currentTranslate += speed;
-      currentTranslate = manageInfiniteLoop(currentTranslate);
-      prevTranslate = currentTranslate;
-      scrollTrack.style.transform = `translateX(${currentTranslate}px)`;
-    }
-    autoAnimId = requestAnimationFrame(animateGallery);
-  }
+  gsap.from('.product-card', {
+    scrollTrigger: { trigger: '.featured-grid', start: 'top 80%' },
+    duration: 0.8,
+    y: 50,
+    opacity: 0,
+    stagger: 0.2
+  });
   
-  function onDragStartGal(e) {
-    isDraggingGallery = true;
-    const clientX = e.type === 'mousedown' ? e.clientX : e.touches[0].clientX;
-    startDragX = clientX;
-    prevTranslate = currentTranslate;
-    momentumVal = 0;
-    scrollTrack.style.transition = 'none';
-  }
-  
-  function onDragMoveGal(e) {
-    if(!isDraggingGallery) return;
-    e.preventDefault();
-    const clientX = e.type === 'mousemove' ? e.clientX : e.touches[0].clientX;
-    const delta = clientX - startDragX;
-    let newTranslate = prevTranslate + delta;
-    newTranslate = manageInfiniteLoop(newTranslate);
-    currentTranslate = newTranslate;
-    scrollTrack.style.transform = `translateX(${currentTranslate}px)`;
-    lastDragClientX = clientX;
-    momentumVal = delta * 0.18;
-  }
-  
-  function onDragEndGal() {
-    isDraggingGallery = false;
-    scrollTrack.style.transition = '';
-    if(Math.abs(momentumVal) < 0.1) momentumVal = 0;
-  }
-  
-  scrollTrack.addEventListener('mousedown', onDragStartGal);
-  window.addEventListener('mousemove', onDragMoveGal);
-  window.addEventListener('mouseup', onDragEndGal);
-  scrollTrack.addEventListener('touchstart', onDragStartGal, {passive: false});
-  window.addEventListener('touchmove', onDragMoveGal, {passive: false});
-  window.addEventListener('touchend', onDragEndGal);
-  scrollTrack.style.cursor = 'grab';
-  scrollTrack.addEventListener('dragstart', (e) => e.preventDefault());
-  animateGallery();
-  
-  // Lightbox handlers for dynamic items
-  const lightbox = document.getElementById('lightbox');
-  const lightboxImg = document.getElementById('lightbox-img');
-  function attachLightboxEvents() {
-    document.querySelectorAll('.gallery-item').forEach(item => {
-      item.removeEventListener('click', lightboxHandler);
-      item.addEventListener('click', lightboxHandler);
-    });
-  }
-  function lightboxHandler(e) {
-    e.stopPropagation();
-    const img = this.querySelector('img');
-    if(img && img.src) { lightboxImg.src = img.src; lightbox.classList.add('active'); }
-  }
-  window.closeLightbox = () => lightbox.classList.remove('active');
-  lightbox.addEventListener('click', (e) => { if(e.target === lightbox) closeLightbox(); });
-  attachLightboxEvents();
-  
-  // Re-attach lightbox after any potential DOM changes, but we built once
-  const observerGallery = new MutationObserver(() => attachLightboxEvents());
-  observerGallery.observe(galleryContainer, { childList: true, subtree: false });
-  
-  window.addEventListener('resize', () => {
-    setTimeout(() => {
-      let curr = currentTranslate;
-      curr = manageInfiniteLoop(curr);
-      currentTranslate = curr;
-      prevTranslate = curr;
-      scrollTrack.style.transform = `translateX(${currentTranslate}px)`;
-    }, 100);
+  gsap.from('.testimonial-card', {
+    scrollTrigger: { trigger: '.testimonial-slider', start: 'top 80%' },
+    duration: 0.8,
+    x: -50,
+    opacity: 0,
+    stagger: 0.2
   });
   
   // Counter animation
-  const counters = document.querySelectorAll('.counter-num');
-  let counted = false;
-  const animateCounters = () => {
-    if(counted) return;
-    counted = true;
-    counters.forEach(c => { const target = +c.getAttribute('data-target'); let current = 0; const step = Math.ceil(target/55); const interval = setInterval(() => { current += step; if(current >= target) { c.innerText = target; clearInterval(interval); } else c.innerText = current; }, 20); });
-  };
-  const counterObserver = new IntersectionObserver((entries) => { entries.forEach(entry => { if(entry.isIntersecting && !counted) animateCounters(); }); }, {threshold:0.4});
-  const counterSection = document.querySelector('.counter-section'); if(counterSection) counterObserver.observe(counterSection);
+  function animateCounter(element, start, end, duration) {
+    let startTime = null;
+    function update(currentTime) {
+      if (!startTime) startTime = currentTime;
+      const progress = Math.min((currentTime - startTime) / duration, 1);
+      element.innerText = Math.floor(progress * (end - start) + start);
+      if (progress < 1) requestAnimationFrame(update);
+    }
+    requestAnimationFrame(update);
+  }
   
-  document.querySelectorAll('.product-card').forEach(card => card.addEventListener('click', () => console.log('product detail')));
+  ScrollTrigger.create({
+    trigger: '.stats-container',
+    start: 'top 80%',
+    onEnter: () => {
+      animateCounter(document.getElementById('stat1'), 0, 5280, 2000);
+      animateCounter(document.getElementById('stat2'), 0, 15000, 2000);
+      animateCounter(document.getElementById('stat3'), 0, 120, 2000);
+      animateCounter(document.getElementById('stat4'), 0, 8, 2000);
+    }
+  });
 </script>
 </body>
 </html>
