@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
-  <title>Bean to Bag | Our Coffee Collection - Premium Ethiopian Coffee</title>
+  <title>Bean to Bag | Artisan Coffee Collection - 3D Animation</title>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
   <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700;800;900&family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
   <style>
@@ -118,7 +118,7 @@
       color: #C68B5E;
     }
 
-    /* Hero Section with Parallax Effect */
+    /* Hero Section */
     .products-hero {
       min-height: 70vh;
       display: flex;
@@ -126,7 +126,7 @@
       justify-content: center;
       text-align: center;
       padding: 10rem 5% 6rem;
-      background: linear-gradient(135deg, rgba(0,0,0,0.7), rgba(44,24,16,0.8)), url('dark-coffee-beans-bowl-brown-table.jpg');
+      background: linear-gradient(135deg, rgba(0,0,0,0.75), rgba(44,24,16,0.85)), url('https://images.pexels.com/photos/312418/pexels-photo-312418.jpeg?auto=compress&cs=tinysrgb&w=1600');
       background-size: cover;
       background-position: center;
       background-attachment: fixed;
@@ -140,19 +140,19 @@
       left: 0;
       right: 0;
       bottom: 0;
-      background: radial-gradient(circle at 50% 50%, rgba(198,139,94,0.15) 0%, transparent 70%);
+      background: radial-gradient(circle at 50% 50%, rgba(198,139,94,0.2) 0%, transparent 70%);
       pointer-events: none;
     }
     .hero-badge {
       display: inline-block;
-      background: rgba(198,139,94,0.2);
+      background: rgba(198,139,94,0.25);
       backdrop-filter: blur(10px);
       padding: 0.5rem 1.5rem;
       border-radius: 50px;
       font-size: 0.8rem;
       letter-spacing: 2px;
       margin-bottom: 1.5rem;
-      border: 1px solid rgba(198,139,94,0.4);
+      border: 1px solid rgba(198,139,94,0.5);
       animation: fadeInUp 0.8s ease;
     }
     .products-hero h1 {
@@ -171,47 +171,87 @@
       animation: fadeInUp 0.8s ease 0.2s both;
     }
     @keyframes fadeInUp {
-      from {
-        opacity: 0;
-        transform: translateY(30px);
-      }
-      to {
-        opacity: 1;
-        transform: translateY(0);
-      }
+      from { opacity: 0; transform: translateY(30px); }
+      to { opacity: 1; transform: translateY(0); }
     }
 
-    /* Video Story Section - Clean Video Only (No Description) */
-    .video-story {
-      padding: 4rem 5%;
-      background: #050505;
+    /* ========== CINEMATIC COFFEE ANIMATION SECTION ========== */
+    .coffee-cinematic {
+      padding: 0;
+      background: #030303;
       position: relative;
       z-index: 2;
-      border-top: 1px solid rgba(198,139,94,0.2);
-      border-bottom: 1px solid rgba(198,139,94,0.2);
-    }
-    .video-container {
-      max-width: 1200px;
-      margin: 0 auto;
-    }
-    .video-wrapper {
-      border-radius: 32px;
       overflow: hidden;
-      box-shadow: 0 25px 45px rgba(0,0,0,0.6), 0 0 0 1px rgba(198,139,94,0.3);
-      transition: transform 0.4s ease, box-shadow 0.4s ease;
-      background: #000;
     }
-    .video-wrapper:hover {
-      transform: scale(1.01);
-      box-shadow: 0 30px 55px rgba(198,139,94,0.25), 0 0 0 2px #C68B5E;
-    }
-    .video-wrapper video {
+    
+    .canvas-container {
+      position: relative;
       width: 100%;
-      height: auto;
-      display: block;
-      border-radius: 32px;
+      height: 70vh;
+      min-height: 500px;
+      background: radial-gradient(circle at center, #1a0f0a 0%, #030303 100%);
+      cursor: pointer;
+      overflow: hidden;
     }
-
+    
+    #coffeeCanvas {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      display: block;
+    }
+    
+    .animation-overlay {
+      position: absolute;
+      bottom: 2rem;
+      left: 0;
+      right: 0;
+      text-align: center;
+      z-index: 10;
+      pointer-events: none;
+    }
+    
+    .animation-badge {
+      display: inline-block;
+      background: rgba(0,0,0,0.6);
+      backdrop-filter: blur(8px);
+      padding: 0.6rem 1.5rem;
+      border-radius: 60px;
+      font-size: 0.8rem;
+      letter-spacing: 2px;
+      border: 1px solid rgba(198,139,94,0.5);
+      color: #C68B5E;
+      font-weight: 500;
+    }
+    
+    .animation-badge i {
+      margin-right: 8px;
+      animation: pulse 1.5s infinite;
+    }
+    
+    @keyframes pulse {
+      0%, 100% { opacity: 0.6; }
+      50% { opacity: 1; text-shadow: 0 0 5px #C68B5E; }
+    }
+    
+    .coffee-quote {
+      position: absolute;
+      top: 2rem;
+      right: 2rem;
+      background: rgba(0,0,0,0.5);
+      backdrop-filter: blur(5px);
+      padding: 0.5rem 1rem;
+      border-radius: 30px;
+      font-size: 0.7rem;
+      font-style: italic;
+      color: #E8A87C;
+      z-index: 10;
+      pointer-events: none;
+      font-weight: 300;
+    }
+    
     /* Section Styles */
     .section {
       padding: 5rem 5%;
@@ -252,7 +292,7 @@
       font-size: 0.9rem;
     }
 
-    /* Stunning Product Cards with 3D Hover Effect */
+    /* Product Cards */
     .products-grid {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
@@ -348,47 +388,11 @@
       border-radius: 50px;
       font-size: 0.7rem;
       font-weight: 500;
-      letter-spacing: 0.5px;
       transition: all 0.3s;
-      backdrop-filter: blur(4px);
     }
     .product-card:hover .taste-tag {
       background: rgba(198,139,94,0.3);
       transform: translateY(-2px);
-    }
-
-    /* Floating Beans Decoration */
-    .floating-beans {
-      position: fixed;
-      width: 100%;
-      height: 100%;
-      top: 0;
-      left: 0;
-      pointer-events: none;
-      overflow: hidden;
-      z-index: 0;
-    }
-    .floating-bean {
-      position: absolute;
-      font-size: 1.5rem;
-      opacity: 0.08;
-      animation: floatBean 15s linear infinite;
-    }
-    @keyframes floatBean {
-      0% {
-        transform: translateY(100vh) rotate(0deg);
-        opacity: 0;
-      }
-      10% {
-        opacity: 0.08;
-      }
-      90% {
-        opacity: 0.08;
-      }
-      100% {
-        transform: translateY(-20vh) rotate(360deg);
-        opacity: 0;
-      }
     }
 
     /* WhatsApp Float */
@@ -411,7 +415,6 @@
     }
     .whatsapp-float:hover {
       transform: scale(1.1) rotate(5deg);
-      box-shadow: 0 8px 25px rgba(37,211,102,0.4);
     }
 
     /* Footer */
@@ -441,28 +444,8 @@
       transform: translateY(-3px);
     }
 
-    /* ============================================ */
-    /* FULL MOBILE RESPONSIVE STYLES - COMPLETE */
-    /* ============================================ */
-    @media (max-width: 992px) {
-      .products-grid {
-        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-        gap: 1.8rem;
-      }
-      .product-img-wrapper {
-        width: 160px;
-        height: 160px;
-      }
-      .product-card h3 {
-        font-size: 1.6rem;
-      }
-    }
-
     @media (max-width: 768px) {
-      /* Mobile Navigation */
-      .menu-icon {
-        display: block;
-      }
+      .menu-icon { display: block; }
       .nav-links {
         display: none;
         position: absolute;
@@ -470,180 +453,22 @@
         left: 0;
         width: 100%;
         background: rgba(10, 10, 10, 0.98);
-        backdrop-filter: blur(12px);
         flex-direction: column;
         padding: 1.5rem;
         text-align: center;
         gap: 1.2rem;
-        border-radius: 0 0 20px 20px;
-        border-top: 1px solid rgba(198, 139, 94, 0.3);
       }
-      .nav-links.active {
-        display: flex;
-      }
-      .nav-links a {
-        font-size: 1.1rem;
-        padding: 0.5rem 0;
-        display: block;
-      }
-      
-      /* Mobile Hero Section */
-      .products-hero {
-        min-height: 50vh;
-        padding: 8rem 5% 4rem;
-        background-attachment: scroll;
-      }
-      .products-hero h1 {
-        font-size: 2.5rem;
-      }
-      .products-hero p {
-        font-size: 1rem;
-      }
-      .hero-badge {
-        font-size: 0.7rem;
-        padding: 0.4rem 1.2rem;
-      }
-      
-      /* Mobile Section Titles */
-      .section-title {
-        font-size: 2rem;
-      }
-      .section-subtitle {
-        font-size: 0.75rem;
-        letter-spacing: 2px;
-        margin-bottom: 2rem;
-      }
-      
-      /* Mobile Product Grid */
-      .products-grid {
-        grid-template-columns: 1fr;
-        gap: 1.5rem;
-      }
-      
-      /* Mobile Product Cards */
-      .product-card {
-        padding: 1.5rem;
-        max-width: 100%;
-        margin: 0;
-      }
-      .product-img-wrapper {
-        width: 130px;
-        height: 130px;
-        margin-bottom: 1rem;
-      }
-      .product-card h3 {
-        font-size: 1.4rem;
-      }
-      .product-card p {
-        font-size: 0.85rem;
-      }
-      .taste-tag {
-        font-size: 0.65rem;
-        padding: 0.25rem 0.7rem;
-      }
-      .product-badge {
-        font-size: 0.6rem;
-        padding: 0.2rem 0.6rem;
-        top: -3px;
-        right: -3px;
-      }
-
-      /* Video section mobile adjustments - minimal */
-      .video-story {
-        padding: 2.5rem 5%;
-      }
-      
-      /* Mobile Footer */
-      .footer-content {
-        grid-template-columns: 1fr;
-        text-align: center;
-        gap: 1.5rem;
-      }
-      .social-icons {
-        margin-bottom: 0.5rem;
-      }
-      
-      /* Mobile Floating Beans - Reduce opacity for better performance */
-      .floating-bean {
-        opacity: 0.05;
-        font-size: 1rem;
-      }
-      
-      /* Mobile WhatsApp Button */
-      .whatsapp-float {
-        width: 48px;
-        height: 48px;
-        line-height: 48px;
-        font-size: 24px;
-        bottom: 15px;
-        right: 15px;
-      }
+      .nav-links.active { display: flex; }
+      .products-hero h1 { font-size: 2.5rem; }
+      .section-title { font-size: 2rem; }
+      .products-grid { grid-template-columns: 1fr; }
+      .canvas-container { height: 50vh; min-height: 400px; }
+      .coffee-quote { top: 1rem; right: 1rem; font-size: 0.6rem; }
     }
-
-    /* Small phones (480px and below) */
+    
     @media (max-width: 480px) {
-      .products-hero h1 {
-        font-size: 2rem;
-      }
-      .section {
-        padding: 3rem 5%;
-      }
-      .product-img-wrapper {
-        width: 110px;
-        height: 110px;
-      }
-      .product-card {
-        padding: 1.2rem;
-      }
-      .product-card h3 {
-        font-size: 1.3rem;
-      }
-      .taste-tags {
-        gap: 0.4rem;
-      }
-      .taste-tag {
-        font-size: 0.6rem;
-        padding: 0.2rem 0.6rem;
-      }
-      .section-title {
-        font-size: 1.8rem;
-      }
-    }
-
-    /* Tablet landscape optimization */
-    @media (min-width: 769px) and (max-width: 1024px) {
-      .products-grid {
-        grid-template-columns: repeat(2, 1fr);
-        gap: 2rem;
-      }
-      .product-img-wrapper {
-        width: 150px;
-        height: 150px;
-      }
-      .products-hero h1 {
-        font-size: 3.5rem;
-      }
-    }
-
-    /* Touch-friendly improvements for mobile */
-    @media (hover: none) and (pointer: coarse) {
-      .product-card {
-        cursor: pointer;
-        -webkit-tap-highlight-color: rgba(198,139,94,0.2);
-      }
-      .product-card:active {
-        transform: scale(0.98);
-        border-color: #C68B5E;
-      }
-      .product-card:hover {
-        transform: none;
-      }
-      .whatsapp-float:active {
-        transform: scale(0.95);
-      }
-      .menu-icon:active {
-        color: #C68B5E;
-      }
+      .products-hero h1 { font-size: 2rem; }
+      .canvas-container { height: 45vh; min-height: 350px; }
     }
   </style>
 </head>
@@ -667,25 +492,25 @@
   </ul>
 </nav>
 
-<!-- Hero Section with Parallax Coffee Beans Background -->
 <section class="products-hero">
   <div>
-    <div class="hero-badge">
-      <i class="fas fa-seedling"></i> 100% Ethiopian Arabica
-    </div>
+    <div class="hero-badge"><i class="fas fa-seedling"></i> 100% Ethiopian Arabica</div>
     <h1>Our Coffee Collection</h1>
     <p>Discover the finest Ethiopian coffees, roasted to perfection.</p>
   </div>
 </section>
 
-<!-- ========== VIDEO SECTION - USING YOUR SPECIFIED MP4 FILE (NO DESCRIPTION TEXT) ========== -->
-<section class="video-story">
-  <div class="video-container">
-    <div class="video-wrapper">
-      <video controls autoplay loop muted playsinline>
-        <source src="8935795-uhd_2160_3840_25fps.mp4" type="video/mp4">
-        Your browser does not support the video tag.
-      </video>
+<!-- ===== CUSTOM 3D COFFEE ANIMATION - PURE CREATIVITY ===== -->
+<section class="coffee-cinematic">
+  <div class="canvas-container">
+    <canvas id="coffeeCanvas"></canvas>
+    <div class="coffee-quote">
+      <i class="fas fa-mug-hot"></i> "From the highlands with love"
+    </div>
+    <div class="animation-overlay">
+      <div class="animation-badge">
+        <i class="fas fa-play-circle"></i> LIVE COFFEE ESSENCE • 3D PARTICLE JOURNEY
+      </div>
     </div>
   </div>
 </section>
@@ -695,219 +520,307 @@
   <div class="container">
     <h2 class="section-title">Signature Roasts</h2>
     <p class="section-subtitle">Freshly roasted • ethically sourced</p>
-    
     <div class="products-grid">
-      
-      <!-- Caskara - Orange Packaging / Dried Coffee Cherry -->
       <div class="product-card" data-product="Caskara">
         <div class="product-img-wrapper">
-          <img src="caskara.jfif" class="product-img" alt="Caskara Coffee" onerror="this.src='https://placehold.co/200x200?text=Caskara'">
+          <img src="caskara.jfif" class="product-img" alt="Caskara" onerror="this.src='https://placehold.co/200x200/E8A87C/2C1810?text=Caskara'">
           <div class="product-badge">Limited</div>
         </div>
         <h3>Caskara</h3>
         <p>Dried Coffee Cherry - Fruity & Floral</p>
-        <div class="taste-tags">
-          <span class="taste-tag"><i class="fas fa-apple-alt"></i> Fruity</span>
-          <span class="taste-tag"><i class="fas fa-leaf"></i> Floral</span>
-          <span class="taste-tag"><i class="fas fa-candy-cane"></i> Sweet</span>
-        </div>
+        <div class="taste-tags"><span class="taste-tag"><i class="fas fa-apple-alt"></i> Fruity</span><span class="taste-tag"><i class="fas fa-leaf"></i> Floral</span><span class="taste-tag"><i class="fas fa-candy-cane"></i> Sweet</span></div>
       </div>
-      
-      <!-- Qalid's Choice - Brown Packaging / House Blend -->
       <div class="product-card" data-product="Qalid's Choice">
         <div class="product-img-wrapper">
-          <img src="caskara1.jfif" class="product-img" alt="Qalid's Choice Coffee" onerror="this.src='https://placehold.co/200x200?text=Qalids+Choice'">
+          <img src="caskara1.jfif" class="product-img" alt="Qalid's Choice" onerror="this.src='https://placehold.co/200x200/A67B5B/2C1810?text=Qalids+Choice'">
           <div class="product-badge">Bestseller</div>
         </div>
         <h3>Qalid's Choice</h3>
         <p>House Blend - Chocolate & Balanced</p>
-        <div class="taste-tags">
-          <span class="taste-tag"><i class="fas fa-chocolate-bar"></i> Chocolate</span>
-          <span class="taste-tag"><i class="fas fa-balance-scale"></i> Balanced</span>
-          <span class="taste-tag"><i class="fas fa-hand-peace"></i> Smooth</span>
-        </div>
+        <div class="taste-tags"><span class="taste-tag"><i class="fas fa-chocolate-bar"></i> Chocolate</span><span class="taste-tag"><i class="fas fa-balance-scale"></i> Balanced</span><span class="taste-tag"><i class="fas fa-hand-peace"></i> Smooth</span></div>
       </div>
-      
-      <!-- Chemina - Black Packaging / Whole Bean -->
       <div class="product-card" data-product="Chemina">
         <div class="product-img-wrapper">
-          <img src="chemia.jfif" class="product-img" alt="Chemina Coffee" onerror="this.src='https://placehold.co/200x200?text=Chemina'">
+          <img src="chemia.jfif" class="product-img" alt="Chemina" onerror="this.src='https://placehold.co/200x200/4A2C2A/FFFFFF?text=Chemina'">
           <div class="product-badge">Espresso Favorite</div>
         </div>
         <h3>Chemina</h3>
         <p>Whole Bean - Bold & Cocoa</p>
-        <div class="taste-tags">
-          <span class="taste-tag"><i class="fas fa-fire"></i> Bold</span>
-          <span class="taste-tag"><i class="fas fa-mug-hot"></i> Cocoa</span>
-          <span class="taste-tag"><i class="fas fa-feather-alt"></i> Smooth Finish</span>
-        </div>
+        <div class="taste-tags"><span class="taste-tag"><i class="fas fa-fire"></i> Bold</span><span class="taste-tag"><i class="fas fa-mug-hot"></i> Cocoa</span><span class="taste-tag"><i class="fas fa-feather-alt"></i> Smooth Finish</span></div>
       </div>
-      
-      <!-- Origin Green - Kraft Packaging / Raw Green Coffee -->
       <div class="product-card" data-product="Origin Green">
         <div class="product-img-wrapper">
-          <img src="green.jfif" class="product-img" alt="Origin Green Coffee" onerror="this.src='https://placehold.co/200x200?text=Origin+Green'">
+          <img src="green.jfif" class="product-img" alt="Origin Green" onerror="this.src='https://placehold.co/200x200/8B9A6E/2C1810?text=Origin+Green'">
           <div class="product-badge">Home Roasters</div>
         </div>
         <h3>Origin Green</h3>
         <p>Raw Green Coffee - Natural & Fresh</p>
-        <div class="taste-tags">
-          <span class="taste-tag"><i class="fas fa-leaf"></i> Natural</span>
-          <span class="taste-tag"><i class="fas fa-search"></i> Traceable</span>
-          <span class="taste-tag"><i class="fas fa-tint"></i> Fresh</span>
-        </div>
+        <div class="taste-tags"><span class="taste-tag"><i class="fas fa-leaf"></i> Natural</span><span class="taste-tag"><i class="fas fa-search"></i> Traceable</span><span class="taste-tag"><i class="fas fa-tint"></i> Fresh</span></div>
       </div>
-      
     </div>
   </div>
 </section>
 
-<!-- Floating Coffee Beans Decoration -->
-<div class="floating-beans">
-  <div class="floating-bean" style="left: 5%; animation-duration: 18s; animation-delay: 0s;">☕</div>
-  <div class="floating-bean" style="left: 15%; animation-duration: 22s; animation-delay: 2s;">🫘</div>
-  <div class="floating-bean" style="left: 30%; animation-duration: 15s; animation-delay: 5s;">☕</div>
-  <div class="floating-bean" style="left: 45%; animation-duration: 25s; animation-delay: 1s;">🫘</div>
-  <div class="floating-bean" style="left: 60%; animation-duration: 20s; animation-delay: 7s;">☕</div>
-  <div class="floating-bean" style="left: 75%; animation-duration: 17s; animation-delay: 3s;">🫘</div>
-  <div class="floating-bean" style="left: 85%; animation-duration: 23s; animation-delay: 4s;">☕</div>
-  <div class="floating-bean" style="left: 95%; animation-duration: 19s; animation-delay: 6s;">🫘</div>
-</div>
-
 <footer>
   <div class="footer-content">
-    <div>
-      <h2>Bean <span style="color:#C68B5E;">to Bag</span></h2>
-      <p>Premium Ethiopian Coffee<br>Roasted in Addis Ababa</p>
-    </div>
-    <div>
-      <h4>Quick Links</h4>
-      <a href="index.html">Home</a><br>
-      <a href="about.html">About</a><br>
-      <a href="products.html">Products</a><br>
-      <a href="origin.html">Origin</a><br>
-      <a href="contact.html">Contact</a>
-    </div>
-    <div>
-      <h4>Follow Us</h4>
-      <div class="social-icons">
-        <a href="#"><i class="fab fa-instagram"></i></a>
-        <a href="#"><i class="fab fa-facebook"></i></a>
-        <a href="#"><i class="fab fa-telegram"></i></a>
-      </div>
-      <p><i class="fas fa-envelope"></i> hello@beantobag.com</p>
-      <p><i class="fab fa-whatsapp"></i> +251 911 223344</p>
-    </div>
+    <div><h2>Bean <span style="color:#C68B5E;">to Bag</span></h2><p>Premium Ethiopian Coffee<br>Roasted in Addis Ababa</p></div>
+    <div><h4>Quick Links</h4><a href="index.html">Home</a><br><a href="about.html">About</a><br><a href="products.html">Products</a><br><a href="origin.html">Origin</a><br><a href="contact.html">Contact</a></div>
+    <div><h4>Follow Us</h4><div class="social-icons"><a href="#"><i class="fab fa-instagram"></i></a><a href="#"><i class="fab fa-facebook"></i></a><a href="#"><i class="fab fa-telegram"></i></a></div><p><i class="fas fa-envelope"></i> hello@beantobag.com</p><p><i class="fab fa-whatsapp"></i> +251 911 223344</p></div>
   </div>
-  <div style="text-align: center; margin-top: 2rem;">
-    <p>&copy; 2025 Bean to Bag Coffee. All rights reserved.</p>
-  </div>
+  <div style="text-align: center; margin-top: 2rem;"><p>&copy; 2025 Bean to Bag Coffee. All rights reserved.</p></div>
 </footer>
 
 <script>
-  // Mobile menu toggle
+  // Mobile menu
   function toggleMenu() {
-    const navLinks = document.getElementById('navLinks');
-    navLinks.classList.toggle('active');
+    document.getElementById('navLinks').classList.toggle('active');
   }
-  
-  // Close menu when clicking a link (mobile)
   document.querySelectorAll('.nav-links a').forEach(link => {
-    link.addEventListener('click', () => {
-      const navLinks = document.getElementById('navLinks');
-      if (navLinks.classList.contains('active')) {
-        navLinks.classList.remove('active');
-      }
-    });
+    link.addEventListener('click', () => document.getElementById('navLinks').classList.remove('active'));
   });
-  
-  // Close menu when clicking outside (mobile)
-  document.addEventListener('click', (e) => {
-    const navLinks = document.getElementById('navLinks');
-    const menuIcon = document.querySelector('.menu-icon');
-    if (navLinks && navLinks.classList.contains('active')) {
-      if (!navLinks.contains(e.target) && !menuIcon?.contains(e.target)) {
-        navLinks.classList.remove('active');
-      }
-    }
-  });
-  
-  // Navbar scroll effect
   window.addEventListener('scroll', () => {
     const nav = document.getElementById('nav');
-    if (window.scrollY > 100) {
-      nav.classList.add('scrolled');
-    } else {
-      nav.classList.remove('scrolled');
-    }
+    if (window.scrollY > 100) nav.classList.add('scrolled');
+    else nav.classList.remove('scrolled');
   });
   
-  // Product card click - WhatsApp order (mobile-friendly)
+  // Product WhatsApp click
   document.querySelectorAll('.product-card').forEach(card => {
-    card.addEventListener('click', (e) => {
-      const productName = card.querySelector('h3')?.innerText || 'coffee';
-      const productDesc = card.querySelector('p')?.innerText || '';
-      
-      const message = `Hello Bean to Bag! 👋\n\nI'm interested in ordering:\n📦 Product: ${productName}\n📝 Description: ${productDesc}\n\nCould you please share more details about pricing and availability?`;
-      
-      window.open(`https://wa.me/251911223344?text=${encodeURIComponent(message)}`, '_blank');
+    card.addEventListener('click', () => {
+      const name = card.querySelector('h3')?.innerText || 'Coffee';
+      const desc = card.querySelector('p')?.innerText || '';
+      window.open(`https://wa.me/251911223344?text=Hello! I'm interested in ${name} - ${desc}`, '_blank');
     });
   });
   
-  // Scroll reveal animation for product cards
-  const observerOptions = {
-    threshold: 0.1,
-    rootMargin: '0px 0px -50px 0px'
-  };
+  // ============================================================
+  // 3D COFFEE BEAN PARTICLE ANIMATION - FULL CREATIVE POTENTIAL
+  // ============================================================
+  const canvas = document.getElementById('coffeeCanvas');
+  const ctx = canvas.getContext('2d');
+  let width, height;
+  let particles = [];
+  let mouseX = 0, mouseY = 0;
+  let time = 0;
   
-  const revealObserver = new IntersectionObserver((entries) => {
-    entries.forEach(entry => {
-      if (entry.isIntersecting) {
-        entry.target.style.opacity = '1';
-        entry.target.style.transform = 'translateY(0)';
-        revealObserver.unobserve(entry.target);
+  function resizeCanvas() {
+    const container = canvas.parentElement;
+    width = container.clientWidth;
+    height = container.clientHeight;
+    canvas.width = width;
+    canvas.height = height;
+    initParticles();
+  }
+  
+  class CoffeeParticle {
+    constructor(x, y) {
+      this.x = x || Math.random() * width;
+      this.y = y || Math.random() * height;
+      this.size = Math.random() * 4 + 2;
+      this.baseSize = this.size;
+      this.speedX = (Math.random() - 0.5) * 0.8;
+      this.speedY = (Math.random() - 0.5) * 0.5 - 0.3;
+      this.color = `hsl(${Math.random() * 20 + 20}, 65%, ${Math.random() * 20 + 35}%)`;
+      this.rotation = Math.random() * Math.PI * 2;
+      this.rotSpeed = (Math.random() - 0.5) * 0.03;
+      this.vibe = Math.random() * Math.PI * 2;
+      this.isBean = Math.random() > 0.3;
+    }
+    
+    update() {
+      this.vibe += 0.02;
+      // Wavy organic motion
+      this.x += this.speedX + Math.sin(time * 0.5 + this.vibe) * 0.2;
+      this.y += this.speedY + Math.cos(time * 0.3 + this.vibe) * 0.15;
+      
+      // Mouse interaction - attraction/repulsion
+      const dx = mouseX - this.x;
+      const dy = mouseY - this.y;
+      const dist = Math.sqrt(dx * dx + dy * dy);
+      if (dist < 120) {
+        const angle = Math.atan2(dy, dx);
+        const force = (120 - dist) / 120 * 1.2;
+        this.x -= Math.cos(angle) * force;
+        this.y -= Math.sin(angle) * force;
       }
-    });
-  }, observerOptions);
+      
+      // Wrap around edges with soft boundary
+      if (this.x < -20) this.x = width + 20;
+      if (this.x > width + 20) this.x = -20;
+      if (this.y < -20) this.y = height + 20;
+      if (this.y > height + 20) this.y = -20;
+      
+      this.rotation += this.rotSpeed;
+      // Pulsing size based on position
+      this.size = this.baseSize + Math.sin(time * 2 + this.y * 0.02) * 0.8;
+    }
+    
+    draw() {
+      ctx.save();
+      ctx.translate(this.x, this.y);
+      ctx.rotate(this.rotation);
+      if (this.isBean) {
+        // Draw coffee bean shape
+        ctx.beginPath();
+        ctx.ellipse(0, 0, this.size, this.size * 1.4, 0, 0, Math.PI * 2);
+        ctx.fillStyle = this.color;
+        ctx.fill();
+        ctx.beginPath();
+        ctx.ellipse(0, 0, this.size * 0.6, this.size * 0.9, 0, 0, Math.PI * 2);
+        ctx.fillStyle = `rgba(0,0,0,0.2)`;
+        ctx.fill();
+        // Highlight
+        ctx.beginPath();
+        ctx.ellipse(-this.size*0.3, -this.size*0.2, this.size*0.2, this.size*0.25, 0, 0, Math.PI*2);
+        ctx.fillStyle = `rgba(255,200,150,0.4)`;
+        ctx.fill();
+      } else {
+        // Steam/Mist particles
+        ctx.beginPath();
+        ctx.arc(0, 0, this.size * 0.8, 0, Math.PI * 2);
+        ctx.fillStyle = `rgba(198, 139, 94, 0.5)`;
+        ctx.fill();
+        ctx.shadowBlur = 10;
+        ctx.shadowColor = "#C68B5E";
+      }
+      ctx.restore();
+    }
+  }
   
-  // Initially hide cards and fade them in
-  document.querySelectorAll('.product-card').forEach((card, index) => {
-    card.style.opacity = '0';
-    card.style.transform = 'translateY(30px)';
-    card.style.transition = `opacity 0.6s ease ${index * 0.1}s, transform 0.6s ease ${index * 0.1}s`;
-    revealObserver.observe(card);
+  function initParticles() {
+    particles = [];
+    const particleCount = Math.min(300, Math.floor(width * height / 4000));
+    for (let i = 0; i < particleCount; i++) {
+      particles.push(new CoffeeParticle());
+    }
+    // Add extra floating beans in center
+    for (let i = 0; i < 40; i++) {
+      particles.push(new CoffeeParticle(width/2 + (Math.random() - 0.5) * 200, height/2 + (Math.random() - 0.5) * 200));
+    }
+  }
+  
+  // Create a glowing steam effect with gradients
+  function drawSteamGlow() {
+    const gradient = ctx.createLinearGradient(0, height * 0.6, 0, height * 0.2);
+    gradient.addColorStop(0, 'rgba(198,139,94,0)');
+    gradient.addColorStop(0.5, 'rgba(198,139,94,0.08)');
+    gradient.addColorStop(1, 'rgba(232,168,124,0)');
+    ctx.fillStyle = gradient;
+    ctx.fillRect(0, 0, width, height);
+  }
+  
+  function drawRotatingBeansOrbit() {
+    // Central glowing aura
+    const centerX = width/2;
+    const centerY = height/2;
+    const rad = 80 + Math.sin(time) * 10;
+    const gradientRadial = ctx.createRadialGradient(centerX, centerY, 20, centerX, centerY, 140);
+    gradientRadial.addColorStop(0, 'rgba(198,139,94,0.15)');
+    gradientRadial.addColorStop(1, 'rgba(0,0,0,0)');
+    ctx.fillStyle = gradientRadial;
+    ctx.beginPath();
+    ctx.arc(centerX, centerY, 140, 0, Math.PI*2);
+    ctx.fill();
+    
+    // Orbiting beans
+    for (let i = 0; i < 12; i++) {
+      const angle = time * 0.8 + (i / 12) * Math.PI * 2;
+      const x = centerX + Math.cos(angle) * 150;
+      const y = centerY + Math.sin(angle * 0.9) * 100;
+      ctx.save();
+      ctx.translate(x, y);
+      ctx.rotate(angle);
+      ctx.beginPath();
+      ctx.ellipse(0, 0, 8, 12, 0, 0, Math.PI*2);
+      ctx.fillStyle = `hsl(${25 + Math.sin(time + i) * 5}, 70%, 55%)`;
+      ctx.fill();
+      ctx.beginPath();
+      ctx.ellipse(0, 0, 4, 7, 0, 0, Math.PI*2);
+      ctx.fillStyle = `rgba(0,0,0,0.3)`;
+      ctx.fill();
+      ctx.restore();
+    }
+  }
+  
+  let mouseMoveTimeout;
+  function handleMouseMove(e) {
+    const rect = canvas.getBoundingClientRect();
+    const scaleX = canvas.width / rect.width;
+    const scaleY = canvas.height / rect.height;
+    let clientX, clientY;
+    if (e.touches) {
+      clientX = e.touches[0].clientX;
+      clientY = e.touches[0].clientY;
+    } else {
+      clientX = e.clientX;
+      clientY = e.clientY;
+    }
+    let canvasX = (clientX - rect.left) * scaleX;
+    let canvasY = (clientY - rect.top) * scaleY;
+    canvasX = Math.min(width, Math.max(0, canvasX));
+    canvasY = Math.min(height, Math.max(0, canvasY));
+    mouseX = canvasX;
+    mouseY = canvasY;
+    clearTimeout(mouseMoveTimeout);
+    mouseMoveTimeout = setTimeout(() => {
+      mouseX = width/2;
+      mouseY = height/2;
+    }, 1500);
+  }
+  
+  function animate() {
+    if (!ctx) return;
+    ctx.clearRect(0, 0, width, height);
+    // Deep coffee background
+    const bgGrad = ctx.createLinearGradient(0, 0, 0, height);
+    bgGrad.addColorStop(0, '#0a0503');
+    bgGrad.addColorStop(1, '#1a0e08');
+    ctx.fillStyle = bgGrad;
+    ctx.fillRect(0, 0, width, height);
+    
+    time += 0.02;
+    drawSteamGlow();
+    
+    for (let i = 0; i < particles.length; i++) {
+      particles[i].update();
+      particles[i].draw();
+    }
+    
+    drawRotatingBeansOrbit();
+    
+    // Draw floating steam particles (extra)
+    for (let i = 0; i < 50; i++) {
+      const t = (time * 0.5 + i) % (Math.PI * 2);
+      const x = width/2 + Math.sin(t * 2) * 120 + Math.sin(time) * 20;
+      const y = height/2 - 100 + i * 5 - (time * 20) % 200;
+      if (y > 0 && y < height) {
+        ctx.beginPath();
+        ctx.arc(x, y, 3 + Math.sin(time + i)*1.5, 0, Math.PI*2);
+        ctx.fillStyle = `rgba(200, 140, 100, ${0.1 + Math.sin(time + i) * 0.05})`;
+        ctx.fill();
+      }
+    }
+    
+    requestAnimationFrame(animate);
+  }
+  
+  window.addEventListener('resize', () => {
+    resizeCanvas();
   });
+  window.addEventListener('mousemove', handleMouseMove);
+  window.addEventListener('touchmove', handleMouseMove);
+  window.addEventListener('touchstart', handleMouseMove);
   
-  // Parallax effect for hero section (disabled on mobile for performance)
+  resizeCanvas();
+  initParticles();
+  animate();
+  
+  // Parallax hero effect
   let isMobile = window.innerWidth <= 768;
   if (!isMobile) {
     window.addEventListener('scroll', () => {
       const hero = document.querySelector('.products-hero');
-      if (hero) {
-        const scrolled = window.scrollY;
-        hero.style.backgroundPositionY = `${scrolled * 0.3}px`;
-      }
-    });
-  }
-  
-  // Handle resize to re-evaluate mobile status
-  window.addEventListener('resize', () => {
-    isMobile = window.innerWidth <= 768;
-  });
-  
-  // Force video autoplay with muted attribute (browsers allow autoplay if muted)
-  const coffeeVideo = document.querySelector('video');
-  if (coffeeVideo) {
-    coffeeVideo.muted = true;
-    const playPromise = coffeeVideo.play();
-    if (playPromise !== undefined) {
-      playPromise.catch(error => {
-        console.log("Autoplay prevented. User interaction required.");
-      });
-    }
-    // Also ensure video loads properly with the given filename
-    coffeeVideo.addEventListener('error', (e) => {
-      console.error("Video failed to load. Check file path: 8935795-uhd_2160_3840_25fps.mp4");
+      if (hero) hero.style.backgroundPositionY = `${window.scrollY * 0.3}px`;
     });
   }
 </script>
