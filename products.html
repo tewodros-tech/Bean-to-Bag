@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
-  <title>Bean to Bag | Artisan Coffee Collection - 3D Animation</title>
+  <title>Bean to Bag | Artisan Coffee Collection - Animated Story</title>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
   <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700;800;900&family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
   <style>
@@ -24,7 +24,6 @@
       font-family: 'Playfair Display', serif;
     }
 
-    /* Custom Scrollbar */
     ::-webkit-scrollbar {
       width: 8px;
     }
@@ -36,7 +35,6 @@
       border-radius: 10px;
     }
 
-    /* Navigation */
     nav {
       position: fixed;
       top: 20px;
@@ -118,7 +116,6 @@
       color: #C68B5E;
     }
 
-    /* Hero Section */
     .products-hero {
       min-height: 70vh;
       display: flex;
@@ -175,7 +172,7 @@
       to { opacity: 1; transform: translateY(0); }
     }
 
-    /* ========== CINEMATIC COFFEE ANIMATION SECTION ========== */
+    /* Cinematic Animation Canvas - Coffee, Cups, Harvesting, Beans */
     .coffee-cinematic {
       padding: 0;
       background: #030303;
@@ -187,8 +184,8 @@
     .canvas-container {
       position: relative;
       width: 100%;
-      height: 70vh;
-      min-height: 500px;
+      height: 75vh;
+      min-height: 550px;
       background: radial-gradient(circle at center, #1a0f0a 0%, #030303 100%);
       cursor: pointer;
       overflow: hidden;
@@ -235,24 +232,7 @@
       0%, 100% { opacity: 0.6; }
       50% { opacity: 1; text-shadow: 0 0 5px #C68B5E; }
     }
-    
-    .coffee-quote {
-      position: absolute;
-      top: 2rem;
-      right: 2rem;
-      background: rgba(0,0,0,0.5);
-      backdrop-filter: blur(5px);
-      padding: 0.5rem 1rem;
-      border-radius: 30px;
-      font-size: 0.7rem;
-      font-style: italic;
-      color: #E8A87C;
-      z-index: 10;
-      pointer-events: none;
-      font-weight: 300;
-    }
-    
-    /* Section Styles */
+
     .section {
       padding: 5rem 5%;
       background: #0A0A0A;
@@ -292,7 +272,6 @@
       font-size: 0.9rem;
     }
 
-    /* Product Cards */
     .products-grid {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
@@ -395,7 +374,6 @@
       transform: translateY(-2px);
     }
 
-    /* WhatsApp Float */
     .whatsapp-float {
       position: fixed;
       bottom: 20px;
@@ -417,7 +395,6 @@
       transform: scale(1.1) rotate(5deg);
     }
 
-    /* Footer */
     footer {
       background: #0A0A0A;
       border-top: 1px solid rgba(198,139,94,0.3);
@@ -462,13 +439,12 @@
       .products-hero h1 { font-size: 2.5rem; }
       .section-title { font-size: 2rem; }
       .products-grid { grid-template-columns: 1fr; }
-      .canvas-container { height: 50vh; min-height: 400px; }
-      .coffee-quote { top: 1rem; right: 1rem; font-size: 0.6rem; }
+      .canvas-container { height: 55vh; min-height: 450px; }
     }
     
     @media (max-width: 480px) {
       .products-hero h1 { font-size: 2rem; }
-      .canvas-container { height: 45vh; min-height: 350px; }
+      .canvas-container { height: 50vh; min-height: 400px; }
     }
   </style>
 </head>
@@ -500,22 +476,18 @@
   </div>
 </section>
 
-<!-- ===== CUSTOM 3D COFFEE ANIMATION - PURE CREATIVITY ===== -->
+<!-- ===== CUSTOM ANIMATION: COFFEE CUPS, HARVESTING, BEANS ===== -->
 <section class="coffee-cinematic">
   <div class="canvas-container">
     <canvas id="coffeeCanvas"></canvas>
-    <div class="coffee-quote">
-      <i class="fas fa-mug-hot"></i> "From the highlands with love"
-    </div>
     <div class="animation-overlay">
       <div class="animation-badge">
-        <i class="fas fa-play-circle"></i> LIVE COFFEE ESSENCE • 3D PARTICLE JOURNEY
+        <i class="fas fa-mug-hot"></i> FROM HARVEST TO CUP • BEANS • CEREMONY
       </div>
     </div>
   </div>
 </section>
 
-<!-- Products Section -->
 <section class="section">
   <div class="container">
     <h2 class="section-title">Signature Roasts</h2>
@@ -571,7 +543,6 @@
 </footer>
 
 <script>
-  // Mobile menu
   function toggleMenu() {
     document.getElementById('navLinks').classList.toggle('active');
   }
@@ -584,7 +555,6 @@
     else nav.classList.remove('scrolled');
   });
   
-  // Product WhatsApp click
   document.querySelectorAll('.product-card').forEach(card => {
     card.addEventListener('click', () => {
       const name = card.querySelector('h3')?.innerText || 'Coffee';
@@ -594,14 +564,16 @@
   });
   
   // ============================================================
-  // 3D COFFEE BEAN PARTICLE ANIMATION - FULL CREATIVE POTENTIAL
+  // RICH ANIMATION: COFFEE CUPS, HARVESTING, BEANS, CEREMONY
   // ============================================================
   const canvas = document.getElementById('coffeeCanvas');
   const ctx = canvas.getContext('2d');
   let width, height;
   let particles = [];
-  let mouseX = 0, mouseY = 0;
+  let harvestLeaves = [];
+  let coffeeCups = [];
   let time = 0;
+  let mouseX = 0, mouseY = 0;
   
   function resizeCanvas() {
     const container = canvas.parentElement;
@@ -609,194 +581,286 @@
     height = container.clientHeight;
     canvas.width = width;
     canvas.height = height;
-    initParticles();
+    initAnimations();
   }
   
-  class CoffeeParticle {
-    constructor(x, y) {
+  class CoffeeBean {
+    constructor(x, y, type = 'bean') {
       this.x = x || Math.random() * width;
       this.y = y || Math.random() * height;
-      this.size = Math.random() * 4 + 2;
-      this.baseSize = this.size;
-      this.speedX = (Math.random() - 0.5) * 0.8;
-      this.speedY = (Math.random() - 0.5) * 0.5 - 0.3;
-      this.color = `hsl(${Math.random() * 20 + 20}, 65%, ${Math.random() * 20 + 35}%)`;
+      this.size = Math.random() * 5 + 2.5;
+      this.speedX = (Math.random() - 0.5) * 0.6;
+      this.speedY = (Math.random() - 0.5) * 0.5 - 0.2;
+      this.color = `hsl(${25 + Math.random() * 15}, 70%, ${45 + Math.random() * 20}%)`;
       this.rotation = Math.random() * Math.PI * 2;
-      this.rotSpeed = (Math.random() - 0.5) * 0.03;
-      this.vibe = Math.random() * Math.PI * 2;
-      this.isBean = Math.random() > 0.3;
+      this.rotSpeed = (Math.random() - 0.5) * 0.02;
+      this.type = type;
+      this.wobble = Math.random() * Math.PI * 2;
     }
     
     update() {
-      this.vibe += 0.02;
-      // Wavy organic motion
-      this.x += this.speedX + Math.sin(time * 0.5 + this.vibe) * 0.2;
-      this.y += this.speedY + Math.cos(time * 0.3 + this.vibe) * 0.15;
-      
-      // Mouse interaction - attraction/repulsion
-      const dx = mouseX - this.x;
-      const dy = mouseY - this.y;
-      const dist = Math.sqrt(dx * dx + dy * dy);
-      if (dist < 120) {
-        const angle = Math.atan2(dy, dx);
-        const force = (120 - dist) / 120 * 1.2;
-        this.x -= Math.cos(angle) * force;
-        this.y -= Math.sin(angle) * force;
-      }
-      
-      // Wrap around edges with soft boundary
-      if (this.x < -20) this.x = width + 20;
-      if (this.x > width + 20) this.x = -20;
-      if (this.y < -20) this.y = height + 20;
-      if (this.y > height + 20) this.y = -20;
-      
+      this.wobble += 0.03;
+      this.x += this.speedX + Math.sin(time + this.wobble) * 0.15;
+      this.y += this.speedY + Math.cos(time * 0.5 + this.wobble) * 0.1;
       this.rotation += this.rotSpeed;
-      // Pulsing size based on position
-      this.size = this.baseSize + Math.sin(time * 2 + this.y * 0.02) * 0.8;
+      
+      if (this.x < -30) this.x = width + 30;
+      if (this.x > width + 30) this.x = -30;
+      if (this.y < -30) this.y = height + 30;
+      if (this.y > height + 30) this.y = -30;
     }
     
     draw() {
       ctx.save();
       ctx.translate(this.x, this.y);
       ctx.rotate(this.rotation);
-      if (this.isBean) {
-        // Draw coffee bean shape
+      if (this.type === 'bean') {
         ctx.beginPath();
-        ctx.ellipse(0, 0, this.size, this.size * 1.4, 0, 0, Math.PI * 2);
+        ctx.ellipse(0, 0, this.size, this.size * 1.5, 0, 0, Math.PI * 2);
         ctx.fillStyle = this.color;
         ctx.fill();
         ctx.beginPath();
-        ctx.ellipse(0, 0, this.size * 0.6, this.size * 0.9, 0, 0, Math.PI * 2);
-        ctx.fillStyle = `rgba(0,0,0,0.2)`;
+        ctx.ellipse(0, 0, this.size * 0.5, this.size * 0.9, 0, 0, Math.PI * 2);
+        ctx.fillStyle = 'rgba(0,0,0,0.25)';
         ctx.fill();
-        // Highlight
         ctx.beginPath();
-        ctx.ellipse(-this.size*0.3, -this.size*0.2, this.size*0.2, this.size*0.25, 0, 0, Math.PI*2);
-        ctx.fillStyle = `rgba(255,200,150,0.4)`;
+        ctx.ellipse(-this.size*0.3, -this.size*0.25, this.size*0.2, this.size*0.3, 0, 0, Math.PI*2);
+        ctx.fillStyle = 'rgba(255,210,150,0.5)';
         ctx.fill();
-      } else {
-        // Steam/Mist particles
+      } else if (this.type === 'cherry') {
         ctx.beginPath();
-        ctx.arc(0, 0, this.size * 0.8, 0, Math.PI * 2);
-        ctx.fillStyle = `rgba(198, 139, 94, 0.5)`;
+        ctx.arc(0, 0, this.size * 0.9, 0, Math.PI * 2);
+        ctx.fillStyle = '#C0392B';
         ctx.fill();
-        ctx.shadowBlur = 10;
-        ctx.shadowColor = "#C68B5E";
+        ctx.beginPath();
+        ctx.ellipse(0, -this.size*0.3, this.size*0.3, this.size*0.2, 0, 0, Math.PI*2);
+        ctx.fillStyle = '#2E7D32';
+        ctx.fill();
       }
       ctx.restore();
     }
   }
   
-  function initParticles() {
-    particles = [];
-    const particleCount = Math.min(300, Math.floor(width * height / 4000));
-    for (let i = 0; i < particleCount; i++) {
-      particles.push(new CoffeeParticle());
+  class CoffeeCup {
+    constructor(x, y) {
+      this.x = x || width * 0.2 + Math.random() * width * 0.6;
+      this.y = y || height * 0.6 + Math.random() * height * 0.3;
+      this.size = 20 + Math.random() * 15;
+      this.steamOffset = Math.random() * Math.PI * 2;
     }
-    // Add extra floating beans in center
-    for (let i = 0; i < 40; i++) {
-      particles.push(new CoffeeParticle(width/2 + (Math.random() - 0.5) * 200, height/2 + (Math.random() - 0.5) * 200));
-    }
-  }
-  
-  // Create a glowing steam effect with gradients
-  function drawSteamGlow() {
-    const gradient = ctx.createLinearGradient(0, height * 0.6, 0, height * 0.2);
-    gradient.addColorStop(0, 'rgba(198,139,94,0)');
-    gradient.addColorStop(0.5, 'rgba(198,139,94,0.08)');
-    gradient.addColorStop(1, 'rgba(232,168,124,0)');
-    ctx.fillStyle = gradient;
-    ctx.fillRect(0, 0, width, height);
-  }
-  
-  function drawRotatingBeansOrbit() {
-    // Central glowing aura
-    const centerX = width/2;
-    const centerY = height/2;
-    const rad = 80 + Math.sin(time) * 10;
-    const gradientRadial = ctx.createRadialGradient(centerX, centerY, 20, centerX, centerY, 140);
-    gradientRadial.addColorStop(0, 'rgba(198,139,94,0.15)');
-    gradientRadial.addColorStop(1, 'rgba(0,0,0,0)');
-    ctx.fillStyle = gradientRadial;
-    ctx.beginPath();
-    ctx.arc(centerX, centerY, 140, 0, Math.PI*2);
-    ctx.fill();
     
-    // Orbiting beans
-    for (let i = 0; i < 12; i++) {
-      const angle = time * 0.8 + (i / 12) * Math.PI * 2;
-      const x = centerX + Math.cos(angle) * 150;
-      const y = centerY + Math.sin(angle * 0.9) * 100;
+    draw() {
       ctx.save();
-      ctx.translate(x, y);
-      ctx.rotate(angle);
+      ctx.translate(this.x, this.y);
+      // Cup body
       ctx.beginPath();
-      ctx.ellipse(0, 0, 8, 12, 0, 0, Math.PI*2);
-      ctx.fillStyle = `hsl(${25 + Math.sin(time + i) * 5}, 70%, 55%)`;
+      ctx.moveTo(-this.size/2, 0);
+      ctx.lineTo(this.size/2, 0);
+      ctx.lineTo(this.size/2 + 3, this.size);
+      ctx.lineTo(-this.size/2 - 3, this.size);
+      ctx.closePath();
+      ctx.fillStyle = '#8B5A2B';
       ctx.fill();
+      ctx.fillStyle = '#A0522D';
+      ctx.fillRect(-this.size/2 + 2, 0, this.size - 4, this.size);
+      // Handle
       ctx.beginPath();
-      ctx.ellipse(0, 0, 4, 7, 0, 0, Math.PI*2);
-      ctx.fillStyle = `rgba(0,0,0,0.3)`;
-      ctx.fill();
+      ctx.ellipse(this.size/2 + 5, this.size/2, 8, 12, 0, 0, Math.PI*2);
+      ctx.strokeStyle = '#8B5A2B';
+      ctx.lineWidth = 3;
+      ctx.stroke();
+      // Steam
+      for (let i = 0; i < 3; i++) {
+        const steamY = -8 - (time * 30 + i * 15) % 40;
+        if (steamY > -30) {
+          ctx.beginPath();
+          ctx.arc(-this.size/3 + i*8, steamY, 3 + Math.sin(time*5 + i)*1.5, 0, Math.PI*2);
+          ctx.fillStyle = `rgba(200, 160, 120, ${0.3 - Math.abs(steamY)/100})`;
+          ctx.fill();
+        }
+      }
       ctx.restore();
     }
   }
   
-  let mouseMoveTimeout;
+  class HarvestElement {
+    constructor(x, y) {
+      this.x = x || Math.random() * width;
+      this.y = y || Math.random() * height;
+      this.type = Math.random() > 0.5 ? 'leaf' : 'basket';
+    }
+    
+    draw() {
+      ctx.save();
+      ctx.translate(this.x, this.y);
+      if (this.type === 'leaf') {
+        ctx.beginPath();
+        ctx.moveTo(0, 0);
+        ctx.quadraticCurveTo(8, -10, 15, -5);
+        ctx.quadraticCurveTo(8, 2, 0, 0);
+        ctx.fillStyle = '#4CAF50';
+        ctx.fill();
+        ctx.beginPath();
+        ctx.moveTo(0, 0);
+        ctx.quadraticCurveTo(-8, -10, -15, -5);
+        ctx.quadraticCurveTo(-8, 2, 0, 0);
+        ctx.fill();
+      } else {
+        // Basket symbol
+        ctx.fillStyle = '#C68B5E';
+        ctx.fillRect(-10, -5, 20, 12);
+        ctx.fillStyle = '#A0522D';
+        for(let i=0; i<3; i++) ctx.fillRect(-8 + i*8, -8, 3, 5);
+      }
+      ctx.restore();
+    }
+  }
+  
+  function initAnimations() {
+    particles = [];
+    coffeeCups = [];
+    harvestLeaves = [];
+    
+    // Coffee beans and cherries
+    const beanCount = Math.min(220, Math.floor(width * height / 5000));
+    for (let i = 0; i < beanCount; i++) {
+      particles.push(new CoffeeBean(null, null, Math.random() > 0.7 ? 'cherry' : 'bean'));
+    }
+    
+    // Coffee cups (3-5 cups)
+    const cupCount = Math.min(5, Math.floor(width / 250) + 2);
+    for (let i = 0; i < cupCount; i++) {
+      coffeeCups.push(new CoffeeCup(width * (0.2 + i * 0.2), height * 0.7));
+    }
+    
+    // Harvest leaves floating
+    for (let i = 0; i < 40; i++) {
+      harvestLeaves.push(new HarvestElement());
+    }
+  }
+  
+  function drawFarmerSilhouette() {
+    // Farmer harvesting silhouette in background
+    ctx.save();
+    ctx.globalAlpha = 0.15;
+    ctx.fillStyle = '#C68B5E';
+    const farmerX = width * 0.85;
+    const farmerY = height * 0.65;
+    ctx.beginPath();
+    ctx.arc(farmerX, farmerY - 25, 18, 0, Math.PI * 2);
+    ctx.fill();
+    ctx.fillRect(farmerX - 10, farmerY - 10, 20, 35);
+    ctx.fillRect(farmerX - 22, farmerY + 5, 15, 25);
+    ctx.fillRect(farmerX + 7, farmerY + 5, 15, 25);
+    // Hat
+    ctx.fillRect(farmerX - 22, farmerY - 38, 44, 8);
+    ctx.globalAlpha = 0.25;
+    ctx.beginPath();
+    ctx.moveTo(farmerX - 30, farmerY - 30);
+    ctx.lineTo(farmerX, farmerY - 45);
+    ctx.lineTo(farmerX + 30, farmerY - 30);
+    ctx.fill();
+    ctx.globalAlpha = 1;
+    ctx.restore();
+  }
+  
+  function drawRoastingDrum() {
+    // Roasting drum animation
+    ctx.save();
+    ctx.translate(width * 0.12, height * 0.25);
+    ctx.rotate(Math.sin(time * 0.8) * 0.1);
+    ctx.beginPath();
+    ctx.ellipse(0, 0, 35, 28, 0, 0, Math.PI * 2);
+    ctx.fillStyle = '#5D4037';
+    ctx.fill();
+    ctx.fillStyle = '#8D6E63';
+    ctx.fillRect(-25, -8, 50, 16);
+    for(let i=0; i<5; i++) {
+      ctx.beginPath();
+      ctx.arc(-20 + i*10, 0, 3, 0, Math.PI*2);
+      ctx.fillStyle = '#FF8F00';
+      ctx.fill();
+    }
+    ctx.restore();
+  }
+  
+  function drawCoffeePlant() {
+    // Coffee plant branch
+    ctx.save();
+    ctx.translate(width * 0.9, height * 0.4);
+    ctx.beginPath();
+    ctx.moveTo(0, 0);
+    ctx.lineTo(-30, -40);
+    ctx.lineTo(-20, -35);
+    ctx.fillStyle = '#2E7D32';
+    ctx.fill();
+    for(let i=0; i<3; i++) {
+      ctx.beginPath();
+      ctx.arc(-15 + i*8, -38 + i*2, 4, 0, Math.PI*2);
+      ctx.fillStyle = '#C0392B';
+      ctx.fill();
+    }
+    ctx.restore();
+  }
+  
+  let mouseTimeout;
   function handleMouseMove(e) {
     const rect = canvas.getBoundingClientRect();
     const scaleX = canvas.width / rect.width;
     const scaleY = canvas.height / rect.height;
-    let clientX, clientY;
+    let cx, cy;
     if (e.touches) {
-      clientX = e.touches[0].clientX;
-      clientY = e.touches[0].clientY;
+      cx = e.touches[0].clientX;
+      cy = e.touches[0].clientY;
     } else {
-      clientX = e.clientX;
-      clientY = e.clientY;
+      cx = e.clientX;
+      cy = e.clientY;
     }
-    let canvasX = (clientX - rect.left) * scaleX;
-    let canvasY = (clientY - rect.top) * scaleY;
-    canvasX = Math.min(width, Math.max(0, canvasX));
-    canvasY = Math.min(height, Math.max(0, canvasY));
-    mouseX = canvasX;
-    mouseY = canvasY;
-    clearTimeout(mouseMoveTimeout);
-    mouseMoveTimeout = setTimeout(() => {
-      mouseX = width/2;
-      mouseY = height/2;
-    }, 1500);
+    mouseX = (cx - rect.left) * scaleX;
+    mouseY = (cy - rect.top) * scaleY;
+    clearTimeout(mouseTimeout);
+    mouseTimeout = setTimeout(() => { mouseX = width/2; mouseY = height/2; }, 2000);
   }
   
   function animate() {
     if (!ctx) return;
     ctx.clearRect(0, 0, width, height);
-    // Deep coffee background
     const bgGrad = ctx.createLinearGradient(0, 0, 0, height);
     bgGrad.addColorStop(0, '#0a0503');
-    bgGrad.addColorStop(1, '#1a0e08');
+    bgGrad.addColorStop(1, '#1f120a');
     ctx.fillStyle = bgGrad;
     ctx.fillRect(0, 0, width, height);
     
     time += 0.02;
-    drawSteamGlow();
     
-    for (let i = 0; i < particles.length; i++) {
-      particles[i].update();
-      particles[i].draw();
+    // Draw all elements
+    drawFarmerSilhouette();
+    drawRoastingDrum();
+    drawCoffeePlant();
+    
+    for (let leaf of harvestLeaves) leaf.draw();
+    for (let cup of coffeeCups) cup.draw();
+    for (let p of particles) {
+      p.update();
+      p.draw();
     }
     
-    drawRotatingBeansOrbit();
+    // Mouse interaction glow
+    if (mouseX && mouseY) {
+      ctx.beginPath();
+      ctx.arc(mouseX, mouseY, 50, 0, Math.PI*2);
+      ctx.fillStyle = 'rgba(198,139,94,0.08)';
+      ctx.fill();
+    }
     
-    // Draw floating steam particles (extra)
-    for (let i = 0; i < 50; i++) {
-      const t = (time * 0.5 + i) % (Math.PI * 2);
-      const x = width/2 + Math.sin(t * 2) * 120 + Math.sin(time) * 20;
-      const y = height/2 - 100 + i * 5 - (time * 20) % 200;
-      if (y > 0 && y < height) {
+    // Additional falling cherry blossoms
+    for (let i = 0; i < 30; i++) {
+      const fx = (Math.sin(time * 0.5 + i) * 0.5 + 0.5) * width;
+      const fy = (time * 40 + i * 30) % (height + 100) - 50;
+      if (fy > 0 && fy < height) {
         ctx.beginPath();
-        ctx.arc(x, y, 3 + Math.sin(time + i)*1.5, 0, Math.PI*2);
-        ctx.fillStyle = `rgba(200, 140, 100, ${0.1 + Math.sin(time + i) * 0.05})`;
+        ctx.arc(fx, fy, 2.5, 0, Math.PI*2);
+        ctx.fillStyle = `rgba(200, 80, 60, ${0.4})`;
         ctx.fill();
       }
     }
@@ -804,18 +868,15 @@
     requestAnimationFrame(animate);
   }
   
-  window.addEventListener('resize', () => {
-    resizeCanvas();
-  });
+  window.addEventListener('resize', () => { resizeCanvas(); });
   window.addEventListener('mousemove', handleMouseMove);
   window.addEventListener('touchmove', handleMouseMove);
   window.addEventListener('touchstart', handleMouseMove);
   
   resizeCanvas();
-  initParticles();
+  initAnimations();
   animate();
   
-  // Parallax hero effect
   let isMobile = window.innerWidth <= 768;
   if (!isMobile) {
     window.addEventListener('scroll', () => {
