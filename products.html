@@ -678,12 +678,12 @@
   </div>
 </section>
 
-<!-- ========== VIDEO SECTION - USING YOUR SPECIFIC MP4 FILE (NO DESCRIPTION TEXT) ========== -->
+<!-- ========== VIDEO SECTION - USING YOUR SPECIFIED MP4 FILE (NO DESCRIPTION TEXT) ========== -->
 <section class="video-story">
   <div class="video-container">
     <div class="video-wrapper">
       <video controls autoplay loop muted playsinline>
-        <source src="4820350-uhd_2160_4096_25fps (1).mp4" type="video/mp4">
+        <source src="8935795-uhd_2160_3840_25fps.mp4" type="video/mp4">
         Your browser does not support the video tag.
       </video>
     </div>
@@ -903,12 +903,11 @@
     if (playPromise !== undefined) {
       playPromise.catch(error => {
         console.log("Autoplay prevented. User interaction required.");
-        // Add a subtle overlay hint? Not needed, controls exist.
       });
     }
     // Also ensure video loads properly with the given filename
     coffeeVideo.addEventListener('error', (e) => {
-      console.error("Video failed to load. Check file path: 4820350-uhd_2160_4096_25fps (1).mp4");
+      console.error("Video failed to load. Check file path: 8935795-uhd_2160_3840_25fps.mp4");
     });
   }
 </script>
