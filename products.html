@@ -181,9 +181,9 @@
       }
     }
 
-    /* Video Story Section - Cinematic Immersion */
+    /* Video Story Section - Clean Video Only (No Description) */
     .video-story {
-      padding: 5rem 5%;
+      padding: 4rem 5%;
       background: #050505;
       position: relative;
       z-index: 2;
@@ -193,75 +193,23 @@
     .video-container {
       max-width: 1200px;
       margin: 0 auto;
-      display: flex;
-      flex-wrap: wrap;
-      align-items: center;
-      gap: 3rem;
-      background: linear-gradient(135deg, rgba(198,139,94,0.05), rgba(0,0,0,0.4));
-      border-radius: 40px;
-      padding: 2rem;
-      backdrop-filter: blur(4px);
     }
     .video-wrapper {
-      flex: 1.2;
-      border-radius: 28px;
+      border-radius: 32px;
       overflow: hidden;
-      box-shadow: 0 25px 45px rgba(0,0,0,0.5), 0 0 0 2px rgba(198,139,94,0.2);
+      box-shadow: 0 25px 45px rgba(0,0,0,0.6), 0 0 0 1px rgba(198,139,94,0.3);
       transition: transform 0.4s ease, box-shadow 0.4s ease;
+      background: #000;
     }
     .video-wrapper:hover {
       transform: scale(1.01);
-      box-shadow: 0 30px 55px rgba(198,139,94,0.25), 0 0 0 3px #C68B5E;
+      box-shadow: 0 30px 55px rgba(198,139,94,0.25), 0 0 0 2px #C68B5E;
     }
     .video-wrapper video {
       width: 100%;
       height: auto;
       display: block;
-      border-radius: 28px;
-    }
-    .video-caption {
-      flex: 0.8;
-      padding: 1rem;
-    }
-    .video-caption h3 {
-      font-size: 2.2rem;
-      font-weight: 700;
-      background: linear-gradient(135deg, #FFFFFF, #E8A87C);
-      -webkit-background-clip: text;
-      background-clip: text;
-      color: transparent;
-      margin-bottom: 1rem;
-    }
-    .video-caption p {
-      color: rgba(255,255,255,0.85);
-      line-height: 1.6;
-      font-size: 1.05rem;
-      margin-bottom: 1.5rem;
-    }
-    .video-caption .coffee-quote {
-      font-style: italic;
-      border-left: 3px solid #C68B5E;
-      padding-left: 1rem;
-      font-size: 0.95rem;
-      color: #C68B5E;
-      font-weight: 500;
-    }
-    @media (max-width: 992px) {
-      .video-container {
-        flex-direction: column;
-        text-align: center;
-        padding: 1.5rem;
-      }
-      .video-caption {
-        text-align: center;
-      }
-      .video-caption .coffee-quote {
-        text-align: left;
-        margin-top: 0.5rem;
-      }
-      .video-caption h3 {
-        font-size: 1.8rem;
-      }
+      border-radius: 32px;
     }
 
     /* Section Styles */
@@ -600,15 +548,9 @@
         right: -3px;
       }
 
-      /* Video section mobile adjustments */
+      /* Video section mobile adjustments - minimal */
       .video-story {
-        padding: 3rem 5%;
-      }
-      .video-caption h3 {
-        font-size: 1.6rem;
-      }
-      .video-caption p {
-        font-size: 0.9rem;
+        padding: 2.5rem 5%;
       }
       
       /* Mobile Footer */
@@ -665,9 +607,6 @@
       }
       .section-title {
         font-size: 1.8rem;
-      }
-      .video-caption h3 {
-        font-size: 1.4rem;
       }
     }
 
@@ -739,22 +678,14 @@
   </div>
 </section>
 
-<!-- ========== VIDEO STORY SECTION (Immersive Coffee Journey) ========== -->
+<!-- ========== VIDEO SECTION - NO DESCRIPTION, JUST VIDEO ========== -->
 <section class="video-story">
   <div class="video-container">
     <div class="video-wrapper">
-      <!-- Embedded video from supplied link (converted to HTML5 video element) -->
-      <video controls autoplay muted loop playsinline poster="https://placehold.co/1280x720/2C1810/C68B5E?text=Bean+to+Bag+Story">
+      <video controls autoplay loop muted playsinline>
         <source src="https://cdn.pixabay.com/video/2022/08/02/126468-735138854_large.mp4" type="video/mp4">
-        Your browser does not support the video tag. Experience our coffee journey on YouTube.
+        Your browser does not support the video tag.
       </video>
-    </div>
-    <div class="video-caption">
-      <h3><i class="fas fa-film"></i> From Highlands to Your Cup</h3>
-      <p>Watch the journey of our Ethiopian beans — handpicked from lush highlands, sun-dried with tradition, and roasted to perfection in Addis. Each batch carries the soul of ancient coffee ceremonies.</p>
-      <div class="coffee-quote">
-        <i class="fas fa-quote-left"></i> “Every cup tells a story of dedication, purity, and the rich volcanic soil of Ethiopia.”
-      </div>
     </div>
   </div>
 </section>
@@ -964,12 +895,16 @@
     isMobile = window.innerWidth <= 768;
   });
   
-  // Optional: ensure video autoplay muted works on most browsers
+  // Ensure video autoplay works with muted attribute (browsers allow autoplay if muted)
   const coffeeVideo = document.querySelector('video');
   if (coffeeVideo) {
+    // Force play attempt after metadata loads to ensure autoplay
     coffeeVideo.addEventListener('loadedmetadata', () => {
-      coffeeVideo.play().catch(e => console.log("Autoplay prevented:", e));
+      coffeeVideo.play().catch(e => console.log("Autoplay prevented by browser, user can click play:", e));
     });
+    // If autoplay fails, at least controls are visible
+    coffeeVideo.muted = true;
+    coffeeVideo.play().catch(e => console.log("Initial autoplay blocked, but controls available"));
   }
 </script>
 </body>
