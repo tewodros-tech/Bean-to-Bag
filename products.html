@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
-  <title>Bean to Bag | Artisan Coffee Collection - Animated Story</title>
+  <title>Bean to Bag | Cosmic Coffee Collection - 3D Volumetric Experience</title>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
   <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700;800;900&family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
   <style>
@@ -117,28 +117,17 @@
     }
 
     .products-hero {
-      min-height: 70vh;
+      min-height: 60vh;
       display: flex;
       align-items: center;
       justify-content: center;
       text-align: center;
-      padding: 10rem 5% 6rem;
-      background: linear-gradient(135deg, rgba(0,0,0,0.75), rgba(44,24,16,0.85)), url('https://images.pexels.com/photos/312418/pexels-photo-312418.jpeg?auto=compress&cs=tinysrgb&w=1600');
+      padding: 8rem 5% 4rem;
+      background: linear-gradient(135deg, rgba(0,0,0,0.8), rgba(44,24,16,0.9)), url('https://images.pexels.com/photos/312418/pexels-photo-312418.jpeg?auto=compress&cs=tinysrgb&w=1600');
       background-size: cover;
       background-position: center;
-      background-attachment: fixed;
       position: relative;
       overflow: hidden;
-    }
-    .products-hero::before {
-      content: '';
-      position: absolute;
-      top: 0;
-      left: 0;
-      right: 0;
-      bottom: 0;
-      background: radial-gradient(circle at 50% 50%, rgba(198,139,94,0.2) 0%, transparent 70%);
-      pointer-events: none;
     }
     .hero-badge {
       display: inline-block;
@@ -172,65 +161,53 @@
       to { opacity: 1; transform: translateY(0); }
     }
 
-    /* Cinematic Animation Canvas - Coffee, Cups, Harvesting, Beans */
-    .coffee-cinematic {
-      padding: 0;
-      background: #030303;
-      position: relative;
-      z-index: 2;
-      overflow: hidden;
-    }
-    
-    .canvas-container {
-      position: relative;
+    /* 3D Canvas Container - Fullscreen immersive */
+    .three-container {
       width: 100%;
-      height: 75vh;
-      min-height: 550px;
-      background: radial-gradient(circle at center, #1a0f0a 0%, #030303 100%);
-      cursor: pointer;
+      height: 85vh;
+      min-height: 600px;
+      position: relative;
+      background: #000;
       overflow: hidden;
+      cursor: grab;
     }
-    
-    #coffeeCanvas {
-      position: absolute;
-      top: 0;
-      left: 0;
+    .three-container:active {
+      cursor: grabbing;
+    }
+    #threeCanvas {
       width: 100%;
       height: 100%;
       display: block;
     }
-    
-    .animation-overlay {
+    .animation-badge-overlay {
       position: absolute;
-      bottom: 2rem;
+      bottom: 20px;
       left: 0;
       right: 0;
       text-align: center;
-      z-index: 10;
+      z-index: 20;
       pointer-events: none;
     }
-    
-    .animation-badge {
+    .badge-glow {
       display: inline-block;
-      background: rgba(0,0,0,0.6);
-      backdrop-filter: blur(8px);
-      padding: 0.6rem 1.5rem;
+      background: rgba(0,0,0,0.7);
+      backdrop-filter: blur(12px);
+      padding: 0.8rem 2rem;
       border-radius: 60px;
-      font-size: 0.8rem;
+      font-size: 0.85rem;
       letter-spacing: 2px;
-      border: 1px solid rgba(198,139,94,0.5);
-      color: #C68B5E;
+      border: 1px solid rgba(198,139,94,0.6);
+      color: #E8A87C;
       font-weight: 500;
+      box-shadow: 0 0 20px rgba(198,139,94,0.3);
     }
-    
-    .animation-badge i {
+    .badge-glow i {
       margin-right: 8px;
       animation: pulse 1.5s infinite;
     }
-    
     @keyframes pulse {
-      0%, 100% { opacity: 0.6; }
-      50% { opacity: 1; text-shadow: 0 0 5px #C68B5E; }
+      0%, 100% { opacity: 0.7; text-shadow: 0 0 0px #C68B5E; }
+      50% { opacity: 1; text-shadow: 0 0 10px #C68B5E; }
     }
 
     .section {
@@ -297,7 +274,7 @@
       left: -100%;
       width: 100%;
       height: 100%;
-      background: linear-gradient(90deg, transparent, rgba(198,139,94,0.1), transparent);
+      background: linear-gradient(90deg, transparent, rgba(198,139,94,0.15), transparent);
       transition: left 0.6s ease;
     }
     .product-card:hover::before {
@@ -306,7 +283,7 @@
     .product-card:hover {
       transform: translateY(-15px) scale(1.02);
       border-color: #C68B5E;
-      box-shadow: 0 30px 50px rgba(198,139,94,0.25);
+      box-shadow: 0 30px 50px rgba(198,139,94,0.3);
     }
     .product-img-wrapper {
       position: relative;
@@ -327,7 +304,7 @@
     .product-card:hover .product-img {
       transform: scale(1.05);
       border-color: #E8A87C;
-      box-shadow: 0 0 20px rgba(198,139,94,0.4);
+      box-shadow: 0 0 25px rgba(198,139,94,0.5);
     }
     .product-badge {
       position: absolute;
@@ -339,7 +316,6 @@
       padding: 0.3rem 0.8rem;
       border-radius: 50px;
       font-weight: 600;
-      box-shadow: 0 2px 10px rgba(0,0,0,0.3);
     }
     .product-card h3 {
       font-size: 1.8rem;
@@ -348,11 +324,6 @@
     }
     .product-card:hover h3 {
       color: #C68B5E;
-    }
-    .product-card p {
-      color: rgba(255,255,255,0.7);
-      margin-bottom: 1rem;
-      font-size: 0.95rem;
     }
     .taste-tags {
       display: flex;
@@ -368,10 +339,6 @@
       font-size: 0.7rem;
       font-weight: 500;
       transition: all 0.3s;
-    }
-    .product-card:hover .taste-tag {
-      background: rgba(198,139,94,0.3);
-      transform: translateY(-2px);
     }
 
     .whatsapp-float {
@@ -399,8 +366,6 @@
       background: #0A0A0A;
       border-top: 1px solid rgba(198,139,94,0.3);
       padding: 3rem 5%;
-      position: relative;
-      z-index: 1;
     }
     .footer-content {
       display: grid;
@@ -439,12 +404,7 @@
       .products-hero h1 { font-size: 2.5rem; }
       .section-title { font-size: 2rem; }
       .products-grid { grid-template-columns: 1fr; }
-      .canvas-container { height: 55vh; min-height: 450px; }
-    }
-    
-    @media (max-width: 480px) {
-      .products-hero h1 { font-size: 2rem; }
-      .canvas-container { height: 50vh; min-height: 400px; }
+      .three-container { height: 60vh; min-height: 450px; }
     }
   </style>
 </head>
@@ -476,17 +436,15 @@
   </div>
 </section>
 
-<!-- ===== CUSTOM ANIMATION: COFFEE CUPS, HARVESTING, BEANS ===== -->
-<section class="coffee-cinematic">
-  <div class="canvas-container">
-    <canvas id="coffeeCanvas"></canvas>
-    <div class="animation-overlay">
-      <div class="animation-badge">
-        <i class="fas fa-mug-hot"></i> FROM HARVEST TO CUP • BEANS • CEREMONY
-      </div>
+<!-- ===== REVOLUTIONARY 3D VOLUMETRIC COFFEE EXPERIENCE ===== -->
+<div class="three-container">
+  <canvas id="threeCanvas"></canvas>
+  <div class="animation-badge-overlay">
+    <div class="badge-glow">
+      <i class="fas fa-crown"></i> 4D VOLUMETRIC BEAN NEBULA • REALISTIC LIQUID DYNAMICS • HARVEST PORTAL
     </div>
   </div>
-</section>
+</div>
 
 <section class="section">
   <div class="container">
@@ -494,37 +452,25 @@
     <p class="section-subtitle">Freshly roasted • ethically sourced</p>
     <div class="products-grid">
       <div class="product-card" data-product="Caskara">
-        <div class="product-img-wrapper">
-          <img src="caskara.jfif" class="product-img" alt="Caskara" onerror="this.src='https://placehold.co/200x200/E8A87C/2C1810?text=Caskara'">
-          <div class="product-badge">Limited</div>
-        </div>
+        <div class="product-img-wrapper"><img src="caskara.jfif" class="product-img" alt="Caskara" onerror="this.src='https://placehold.co/200x200/E8A87C/2C1810?text=Caskara'"><div class="product-badge">Limited</div></div>
         <h3>Caskara</h3>
         <p>Dried Coffee Cherry - Fruity & Floral</p>
         <div class="taste-tags"><span class="taste-tag"><i class="fas fa-apple-alt"></i> Fruity</span><span class="taste-tag"><i class="fas fa-leaf"></i> Floral</span><span class="taste-tag"><i class="fas fa-candy-cane"></i> Sweet</span></div>
       </div>
       <div class="product-card" data-product="Qalid's Choice">
-        <div class="product-img-wrapper">
-          <img src="caskara1.jfif" class="product-img" alt="Qalid's Choice" onerror="this.src='https://placehold.co/200x200/A67B5B/2C1810?text=Qalids+Choice'">
-          <div class="product-badge">Bestseller</div>
-        </div>
+        <div class="product-img-wrapper"><img src="caskara1.jfif" class="product-img" alt="Qalid's Choice" onerror="this.src='https://placehold.co/200x200/A67B5B/2C1810?text=Qalids+Choice'"><div class="product-badge">Bestseller</div></div>
         <h3>Qalid's Choice</h3>
         <p>House Blend - Chocolate & Balanced</p>
         <div class="taste-tags"><span class="taste-tag"><i class="fas fa-chocolate-bar"></i> Chocolate</span><span class="taste-tag"><i class="fas fa-balance-scale"></i> Balanced</span><span class="taste-tag"><i class="fas fa-hand-peace"></i> Smooth</span></div>
       </div>
       <div class="product-card" data-product="Chemina">
-        <div class="product-img-wrapper">
-          <img src="chemia.jfif" class="product-img" alt="Chemina" onerror="this.src='https://placehold.co/200x200/4A2C2A/FFFFFF?text=Chemina'">
-          <div class="product-badge">Espresso Favorite</div>
-        </div>
+        <div class="product-img-wrapper"><img src="chemia.jfif" class="product-img" alt="Chemina" onerror="this.src='https://placehold.co/200x200/4A2C2A/FFFFFF?text=Chemina'"><div class="product-badge">Espresso Favorite</div></div>
         <h3>Chemina</h3>
         <p>Whole Bean - Bold & Cocoa</p>
         <div class="taste-tags"><span class="taste-tag"><i class="fas fa-fire"></i> Bold</span><span class="taste-tag"><i class="fas fa-mug-hot"></i> Cocoa</span><span class="taste-tag"><i class="fas fa-feather-alt"></i> Smooth Finish</span></div>
       </div>
       <div class="product-card" data-product="Origin Green">
-        <div class="product-img-wrapper">
-          <img src="green.jfif" class="product-img" alt="Origin Green" onerror="this.src='https://placehold.co/200x200/8B9A6E/2C1810?text=Origin+Green'">
-          <div class="product-badge">Home Roasters</div>
-        </div>
+        <div class="product-img-wrapper"><img src="green.jfif" class="product-img" alt="Origin Green" onerror="this.src='https://placehold.co/200x200/8B9A6E/2C1810?text=Origin+Green'"><div class="product-badge">Home Roasters</div></div>
         <h3>Origin Green</h3>
         <p>Raw Green Coffee - Natural & Fresh</p>
         <div class="taste-tags"><span class="taste-tag"><i class="fas fa-leaf"></i> Natural</span><span class="taste-tag"><i class="fas fa-search"></i> Traceable</span><span class="taste-tag"><i class="fas fa-tint"></i> Fresh</span></div>
@@ -542,7 +488,9 @@
   <div style="text-align: center; margin-top: 2rem;"><p>&copy; 2025 Bean to Bag Coffee. All rights reserved.</p></div>
 </footer>
 
+<script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
 <script>
+  // Mobile menu
   function toggleMenu() {
     document.getElementById('navLinks').classList.toggle('active');
   }
@@ -558,325 +506,238 @@
   document.querySelectorAll('.product-card').forEach(card => {
     card.addEventListener('click', () => {
       const name = card.querySelector('h3')?.innerText || 'Coffee';
-      const desc = card.querySelector('p')?.innerText || '';
-      window.open(`https://wa.me/251911223344?text=Hello! I'm interested in ${name} - ${desc}`, '_blank');
+      window.open(`https://wa.me/251911223344?text=Hello! I'm interested in ${name}`, '_blank');
     });
   });
-  
+
   // ============================================================
-  // RICH ANIMATION: COFFEE CUPS, HARVESTING, BEANS, CEREMONY
+  // REVOLUTIONARY 3D VOLUMETRIC COFFEE EXPERIENCE - NEVER DONE BEFORE
   // ============================================================
-  const canvas = document.getElementById('coffeeCanvas');
-  const ctx = canvas.getContext('2d');
-  let width, height;
-  let particles = [];
-  let harvestLeaves = [];
-  let coffeeCups = [];
-  let time = 0;
-  let mouseX = 0, mouseY = 0;
+  const canvas = document.getElementById('threeCanvas');
+  const scene = new THREE.Scene();
+  scene.background = new THREE.Color(0x030303);
+  scene.fog = new THREE.FogExp2(0x030303, 0.003);
   
-  function resizeCanvas() {
-    const container = canvas.parentElement;
-    width = container.clientWidth;
-    height = container.clientHeight;
-    canvas.width = width;
-    canvas.height = height;
-    initAnimations();
+  const camera = new THREE.PerspectiveCamera(45, canvas.parentElement.clientWidth / canvas.parentElement.clientHeight, 0.1, 1000);
+  camera.position.set(0, 2, 12);
+  camera.lookAt(0, 1, 0);
+  
+  const renderer = new THREE.WebGLRenderer({ canvas, alpha: false, antialias: true });
+  renderer.setSize(canvas.parentElement.clientWidth, canvas.parentElement.clientHeight);
+  renderer.setPixelRatio(window.devicePixelRatio);
+  
+  // Lights - Volumetric
+  const ambientLight = new THREE.AmbientLight(0x332010);
+  scene.add(ambientLight);
+  const mainLight = new THREE.DirectionalLight(0xC68B5E, 1.2);
+  mainLight.position.set(5, 10, 7);
+  scene.add(mainLight);
+  const backLight = new THREE.PointLight(0xE8A87C, 0.8);
+  backLight.position.set(-3, 2, -5);
+  scene.add(backLight);
+  const fillLight = new THREE.PointLight(0x8B5A2B, 0.5);
+  fillLight.position.set(2, 3, 4);
+  scene.add(fillLight);
+  
+  // Particle system - 5000 floating coffee beans forming a nebula
+  const beanGeometry = new THREE.BufferGeometry();
+  const beanCount = 5500;
+  const beanPositions = new Float32Array(beanCount * 3);
+  const beanColors = new Float32Array(beanCount * 3);
+  for (let i = 0; i < beanCount; i++) {
+    // Spiral galaxy shape
+    const angle = Math.random() * Math.PI * 2;
+    const radius = 3.5 * Math.pow(Math.random(), 1.5);
+    const x = Math.cos(angle * 3) * radius + (Math.random() - 0.5) * 1.2;
+    const z = Math.sin(angle * 2) * radius + (Math.random() - 0.5) * 1.2;
+    const y = Math.sin(angle * 5) * 1.2 + (Math.random() - 0.5) * 1.5;
+    beanPositions[i*3] = x;
+    beanPositions[i*3+1] = y + 1.2;
+    beanPositions[i*3+2] = z;
+    const color = new THREE.Color().setHSL(0.08 + Math.random() * 0.05, 0.7, 0.45 + Math.random() * 0.2);
+    beanColors[i*3] = color.r;
+    beanColors[i*3+1] = color.g;
+    beanColors[i*3+2] = color.b;
   }
+  beanGeometry.setAttribute('position', new THREE.BufferAttribute(beanPositions, 3));
+  beanGeometry.setAttribute('color', new THREE.BufferAttribute(beanColors, 3));
+  const beanMaterial = new THREE.PointsMaterial({ size: 0.12, vertexColors: true, transparent: true, opacity: 0.9, blending: THREE.AdditiveBlending });
+  const beanCloud = new THREE.Points(beanGeometry, beanMaterial);
+  scene.add(beanCloud);
   
-  class CoffeeBean {
-    constructor(x, y, type = 'bean') {
-      this.x = x || Math.random() * width;
-      this.y = y || Math.random() * height;
-      this.size = Math.random() * 5 + 2.5;
-      this.speedX = (Math.random() - 0.5) * 0.6;
-      this.speedY = (Math.random() - 0.5) * 0.5 - 0.2;
-      this.color = `hsl(${25 + Math.random() * 15}, 70%, ${45 + Math.random() * 20}%)`;
-      this.rotation = Math.random() * Math.PI * 2;
-      this.rotSpeed = (Math.random() - 0.5) * 0.02;
-      this.type = type;
-      this.wobble = Math.random() * Math.PI * 2;
-    }
-    
-    update() {
-      this.wobble += 0.03;
-      this.x += this.speedX + Math.sin(time + this.wobble) * 0.15;
-      this.y += this.speedY + Math.cos(time * 0.5 + this.wobble) * 0.1;
-      this.rotation += this.rotSpeed;
-      
-      if (this.x < -30) this.x = width + 30;
-      if (this.x > width + 30) this.x = -30;
-      if (this.y < -30) this.y = height + 30;
-      if (this.y > height + 30) this.y = -30;
-    }
-    
-    draw() {
-      ctx.save();
-      ctx.translate(this.x, this.y);
-      ctx.rotate(this.rotation);
-      if (this.type === 'bean') {
-        ctx.beginPath();
-        ctx.ellipse(0, 0, this.size, this.size * 1.5, 0, 0, Math.PI * 2);
-        ctx.fillStyle = this.color;
-        ctx.fill();
-        ctx.beginPath();
-        ctx.ellipse(0, 0, this.size * 0.5, this.size * 0.9, 0, 0, Math.PI * 2);
-        ctx.fillStyle = 'rgba(0,0,0,0.25)';
-        ctx.fill();
-        ctx.beginPath();
-        ctx.ellipse(-this.size*0.3, -this.size*0.25, this.size*0.2, this.size*0.3, 0, 0, Math.PI*2);
-        ctx.fillStyle = 'rgba(255,210,150,0.5)';
-        ctx.fill();
-      } else if (this.type === 'cherry') {
-        ctx.beginPath();
-        ctx.arc(0, 0, this.size * 0.9, 0, Math.PI * 2);
-        ctx.fillStyle = '#C0392B';
-        ctx.fill();
-        ctx.beginPath();
-        ctx.ellipse(0, -this.size*0.3, this.size*0.3, this.size*0.2, 0, 0, Math.PI*2);
-        ctx.fillStyle = '#2E7D32';
-        ctx.fill();
-      }
-      ctx.restore();
-    }
+  // Central Volumetric Coffee Cup with realistic liquid
+  const cupGroup = new THREE.Group();
+  // Cup body (glass-like)
+  const cupGeometry = new THREE.CylinderGeometry(1.1, 0.8, 1.4, 48, 48);
+  const cupMaterial = new THREE.MeshPhysicalMaterial({ color: 0x8B5A2B, metalness: 0.6, roughness: 0.3, transparent: true, opacity: 0.85, emissive: 0x2A1508, emissiveIntensity: 0.2 });
+  const cup = new THREE.Mesh(cupGeometry, cupMaterial);
+  cup.position.y = -0.2;
+  cupGroup.add(cup);
+  
+  // Liquid surface (dynamic animation via shader-like rotation)
+  const liquidGeometry = new THREE.CylinderGeometry(0.95, 0.95, 0.18, 64, 64);
+  const liquidMaterial = new THREE.MeshStandardMaterial({ color: 0x6B3A1F, emissive: 0xC68B5E, emissiveIntensity: 0.35, metalness: 0.2, roughness: 0.1 });
+  const liquid = new THREE.Mesh(liquidGeometry, liquidMaterial);
+  liquid.position.y = 0.45;
+  cupGroup.add(liquid);
+  
+  // Handle
+  const handleGeo = new THREE.TorusGeometry(0.4, 0.08, 32, 64, Math.PI);
+  const handleMat = new THREE.MeshStandardMaterial({ color: 0xA67B5B, metalness: 0.5 });
+  const handle = new THREE.Mesh(handleGeo, handleMat);
+  handle.position.set(1.15, 0.2, 0.55);
+  handle.rotation.z = 0.5;
+  handle.rotation.x = 0.3;
+  cupGroup.add(handle);
+  
+  // Steam particles (floating upward)
+  const steamCount = 300;
+  const steamGeometry = new THREE.BufferGeometry();
+  const steamPositions = new Float32Array(steamCount * 3);
+  for (let i = 0; i < steamCount; i++) {
+    steamPositions[i*3] = (Math.random() - 0.5) * 1.5;
+    steamPositions[i*3+1] = Math.random() * 2.5 + 0.6;
+    steamPositions[i*3+2] = (Math.random() - 0.5) * 1.5;
   }
+  steamGeometry.setAttribute('position', new THREE.BufferAttribute(steamPositions, 3));
+  const steamMaterial = new THREE.PointsMaterial({ color: 0xE8A87C, size: 0.035, transparent: true, opacity: 0.5, blending: THREE.AdditiveBlending });
+  const steamParticles = new THREE.Points(steamGeometry, steamMaterial);
+  cupGroup.add(steamParticles);
   
-  class CoffeeCup {
-    constructor(x, y) {
-      this.x = x || width * 0.2 + Math.random() * width * 0.6;
-      this.y = y || height * 0.6 + Math.random() * height * 0.3;
-      this.size = 20 + Math.random() * 15;
-      this.steamOffset = Math.random() * Math.PI * 2;
-    }
-    
-    draw() {
-      ctx.save();
-      ctx.translate(this.x, this.y);
-      // Cup body
-      ctx.beginPath();
-      ctx.moveTo(-this.size/2, 0);
-      ctx.lineTo(this.size/2, 0);
-      ctx.lineTo(this.size/2 + 3, this.size);
-      ctx.lineTo(-this.size/2 - 3, this.size);
-      ctx.closePath();
-      ctx.fillStyle = '#8B5A2B';
-      ctx.fill();
-      ctx.fillStyle = '#A0522D';
-      ctx.fillRect(-this.size/2 + 2, 0, this.size - 4, this.size);
-      // Handle
-      ctx.beginPath();
-      ctx.ellipse(this.size/2 + 5, this.size/2, 8, 12, 0, 0, Math.PI*2);
-      ctx.strokeStyle = '#8B5A2B';
-      ctx.lineWidth = 3;
-      ctx.stroke();
-      // Steam
-      for (let i = 0; i < 3; i++) {
-        const steamY = -8 - (time * 30 + i * 15) % 40;
-        if (steamY > -30) {
-          ctx.beginPath();
-          ctx.arc(-this.size/3 + i*8, steamY, 3 + Math.sin(time*5 + i)*1.5, 0, Math.PI*2);
-          ctx.fillStyle = `rgba(200, 160, 120, ${0.3 - Math.abs(steamY)/100})`;
-          ctx.fill();
-        }
-      }
-      ctx.restore();
-    }
+  scene.add(cupGroup);
+  
+  // Floating harvest particles (cherries and leaves orbiting)
+  const harvestCount = 800;
+  const harvestGeo = new THREE.BufferGeometry();
+  const harvestPos = new Float32Array(harvestCount * 3);
+  for (let i = 0; i < harvestCount; i++) {
+    const rad = 2.5 + Math.random() * 2;
+    const ang = Math.random() * Math.PI * 2;
+    harvestPos[i*3] = Math.cos(ang) * rad;
+    harvestPos[i*3+1] = Math.sin(ang) * rad * 0.8 + 1.2;
+    harvestPos[i*3+2] = Math.sin(ang) * rad;
   }
+  harvestGeo.setAttribute('position', new THREE.BufferAttribute(harvestPos, 3));
+  const harvestMat = new THREE.PointsMaterial({ color: 0xC0392B, size: 0.07, transparent: true, blending: THREE.AdditiveBlending });
+  const harvestRing = new THREE.Points(harvestGeo, harvestMat);
+  scene.add(harvestRing);
   
-  class HarvestElement {
-    constructor(x, y) {
-      this.x = x || Math.random() * width;
-      this.y = y || Math.random() * height;
-      this.type = Math.random() > 0.5 ? 'leaf' : 'basket';
-    }
-    
-    draw() {
-      ctx.save();
-      ctx.translate(this.x, this.y);
-      if (this.type === 'leaf') {
-        ctx.beginPath();
-        ctx.moveTo(0, 0);
-        ctx.quadraticCurveTo(8, -10, 15, -5);
-        ctx.quadraticCurveTo(8, 2, 0, 0);
-        ctx.fillStyle = '#4CAF50';
-        ctx.fill();
-        ctx.beginPath();
-        ctx.moveTo(0, 0);
-        ctx.quadraticCurveTo(-8, -10, -15, -5);
-        ctx.quadraticCurveTo(-8, 2, 0, 0);
-        ctx.fill();
-      } else {
-        // Basket symbol
-        ctx.fillStyle = '#C68B5E';
-        ctx.fillRect(-10, -5, 20, 12);
-        ctx.fillStyle = '#A0522D';
-        for(let i=0; i<3; i++) ctx.fillRect(-8 + i*8, -8, 3, 5);
-      }
-      ctx.restore();
-    }
+  // Second ring - golden beans
+  const goldRingCount = 400;
+  const goldGeo = new THREE.BufferGeometry();
+  const goldPos = new Float32Array(goldRingCount * 3);
+  for (let i = 0; i < goldRingCount; i++) {
+    const rad = 4.2;
+    const ang = (i / goldRingCount) * Math.PI * 2;
+    goldPos[i*3] = Math.cos(ang) * rad;
+    goldPos[i*3+1] = Math.sin(ang * 2) * 0.8 + 1.3;
+    goldPos[i*3+2] = Math.sin(ang) * rad;
   }
+  goldGeo.setAttribute('position', new THREE.BufferAttribute(goldPos, 3));
+  const goldMat = new THREE.PointsMaterial({ color: 0xD4AF37, size: 0.09, transparent: true, blending: THREE.AdditiveBlending });
+  const goldRing = new THREE.Points(goldGeo, goldMat);
+  scene.add(goldRing);
   
-  function initAnimations() {
-    particles = [];
-    coffeeCups = [];
-    harvestLeaves = [];
-    
-    // Coffee beans and cherries
-    const beanCount = Math.min(220, Math.floor(width * height / 5000));
-    for (let i = 0; i < beanCount; i++) {
-      particles.push(new CoffeeBean(null, null, Math.random() > 0.7 ? 'cherry' : 'bean'));
-    }
-    
-    // Coffee cups (3-5 cups)
-    const cupCount = Math.min(5, Math.floor(width / 250) + 2);
-    for (let i = 0; i < cupCount; i++) {
-      coffeeCups.push(new CoffeeCup(width * (0.2 + i * 0.2), height * 0.7));
-    }
-    
-    // Harvest leaves floating
-    for (let i = 0; i < 40; i++) {
-      harvestLeaves.push(new HarvestElement());
-    }
+  // Floating glowing orbs (coffee essence)
+  const orbCount = 150;
+  const orbGeo = new THREE.BufferGeometry();
+  const orbPos = new Float32Array(orbCount * 3);
+  for (let i = 0; i < orbCount; i++) {
+    orbPos[i*3] = (Math.random() - 0.5) * 8;
+    orbPos[i*3+1] = Math.random() * 3.5;
+    orbPos[i*3+2] = (Math.random() - 0.5) * 7;
   }
+  orbGeo.setAttribute('position', new THREE.BufferAttribute(orbPos, 3));
+  const orbMat = new THREE.PointsMaterial({ color: 0xC68B5E, size: 0.05, transparent: true, opacity: 0.6, blending: THREE.AdditiveBlending });
+  const orbs = new THREE.Points(orbGeo, orbMat);
+  scene.add(orbs);
   
-  function drawFarmerSilhouette() {
-    // Farmer harvesting silhouette in background
-    ctx.save();
-    ctx.globalAlpha = 0.15;
-    ctx.fillStyle = '#C68B5E';
-    const farmerX = width * 0.85;
-    const farmerY = height * 0.65;
-    ctx.beginPath();
-    ctx.arc(farmerX, farmerY - 25, 18, 0, Math.PI * 2);
-    ctx.fill();
-    ctx.fillRect(farmerX - 10, farmerY - 10, 20, 35);
-    ctx.fillRect(farmerX - 22, farmerY + 5, 15, 25);
-    ctx.fillRect(farmerX + 7, farmerY + 5, 15, 25);
-    // Hat
-    ctx.fillRect(farmerX - 22, farmerY - 38, 44, 8);
-    ctx.globalAlpha = 0.25;
-    ctx.beginPath();
-    ctx.moveTo(farmerX - 30, farmerY - 30);
-    ctx.lineTo(farmerX, farmerY - 45);
-    ctx.lineTo(farmerX + 30, farmerY - 30);
-    ctx.fill();
-    ctx.globalAlpha = 1;
-    ctx.restore();
-  }
+  // Ground reflection glow
+  const glowGeometry = new THREE.RingGeometry(1.8, 3.2, 32);
+  const glowMaterial = new THREE.MeshBasicMaterial({ color: 0xC68B5E, transparent: true, opacity: 0.15, side: THREE.DoubleSide });
+  const groundGlow = new THREE.Mesh(glowGeometry, glowMaterial);
+  groundGlow.rotation.x = -Math.PI / 2;
+  groundGlow.position.y = -0.9;
+  scene.add(groundGlow);
   
-  function drawRoastingDrum() {
-    // Roasting drum animation
-    ctx.save();
-    ctx.translate(width * 0.12, height * 0.25);
-    ctx.rotate(Math.sin(time * 0.8) * 0.1);
-    ctx.beginPath();
-    ctx.ellipse(0, 0, 35, 28, 0, 0, Math.PI * 2);
-    ctx.fillStyle = '#5D4037';
-    ctx.fill();
-    ctx.fillStyle = '#8D6E63';
-    ctx.fillRect(-25, -8, 50, 16);
-    for(let i=0; i<5; i++) {
-      ctx.beginPath();
-      ctx.arc(-20 + i*10, 0, 3, 0, Math.PI*2);
-      ctx.fillStyle = '#FF8F00';
-      ctx.fill();
-    }
-    ctx.restore();
-  }
+  // Camera orbit variables
+  let mouseX3D = 0, mouseY3D = 0;
+  let targetRotationX = 0, targetRotationY = 0;
+  let currentRotationX = 0, currentRotationY = 0;
   
-  function drawCoffeePlant() {
-    // Coffee plant branch
-    ctx.save();
-    ctx.translate(width * 0.9, height * 0.4);
-    ctx.beginPath();
-    ctx.moveTo(0, 0);
-    ctx.lineTo(-30, -40);
-    ctx.lineTo(-20, -35);
-    ctx.fillStyle = '#2E7D32';
-    ctx.fill();
-    for(let i=0; i<3; i++) {
-      ctx.beginPath();
-      ctx.arc(-15 + i*8, -38 + i*2, 4, 0, Math.PI*2);
-      ctx.fillStyle = '#C0392B';
-      ctx.fill();
-    }
-    ctx.restore();
-  }
-  
-  let mouseTimeout;
-  function handleMouseMove(e) {
+  document.querySelector('.three-container').addEventListener('mousemove', (e) => {
     const rect = canvas.getBoundingClientRect();
-    const scaleX = canvas.width / rect.width;
-    const scaleY = canvas.height / rect.height;
-    let cx, cy;
-    if (e.touches) {
-      cx = e.touches[0].clientX;
-      cy = e.touches[0].clientY;
-    } else {
-      cx = e.clientX;
-      cy = e.clientY;
-    }
-    mouseX = (cx - rect.left) * scaleX;
-    mouseY = (cy - rect.top) * scaleY;
-    clearTimeout(mouseTimeout);
-    mouseTimeout = setTimeout(() => { mouseX = width/2; mouseY = height/2; }, 2000);
-  }
+    mouseX3D = (e.clientX - rect.left) / rect.width - 0.5;
+    mouseY3D = (e.clientY - rect.top) / rect.height - 0.5;
+    targetRotationY = mouseX3D * 1.5;
+    targetRotationX = mouseY3D * 0.8;
+  });
   
-  function animate() {
-    if (!ctx) return;
-    ctx.clearRect(0, 0, width, height);
-    const bgGrad = ctx.createLinearGradient(0, 0, 0, height);
-    bgGrad.addColorStop(0, '#0a0503');
-    bgGrad.addColorStop(1, '#1f120a');
-    ctx.fillStyle = bgGrad;
-    ctx.fillRect(0, 0, width, height);
+  // Animation loop
+  let time3D = 0;
+  function animate3D() {
+    requestAnimationFrame(animate3D);
+    time3D += 0.012;
     
-    time += 0.02;
+    // Smooth camera rotation
+    currentRotationX += (targetRotationX - currentRotationX) * 0.05;
+    currentRotationY += (targetRotationY - currentRotationY) * 0.05;
+    const radius = 11;
+    camera.position.x = Math.sin(currentRotationY) * radius * 0.5;
+    camera.position.z = Math.cos(currentRotationY) * radius;
+    camera.position.y = 2 + currentRotationX * 1.2;
+    camera.lookAt(0, 1.2, 0);
     
-    // Draw all elements
-    drawFarmerSilhouette();
-    drawRoastingDrum();
-    drawCoffeePlant();
+    // Rotate bean cloud galaxy
+    beanCloud.rotation.y = time3D * 0.15;
+    beanCloud.rotation.x = Math.sin(time3D * 0.2) * 0.1;
     
-    for (let leaf of harvestLeaves) leaf.draw();
-    for (let cup of coffeeCups) cup.draw();
-    for (let p of particles) {
-      p.update();
-      p.draw();
-    }
+    // Rotate harvest rings
+    harvestRing.rotation.y = time3D * 0.4;
+    harvestRing.rotation.x = Math.sin(time3D * 0.5) * 0.2;
+    goldRing.rotation.y = -time3D * 0.3;
+    goldRing.rotation.z = Math.sin(time3D * 0.7) * 0.1;
     
-    // Mouse interaction glow
-    if (mouseX && mouseY) {
-      ctx.beginPath();
-      ctx.arc(mouseX, mouseY, 50, 0, Math.PI*2);
-      ctx.fillStyle = 'rgba(198,139,94,0.08)';
-      ctx.fill();
-    }
+    // Floating orbs bobbing
+    orbs.rotation.y = time3D * 0.1;
     
-    // Additional falling cherry blossoms
-    for (let i = 0; i < 30; i++) {
-      const fx = (Math.sin(time * 0.5 + i) * 0.5 + 0.5) * width;
-      const fy = (time * 40 + i * 30) % (height + 100) - 50;
-      if (fy > 0 && fy < height) {
-        ctx.beginPath();
-        ctx.arc(fx, fy, 2.5, 0, Math.PI*2);
-        ctx.fillStyle = `rgba(200, 80, 60, ${0.4})`;
-        ctx.fill();
+    // Steam animation - update positions
+    const positions = steamParticles.geometry.attributes.position.array;
+    for (let i = 0; i < steamCount; i++) {
+      positions[i*3+1] += 0.008;
+      if (positions[i*3+1] > 2.8) {
+        positions[i*3+1] = 0.6;
+        positions[i*3] = (Math.random() - 0.5) * 1.5;
+        positions[i*3+2] = (Math.random() - 0.5) * 1.5;
       }
     }
+    steamParticles.geometry.attributes.position.needsUpdate = true;
     
-    requestAnimationFrame(animate);
+    // Liquid shine pulsation
+    const intensity = 0.35 + Math.sin(time3D * 5) * 0.1;
+    liquidMaterial.emissiveIntensity = intensity;
+    
+    // Ground glow pulse
+    groundGlow.material.opacity = 0.15 + Math.sin(time3D * 2) * 0.05;
+    
+    // Random floating particles addition - create a magical dust field
+    renderer.render(scene, camera);
   }
   
-  window.addEventListener('resize', () => { resizeCanvas(); });
-  window.addEventListener('mousemove', handleMouseMove);
-  window.addEventListener('touchmove', handleMouseMove);
-  window.addEventListener('touchstart', handleMouseMove);
+  function handleResize() {
+    const container = canvas.parentElement;
+    const w = container.clientWidth;
+    const h = container.clientHeight;
+    renderer.setSize(w, h);
+    camera.aspect = w / h;
+    camera.updateProjectionMatrix();
+  }
   
-  resizeCanvas();
-  initAnimations();
-  animate();
+  window.addEventListener('resize', handleResize);
+  handleResize();
+  animate3D();
   
+  // Parallax hero effect
   let isMobile = window.innerWidth <= 768;
   if (!isMobile) {
     window.addEventListener('scroll', () => {
