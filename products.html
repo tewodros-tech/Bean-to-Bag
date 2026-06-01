@@ -678,12 +678,12 @@
   </div>
 </section>
 
-<!-- ========== VIDEO SECTION - NO DESCRIPTION, JUST VIDEO ========== -->
+<!-- ========== VIDEO SECTION - USING YOUR SPECIFIC MP4 FILE (NO DESCRIPTION TEXT) ========== -->
 <section class="video-story">
   <div class="video-container">
     <div class="video-wrapper">
       <video controls autoplay loop muted playsinline>
-        <source src="https://cdn.pixabay.com/video/2022/08/02/126468-735138854_large.mp4" type="video/mp4">
+        <source src="4820350-uhd_2160_4096_25fps (1).mp4" type="video/mp4">
         Your browser does not support the video tag.
       </video>
     </div>
@@ -895,16 +895,21 @@
     isMobile = window.innerWidth <= 768;
   });
   
-  // Ensure video autoplay works with muted attribute (browsers allow autoplay if muted)
+  // Force video autoplay with muted attribute (browsers allow autoplay if muted)
   const coffeeVideo = document.querySelector('video');
   if (coffeeVideo) {
-    // Force play attempt after metadata loads to ensure autoplay
-    coffeeVideo.addEventListener('loadedmetadata', () => {
-      coffeeVideo.play().catch(e => console.log("Autoplay prevented by browser, user can click play:", e));
-    });
-    // If autoplay fails, at least controls are visible
     coffeeVideo.muted = true;
-    coffeeVideo.play().catch(e => console.log("Initial autoplay blocked, but controls available"));
+    const playPromise = coffeeVideo.play();
+    if (playPromise !== undefined) {
+      playPromise.catch(error => {
+        console.log("Autoplay prevented. User interaction required.");
+        // Add a subtle overlay hint? Not needed, controls exist.
+      });
+    }
+    // Also ensure video loads properly with the given filename
+    coffeeVideo.addEventListener('error', (e) => {
+      console.error("Video failed to load. Check file path: 4820350-uhd_2160_4096_25fps (1).mp4");
+    });
   }
 </script>
 </body>
