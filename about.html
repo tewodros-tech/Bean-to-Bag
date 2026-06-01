@@ -3,14 +3,28 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
-  <title>Bean to Bag | About Us - Our Story</title>
+  <title>Bean to Bag | About Us - The Coffee Journey</title>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
   <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700;800;900&family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
   <style>
-    * { margin: 0; padding: 0; box-sizing: border-box; }
-    body { font-family: 'Poppins', sans-serif; background: #0A0A0A; color: #FFFFFF; overflow-x: hidden; }
-    h1, h2, h3, .logo { font-family: 'Playfair Display', serif; }
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
 
+    body {
+      font-family: 'Poppins', sans-serif;
+      background: #0A0A0A;
+      color: #FFFFFF;
+      overflow-x: hidden;
+    }
+
+    h1, h2, h3, .logo {
+      font-family: 'Playfair Display', serif;
+    }
+
+    /* Navigation - NO BULLETINS */
     nav {
       position: fixed;
       top: 20px;
@@ -28,158 +42,782 @@
       border: 1px solid rgba(198, 139, 94, 0.4);
       transition: all 0.3s ease;
     }
-    nav.scrolled { top: 0; left: 0; right: 0; width: 100%; border-radius: 0; background: rgba(10, 10, 10, 0.96); }
-    .logo { font-size: 1.6rem; font-weight: 800; background: linear-gradient(135deg, #FFFFFF, #C68B5E, #E8A87C); -webkit-background-clip: text; background-clip: text; color: transparent; }
-    .menu-icon { display: none; font-size: 1.8rem; cursor: pointer; background: none; border: none; color: white; }
-    .nav-links { display: flex; gap: 2.5rem; list-style: none; margin: 0; padding: 0; }
-    .nav-links li { list-style: none; }
-    .nav-links a { text-decoration: none; color: white; font-weight: 500; transition: 0.3s; position: relative; }
-    .nav-links a::before { content: ''; position: absolute; bottom: -5px; left: 0; width: 0; height: 2px; background: linear-gradient(90deg, #C68B5E, #E8A87C); transition: 0.3s; }
-    .nav-links a:hover::before, .nav-links a.active::before { width: 100%; }
-    .nav-links a:hover { color: #C68B5E; }
+    nav.scrolled {
+      top: 0;
+      left: 0;
+      right: 0;
+      width: 100%;
+      border-radius: 0;
+      background: rgba(10, 10, 10, 0.96);
+    }
+    .logo {
+      font-size: 1.6rem;
+      font-weight: 800;
+      background: linear-gradient(135deg, #FFFFFF, #C68B5E, #E8A87C);
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+    }
+    .menu-icon {
+      display: none;
+      font-size: 1.8rem;
+      cursor: pointer;
+      background: none;
+      border: none;
+      color: white;
+    }
+    .nav-links {
+      display: flex;
+      gap: 2.5rem;
+      list-style: none;
+      margin: 0;
+      padding: 0;
+    }
+    .nav-links li {
+      list-style: none;
+    }
+    .nav-links a {
+      text-decoration: none;
+      color: white;
+      font-weight: 500;
+      transition: 0.3s;
+      position: relative;
+    }
+    .nav-links a::before {
+      content: '';
+      position: absolute;
+      bottom: -5px;
+      left: 0;
+      width: 0;
+      height: 2px;
+      background: linear-gradient(90deg, #C68B5E, #E8A87C);
+      transition: 0.3s;
+    }
+    .nav-links a:hover::before,
+    .nav-links a.active::before {
+      width: 100%;
+    }
+    .nav-links a:hover {
+      color: #C68B5E;
+    }
 
-    .about-hero { min-height: 60vh; display: flex; align-items: center; justify-content: center; text-align: center; padding: 8rem 5% 4rem; background: linear-gradient(135deg, rgba(0,0,0,0.8), rgba(44,24,16,0.9)), url('coffee1.JPG'); background-size: cover; background-position: center; }
-    .about-hero-content { max-width: 800px; }
-    .about-hero h1 { font-size: 4rem; margin-bottom: 1rem; background: linear-gradient(135deg, #FFFFFF, #C68B5E); -webkit-background-clip: text; background-clip: text; color: transparent; }
-    
-    .section { padding: 5rem 5%; background: #0A0A0A; }
-    .container { max-width: 1400px; margin: 0 auto; }
-    .section-title { text-align: center; font-size: 3rem; margin-bottom: 1rem; background: linear-gradient(135deg, #FFFFFF, #C68B5E); -webkit-background-clip: text; background-clip: text; color: transparent; }
-    .section-subtitle { text-align: center; color: #C68B5E; letter-spacing: 3px; margin-bottom: 3rem; }
-    
-    .story-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 3rem; align-items: center; margin-bottom: 4rem; }
-    .story-text p { font-size: 1.05rem; line-height: 1.8; margin-bottom: 1.2rem; color: rgba(255,255,255,0.85); }
-    .story-image { border-radius: 20px; overflow: hidden; box-shadow: 0 20px 30px rgba(0,0,0,0.5); }
-    .story-image img { width: 100%; height: auto; transition: 0.5s; }
-    
-    .values-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 2rem; margin-top: 2rem; }
-    .value-card { background: rgba(255,255,255,0.05); backdrop-filter: blur(10px); border-radius: 20px; padding: 2rem; text-align: center; transition: 0.4s; border: 1px solid rgba(198,139,94,0.2); }
-    .value-card:hover { transform: translateY(-10px); border-color: #C68B5E; }
-    .value-card i { font-size: 3rem; color: #C68B5E; margin-bottom: 1rem; }
-    .value-card h3 { font-size: 1.5rem; margin-bottom: 1rem; }
-    
-    .team-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 2rem; margin-top: 2rem; }
-    .team-card { background: rgba(255,255,255,0.03); border-radius: 20px; padding: 2rem; text-align: center; border: 1px solid rgba(198,139,94,0.15); transition: 0.3s; }
-    .team-card:hover { transform: translateY(-5px); background: rgba(198,139,94,0.1); }
-    .team-img { width: 150px; height: 150px; border-radius: 50%; object-fit: cover; margin-bottom: 1rem; border: 3px solid #C68B5E; }
-    
-    .timeline { display: flex; flex-wrap: wrap; justify-content: center; gap: 2rem; margin-top: 3rem; }
-    .milestone { background: linear-gradient(135deg, #1A0F0A, #2C1810); padding: 1.5rem; border-radius: 15px; min-width: 180px; text-align: center; border-left: 4px solid #C68B5E; }
-    .milestone .year { font-size: 2rem; font-weight: 800; color: #C68B5E; font-family: 'Playfair Display', serif; }
-    
-    .btn-primary { background: linear-gradient(135deg, #C68B5E, #A06B42); color: white; padding: 1rem 2.5rem; border-radius: 50px; text-decoration: none; font-weight: 600; transition: 0.3s; display: inline-block; }
-    .btn-primary:hover { transform: translateY(-3px); box-shadow: 0 10px 30px rgba(198,139,94,0.5); }
-    
-    .whatsapp-float { position: fixed; bottom: 20px; right: 20px; background: #25D366; width: 55px; height: 55px; border-radius: 50%; text-align: center; line-height: 55px; font-size: 28px; color: white; z-index: 999; cursor: pointer; }
-    footer { background: #0A0A0A; border-top: 1px solid rgba(198,139,94,0.3); padding: 3rem 5%; }
-    .footer-content { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 2rem; max-width: 1200px; margin: 0 auto; }
-    .social-icons a { color: white; font-size: 1.5rem; margin-right: 1rem; transition: 0.3s; display: inline-block; }
-    .social-icons a:hover { color: #C68B5E; }
-    
+    /* About Hero Section */
+    .about-hero {
+      min-height: 50vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      padding: 8rem 5% 4rem;
+      background: linear-gradient(135deg, rgba(0,0,0,0.8), rgba(44,24,16,0.9)), url('coffee1.JPG');
+      background-size: cover;
+      background-position: center;
+    }
+    .about-hero h1 {
+      font-size: 4rem;
+      background: linear-gradient(135deg, #FFFFFF, #C68B5E);
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+    }
     @media (max-width: 768px) {
-      .menu-icon { display: block; }
-      .nav-links { display: none; position: absolute; top: 70px; left: 0; width: 100%; background: rgba(10,10,10,0.98); flex-direction: column; padding: 1.5rem; text-align: center; gap: 1rem; }
-      .nav-links.active { display: flex; }
-      .story-grid { grid-template-columns: 1fr; }
-      .about-hero h1 { font-size: 2.5rem; }
-      .section-title { font-size: 2rem; }
+      .about-hero h1 {
+        font-size: 2.5rem;
+      }
+    }
+
+    .section {
+      padding: 5rem 5%;
+    }
+    .container {
+      max-width: 1400px;
+      margin: 0 auto;
+    }
+    .section-title {
+      text-align: center;
+      font-size: 3rem;
+      margin-bottom: 1rem;
+      background: linear-gradient(135deg, #FFFFFF, #C68B5E);
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+    }
+    @media (max-width: 768px) {
+      .section-title {
+        font-size: 2rem;
+      }
+    }
+
+    .about-content {
+      max-width: 900px;
+      margin: 0 auto;
+      text-align: center;
+    }
+    .about-content p {
+      font-size: 1.1rem;
+      line-height: 1.8;
+      margin-bottom: 1.5rem;
+      color: rgba(255, 255, 255, 0.85);
+    }
+
+    /* Values Grid */
+    .values-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 2rem;
+      margin-top: 3rem;
+    }
+    .value-card {
+      background: rgba(255, 255, 255, 0.05);
+      border-radius: 20px;
+      padding: 2rem;
+      text-align: center;
+      border: 1px solid rgba(198, 139, 94, 0.2);
+      transition: 0.3s;
+    }
+    .value-card:hover {
+      transform: translateY(-5px);
+      border-color: #C68B5E;
+    }
+    .value-card i {
+      font-size: 2.5rem;
+      color: #C68B5E;
+      margin-bottom: 1rem;
+    }
+
+    /* ============================================
+       EXCEPTIONAL ANIMATED BEAN TO BAG PROCESS
+       ============================================ */
+    .process-section {
+      background: linear-gradient(135deg, #0F0A07, #1A0F0A);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .process-container {
+      max-width: 1300px;
+      margin: 0 auto;
+      padding: 2rem 0;
+    }
+
+    .process-timeline {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      align-items: center;
+      gap: 1rem;
+      position: relative;
+    }
+
+    /* Animated connecting line */
+    .process-timeline::before {
+      content: '';
+      position: absolute;
+      top: 50%;
+      left: 5%;
+      right: 5%;
+      height: 3px;
+      background: linear-gradient(90deg, #C68B5E, #E8A87C, #C68B5E);
+      transform: translateY(-50%);
+      z-index: 0;
+      animation: pulseLine 2s ease-in-out infinite;
+    }
+
+    @keyframes pulseLine {
+      0%, 100% { opacity: 0.4; }
+      50% { opacity: 1; }
+    }
+
+    @media (max-width: 900px) {
+      .process-timeline::before {
+        display: none;
+      }
+    }
+
+    .process-step {
+      flex: 1;
+      min-width: 180px;
+      text-align: center;
+      position: relative;
+      z-index: 2;
+      cursor: pointer;
+      transition: all 0.4s cubic-bezier(0.2, 0.9, 0.4, 1.1);
+    }
+
+    .process-step:hover {
+      transform: translateY(-10px);
+    }
+
+    /* Animated Icon Circle */
+    .step-icon {
+      width: 100px;
+      height: 100px;
+      margin: 0 auto 1rem;
+      background: linear-gradient(135deg, #1A0F0A, #2C1810);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border: 2px solid #C68B5E;
+      position: relative;
+      transition: all 0.3s;
+      animation: floatIcon 3s ease-in-out infinite;
+    }
+
+    .process-step:nth-child(1) .step-icon { animation-delay: 0s; }
+    .process-step:nth-child(2) .step-icon { animation-delay: 0.6s; }
+    .process-step:nth-child(3) .step-icon { animation-delay: 1.2s; }
+    .process-step:nth-child(4) .step-icon { animation-delay: 1.8s; }
+    .process-step:nth-child(5) .step-icon { animation-delay: 2.4s; }
+    .process-step:nth-child(6) .step-icon { animation-delay: 3s; }
+
+    @keyframes floatIcon {
+      0%, 100% { transform: translateY(0px); }
+      50% { transform: translateY(-8px); }
+    }
+
+    .step-icon i {
+      font-size: 3rem;
+      color: #C68B5E;
+      transition: all 0.3s;
+    }
+
+    .process-step:hover .step-icon {
+      background: linear-gradient(135deg, #C68B5E, #A06B42);
+      box-shadow: 0 0 25px rgba(198, 139, 94, 0.6);
+      transform: scale(1.05);
+    }
+
+    .process-step:hover .step-icon i {
+      color: white;
+      transform: scale(1.1);
+    }
+
+    /* Step number badge */
+    .step-number {
+      position: absolute;
+      top: -10px;
+      right: -10px;
+      width: 32px;
+      height: 32px;
+      background: #C68B5E;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: bold;
+      color: #0A0A0A;
+      font-size: 0.9rem;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.3);
+      animation: pulseNumber 1.5s ease-in-out infinite;
+    }
+
+    @keyframes pulseNumber {
+      0%, 100% { transform: scale(1); background: #C68B5E; }
+      50% { transform: scale(1.1); background: #E8A87C; }
+    }
+
+    .step-title {
+      font-size: 1.2rem;
+      font-weight: 600;
+      margin: 0.8rem 0 0.3rem;
+      color: #C68B5E;
+    }
+
+    .step-desc {
+      font-size: 0.85rem;
+      color: rgba(255, 255, 255, 0.7);
+      padding: 0 0.5rem;
+    }
+
+    /* Animated arrow between steps (visible on mobile) */
+    .process-arrow {
+      display: none;
+      font-size: 1.5rem;
+      color: #C68B5E;
+      margin: 0 -0.5rem;
+    }
+
+    @media (max-width: 900px) {
+      .process-timeline {
+        flex-direction: column;
+        gap: 2rem;
+      }
+      .process-step {
+        width: 100%;
+        max-width: 300px;
+        margin: 0 auto;
+      }
+      .process-arrow {
+        display: block;
+        text-align: center;
+        margin: -1rem 0;
+        animation: bounceArrow 1s ease-in-out infinite;
+      }
+      @keyframes bounceArrow {
+        0%, 100% { transform: translateY(0); }
+        50% { transform: translateY(5px); }
+      }
+      .process-timeline::before {
+        display: none;
+      }
+    }
+
+    /* Process description card that appears on click/hover */
+    .process-detail {
+      margin-top: 4rem;
+      text-align: center;
+      padding: 2rem;
+      background: rgba(255, 255, 255, 0.03);
+      border-radius: 30px;
+      border: 1px solid rgba(198, 139, 94, 0.3);
+      transition: all 0.3s;
+    }
+
+    .process-detail-content {
+      max-width: 700px;
+      margin: 0 auto;
+    }
+
+    .process-detail h4 {
+      font-size: 1.5rem;
+      color: #C68B5E;
+      margin-bottom: 0.5rem;
+    }
+
+    .process-detail p {
+      color: rgba(255, 255, 255, 0.8);
+      line-height: 1.6;
+    }
+
+    /* Coffee bean particles animation */
+    .coffee-beans-bg {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      pointer-events: none;
+      overflow: hidden;
+      z-index: 0;
+    }
+
+    .bean-particle {
+      position: absolute;
+      font-size: 1.2rem;
+      opacity: 0.15;
+      animation: floatBean 20s linear infinite;
+    }
+
+    @keyframes floatBean {
+      0% {
+        transform: translateY(100vh) rotate(0deg);
+        opacity: 0;
+      }
+      10% {
+        opacity: 0.15;
+      }
+      90% {
+        opacity: 0.15;
+      }
+      100% {
+        transform: translateY(-20vh) rotate(360deg);
+        opacity: 0;
+      }
+    }
+
+    /* Roast level badge */
+    .roast-badge {
+      display: inline-block;
+      background: rgba(198, 139, 94, 0.2);
+      padding: 0.5rem 1.5rem;
+      border-radius: 50px;
+      margin-top: 1rem;
+      font-size: 0.85rem;
+      color: #C68B5E;
+    }
+
+    /* WhatsApp Float */
+    .whatsapp-float {
+      position: fixed;
+      bottom: 20px;
+      right: 20px;
+      background: #25D366;
+      width: 55px;
+      height: 55px;
+      border-radius: 50%;
+      text-align: center;
+      line-height: 55px;
+      font-size: 28px;
+      color: white;
+      z-index: 999;
+      cursor: pointer;
+      transition: 0.2s;
+    }
+    .whatsapp-float:hover {
+      transform: scale(1.07);
+    }
+
+    /* Footer */
+    footer {
+      background: #0A0A0A;
+      border-top: 1px solid rgba(198, 139, 94, 0.3);
+      padding: 3rem 5%;
+    }
+    .footer-content {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 2rem;
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+    .social-icons a {
+      color: white;
+      font-size: 1.5rem;
+      margin-right: 1rem;
+      transition: 0.3s;
+      display: inline-block;
+    }
+    .social-icons a:hover {
+      color: #C68B5E;
+      transform: translateY(-3px);
+    }
+
+    @media (max-width: 768px) {
+      .menu-icon {
+        display: block;
+      }
+      .nav-links {
+        display: none;
+        position: absolute;
+        top: 70px;
+        left: 0;
+        width: 100%;
+        background: rgba(10, 10, 10, 0.98);
+        flex-direction: column;
+        padding: 1.5rem;
+        text-align: center;
+        gap: 1rem;
+        border-radius: 0 0 20px 20px;
+      }
+      .nav-links.active {
+        display: flex;
+      }
+      .step-icon {
+        width: 80px;
+        height: 80px;
+      }
+      .step-icon i {
+        font-size: 2.2rem;
+      }
+      .step-title {
+        font-size: 1rem;
+      }
     }
   </style>
 </head>
 <body>
 
-<div class="whatsapp-float" onclick="window.open('https://wa.me/251911223344?text=Hello%20Bean%20to%20Bag!', '_blank')"><i class="fab fa-whatsapp"></i></div>
-
-<nav id="nav">
-  <div class="logo">Bean <span style="color:#C68B5E;">to Bag</span></div>
-  <button class="menu-icon" onclick="toggleMenu()"><i class="fas fa-bars"></i></button>
-  <ul class="nav-links" id="navLinks">
-    <li><a href="index.html">Home</a></li>
-    <li><a href="about.html" class="active">About</a></li>
-    <li><a href="products.html">Products</a></li>
-    <li><a href="origin.html">Origin</a></li>
-    <li><a href="contact.html">Contact</a></li>
-  </ul>
-</nav>
-
-<section class="about-hero">
-  <div class="about-hero-content">
-    <h1>Our Story</h1>
-    <p>From the ancient coffee forests of Ethiopia to your cup — a journey of passion, quality, and heritage.</p>
+  <div class="whatsapp-float" onclick="window.open('https://wa.me/251911223344?text=Hello%20Bean%20to%20Bag!', '_blank')">
+    <i class="fab fa-whatsapp"></i>
   </div>
-</section>
 
-<section class="section">
-  <div class="container">
-    <div class="story-grid">
-      <div class="story-text">
-        <h2 class="section-title" style="text-align: left; font-size: 2.5rem;">Bean to Bag Philosophy</h2>
-        <p>Founded in the heart of Addis Ababa, Bean to Bag was born from a deep respect for Ethiopia's coffee legacy. We believe that every cup tells a story — of the highlands, the farmers, and the centuries-old traditions that make Ethiopian coffee world-renowned.</p>
-        <p>Our name reflects our commitment: we oversee every step from the green bean to the final bag. By working directly with small-scale farmers in regions like Yirgacheffe, Sidama, and Guji, we ensure fair prices, sustainable practices, and traceable quality.</p>
-        <p>Each batch is carefully roasted in our Addis Ababa facility, unlocking the unique floral, fruity, and wine-like characteristics that only Ethiopian Arabica can offer.</p>
+  <nav id="nav">
+    <div class="logo">Bean <span style="color:#C68B5E;">to Bag</span></div>
+    <button class="menu-icon" onclick="toggleMenu()"><i class="fas fa-bars"></i></button>
+    <ul class="nav-links" id="navLinks">
+      <li><a href="index.html">Home</a></li>
+      <li><a href="about.html" class="active">About</a></li>
+      <li><a href="products.html">Products</a></li>
+      <li><a href="origin.html">Coffee Origin</a></li>
+      <li><a href="contact.html">Contact</a></li>
+    </ul>
+  </nav>
+
+  <!-- About Hero Section -->
+  <section class="about-hero">
+    <div>
+      <h1>About Bean to Bag</h1>
+      <p style="margin-top: 1rem;">From origin to cup — with passion and precision</p>
+    </div>
+  </section>
+
+  <!-- About Content Section -->
+  <section class="section">
+    <div class="container">
+      <div class="about-content">
+        <h2 class="section-title">Our Story</h2>
+        <p>Bean to Bag is dedicated to delivering high-quality Ethiopian coffee from origin to cup. Our coffee is grown by smallholder farmers in traditional garden farms across Ethiopia's highlands at 1,900–2,200 meters above sea level.</p>
+        <p>Every step — from sourcing green beans to roasting and packaging — is carefully handled to ensure freshness and quality. The name Bean to Bag represents the complete coffee journey: Coffee Bean → Roasting → Packaging → Customer.</p>
+        <p>We roast all our coffees to a <strong>Medium-Dark roast level</strong>, providing balanced acidity, full body, rich chocolate and cocoa notes, and a smooth finish. Our roast profile is designed to work perfectly with Jebena brewing, espresso, macchiato, French press, and milk-based drinks.</p>
+        <div class="roast-badge">
+          <i class="fas fa-fire"></i> Medium-Dark Roast • Balanced • Full Body
+        </div>
       </div>
-      <div class="story-image">
-        <img src="coffee1.JPG" alt="Ethiopian Coffee Ceremony" onerror="this.src='https://placehold.co/600x400?text=Coffee+Ceremony'">
+
+      <!-- Values Grid (No faces/team) -->
+      <div class="values-grid">
+        <div class="value-card">
+          <i class="fas fa-seedling"></i>
+          <h3>Sustainability</h3>
+          <p>Sourced from small-scale farmers using traditional garden farming methods</p>
+        </div>
+        <div class="value-card">
+          <i class="fas fa-mug-hot"></i>
+          <h3>Fresh Roasting</h3>
+          <p>Small-batch roasting ensures every bag is fresh and flavorful</p>
+        </div>
+        <div class="value-card">
+          <i class="fas fa-chart-line"></i>
+          <h3>Traceability</h3>
+          <p>Full control from bean to bag — complete transparency</p>
+        </div>
       </div>
     </div>
-  </div>
-</section>
+  </section>
 
-<section class="section" style="background: linear-gradient(135deg, #0F0A07, #1A0F0A);">
-  <div class="container">
-    <h2 class="section-title">Our Core Values</h2>
-    <div class="values-grid">
-      <div class="value-card"><i class="fas fa-seedling"></i><h3>Sustainability</h3><p>We partner with eco-conscious farms that protect the land, biodiversity, and traditional cultivation methods.</p></div>
-      <div class="value-card"><i class="fas fa-hand-holding-heart"></i><h3>Direct Trade</h3><p>Eliminating middlemen ensures farmers receive fair compensation and you receive exceptional quality.</p></div>
-      <div class="value-card"><i class="fas fa-fire"></i><h3>Artisanal Roasting</h3><p>Small-batch roasting highlights each bean's unique profile, from bright acidity to deep chocolate notes.</p></div>
-      <div class="value-card"><i class="fas fa-mug-hot"></i><h3>Traceability</h3><p>Every bag tells you the exact origin, altitude, and processing method — full transparency.</p></div>
+  <!-- EXCEPTIONAL ANIMATED BEAN TO BAG PROCESS SECTION -->
+  <section class="process-section section">
+    <div class="container process-container">
+      <h2 class="section-title">The Bean to Bag Journey</h2>
+      <p class="section-subtitle" style="text-align: center; color: #C68B5E; letter-spacing: 2px; margin-bottom: 3rem;">From Ethiopian Highlands to Your Cup</p>
+
+      <!-- Animated Process Timeline -->
+      <div class="process-timeline">
+        <!-- Step 1: Sourcing -->
+        <div class="process-step" data-step="1" data-title="Ethiopian Highlands" data-desc="Our journey begins at 1,900-2,200 meters above sea level. Small-scale farmers cultivate 100% Coffea Arabica using traditional garden farming methods, allowing cherries to ripen slowly and develop complex flavors.">
+          <div class="step-icon">
+            <i class="fas fa-mountain"></i>
+            <div class="step-number">1</div>
+          </div>
+          <div class="step-title">Sourcing</div>
+          <div class="step-desc">Ethiopian Highlands<br>1,900-2,200m</div>
+        </div>
+        <div class="process-arrow"><i class="fas fa-arrow-down"></i></div>
+
+        <!-- Step 2: Harvesting -->
+        <div class="process-step" data-step="2" data-title="Hand Harvesting" data-desc="Coffee cherries are carefully hand-picked at peak ripeness. Only the reddest, ripest cherries are selected to ensure the highest quality flavor profile.">
+          <div class="step-icon">
+            <i class="fas fa-hand-paper"></i>
+            <div class="step-number">2</div>
+          </div>
+          <div class="step-title">Harvesting</div>
+          <div class="step-desc">Hand-picked<br>Ripest Cherries</div>
+        </div>
+        <div class="process-arrow"><i class="fas fa-arrow-down"></i></div>
+
+        <!-- Step 3: Processing -->
+        <div class="process-step" data-step="3" data-title="Natural & Washed Processing" data-desc="We use traditional Ethiopian processing methods. Natural processing enhances fruity notes, while washed processing creates clean, bright acidity.">
+          <div class="step-icon">
+            <i class="fas fa-water"></i>
+            <div class="step-number">3</div>
+          </div>
+          <div class="step-title">Processing</div>
+          <div class="step-desc">Natural / Washed<br>Traditional Methods</div>
+        </div>
+        <div class="process-arrow"><i class="fas fa-arrow-down"></i></div>
+
+        <!-- Step 4: Roasting -->
+        <div class="process-step" data-step="4" data-title="Artisan Roasting" data-desc="Small-batch roasting at our Addis Ababa facility. Our signature Medium-Dark roast brings out rich chocolate notes, full body, and a smooth finish.">
+          <div class="step-icon">
+            <i class="fas fa-fire"></i>
+            <div class="step-number">4</div>
+          </div>
+          <div class="step-title">Roasting</div>
+          <div class="step-desc">Medium-Dark Roast<br>Small Batch</div>
+        </div>
+        <div class="process-arrow"><i class="fas fa-arrow-down"></i></div>
+
+        <!-- Step 5: Grinding (for blends) -->
+        <div class="process-step" data-step="5" data-title="Precision Grinding" data-desc="Custom grind options for Jebena, French press, and espresso. Our house blend is ground to perfection for traditional Ethiopian brewing.">
+          <div class="step-icon">
+            <i class="fas fa-tachometer-alt"></i>
+            <div class="step-number">5</div>
+          </div>
+          <div class="step-title">Grinding</div>
+          <div class="step-desc">Jebena • French Press • Espresso</div>
+        </div>
+        <div class="process-arrow"><i class="fas fa-arrow-down"></i></div>
+
+        <!-- Step 6: Packaging -->
+        <div class="process-step" data-step="6" data-title="Premium Packaging" data-desc="Premium stand-up bags with one-way degassing valve and zip-lock seal. Available in 250g, 500g, and 1kg sizes.">
+          <div class="step-icon">
+            <i class="fas fa-box"></i>
+            <div class="step-number">6</div>
+          </div>
+          <div class="step-title">Packaging</div>
+          <div class="step-desc">Premium Bags • Freshness Sealed</div>
+        </div>
+      </div>
+
+      <!-- Dynamic Detail Card (updates on click/hover) -->
+      <div class="process-detail" id="processDetail">
+        <div class="process-detail-content">
+          <h4 id="detailTitle">Ethiopian Highlands</h4>
+          <p id="detailDesc">Our journey begins at 1,900-2,200 meters above sea level. Small-scale farmers cultivate 100% Coffea Arabica using traditional garden farming methods, allowing cherries to ripen slowly and develop complex flavors.</p>
+        </div>
+      </div>
     </div>
-  </div>
-</section>
+  </section>
 
-<section class="section">
-  <div class="container">
-    <h2 class="section-title">Our Journey</h2>
-    <div class="timeline">
-      <div class="milestone"><div class="year">2018</div><p>Founded in Addis Ababa with a mission to share Ethiopia's finest coffee</p></div>
-      <div class="milestone"><div class="year">2019</div><p>First direct partnerships with 30+ smallholder farmers</p></div>
-      <div class="milestone"><div class="year">2021</div><p>Opened our artisanal roastery & quality control lab</p></div>
-      <div class="milestone"><div class="year">2024</div><p>Expanded to international shipping & specialty coffee clubs</p></div>
+  <!-- Roast Philosophy Section -->
+  <section class="section" style="background: linear-gradient(135deg, #1A0F0A, #2C1810);">
+    <div class="container">
+      <div style="display: flex; flex-wrap: wrap; gap: 2rem; align-items: center;">
+        <div style="flex: 1; text-align: center;">
+          <i class="fas fa-mug-hot" style="font-size: 4rem; color: #C68B5E;"></i>
+          <h3 style="margin: 1rem 0;">Medium-Dark Roast Profile</h3>
+          <p style="color: rgba(255,255,255,0.8);">Our signature roast brings out the best of Ethiopian Arabica — balanced acidity, full body, rich chocolate notes, and a smooth, clean finish.</p>
+        </div>
+        <div style="flex: 1; text-align: center;">
+          <i class="fas fa-chart-line" style="font-size: 4rem; color: #C68B5E;"></i>
+          <h3 style="margin: 1rem 0;">Quality Control</h3>
+          <p style="color: rgba(255,255,255,0.8);">Every batch is cupped and tested for flavor consistency. We ensure every bag meets our high standards before it reaches you.</p>
+        </div>
+        <div style="flex: 1; text-align: center;">
+          <i class="fas fa-leaf" style="font-size: 4rem; color: #C68B5E;"></i>
+          <h3 style="margin: 1rem 0;">Direct Trade</h3>
+          <p style="color: rgba(255,255,255,0.8);">Working directly with smallholder farmers ensures fair prices and traceability from farm to cup.</p>
+        </div>
+      </div>
     </div>
-  </div>
-</section>
+  </section>
 
-<section class="section" style="background: linear-gradient(135deg, #0F0A07, #1A0F0A);">
-  <div class="container">
-    <h2 class="section-title">The Faces Behind the Flavor</h2>
-    <div class="team-grid">
-      <div class="team-card"><img src="https://placehold.co/200x200?text=Founder" class="team-img"><h3>Yonas Desta</h3><p>Founder & Head Roaster</p><small>3rd generation coffee exporter</small></div>
-      <div class="team-card"><img src="https://placehold.co/200x200?text=Master+Roaster" class="team-img"><h3>Mekdes Alemu</h3><p>Quality Control Director</p><small>Q Grader certified</small></div>
-      <div class="team-card"><img src="https://placehold.co/200x200?text=Farm+Relations" class="team-img"><h3>Tesfaye Bekele</h3><p>Farmer Relations</p><small>Connecting highlands to the world</small></div>
-      <div class="team-card"><img src="https://placehold.co/200x200?text=Coffee+Ambassador" class="team-img"><h3>Selam Teshome</h3><p>Head of Experience</p><small>Coffee educator & cupping expert</small></div>
+  <footer>
+    <div class="footer-content">
+      <div>
+        <h2>Bean <span style="color:#C68B5E;">to Bag</span></h2>
+        <p>Premium Ethiopian Coffee<br>Roasted in Addis Ababa</p>
+      </div>
+      <div>
+        <h4>Quick Links</h4>
+        <a href="index.html">Home</a><br>
+        <a href="about.html">About</a><br>
+        <a href="products.html">Products</a><br>
+        <a href="origin.html">Coffee Origin</a><br>
+        <a href="contact.html">Contact</a>
+      </div>
+      <div>
+        <h4>Follow Us</h4>
+        <div class="social-icons">
+          <a href="#"><i class="fab fa-instagram"></i></a>
+          <a href="#"><i class="fab fa-facebook"></i></a>
+          <a href="#"><i class="fab fa-telegram"></i></a>
+        </div>
+        <p><i class="fas fa-envelope"></i> hello@beantobag.com</p>
+        <p><i class="fab fa-whatsapp"></i> +251 911 223344</p>
+      </div>
     </div>
-  </div>
-</section>
+    <div style="text-align: center; margin-top: 2rem;">
+      <p>&copy; 2025 Bean to Bag Coffee. All rights reserved.</p>
+    </div>
+  </footer>
 
-<footer>
-  <div class="footer-content">
-    <div><h2>Bean <span style="color:#C68B5E;">to Bag</span></h2><p>Premium Ethiopian Coffee<br>Roasted in Addis Ababa</p></div>
-    <div><h4>Quick Links</h4><a href="index.html">Home</a><br><a href="about.html">About</a><br><a href="products.html">Products</a><br><a href="origin.html">Origin</a><br><a href="contact.html">Contact</a></div>
-    <div><h4>Follow Us</h4><div class="social-icons"><a href="#"><i class="fab fa-instagram"></i></a><a href="#"><i class="fab fa-facebook"></i></a><a href="#"><i class="fab fa-telegram"></i></a></div><p><i class="fas fa-envelope"></i> hello@beantobag.com</p><p><i class="fab fa-whatsapp"></i> +251 911 223344</p></div>
-  </div>
-  <div style="text-align: center; margin-top: 2rem;"><p>&copy; 2025 Bean to Bag Coffee. All rights reserved.</p></div>
-</footer>
+  <script>
+    // Mobile menu toggle
+    function toggleMenu() {
+      document.getElementById('navLinks').classList.toggle('active');
+    }
 
-<script>
-  function toggleMenu() { document.getElementById('navLinks').classList.toggle('active'); }
-  document.querySelectorAll('.nav-links a').forEach(link => {
-    link.addEventListener('click', () => document.getElementById('navLinks')?.classList.remove('active'));
-  });
-  window.addEventListener('scroll', () => {
-    const nav = document.getElementById('nav');
-    if (window.scrollY > 100) nav.classList.add('scrolled');
-    else nav.classList.remove('scrolled');
-  });
-</script>
+    // Close menu when clicking a link
+    document.querySelectorAll('.nav-links a').forEach(link => {
+      link.addEventListener('click', () => {
+        document.getElementById('navLinks')?.classList.remove('active');
+      });
+    });
+
+    // Navbar scroll effect
+    window.addEventListener('scroll', () => {
+      const nav = document.getElementById('nav');
+      if (window.scrollY > 100) {
+        nav.classList.add('scrolled');
+      } else {
+        nav.classList.remove('scrolled');
+      }
+    });
+
+    // ============================================
+    // EXCEPTIONAL PROCESS DETAIL INTERACTION
+    // ============================================
+    const processSteps = document.querySelectorAll('.process-step');
+    const detailTitle = document.getElementById('detailTitle');
+    const detailDesc = document.getElementById('detailDesc');
+
+    // Step data
+    const stepData = {
+      1: {
+        title: 'Ethiopian Highlands',
+        desc: 'Our journey begins at 1,900-2,200 meters above sea level. Small-scale farmers cultivate 100% Coffea Arabica using traditional garden farming methods, allowing cherries to ripen slowly and develop complex flavors with floral aroma and bright acidity.'
+      },
+      2: {
+        title: 'Hand Harvesting',
+        desc: 'Coffee cherries are carefully hand-picked at peak ripeness. Only the reddest, ripest cherries are selected to ensure the highest quality flavor profile. This labor-intensive process preserves the integrity of each bean.'
+      },
+      3: {
+        title: 'Natural & Washed Processing',
+        desc: 'We use traditional Ethiopian processing methods. Natural processing enhances fruity and wine-like notes, while washed processing creates clean, bright acidity. Both methods highlight the unique characteristics of our highland coffee.'
+      },
+      4: {
+        title: 'Artisan Roasting',
+        desc: 'Small-batch roasting at our Addis Ababa facility. Our signature Medium-Dark roast brings out rich chocolate notes, full body, and a smooth finish. Each batch is carefully monitored to achieve perfect development.'
+      },
+      5: {
+        title: 'Precision Grinding',
+        desc: 'Custom grind options for Jebena (traditional Ethiopian brewing), French press, and espresso. Our house blend is ground to perfection for an authentic Ethiopian coffee experience.'
+      },
+      6: {
+        title: 'Premium Packaging',
+        desc: 'Premium stand-up bags with one-way degassing valve and zip-lock seal to preserve freshness. Available in 250g, 500g, and 1kg sizes. Each bag includes roast date and brewing recommendations.'
+      }
+    };
+
+    // Update detail on click
+    processSteps.forEach(step => {
+      step.addEventListener('click', () => {
+        const stepNum = step.getAttribute('data-step');
+        if (stepNum && stepData[stepNum]) {
+          detailTitle.textContent = stepData[stepNum].title;
+          detailDesc.textContent = stepData[stepNum].desc;
+          
+          // Add a subtle animation to the detail card
+          const detailCard = document.getElementById('processDetail');
+          detailCard.style.transform = 'scale(1.02)';
+          detailCard.style.transition = 'transform 0.2s ease';
+          setTimeout(() => {
+            detailCard.style.transform = 'scale(1)';
+          }, 200);
+        }
+      });
+      
+      // Optional: hover effect to preview
+      step.addEventListener('mouseenter', () => {
+        const stepNum = step.getAttribute('data-step');
+        if (stepNum && stepData[stepNum]) {
+          detailTitle.textContent = stepData[stepNum].title;
+          detailDesc.textContent = stepData[stepNum].desc;
+        }
+      });
+    });
+
+    // Auto-rotate detail every 4 seconds (optional, adds dynamic feel)
+    let currentAutoStep = 1;
+    setInterval(() => {
+      currentAutoStep = (currentAutoStep % 6) + 1;
+      if (stepData[currentAutoStep]) {
+        detailTitle.textContent = stepData[currentAutoStep].title;
+        detailDesc.textContent = stepData[currentAutoStep].desc;
+        
+        // Also highlight the corresponding step visually
+        processSteps.forEach(step => {
+          if (step.getAttribute('data-step') == currentAutoStep) {
+            step.style.transform = 'translateY(-5px)';
+            setTimeout(() => {
+              step.style.transform = '';
+            }, 300);
+          }
+        });
+      }
+    }, 5000);
+  </script>
 </body>
 </html>
