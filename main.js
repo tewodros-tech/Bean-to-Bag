@@ -18,12 +18,19 @@ window.addEventListener('scroll', () => {
 
 // Mobile menu toggle
 const menuToggle = document.getElementById('menuToggle');
-const navLinks = document.querySelector('.nav-links');
+const navLinks = document.getElementById('navLinks');
 if (menuToggle) {
   menuToggle.addEventListener('click', () => {
     navLinks.classList.toggle('active');
   });
 }
+
+// Close mobile menu when clicking a link
+document.querySelectorAll('.nav-links a').forEach(link => {
+  link.addEventListener('click', () => {
+    navLinks.classList.remove('active');
+  });
+});
 
 // Contact form submission
 const contactForm = document.getElementById('contactForm');
@@ -35,7 +42,7 @@ if (contactForm) {
   });
 }
 
-// Smooth scroll for anchor links
+// Smooth scroll for anchor links on the same page
 document.querySelectorAll('a[href^="#"]').forEach(anchor => {
   anchor.addEventListener('click', function(e) {
     const targetId = this.getAttribute('href');
