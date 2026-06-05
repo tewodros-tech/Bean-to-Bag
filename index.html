@@ -1,331 +1,210 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Bean to Bag | Premium Ethiopian Specialty Coffee</title>
-<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;0,800;0,900;1,400;1,500;1,600;1,700&family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
-<style>
-:root{--dark:#1a0f0a;--brown:#2c1a0e;--brown-mid:#5c3a24;--amber:#c8842a;--amber-light:#d4973e;--cream:#f5e6d0;--bg:#fdf8f0;--bg-warm:#f9f0e3;--text:#8a7568;--text-light:#b8a494}
-*{margin:0;padding:0;box-sizing:border-box}
-html{scroll-behavior:smooth}
-body{font-family:'Inter',sans-serif;background:var(--bg);color:var(--brown-mid);overflow-x:hidden;line-height:1.6}
-
-/* LOADER */
-.loader{position:fixed;inset:0;background:var(--dark);z-index:99999;display:flex;flex-direction:column;align-items:center;justify-content:center;transition:opacity 1s,visibility 1s}
-.loader.hide{opacity:0;visibility:hidden;pointer-events:none}
-.loader-cup{width:60px;height:40px;background:var(--amber);border-radius:0 0 12px 12px;position:relative;margin-bottom:30px}
-.loader-cup::after{content:'';position:absolute;right:-12px;top:5px;width:15px;height:20px;border:3px solid var(--amber);border-left:none;border-radius:0 8px 8px 0}
-.loader-steam{position:absolute;top:-20px;left:15px;display:flex;gap:6px}
-.loader-steam span{width:3px;height:18px;background:rgba(200,132,42,.4);border-radius:3px;animation:steam 1.2s ease-in-out infinite}
-.loader-steam span:nth-child(2){animation-delay:.2s;height:14px}
-.loader-steam span:nth-child(3){animation-delay:.4s;height:10px}
-@keyframes steam{0%,100%{opacity:0;transform:translateY(0)}50%{opacity:.6;transform:translateY(-12px)}}
-.loader-text{font-family:'Playfair Display',serif;font-size:1.2rem;color:var(--amber);letter-spacing:4px;margin-bottom:20px}
-.loader-bar{width:200px;height:2px;background:rgba(200,132,42,.15);border-radius:2px;overflow:hidden}
-.loader-bar-fill{width:0;height:100%;background:var(--amber);animation:load 2.5s ease forwards}
-@keyframes load{to{width:100%}}
-
-/* TOP BANNER */
-.top-banner{background:var(--dark);text-align:center;padding:12px 20px;font-size:.72rem;letter-spacing:3px;text-transform:uppercase;color:var(--amber);display:flex;align-items:center;justify-content:center;gap:10px;border-bottom:1px solid rgba(200,132,42,.1)}
-.top-banner .dot{width:6px;height:6px;background:var(--amber);border-radius:50%;animation:pulse 2s infinite}
-@keyframes pulse{0%,100%{opacity:1}50%{opacity:.3}}
-
-/* NAVIGATION */
-.nav{position:sticky;top:0;z-index:1000;background:rgba(26,15,10,.95);backdrop-filter:blur(20px);padding:14px 5%;display:flex;justify-content:space-between;align-items:center;border-bottom:1px solid rgba(200,132,42,.08);transition:all .4s}
-.nav.scrolled{background:rgba(26,15,10,.98);box-shadow:0 4px 30px rgba(0,0,0,.5)}
-.nav-logo{display:flex;align-items:center;gap:12px;text-decoration:none}
-.nav-logo-icon{width:44px;height:44px;background:var(--amber);border-radius:12px;display:flex;align-items:center;justify-content:center;font-size:1.2rem;color:var(--dark)}
-.nav-logo-text h2{font-family:'Playfair Display',serif;font-size:1.2rem;color:var(--cream);font-weight:600;line-height:1.2}
-.nav-logo-text span{font-size:.6rem;letter-spacing:3px;text-transform:uppercase;color:var(--amber);font-weight:500}
-.nav-links{display:flex;align-items:center;gap:8px}
-.nav-links a{text-decoration:none;color:var(--text-light);font-size:.88rem;font-weight:500;padding:8px 16px;border-radius:8px;transition:.3s}
-.nav-links a:hover,.nav-links a.active{background:rgba(200,132,42,.12);color:var(--cream)}
-.nav-right{display:flex;align-items:center;gap:16px}
-.nav-chat{width:42px;height:42px;border-radius:50%;border:1px solid rgba(200,132,42,.2);background:transparent;color:var(--text-light);font-size:1rem;cursor:pointer;display:flex;align-items:center;justify-content:center;transition:.3s}
-.nav-chat:hover{border-color:var(--amber);color:var(--amber)}
-.nav-order{padding:10px 24px;background:var(--amber);color:var(--dark);border:none;border-radius:25px;font-weight:700;font-size:.85rem;cursor:pointer;text-decoration:none;transition:.3s}
-.nav-order:hover{background:var(--amber-light);transform:translateY(-2px);box-shadow:0 6px 20px rgba(200,132,42,.3)}
-.menu-toggle{display:none;font-size:1.4rem;color:var(--cream);background:none;border:none;cursor:pointer}
-
-/* HERO WITH VIDEO */
-.hero{min-height:100vh;position:relative;overflow:hidden;display:flex;align-items:center;padding:0 5%;background:var(--dark)}
-.hero-video{position:absolute;inset:0;z-index:0}
-.hero-video video{width:100%;height:100%;object-fit:cover;opacity:.4}
-.hero-overlay{position:absolute;inset:0;z-index:1;background:linear-gradient(135deg,rgba(26,15,10,.92) 0%,rgba(44,26,14,.75) 50%,rgba(26,15,10,.88) 100%)}
-.hero-content{position:relative;z-index:2;max-width:1200px;margin:0 auto;padding:120px 0 60px;display:grid;grid-template-columns:1fr 1fr;gap:60px;align-items:center}
-.hero-badge{display:inline-flex;align-items:center;gap:10px;background:rgba(200,132,42,.08);border:1px solid rgba(200,132,42,.15);padding:8px 20px;border-radius:50px;font-size:.72rem;font-weight:700;color:var(--amber);text-transform:uppercase;letter-spacing:3px;margin-bottom:24px;animation:fadeDown .8s ease .3s both}
-.hero-badge .dot{width:8px;height:8px;background:var(--amber);border-radius:50%;animation:pulse 2s infinite}
-@keyframes pulse{0%,100%{opacity:1;transform:scale(1)}50%{opacity:.4;transform:scale(1.5)}
-}
-.hero h1{font-family:'Playfair Display',serif;font-size:clamp(3rem,7vw,5.5rem);font-weight:700;line-height:1.05;margin-bottom:30px;color:var(--cream);animation:fadeDown .8s ease .5s both}
-.hero h1 em{font-style:italic;color:var(--amber);text-decoration:underline;text-decoration-color:var(--amber);text-underline-offset:8px;text-decoration-thickness:3px}
-.hero-desc{font-size:clamp(1rem,1.8vw,1.25rem);color:var(--text-light);max-width:600px;line-height:1.8;margin-bottom:50px;font-weight:300;animation:fadeDown .8s ease .7s both}
-.hero-desc strong{color:var(--amber);font-weight:600}
-.hero-btns{display:flex;gap:16px;flex-wrap:wrap;animation:fadeDown .8s ease .9s both}
-.btn{padding:18px 36px;border-radius:50px;font-weight:700;font-size:.95rem;text-decoration:none;display:inline-flex;align-items:center;gap:10px;transition:.4s;border:none;cursor:pointer;font-family:'Inter',sans-serif}
-.btn-primary{background:var(--amber);color:var(--dark);box-shadow:0 4px 20px rgba(200,132,42,.3)}
-.btn-primary:hover{transform:translateY(-3px);box-shadow:0 10px 35px rgba(200,132,42,.4)}
-.btn-secondary{background:rgba(200,132,42,.08);color:var(--cream);border:1px solid rgba(200,132,42,.2)}
-.btn-secondary:hover{background:rgba(200,132,42,.15);transform:translateY(-3px)}
-.hero-visual{position:relative;animation:fadeDown .8s ease .7s both}
-.hero-img{border-radius:24px;overflow:hidden;box-shadow:0 30px 80px rgba(0,0,0,.4);height:550px}
-.hero-img img{width:100%;height:100%;object-fit:cover}
-.hero-accent{position:absolute;bottom:-30px;left:-30px;width:180px;height:180px;border-radius:20px;overflow:hidden;box-shadow:0 20px 60px rgba(0,0,0,.3);border:4px solid var(--dark)}
-.hero-accent img{width:100%;height:100%;object-fit:cover}
-.hero-scroll{position:absolute;bottom:40px;left:50%;transform:translateX(-50%);z-index:2;display:flex;flex-direction:column;align-items:center;gap:10px;animation:fadeDown .8s ease 1.2s both}
-.hero-scroll span{font-size:.7rem;letter-spacing:4px;text-transform:uppercase;color:var(--text);text-align:center}
-.scroll-mouse{width:26px;height:42px;border:2px solid rgba(200,132,42,.2);border-radius:13px;display:flex;justify-content:center;padding-top:8px}
-.scroll-dot{width:4px;height:10px;background:var(--amber);border-radius:4px;animation:scroll 2s infinite}
-@keyframes scroll{0%{opacity:1;transform:translateY(0)}100%{opacity:0;transform:translateY(14px)}}
-@keyframes fadeDown{from{opacity:0;transform:translateY(-30px)}to{opacity:1;transform:translateY(0)}}
-
-/* FLAVORS SECTION */
-.flavors{padding:120px 5%;background:var(--bg);position:relative}
-.flavors-grid{display:grid;grid-template-columns:1fr 1fr;gap:80px;align-items:center;max-width:1200px;margin:0 auto}
-.flavors-badge{font-size:.7rem;letter-spacing:3px;text-transform:uppercase;color:var(--amber);margin-bottom:16px;font-weight:600;display:inline-flex;align-items:center;gap:8px}
-.flavors-badge::before,.flavors-badge::after{content:'';width:30px;height:1px;background:var(--amber)}
-.flavors h2{font-family:'Playfair Display',serif;font-size:clamp(2.5rem,5vw,4rem);font-weight:700;color:var(--dark);line-height:1.1;margin-bottom:24px}
-.flavors h2 em{font-style:italic;color:var(--brown-mid)}
-.flavors p{color:var(--brown);font-size:1.05rem;line-height:1.8;margin-bottom:40px}
-.flavor-list{display:grid;grid-template-columns:1fr 1fr;gap:16px}
-.flavor-item{display:flex;align-items:center;gap:14px;padding:20px 24px;background:var(--bg-warm);border-radius:16px;transition:.3s}
-.flavor-item:hover{transform:translateY(-3px);box-shadow:0 10px 30px rgba(0,0,0,.08)}
-.flavor-check{width:44px;height:44px;border-radius:12px;background:var(--dark);display:flex;align-items:center;justify-content:center;color:var(--amber);flex-shrink:0}
-.flavor-item span{font-size:.95rem;color:var(--dark);font-weight:600}
-.flavors-img{border-radius:24px;overflow:hidden;box-shadow:0 30px 80px rgba(0,0,0,.15);height:550px;position:relative}
-.flavors-img img{width:100%;height:100%;object-fit:cover}
-
-/* VIDEO STRIP */
-.video-strip{position:relative;overflow:hidden;background:var(--dark);padding:0}
-.video-strip-inner{display:grid;grid-template-columns:repeat(3,1fr);gap:0}
-.video-strip-item{position:relative;height:320px;overflow:hidden}
-.video-strip-item video{width:100%;height:100%;object-fit:cover;transition:transform .6s}
-.video-strip-item:hover video{transform:scale(1.05)}
-.video-strip-overlay{position:absolute;inset:0;background:linear-gradient(180deg,transparent 40%,rgba(26,15,10,.9) 100%);z-index:1}
-.video-strip-label{position:absolute;bottom:24px;left:24px;z-index:2;color:var(--cream);font-family:'Playfair Display',serif;font-size:1.3rem;font-weight:600}
-.video-strip-label small{display:block;font-family:'Inter',sans-serif;font-size:.72rem;color:var(--text);margin-top:4px;letter-spacing:2px;text-transform:uppercase}
-
-/* FULL WIDTH VIDEO DIVIDER */
-.full-video{position:relative;height:500px;overflow:hidden}
-.full-video video{width:100%;height:100%;object-fit:cover}
-.full-video-overlay{position:absolute;inset:0;background:linear-gradient(135deg,rgba(26,15,10,.85),rgba(44,26,14,.7));display:flex;align-items:center;justify-content:center;flex-direction:column;gap:20px;z-index:2;text-align:center;padding:0 5%}
-.full-video-overlay h2{font-family:'Playfair Display',serif;font-size:clamp(2rem,4vw,3.5rem);color:var(--cream)}
-.full-video-overlay h2 em{font-style:italic;color:var(--amber)}
-.full-video-overlay p{color:var(--text-light);max-width:600px;font-size:1.1rem}
-
-/* ABOUT SECTION */
-.about{padding:120px 5%;background:var(--bg-warm);position:relative}
-.about-grid{display:grid;grid-template-columns:1fr 1fr;gap:80px;align-items:center;max-width:1200px;margin:0 auto}
-.about-img{border-radius:24px;overflow:hidden;height:500px;box-shadow:0 20px 60px rgba(0,0,0,.15);position:relative}
-.about-img img{width:100%;height:100%;object-fit:cover;transition:transform .6s}
-.about-img:hover img{transform:scale(1.05)}
-.about-badge{font-size:.7rem;letter-spacing:3px;text-transform:uppercase;color:var(--amber);margin-bottom:16px;font-weight:600}
-.about h2{font-family:'Playfair Display',serif;font-size:clamp(2rem,4vw,3rem);font-weight:700;color:var(--dark);margin-bottom:24px;line-height:1.2}
-.about h2 em{font-style:italic;color:var(--brown-mid)}
-.about p{color:var(--brown);margin-bottom:20px;font-size:1rem;line-height:1.8}
-.about-feats{display:grid;grid-template-columns:1fr 1fr;gap:20px;margin-top:30px}
-.about-feat{display:flex;align-items:center;gap:12px}
-.about-feat-icon{width:44px;height:44px;border-radius:12px;background:rgba(200,132,42,.1);display:flex;align-items:center;justify-content:center;color:var(--amber);flex-shrink:0}
-.about-feat span{font-size:.9rem;color:var(--dark);font-weight:500}
-
-/* ORIGIN SECTION */
-.origin{padding:120px 5%;background:var(--bg);position:relative}
-.origin-grid{display:grid;grid-template-columns:1fr 1fr;gap:80px;align-items:center;max-width:1200px;margin:0 auto}
-.origin-map{border-radius:24px;overflow:hidden;box-shadow:0 20px 60px rgba(0,0,0,.15);height:500px}
-.origin-map img{width:100%;height:100%;object-fit:cover}
-.cup-profile{display:flex;flex-direction:column;gap:20px;margin-top:30px}
-.cup-item{display:flex;align-items:center;gap:16px;padding:16px 20px;background:var(--bg-warm);border-radius:14px;transition:.3s}
-.cup-item:hover{transform:translateX(5px);box-shadow:0 10px 30px rgba(0,0,0,.08)}
-.cup-icon{width:44px;height:44px;border-radius:12px;background:var(--dark);display:flex;align-items:center;justify-content:center;color:var(--amber);flex-shrink:0}
-.cup-item h4{font-family:'Playfair Display',serif;color:var(--dark);font-size:1rem;margin-bottom:2px}
-.cup-item p{color:var(--text);font-size:.82rem}
-
-/* ROAST SECTION */
-.roast{padding:120px 5%;background:var(--dark);position:relative}
-.roast-grid{display:grid;grid-template-columns:1fr 1fr;gap:80px;align-items:center;max-width:1200px;margin:0 auto}
-.roast-video{border-radius:24px;overflow:hidden;box-shadow:0 20px 60px rgba(0,0,0,.4);height:500px}
-.roast-video video{width:100%;height:100%;object-fit:cover}
-.roast h2,.roast h4{font-family:'Playfair Display',serif;color:var(--cream)}
-.roast h2{font-size:clamp(2rem,4vw,3rem);margin-bottom:20px}
-.roast h2 em{font-style:italic;color:var(--amber)}
-.roast h4{font-size:1.1rem;margin-bottom:14px}
-.roast p{color:var(--text-light);line-height:1.8;margin-bottom:20px}
-.brew-tags{display:flex;flex-wrap:wrap;gap:12px;margin-top:30px}
-.brew-tag{padding:10px 20px;background:rgba(200,132,42,.08);border:1px solid rgba(200,132,42,.12);border-radius:50px;font-size:.82rem;color:var(--cream);font-weight:600;transition:.3s}
-.brew-tag:hover{background:rgba(200,132,42,.15);border-color:rgba(200,132,42,.3)}
-
-/* PRODUCTS */
-.products{padding:120px 5%;background:var(--bg-warm)}
-.section-header{text-align:center;margin-bottom:60px}
-.section-badge{font-size:.7rem;letter-spacing:3px;text-transform:uppercase;color:var(--amber);margin-bottom:16px;font-weight:600;display:inline-flex;align-items:center;gap:8px}
-.section-badge::before,.section-badge::after{content:'';width:30px;height:1px;background:var(--amber)}
-.section-title{font-family:'Playfair Display',serif;font-size:clamp(2rem,4vw,3rem);font-weight:700;color:var(--dark);margin-bottom:16px}
-.section-title em{font-style:italic;color:var(--brown-mid)}
-.section-sub{color:var(--text);max-width:500px;margin:0 auto}
-.product-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:30px;max-width:1200px;margin:0 auto}
-.product-card{background:var(--bg);border:1px solid rgba(0,0,0,.06);border-radius:24px;overflow:hidden;transition:.4s;box-shadow:0 10px 40px rgba(0,0,0,.06);display:grid;grid-template-columns:1fr 1fr}
-.product-card:hover{transform:translateY(-8px);box-shadow:0 20px 60px rgba(0,0,0,.12)}
-.product-visual{position:relative;min-height:350px;overflow:hidden}
-.product-visual img{width:100%;height:100%;object-fit:cover;transition:transform .5s}
-.product-card:hover .product-visual img{transform:scale(1.1)}
-.product-accent{position:absolute;bottom:0;left:0;right:0;height:4px}
-.product-info{padding:36px;display:flex;flex-direction:column;justify-content:center}
-.product-tag{display:inline-block;padding:4px 14px;border-radius:20px;font-size:.68rem;font-weight:700;text-transform:uppercase;letter-spacing:1px;margin-bottom:12px;width:fit-content}
-.product-info h3{font-family:'Playfair Display',serif;font-size:1.6rem;color:var(--dark);margin-bottom:6px}
-.product-type{font-size:.78rem;color:var(--amber);font-weight:600;text-transform:uppercase;letter-spacing:2px;margin-bottom:14px}
-.product-info>p{color:var(--text);font-size:.88rem;line-height:1.7;margin-bottom:16px}
-.product-taste{display:flex;flex-wrap:wrap;gap:6px;margin-bottom:20px}
-.taste-pill{font-size:.7rem;padding:4px 12px;border-radius:20px;background:rgba(200,132,42,.08);border:1px solid rgba(200,132,42,.1);color:var(--brown-mid);font-weight:600}
-.product-btn{display:inline-flex;align-items:center;gap:8px;padding:12px 24px;background:var(--amber);color:var(--dark);border:none;border-radius:12px;font-weight:700;font-size:.85rem;cursor:pointer;transition:.3s;width:fit-content;font-family:'Inter'}
-.product-btn:hover{transform:translateY(-2px);box-shadow:0 6px 20px rgba(200,132,42,.3)}
-
-/* PROCESS */
-.process{padding:120px 5%;background:var(--bg)}
-.process-steps{display:grid;grid-template-columns:repeat(4,1fr);gap:30px;max-width:1200px;margin:0 auto}
-.process-step{text-align:center;padding:40px 24px;background:var(--bg-warm);border-radius:20px;transition:.4s;box-shadow:0 10px 40px rgba(0,0,0,.04)}
-.process-step:hover{transform:translateY(-8px);box-shadow:0 20px 60px rgba(0,0,0,.1)}
-.step-num{font-family:'Playfair Display',serif;font-size:3rem;color:rgba(200,132,42,.15);font-weight:700;margin-bottom:16px}
-.step-icon{width:64px;height:64px;border-radius:16px;background:rgba(200,132,42,.1);display:flex;align-items:center;justify-content:center;color:var(--amber);font-size:1.5rem;margin:0 auto 20px}
-.process-step h3{font-family:'Playfair Display',serif;color:var(--dark);font-size:1.2rem;margin-bottom:10px}
-.process-step p{color:var(--text);font-size:.85rem;line-height:1.6}
-
-/* TESTIMONIALS */
-.testimonials{padding:120px 5%;background:var(--bg-warm)}
-.testimonial-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:30px;max-width:1200px;margin:0 auto}
-.testimonial-card{background:var(--bg);border:1px solid rgba(0,0,0,.06);border-radius:20px;padding:36px;transition:.4s;box-shadow:0 10px 40px rgba(0,0,0,.04)}
-.testimonial-card:hover{transform:translateY(-5px);box-shadow:0 20px 60px rgba(0,0,0,.1)}
-.stars{color:var(--amber);margin-bottom:16px;font-size:.9rem}
-.testimonial-text{color:var(--brown);font-size:.95rem;line-height:1.7;margin-bottom:24px;font-style:italic}
-.testimonial-author{display:flex;align-items:center;gap:14px}
-.testimonial-avatar{width:48px;height:48px;border-radius:50%;object-fit:cover;border:2px solid rgba(200,132,42,.2)}
-.testimonial-name{font-weight:600;color:var(--dark);font-size:.95rem}
-.testimonial-role{font-size:.75rem;color:var(--text)}
-
-/* CTA */
-.cta{padding:120px 5%;text-align:center;background:linear-gradient(135deg,var(--brown-mid),var(--dark));position:relative;overflow:hidden}
-.cta::before{content:'';position:absolute;inset:0;background:radial-gradient(circle at 30% 50%,rgba(200,132,42,.08),transparent 50%),radial-gradient(circle at 70% 50%,rgba(200,132,42,.06),transparent 50%)}
-.cta h2{font-family:'Playfair Display',serif;font-size:clamp(2rem,4vw,3.5rem);color:var(--cream);margin-bottom:16px;position:relative}
-.cta h2 em{font-style:italic;color:var(--amber)}
-.cta p{color:var(--text-light);max-width:500px;margin:0 auto 40px;position:relative;font-size:1.1rem}
-
-/* CONTACT */
-.contact{padding:120px 5%;background:var(--bg)}
-.contact-grid{display:grid;grid-template-columns:1fr 1fr;gap:60px;max-width:1200px;margin:0 auto}
-.contact-info h2{font-family:'Playfair Display',serif;font-size:2rem;color:var(--dark);margin-bottom:20px}
-.contact-info h2 em{font-style:italic;color:var(--brown-mid)}
-.contact-details{display:flex;flex-direction:column;gap:20px;margin-top:30px}
-.contact-detail{display:flex;align-items:center;gap:16px}
-.contact-icon{width:48px;height:48px;border-radius:12px;background:rgba(200,132,42,.1);display:flex;align-items:center;justify-content:center;color:var(--amber);flex-shrink:0}
-.contact-detail h4{color:var(--dark);font-size:.9rem;margin-bottom:2px}
-.contact-detail p{color:var(--text);font-size:.85rem}
-.socials{display:flex;gap:12px;margin-top:30px}
-.social{width:44px;height:44px;border-radius:12px;background:rgba(200,132,42,.08);border:1px solid rgba(200,132,42,.1);display:flex;align-items:center;justify-content:center;color:var(--brown);text-decoration:none;transition:.3s}
-.social:hover{background:var(--amber);color:var(--dark);transform:translateY(-3px)}
-.contact-form{background:var(--bg-warm);border:1px solid rgba(0,0,0,.06);border-radius:24px;padding:40px;box-shadow:0 10px 40px rgba(0,0,0,.06)}
-.contact-form h3{font-family:'Playfair Display',serif;color:var(--dark);font-size:1.5rem;margin-bottom:24px}
-.form-row{display:grid;grid-template-columns:1fr 1fr;gap:16px}
-.form-group{margin-bottom:16px}
-.form-group label{display:block;font-size:.8rem;color:var(--brown);margin-bottom:6px;font-weight:500}
-.form-group input,.form-group textarea,.form-group select{width:100%;padding:14px 16px;background:var(--bg);border:1px solid rgba(0,0,0,.08);border-radius:12px;color:var(--dark);font-size:.9rem;font-family:'Inter';outline:none;transition:.3s}
-.form-group input:focus,.form-group textarea:focus,.form-group select:focus{border-color:var(--amber)}
-.form-group textarea{height:120px;resize:vertical}
-.form-submit{width:100%;padding:16px;background:var(--amber);color:var(--dark);border:none;border-radius:12px;font-weight:700;font-size:.95rem;cursor:pointer;transition:.3s;font-family:'Inter'}
-.form-submit:hover{transform:translateY(-2px);box-shadow:0 8px 25px rgba(200,132,42,.3)}
-
-/* FOOTER */
-.footer{background:var(--dark);padding:60px 5% 30px;border-top:1px solid rgba(200,132,42,.06)}
-.footer-grid{display:grid;grid-template-columns:1.5fr 1fr 1fr 1fr;gap:40px;max-width:1200px;margin:0 auto 40px}
-.footer-logo{display:flex;align-items:center;gap:10px;margin-bottom:16px}
-.footer-logo-icon{width:40px;height:40px;background:var(--amber);border-radius:10px;display:flex;align-items:center;justify-content:center;color:var(--dark)}
-.footer-logo h3{font-family:'Playfair Display',serif;color:var(--cream);font-size:1.1rem}
-.footer-logo h3 span{color:var(--amber)}
-.footer-desc{color:var(--text);font-size:.85rem;margin-bottom:20px}
-.footer h4{font-family:'Playfair Display',serif;color:var(--cream);font-size:1rem;margin-bottom:20px}
-.footer a{color:var(--text);text-decoration:none;display:block;margin-bottom:12px;font-size:.85rem;transition:.3s}
-.footer a:hover{color:var(--amber);padding-left:4px}
-.footer-bottom{text-align:center;padding-top:30px;border-top:1px solid rgba(200,132,42,.06)}
-.footer-bottom p{color:var(--text);font-size:.8rem}
-.footer-bottom a{display:inline;color:var(--amber)}
-
-/* FLOATING */
-.float-btns{position:fixed;bottom:30px;right:30px;display:flex;flex-direction:column;gap:12px;z-index:999}
-.float-btn{width:56px;height:56px;border-radius:16px;display:flex;align-items:center;justify-content:center;font-size:1.5rem;color:#fff;text-decoration:none;transition:.3s;box-shadow:0 4px 20px rgba(0,0,0,.3)}
-.float-btn.wa{background:linear-gradient(135deg,#25d366,#128c7e)}
-.float-btn.tg{background:linear-gradient(135deg,#0088cc,#005f8c)}
-.float-btn:hover{transform:translateY(-4px) scale(1.08)}
-
-/* RESPONSIVE */
-@media(max-width:1024px){
-.hero-content,.flavors-grid,.about-grid,.origin-grid,.roast-grid,.contact-grid{grid-template-columns:1fr}
-.hero-visual{display:none}
-.product-grid{grid-template-columns:1fr}
-.product-card{grid-template-columns:1fr}
-.product-visual{min-height:250px}
-.process-steps{grid-template-columns:repeat(2,1fr)}
-.testimonial-grid{grid-template-columns:1fr}
-.video-strip-inner{grid-template-columns:1fr}
-.video-strip-item{height:260px}
-.flavor-list,.about-feats{grid-template-columns:1fr}
-}
-@media(max-width:820px){
-.nav-links{position:fixed;top:80px;left:-100%;width:100%;height:calc(100vh - 80px);background:rgba(26,15,10,.98);flex-direction:column;padding:40px 30px;gap:8px;transition:left .4s;z-index:1001}
-.nav-links.active{left:0}
-.nav-links a{font-size:1.1rem;padding:14px 0}
-.menu-toggle{display:block}
-.nav-order{display:none}
-.process-steps{grid-template-columns:1fr}
-.footer-grid{grid-template-columns:1fr 1fr}
-.form-row{grid-template-columns:1fr}
-}
-@media(max-width:480px){
-.footer-grid{grid-template-columns:1fr}
-.hero-btns{flex-direction:column}
-.top-banner{font-size:.6rem;letter-spacing:1.5px}
-}
-</style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Bean to Bag | Premium Ethiopian Specialty Coffee</title>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;0,800;0,900;1,400;1,500;1,600;1,700;1,800;1,900&family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+  <style>
+    *{margin:0;padding:0;box-sizing:border-box;}
+    :root{--amber:#c8842a;--amber-light:#d4973e;--dark:#1a0f0a;--brown:#3d2516;--light:#f9f0e3;--cream:#fdf8f0;--text:#8a7568;}
+    html{scroll-behavior:smooth;}
+    body{font-family:'Inter',sans-serif;background:var(--cream);color:var(--brown);overflow-x:hidden;}
+    
+    /* LOADER */
+    .loader{position:fixed;inset:0;background:var(--dark);z-index:99999;display:flex;flex-direction:column;align-items:center;justify-content:center;transition:opacity 1s,visibility 1s;}
+    .loader.hide{opacity:0;visibility:hidden;}
+    .loader-cup{width:50px;height:35px;background:var(--amber);border-radius:0 0 12px 12px;position:relative;margin-bottom:20px;animation:steam 2s infinite;}
+    .loader-cup::after{content:'';position:absolute;right:-12px;top:5px;width:15px;height:20px;border:3px solid var(--amber);border-left:none;border-radius:0 8px 8px 0;}
+    @keyframes steam{0%,100%{transform:translateY(0);}50%{transform:translateY(-5px);}}
+    .loader-text{font-family:'Playfair Display';color:var(--amber);letter-spacing:3px;font-size:1.1rem;}
+    
+    /* NAV */
+    .nav{position:fixed;top:0;left:0;right:0;z-index:1000;padding:20px 5%;display:flex;justify-content:space-between;align-items:center;transition:all .4s;background:transparent;}
+    .nav.scrolled{background:rgba(26,15,10,.95);backdrop-filter:blur(20px);padding:15px 5%;box-shadow:0 4px 30px rgba(0,0,0,.3);}
+    .nav-logo{display:flex;align-items:center;gap:12px;text-decoration:none;}
+    .nav-logo-icon{width:44px;height:44px;background:var(--amber);border-radius:12px;display:flex;align-items:center;justify-content:center;color:var(--dark);font-size:1.2rem;}
+    .nav-logo-text h2{font-family:'Playfair Display';color:#fff;font-size:1.2rem;font-weight:600;}
+    .nav-logo-text span{font-size:.6rem;letter-spacing:3px;text-transform:uppercase;color:var(--amber);}
+    .nav-links{display:flex;gap:8px;}
+    .nav-links a{text-decoration:none;color:rgba(255,255,255,.7);font-size:.88rem;font-weight:500;padding:8px 16px;border-radius:8px;transition:.3s;}
+    .nav-links a:hover,.nav-links a.active{color:#fff;background:rgba(200,132,42,.12);}
+    .nav-order{padding:10px 24px;background:var(--amber);color:var(--dark);border-radius:25px;font-weight:700;text-decoration:none;transition:.3s;}
+    .nav-order:hover{transform:translateY(-2px);box-shadow:0 6px 20px rgba(200,132,42,.4);}
+    .menu-toggle{display:none;color:#fff;font-size:1.5rem;background:none;border:none;cursor:pointer;}
+    
+    /* PAGES/SECTIONS - Full Height */
+    .page{min-height:100vh;position:relative;display:flex;align-items:center;width:100%;}
+    
+    /* HERO PAGE */
+    .hero-page{background:var(--dark);overflow:hidden;}
+    .hero-video{position:absolute;inset:0;z-index:0;}
+    .hero-video video{width:100%;height:100%;object-fit:cover;opacity:.4;}
+    .hero-overlay{position:absolute;inset:0;background:linear-gradient(135deg,rgba(26,15,10,.9),rgba(44,26,14,.7));}
+    .hero-content{position:relative;z-index:2;max-width:1400px;margin:0 auto;padding:120px 5%;display:grid;grid-template-columns:1fr 1fr;gap:80px;align-items:center;width:100%;}
+    .hero-badge{display:inline-flex;align-items:center;gap:10px;background:rgba(200,132,42,.1);border:1px solid rgba(200,132,42,.2);padding:8px 20px;border-radius:50px;font-size:.72rem;font-weight:700;color:var(--amber);text-transform:uppercase;letter-spacing:3px;margin-bottom:24px;}
+    .hero h1{font-family:'Playfair Display';font-size:clamp(3.5rem,6vw,6rem);font-weight:700;line-height:1;color:#fff;margin-bottom:30px;}
+    .hero h1 em{font-style:italic;color:var(--amber);text-decoration:underline;text-decoration-color:var(--amber);text-underline-offset:12px;text-decoration-thickness:4px;}
+    .hero-desc{font-size:1.25rem;color:rgba(255,255,255,.7);max-width:600px;line-height:1.8;margin-bottom:40px;font-weight:300;}
+    .hero-desc strong{color:var(--amber);font-weight:600;}
+    .hero-btns{display:flex;gap:16px;flex-wrap:wrap;}
+    .btn{padding:18px 36px;border-radius:50px;font-weight:700;font-size:.95rem;text-decoration:none;display:inline-flex;align-items:center;gap:10px;transition:all .4s;border:none;cursor:pointer;}
+    .btn-primary{background:var(--amber);color:var(--dark);box-shadow:0 4px 20px rgba(200,132,42,.3);}
+    .btn-primary:hover{transform:translateY(-3px);box-shadow:0 15px 40px rgba(200,132,42,.4);}
+    .btn-secondary{background:rgba(255,255,255,.1);color:#fff;border:1px solid rgba(255,255,255,.2);}
+    .btn-secondary:hover{background:rgba(255,255,255,.2);}
+    .hero-visual{position:relative;border-radius:30px;overflow:hidden;box-shadow:0 40px 100px rgba(0,0,0,.5);height:600px;}
+    .hero-visual img{width:100%;height:100%;object-fit:cover;}
+    .scroll-ind{position:absolute;bottom:40px;left:50%;transform:translateX(-50%);color:#fff;opacity:.7;animation:bounce 2s infinite;text-align:center;}
+    @keyframes bounce{0%,100%{transform:translateX(-50%) translateY(0);}50%{transform:translateX(-50%) translateY(10px);}}
+    
+    /* FLAVORS PAGE - Like the sample image */
+    .flavors-page{background:var(--cream);padding:120px 5%;}
+    .flavors-grid{display:grid;grid-template-columns:1fr 1.2fr;gap:100px;align-items:center;max-width:1400px;margin:0 auto;width:100%;}
+    .flavors-content{padding-right:50px;}
+    .flavors-title{font-family:'Playfair Display';font-size:clamp(3rem,5vw,4.5rem);font-weight:700;color:var(--dark);line-height:1.1;margin-bottom:30px;}
+    .flavors-title em{font-style:italic;color:var(--brown);}
+    .flavors-desc{font-size:1.15rem;color:var(--brown);line-height:1.9;margin-bottom:50px;max-width:500px;}
+    .flavor-grid{display:grid;grid-template-columns:1fr 1fr;gap:20px;}
+    .flavor-card{display:flex;align-items:center;gap:16px;padding:24px;background:#fff;border-radius:20px;box-shadow:0 10px 40px rgba(0,0,0,.05);transition:all .3s;}
+    .flavor-card:hover{transform:translateY(-5px);box-shadow:0 20px 60px rgba(0,0,0,.1);}
+    .flavor-icon{width:50px;height:50px;background:var(--dark);border-radius:15px;display:flex;align-items:center;justify-content:center;color:var(--amber);font-size:1.2rem;flex-shrink:0;}
+    .flavor-card span{font-weight:600;color:var(--dark);font-size:1.05rem;}
+    .flavors-visual{position:relative;height:700px;border-radius:40px;overflow:hidden;box-shadow:0 30px 80px rgba(0,0,0,.15);}
+    .flavors-visual img{width:100%;height:100%;object-fit:cover;}
+    .flavors-accent{position:absolute;bottom:-50px;left:-50px;width:250px;height:250px;background:var(--amber);border-radius:30px;z-index:-1;}
+    
+    /* VIDEO SHOWCASE PAGE */
+    .video-page{background:var(--dark);padding:0;overflow:hidden;}
+    .video-grid{display:grid;grid-template-columns:repeat(3,1fr);width:100%;height:100vh;}
+    .video-col{position:relative;height:100%;overflow:hidden;}
+    .video-col video{width:100%;height:100%;object-fit:cover;transition:transform 8s ease;}
+    .video-col:hover video{transform:scale(1.1);}
+    .video-overlay{position:absolute;inset:0;background:linear-gradient(to top,rgba(0,0,0,.8),transparent 60%);display:flex;flex-direction:column;justify-content:flex-end;padding:40px;transition:.3s;}
+    .video-col:hover .video-overlay{background:linear-gradient(to top,rgba(26,15,10,.95),transparent 80%);}
+    .video-label{font-family:'Playfair Display';color:#fff;font-size:1.8rem;font-weight:600;margin-bottom:8px;}
+    .video-desc{color:var(--amber);font-size:.85rem;letter-spacing:3px;text-transform:uppercase;font-weight:600;}
+    
+    /* PRODUCTS PAGE */
+    .products-page{background:var(--light);padding:120px 5%;}
+    .section-header{text-align:center;margin-bottom:80px;}
+    .section-badge{display:inline-block;padding:8px 20px;background:rgba(200,132,42,.1);border:1px solid rgba(200,132,42,.2);border-radius:50px;font-size:.75rem;font-weight:700;color:var(--amber);letter-spacing:3px;text-transform:uppercase;margin-bottom:20px;}
+    .section-title{font-family:'Playfair Display';font-size:clamp(2.5rem,4vw,3.5rem);color:var(--dark);margin-bottom:16px;}
+    .section-title em{font-style:italic;color:var(--brown);}
+    .section-sub{color:var(--text);max-width:600px;margin:0 auto;font-size:1.1rem;}
+    .products-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:40px;max-width:1200px;margin:0 auto;}
+    .product-card{background:#fff;border-radius:30px;overflow:hidden;display:grid;grid-template-columns:1fr 1fr;box-shadow:0 20px 60px rgba(0,0,0,.08);transition:all .4s;}
+    .product-card:hover{transform:translateY(-10px);box-shadow:0 40px 80px rgba(0,0,0,.15);}
+    .product-image{position:relative;min-height:400px;overflow:hidden;}
+    .product-image img{width:100%;height:100%;object-fit:cover;transition:transform .6s;}
+    .product-card:hover .product-image img{transform:scale(1.1);}
+    .product-color{position:absolute;bottom:0;left:0;right:0;height:5px;}
+    .caskara{background:linear-gradient(90deg,#e8732a,#f59e0b);}
+    .qalid{background:linear-gradient(90deg,#8B6914,var(--amber));}
+    .chemina{background:linear-gradient(90deg,#1a1a1a,#3d3d3d);}
+    .green{background:linear-gradient(90deg,#4a7c59,#8fbc8f);}
+    .product-info{padding:40px;display:flex;flex-direction:column;justify-content:center;}
+    .product-tag{display:inline-block;padding:6px 16px;border-radius:20px;font-size:.7rem;font-weight:800;text-transform:uppercase;letter-spacing:1px;margin-bottom:16px;width:fit-content;}
+    .tag-caskara{background:rgba(232,115,42,.1);color:#e8732a;}
+    .tag-qalid{background:rgba(200,132,42,.1);color:var(--amber);}
+    .tag-chemina{background:rgba(0,0,0,.05);color:#555;}
+    .tag-green{background:rgba(74,124,89,.1);color:#4a7c59;}
+    .product-info h3{font-family:'Playfair Display';font-size:2rem;margin-bottom:8px;color:var(--dark);}
+    .product-type{font-size:.8rem;color:var(--amber);font-weight:700;text-transform:uppercase;letter-spacing:2px;margin-bottom:20px;}
+    .product-desc{color:var(--text);line-height:1.7;margin-bottom:24px;font-size:.95rem;}
+    .product-notes{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:30px;}
+    .note{padding:6px 14px;background:var(--light);border-radius:20px;font-size:.75rem;font-weight:600;color:var(--brown);}
+    .product-btn{align-self:flex-start;padding:14px 28px;background:var(--dark);color:#fff;border-radius:12px;font-weight:700;text-decoration:none;transition:.3s;display:inline-flex;align-items:center;gap:8px;}
+    .product-btn:hover{background:var(--amber);color:var(--dark);gap:12px;}
+    
+    /* PROCESS PAGE */
+    .process-page{background:var(--cream);padding:120px 5%;}
+    .process-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:30px;max-width:1400px;margin:0 auto;}
+    .process-card{background:#fff;padding:50px 30px;border-radius:24px;text-align:center;box-shadow:0 10px 40px rgba(0,0,0,.05);transition:.4s;position:relative;overflow:hidden;}
+    .process-card::before{content:'';position:absolute;top:0;left:0;right:0;height:4px;background:var(--amber);transform:scaleX(0);transition:.4s;}
+    .process-card:hover::before{transform:scaleX(1);}
+    .process-card:hover{transform:translateY(-10px);box-shadow:0 30px 60px rgba(0,0,0,.1);}
+    .process-num{font-family:'Playfair Display';font-size:4rem;color:rgba(200,132,42,.15);font-weight:700;line-height:1;margin-bottom:20px;}
+    .process-icon{width:70px;height:70px;background:var(--light);border-radius:20px;display:flex;align-items:center;justify-content:center;margin:0 auto 24px;color:var(--amber);font-size:1.8rem;}
+    .process-card h3{font-family:'Playfair Display';font-size:1.3rem;margin-bottom:12px;color:var(--dark);}
+    .process-card p{color:var(--text);font-size:.9rem;line-height:1.6;}
+    
+    /* CONTACT PAGE */
+    .contact-page{background:var(--dark);padding:120px 5%;}
+    .contact-grid{display:grid;grid-template-columns:1fr 1fr;gap:80px;max-width:1200px;margin:0 auto;align-items:center;}
+    .contact-info h2{font-family:'Playfair Display';font-size:3rem;color:#fff;margin-bottom:20px;}
+    .contact-info h2 em{font-style:italic;color:var(--amber);}
+    .contact-info>p{color:rgba(255,255,255,.6);margin-bottom:40px;font-size:1.1rem;line-height:1.8;}
+    .contact-item{display:flex;align-items:center;gap:20px;margin-bottom:30px;}
+    .contact-icon{width:60px;height:60px;background:rgba(200,132,42,.1);border:1px solid rgba(200,132,42,.2);border-radius:16px;display:flex;align-items:center;justify-content:center;color:var(--amber);font-size:1.3rem;}
+    .contact-item div h4{color:#fff;margin-bottom:4px;}
+    .contact-item div p{color:rgba(255,255,255,.5);font-size:.9rem;}
+    .contact-form{background:#fff;padding:50px;border-radius:30px;box-shadow:0 30px 80px rgba(0,0,0,.3);}
+    .form-group{margin-bottom:24px;}
+    .form-group label{display:block;margin-bottom:8px;font-weight:600;color:var(--dark);font-size:.9rem;}
+    .form-group input,.form-group textarea,.form-group select{width:100%;padding:16px;background:var(--light);border:1px solid transparent;border-radius:12px;font-family:'Inter';font-size:.95rem;transition:.3s;outline:none;}
+    .form-group input:focus,.form-group textarea:focus,.form-group select:focus{border-color:var(--amber);background:#fff;}
+    .form-group textarea{height:120px;resize:vertical;}
+    .submit-btn{width:100%;padding:18px;background:var(--amber);color:var(--dark);border:none;border-radius:12px;font-weight:800;font-size:1rem;cursor:pointer;transition:.3s;}
+    .submit-btn:hover{transform:translateY(-2px);box-shadow:0 10px 30px rgba(200,132,42,.4);}
+    
+    /* FLOATING BTNS */
+    .float-btns{position:fixed;bottom:30px;right:30px;display:flex;flex-direction:column;gap:12px;z-index:999;}
+    .float-btn{width:60px;height:60px;border-radius:20px;display:flex;align-items:center;justify-content:center;color:#fff;font-size:1.5rem;text-decoration:none;transition:.3s;box-shadow:0 4px 20px rgba(0,0,0,.3);}
+    .float-btn.wa{background:#25d366;}
+    .float-btn.tg{background:#0088cc;}
+    .float-btn:hover{transform:translateY(-5px) scale(1.1);}
+    
+    /* RESPONSIVE */
+    @media(max-width:1024px){
+      .hero-content,.flavors-grid,.contact-grid{grid-template-columns:1fr;}
+      .hero-visual,.flavors-accent{display:none;}
+      .video-grid{grid-template-columns:1fr;height:auto;}
+      .video-col{height:400px;}
+      .products-grid{grid-template-columns:1fr;}
+      .product-card{grid-template-columns:1fr;}
+      .product-image{min-height:300px;}
+      .process-grid{grid-template-columns:repeat(2,1fr);}
+      .flavors-visual{height:400px;}
+    }
+    @media(max-width:768px){
+      .nav-links{display:none;}
+      .menu-toggle{display:block;}
+      .process-grid{grid-template-columns:1fr;}
+      .flavor-grid{grid-template-columns:1fr;}
+      .hero h1{font-size:3rem;}
+      .contact-form{padding:30px;}
+    }
+  </style>
 </head>
 <body>
 
 <!-- LOADER -->
 <div class="loader" id="loader">
-  <div class="loader-cup">
-    <div class="loader-steam"><span></span><span></span><span></span></div>
-  </div>
-  <div class="loader-text">Bean to Bag</div>
-  <div class="loader-bar"><div class="loader-bar-fill"></div></div>
+  <div class="loader-cup"></div>
+  <div class="loader-text">BEAN TO BAG</div>
 </div>
 
-<!-- TOP BANNER -->
-<div class="top-banner">
-  <span class="dot"></span>
-  PREMIUM ETHIOPIAN SPECIALTY COFFEE
-  <span style="font-size:.9rem">✦</span>
-</div>
-
-<!-- NAVIGATION -->
-<nav class="nav" id="mainNav">
+<!-- NAV -->
+<nav class="nav" id="nav">
   <a href="#" class="nav-logo">
     <div class="nav-logo-icon"><i class="fas fa-mug-hot"></i></div>
-    <div class="nav-logo-text">
-      <h2>Bean to Bag</h2>
-      <span>Specialty Coffee</span>
-    </div>
+    <div class="nav-logo-text"><h2>Bean to Bag</h2><span>SPECIALTY COFFEE</span></div>
   </a>
-  <div class="nav-links" id="navLinks">
-    <a href="#home" class="active">Home</a>
-    <a href="#about">About</a>
+  <div class="nav-links">
+    <a href="#home">Home</a>
+    <a href="#flavors">Origin</a>
+    <a href="#process">Process</a>
     <a href="#products">Products</a>
-    <a href="#origin">Coffee Origin</a>
     <a href="#contact">Contact</a>
   </div>
   <a href="#contact" class="nav-order">Order Now</a>
-  <button class="menu-toggle" onclick="document.getElementById('navLinks').classList.toggle('active')"><i class="fas fa-bars"></i></button>
+  <button class="menu-toggle"><i class="fas fa-bars"></i></button>
 </nav>
 
-<!-- HERO WITH VIDEO BACKGROUND -->
-<section class="hero" id="home">
+<!-- PAGE 1: HERO -->
+<section class="page hero-page" id="home">
   <div class="hero-video">
     <video autoplay muted loop playsinline poster="https://images.unsplash.com/photo-1447933601403-0c6688de566e?w=1920&q=80">
       <source src="https://cdn.coverr.co/videos/coverr-pouring-coffee-into-a-cup-2752/1080p.mp4" type="video/mp4">
@@ -334,394 +213,307 @@ body{font-family:'Inter',sans-serif;background:var(--bg);color:var(--brown-mid);
   <div class="hero-overlay"></div>
   <div class="hero-content">
     <div>
-      <div class="hero-badge"><span class="dot"></span>From Bean to Bag — Premium Ethiopian Coffee</div>
+      <div class="hero-badge"><i class="fas fa-star" style="font-size:.6rem;"></i> PREMIUM ETHIOPIAN SPECIALTY COFFEE</div>
       <h1>From Bean<br><em>to Bag</em></h1>
-      <p class="hero-desc">Carefully sourced Ethiopian Arabica coffee roasted to a balanced <strong>medium-dark profile</strong> for a rich and smooth cup.</p>
+      <p class="hero-desc">Carefully sourced <strong>Ethiopian Arabica coffee</strong> roasted to a balanced medium-dark profile for a rich and smooth cup.</p>
       <div class="hero-btns">
         <a href="#products" class="btn btn-primary">Explore Coffee <i class="fas fa-arrow-right"></i></a>
-        <a href="#products" class="btn btn-secondary">Shop Coffee <i class="fas fa-shopping-bag"></i></a>
+        <a href="#process" class="btn btn-secondary">Watch Story <i class="fas fa-play" style="font-size:.7rem;"></i></a>
       </div>
     </div>
     <div class="hero-visual">
-      <div class="hero-img"><img src="https://images.unsplash.com/photo-1495474472287-4d71bcdd2085?w=800&q=80" alt="Ethiopian Coffee Ceremony"></div>
-      <div class="hero-accent"><img src="https://images.unsplash.com/photo-1559056199-641a0ac8b55e?w=400&q=80" alt="Coffee Beans"></div>
+      <img src="https://images.unsplash.com/photo-1495474472287-4d71bcdd2085?w=800&q=80" alt="Ethiopian Coffee Ceremony">
     </div>
   </div>
-  <div class="hero-scroll">
-    <span>Scroll to Explore</span>
-    <div class="scroll-mouse"><div class="scroll-dot"></div></div>
+  <div class="scroll-ind">
+    <div style="font-size:.7rem;letter-spacing:3px;text-transform:uppercase;margin-bottom:10px;">Scroll to Explore</div>
+    <i class="fas fa-chevron-down"></i>
   </div>
 </section>
 
-<!-- FLAVORS SECTION -->
-<section class="flavors">
+<!-- PAGE 2: FLAVORS (Like your sample) -->
+<section class="page flavors-page" id="flavors">
   <div class="flavors-grid">
-    <div>
-      <div class="flavors-badge">Cup Profile</div>
-      <h2>Refined &<br><em>Complex Flavors</em></h2>
-      <p>The unique growing conditions produce coffee with exceptional characteristics that represent the premium quality of Ethiopian high-altitude Arabica coffee.</p>
-      <div class="flavor-list">
-        <div class="flavor-item"><div class="flavor-check"><i class="fas fa-check"></i></div><span>Floral aroma</span></div>
-        <div class="flavor-item"><div class="flavor-check"><i class="fas fa-check"></i></div><span>Bright acidity</span></div>
-        <div class="flavor-item"><div class="flavor-check"><i class="fas fa-check"></i></div><span>Citrus & fruit notes</span></div>
-        <div class="flavor-item"><div class="flavor-check"><i class="fas fa-check"></i></div><span>Smooth clean finish</span></div>
+    <div class="flavors-content">
+      <h2 class="flavors-title">Refined &<br><em>Complex Flavors</em></h2>
+      <p class="flavors-desc">The unique growing conditions produce coffee with exceptional characteristics that represent the premium quality of Ethiopian high-altitude Arabica coffee.</p>
+      <div class="flavor-grid">
+        <div class="flavor-card">
+          <div class="flavor-icon"><i class="fas fa-wind"></i></div>
+          <span>Floral aroma</span>
+        </div>
+        <div class="flavor-card">
+          <div class="flavor-icon"><i class="fas fa-bolt"></i></div>
+          <span>Bright acidity</span>
+        </div>
+        <div class="flavor-card">
+          <div class="flavor-icon"><i class="fas fa-lemon"></i></div>
+          <span>Citrus & fruit notes</span>
+        </div>
+        <div class="flavor-card">
+          <div class="flavor-icon"><i class="fas fa-glass-water"></i></div>
+          <span>Smooth clean finish</span>
+        </div>
       </div>
     </div>
-    <div class="flavors-img"><img src="https://images.unsplash.com/photo-1524350876685-274059332603?w=800&q=80" alt="Ethiopian Farmer"></div>
-  </div>
-</section>
-
-<!-- VIDEO STRIP 1 -->
-<section class="video-strip">
-  <div class="video-strip-inner">
-    <div class="video-strip-item">
-      <video autoplay muted loop playsinline><source src="https://cdn.coverr.co/videos/coverr-coffee-beans-falling-2747/1080p.mp4" type="video/mp4"></video>
-      <div class="video-strip-overlay"></div>
-      <div class="video-strip-label">Ethiopian Beans<small>Premium Arabica</small></div>
-    </div>
-    <div class="video-strip-item">
-      <video autoplay muted loop playsinline><source src="https://cdn.coverr.co/videos/coverr-roasting-coffee-beans-2753/1080p.mp4" type="video/mp4"></video>
-      <div class="video-strip-overlay"></div>
-      <div class="video-strip-label">Small-Batch Roasted<small>Medium-Dark Profile</small></div>
-    </div>
-    <div class="video-strip-item">
-      <video autoplay muted loop playsinline><source src="https://cdn.coverr.co/videos/coverr-latte-art-pouring-2755/1080p.mp4" type="video/mp4"></video>
-      <div class="video-strip-overlay"></div>
-      <div class="video-strip-label">Perfectly Brewed<small>Every Single Cup</small></div>
-    </div>
-  </div>
-</section>
-
-<!-- ABOUT SECTION -->
-<section class="about" id="about">
-  <div class="about-grid">
-    <div class="about-img"><img src="https://images.unsplash.com/photo-1495474472287-4d71bcdd2085?w=800&q=80" alt="Coffee Farmer"></div>
-    <div>
-      <div class="about-badge">☕ Our Story</div>
-      <h2>Crafted with <em>Passion</em> from Ethiopian Highlands</h2>
-      <p>Bean to Bag is dedicated to delivering high-quality Ethiopian coffee from origin to cup. Our coffee is grown by smallholder farmers in traditional garden farms across Ethiopia's highlands at 1,900–2,200 meters above sea level.</p>
-      <p>Every step — from sourcing green beans to roasting and packaging — is carefully handled to ensure freshness and quality. The name "Bean to Bag" represents the full coffee journey: Coffee Bean → Roasting → Packaging → Customer.</p>
-      <div class="about-feats">
-        <div class="about-feat"><div class="about-feat-icon"><i class="fas fa-seedling"></i></div><span>100% Arabica Beans</span></div>
-        <div class="about-feat"><div class="about-feat-icon"><i class="fas fa-mountain"></i></div><span>1,900–2,200m Altitude</span></div>
-        <div class="about-feat"><div class="about-feat-icon"><i class="fas fa-hand-holding-heart"></i></div><span>Smallholder Farmers</span></div>
-        <div class="about-feat"><div class="about-feat-icon"><i class="fas fa-leaf"></i></div><span>Natural Shade Grown</span></div>
+    <div style="position:relative;">
+      <div class="flavors-visual">
+        <img src="https://images.unsplash.com/photo-1524350876685-274059332603?w=800&q=80" alt="Ethiopian Woman Pouring Coffee">
       </div>
+      <div class="flavors-accent"></div>
     </div>
   </div>
 </section>
 
-<!-- FULL WIDTH VIDEO DIVIDER -->
-<section class="full-video">
-  <video autoplay muted loop playsinline>
-    <source src="https://cdn.coverr.co/videos/coverr-coffee-shop-atmosphere-2760/1080p.mp4" type="video/mp4">
-  </video>
-  <div class="full-video-overlay">
-    <h2>The Complete <em>Coffee Journey</em></h2>
-    <p>From the highlands of Ethiopia to your cup — every step matters.</p>
-    <a href="#products" class="btn btn-primary">Discover Our Coffee <i class="fas fa-arrow-right"></i></a>
-  </div>
-</section>
-
-<!-- ORIGIN SECTION -->
-<section class="origin" id="origin">
-  <div class="origin-grid">
-    <div>
-      <div class="flavors-badge" style="justify-content:flex-start">Coffee Origin</div>
-      <h2 class="section-title" style="text-align:left">Where Our <em>Coffee</em> Grows</h2>
-      <p style="color:var(--brown);margin-bottom:10px;line-height:1.8">Our coffee is cultivated by small-scale farmers in traditional garden farms at 1,900–2,200 meters above sea level. The cool highland climate, natural shade trees, fertile soil, and balanced seasonal rainfall allow the coffee cherries to ripen slowly, developing refined and complex flavors.</p>
-      <div class="cup-profile">
-        <div class="cup-item"><div class="cup-icon"><i class="fas fa-wind"></i></div><div><h4>Floral Aroma</h4><p>Elegant and delicate floral notes</p></div></div>
-        <div class="cup-item"><div class="cup-icon"><i class="fas fa-bolt"></i></div><div><h4>Bright Acidity</h4><p>Lively and vibrant acidity profile</p></div></div>
-        <div class="cup-item"><div class="cup-icon"><i class="fas fa-lemon"></i></div><div><h4>Citrus & Fruit Notes</h4><p>Ripe fruit and citrus undertones</p></div></div>
-        <div class="cup-item"><div class="cup-icon"><i class="fas fa-glass-water"></i></div><div><h4>Smooth Clean Finish</h4><p>Clean, refined aftertaste</p></div></div>
-      </div>
-    </div>
-    <div class="origin-map"><img src="https://images.unsplash.com/photo-1524350876685-274059332603?w=800&q=80" alt="Ethiopian Coffee Farm"></div>
-  </div>
-</section>
-
-<!-- ROAST SECTION WITH VIDEO -->
-<section class="roast">
-  <div class="roast-grid">
-    <div class="roast-video">
+<!-- PAGE 3: VIDEO SHOWCASE -->
+<section class="page video-page" id="videos">
+  <div class="video-grid">
+    <div class="video-col">
       <video autoplay muted loop playsinline>
-        <source src="https://cdn.coverr.co/videos/coverr-coffee-roasting-process-4532/1080p.mp4" type="video/mp4">
+        <source src="https://cdn.coverr.co/videos/coverr-coffee-beans-falling-2747/1080p.mp4" type="video/mp4">
       </video>
+      <div class="video-overlay">
+        <div class="video-label">The Bean</div>
+        <div class="video-desc">Premium Arabica Selection</div>
+      </div>
     </div>
-    <div>
-      <div class="flavors-badge" style="justify-content:flex-start">Roast Profile</div>
-      <h2>Medium-Dark <em>Roast</em> Perfection</h2>
-      <p>All roasted coffees from Bean to Bag are roasted to a Medium-Dark roast level. This provides balanced acidity, full body, rich chocolate and cocoa notes, and a smooth finish.</p>
-      <h4>Perfect For:</h4>
-      <div class="brew-tags">
-        <span class="brew-tag">☕ Jebena Brewing</span>
-        <span class="brew-tag">⚡ Espresso</span>
-        <span class="brew-tag">🥛 Macchiato</span>
-        <span class="brew-tag">🫖 French Press</span>
-        <span class="brew-tag">🍵 Milk-Based Drinks</span>
+    <div class="video-col">
+      <video autoplay muted loop playsinline>
+        <source src="https://cdn.coverr.co/videos/coverr-roasting-coffee-beans-2753/1080p.mp4" type="video/mp4">
+      </video>
+      <div class="video-overlay">
+        <div class="video-label">The Roast</div>
+        <div class="video-desc">Small-Batch Medium-Dark</div>
+      </div>
+    </div>
+    <div class="video-col">
+      <video autoplay muted loop playsinline>
+        <source src="https://cdn.coverr.co/videos/coverr-latte-art-pouring-2755/1080p.mp4" type="video/mp4">
+      </video>
+      <div class="video-overlay">
+        <div class="video-label">The Cup</div>
+        <div class="video-desc">Perfect Every Time</div>
       </div>
     </div>
   </div>
 </section>
 
-<!-- PRODUCTS -->
-<section class="products" id="products">
-  <div class="section-header">
-    <div class="section-badge">Our Collection</div>
-    <h2 class="section-title">Premium <em>Coffee</em> Products</h2>
-    <p class="section-sub">Four distinct products crafted for every coffee experience.</p>
-  </div>
-  <div class="product-grid">
-    <div class="product-card">
-      <div class="product-visual">
-        <img src="https://images.unsplash.com/photo-1511920170033-f8396924c348?w=600&q=80" alt="Caskara">
-        <div class="product-accent" style="background:linear-gradient(90deg,#e8732a,#f59e0b)"></div>
-      </div>
-      <div class="product-info">
-        <span class="product-tag" style="background:rgba(232,115,42,.12);color:#e8732a">Unique</span>
-        <h3>Caskara</h3>
-        <div class="product-type">Dried Coffee Cherry</div>
-        <p>Made from dried coffee cherry skin. Naturally sweet and fruity with delicate floral notes.</p>
-        <div class="product-taste"><span class="taste-pill">Fruity</span><span class="taste-pill">Sweet</span><span class="taste-pill">Floral</span></div>
-        <div style="font-size:.85rem;color:var(--text);margin-bottom:16px">Sizes: 250g • 500g • 1kg</div>
-        <button class="product-btn">Order Now <i class="fas fa-arrow-right"></i></button>
-      </div>
+<!-- PAGE 4: PRODUCTS -->
+<section class="page products-page" id="products">
+  <div style="width:100%;">
+    <div class="section-header">
+      <div class="section-badge">Our Collection</div>
+      <h2 class="section-title">Premium <em>Coffee</em> Products</h2>
+      <p class="section-sub">From our roastery to your cup — four distinct experiences.</p>
     </div>
-    <div class="product-card">
-      <div class="product-visual">
-        <img src="https://images.unsplash.com/photo-1514432324607-a09d9b4a8665?w=600&q=80" alt="Qalid's Choice">
-        <div class="product-accent" style="background:linear-gradient(90deg,#8B6914,#c8842a)"></div>
-      </div>
-      <div class="product-info">
-        <span class="product-tag" style="background:rgba(200,132,42,.12);color:var(--amber)">House Blend</span>
-        <h3>Qalid's Choice</h3>
-        <div class="product-type">Ground Coffee • Medium-Dark</div>
-        <p>Our signature house blend for everyday enjoyment. Balanced cup with smooth body and chocolate notes.</p>
-        <div class="product-taste"><span class="taste-pill">Balanced</span><span class="taste-pill">Smooth</span><span class="taste-pill">Chocolate</span></div>
-        <div style="font-size:.85rem;color:var(--text);margin-bottom:16px">Grind: Jebena • French Press • Espresso</div>
-        <button class="product-btn">Order Now <i class="fas fa-arrow-right"></i></button>
-      </div>
-    </div>
-    <div class="product-card">
-      <div class="product-visual">
-        <img src="https://images.unsplash.com/photo-1559056199-641a0ac8b55e?w=600&q=80" alt="Chemina">
-        <div class="product-accent" style="background:linear-gradient(90deg,#1a1a1a,#3d3d3d)"></div>
-      </div>
-      <div class="product-info">
-        <span class="product-tag" style="background:rgba(60,60,60,.3);color:#666">Bold</span>
-        <h3>Chemina</h3>
-        <div class="product-type">Whole Bean • Medium-Dark</div>
-        <p>A bold coffee experience with rich body and deep cocoa notes. Ideal for espresso and milk drinks.</p>
-        <div class="product-taste"><span class="taste-pill">Bold Body</span><span class="taste-pill">Cocoa</span><span class="taste-pill">Smooth</span></div>
-        <div style="font-size:.85rem;color:var(--text);margin-bottom:16px">Sizes: 250g • 500g • 1kg</div>
-        <button class="product-btn">Order Now <i class="fas fa-arrow-right"></i></button>
-      </div>
-    </div>
-    <div class="product-card">
-      <div class="product-visual">
-        <img src="https://images.unsplash.com/photo-1504630083234-14187a9df0f5?w=600&q=80" alt="Origin Green">
-        <div class="product-accent" style="background:linear-gradient(90deg,#4a7c59,#8fbc8f)"></div>
-      </div>
-      <div class="product-info">
-        <span class="product-tag" style="background:rgba(74,124,89,.15);color:#4a7c59">Raw Beans</span>
-        <h3>Origin Green</h3>
-        <div class="product-type">Raw Green Coffee Beans</div>
-        <p>Unroasted green beans for home roasters, cafés, and enthusiasts who want to control their own roast.</p>
-        <div class="product-taste"><span class="taste-pill">Home Roasters</span><span class="taste-pill">Cafés</span><span class="taste-pill">Enthusiasts</span></div>
-        <div style="font-size:.85rem;color:var(--text);margin-bottom:16px">Sizes: 500g • 1kg • 5kg</div>
-        <button class="product-btn">Order Now <i class="fas fa-arrow-right"></i></button>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- PROCESS SECTION -->
-<section class="process">
-  <div class="section-header">
-    <div class="section-badge">Our Process</div>
-    <h2 class="section-title">From Farm to <em>Your Cup</em></h2>
-    <p class="section-sub">Every step carefully crafted to deliver perfection.</p>
-  </div>
-  <div class="process-steps">
-    <div class="process-step">
-      <div class="step-num">01</div>
-      <div class="step-icon"><i class="fas fa-seedling"></i></div>
-      <h3>Sourcing</h3>
-      <p>Direct partnerships with Ethiopian highland farmers for the finest Arabica beans at 1,900–2,200m altitude.</p>
-    </div>
-    <div class="process-step">
-      <div class="step-num">02</div>
-      <div class="step-icon"><i class="fas fa-hand-sparkles"></i></div>
-      <h3>Selection</h3>
-      <p>Hand-picked and carefully sorted to ensure only the best cherries are used for our premium blends.</p>
-    </div>
-    <div class="process-step">
-      <div class="step-num">03</div>
-      <div class="step-icon"><i class="fas fa-fire"></i></div>
-      <h3>Roasting</h3>
-      <p>Small-batch roasted to a balanced medium-dark profile for optimal flavor and consistency.</p>
-    </div>
-    <div class="process-step">
-      <div class="step-num">04</div>
-      <div class="step-icon"><i class="fas fa-box-open"></i></div>
-      <h3>Packaging</h3>
-      <p>Premium stand-up bags with degassing valve, zip-lock, and matte finish. Freshly sealed and delivered.</p>
-    </div>
-  </div>
-</section>
-
-<!-- TESTIMONIALS -->
-<section class="testimonials">
-  <div class="section-header">
-    <div class="section-badge">Reviews</div>
-    <h2 class="section-title">What Our <em>Customers</em> Say</h2>
-  </div>
-  <div class="testimonial-grid">
-    <div class="testimonial-card">
-      <div class="stars">★★★★★</div>
-      <p class="testimonial-text">"The Chemina whole bean is incredible — bold, rich cocoa notes perfect for my morning espresso. Best Ethiopian coffee I've found locally!"</p>
-      <div class="testimonial-author">
-        <img src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=100&q=80" class="testimonial-avatar" alt="">
-        <div>
-          <div class="testimonial-name">Sarah Thompson</div>
-          <div class="testimonial-role">Coffee Enthusiast</div>
+    <div class="products-grid">
+      <!-- CASKARA -->
+      <div class="product-card">
+        <div class="product-image">
+          <img src="https://images.unsplash.com/photo-1511920170033-f8396924c348?w=600&q=80" alt="Caskara">
+          <div class="product-color caskara"></div>
+        </div>
+        <div class="product-info">
+          <span class="product-tag tag-caskara">UNIQUE</span>
+          <h3>Caskara</h3>
+          <div class="product-type">Dried Coffee Cherry</div>
+          <p class="product-desc">Made from the dried skin of coffee cherries. Produces a naturally sweet and fruity beverage with delicate floral notes.</p>
+          <div class="product-notes">
+            <span class="note">Fruity</span>
+            <span class="note">Sweet</span>
+            <span class="note">Floral</span>
+          </div>
+          <a href="#contact" class="product-btn">Order Now <i class="fas fa-arrow-right"></i></a>
         </div>
       </div>
-    </div>
-    <div class="testimonial-card">
-      <div class="stars">★★★★★</div>
-      <p class="testimonial-text">"As a café owner, Qalid's Choice has become our go-to house blend. Customers love the smooth chocolate notes. Consistent quality every batch."</p>
-      <div class="testimonial-author">
-        <img src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=100&q=80" class="testimonial-avatar" alt="">
-        <div>
-          <div class="testimonial-name">Michael Bekele</div>
-          <div class="testimonial-role">Café Owner, Addis Ababa</div>
+      
+      <!-- QALID'S CHOICE -->
+      <div class="product-card">
+        <div class="product-image">
+          <img src="https://images.unsplash.com/photo-1514432324607-a09d9b4a8665?w=600&q=80" alt="Qalid's Choice">
+          <div class="product-color qalid"></div>
+        </div>
+        <div class="product-info">
+          <span class="product-tag tag-qalid">HOUSE BLEND</span>
+          <h3>Qalid's Choice</h3>
+          <div class="product-type">Ground Coffee • Medium-Dark Roast</div>
+          <p class="product-desc">Our signature house blend designed for everyday coffee enjoyment. Balanced cup with smooth body and chocolate notes.</p>
+          <div class="product-notes">
+            <span class="note">Jebena Grind</span>
+            <span class="note">French Press</span>
+            <span class="note">Espresso</span>
+          </div>
+          <a href="#contact" class="product-btn">Order Now <i class="fas fa-arrow-right"></i></a>
         </div>
       </div>
-    </div>
-    <div class="testimonial-card">
-      <div class="stars">★★★★★</div>
-      <p class="testimonial-text">"I ordered Origin Green beans to roast at home. The quality is outstanding — you can tell these are premium highland Arabica. Will order again!"</p>
-      <div class="testimonial-author">
-        <img src="https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=100&q=80" class="testimonial-avatar" alt="">
-        <div>
-          <div class="testimonial-name">Emily Rodriguez</div>
-          <div class="testimonial-role">Home Roaster</div>
+      
+      <!-- CHEMINA -->
+      <div class="product-card">
+        <div class="product-image">
+          <img src="https://images.unsplash.com/photo-1559056199-641a0ac8b55e?w=600&q=80" alt="Chemina">
+          <div class="product-color chemina"></div>
+        </div>
+        <div class="product-info">
+          <span class="product-tag tag-chemina">BOLD</span>
+          <h3>Chemina</h3>
+          <div class="product-type">Whole Bean • Medium-Dark Roast</div>
+          <p class="product-desc">A bold coffee experience with a rich body and deep cocoa notes. Ideal for espresso and milk-based coffee drinks.</p>
+          <div class="product-notes">
+            <span class="note">Bold Body</span>
+            <span class="note">Cocoa Notes</span>
+            <span class="note">Smooth Finish</span>
+          </div>
+          <a href="#contact" class="product-btn">Order Now <i class="fas fa-arrow-right"></i></a>
+        </div>
+      </div>
+      
+      <!-- ORIGIN GREEN -->
+      <div class="product-card">
+        <div class="product-image">
+          <img src="https://images.unsplash.com/photo-1504630083234-14187a9df0f5?w=600&q=80" alt="Origin Green">
+          <div class="product-color green"></div>
+        </div>
+        <div class="product-info">
+          <span class="product-tag tag-green">RAW BEANS</span>
+          <h3>Origin Green</h3>
+          <div class="product-type">Raw Green Coffee Beans</div>
+          <p class="product-desc">Unroasted green coffee beans for home roasters, cafés, and coffee enthusiasts who want to control their own roast profile.</p>
+          <div class="product-notes">
+            <span class="note">Home Roasters</span>
+            <span class="note">Cafés</span>
+            <span class="note">500g - 5kg</span>
+          </div>
+          <a href="#contact" class="product-btn">Order Now <i class="fas fa-arrow-right"></i></a>
         </div>
       </div>
     </div>
   </div>
 </section>
 
-<!-- CTA WITH VIDEO BACKGROUND -->
-<section class="cta">
-  <h2>Ready to Taste <em>Ethiopia's</em> Finest?</h2>
-  <p>Order now and experience the rich heritage of Ethiopian specialty coffee delivered fresh to your door.</p>
-  <div style="display:flex;gap:16px;justify-content:center;flex-wrap:wrap;position:relative">
-    <a href="#contact" class="btn btn-primary">Order Now <i class="fas fa-arrow-right"></i></a>
-    <a href="#products" class="btn btn-secondary">View Products</a>
+<!-- PAGE 5: PROCESS -->
+<section class="page process-page" id="process">
+  <div style="width:100%;">
+    <div class="section-header">
+      <div class="section-badge">Our Process</div>
+      <h2 class="section-title">From Farm to <em>Your Cup</em></h2>
+      <p class="section-sub">Every step in our process is carefully crafted to deliver perfection.</p>
+    </div>
+    <div class="process-grid">
+      <div class="process-card">
+        <div class="process-num">01</div>
+        <div class="process-icon"><i class="fas fa-seedling"></i></div>
+        <h3>Sourcing</h3>
+        <p>Direct partnerships with Ethiopian highland farmers at 1,900–2,200m altitude.</p>
+      </div>
+      <div class="process-card">
+        <div class="process-num">02</div>
+        <div class="process-icon"><i class="fas fa-hand-sparkles"></i></div>
+        <h3>Selection</h3>
+        <p>Hand-picked and carefully sorted to ensure only the best cherries are used.</p>
+      </div>
+      <div class="process-card">
+        <div class="process-num">03</div>
+        <div class="process-icon"><i class="fas fa-fire"></i></div>
+        <h3>Roasting</h3>
+        <p>Small-batch roasted to a balanced medium-dark profile for optimal flavor.</p>
+      </div>
+      <div class="process-card">
+        <div class="process-num">04</div>
+        <div class="process-icon"><i class="fas fa-box-open"></i></div>
+        <h3>Packaging</h3>
+        <p>Premium bags with degassing valve, zip-lock, and matte finish.</p>
+      </div>
+    </div>
   </div>
 </section>
 
-<!-- CONTACT -->
-<section class="contact" id="contact">
+<!-- PAGE 6: CONTACT -->
+<section class="page contact-page" id="contact">
   <div class="contact-grid">
     <div class="contact-info">
-      <div class="section-badge" style="justify-content:flex-start">Get In Touch</div>
-      <h2>Let's Talk <em>Coffee</em></h2>
-      <p style="color:var(--text);margin-bottom:10px">Have questions about our coffee, bulk orders, or partnerships? We'd love to hear from you.</p>
-      <div class="contact-details">
-        <div class="contact-detail"><div class="contact-icon"><i class="fas fa-map-marker-alt"></i></div><div><h4>Location</h4><p>Bole, Addis Ababa, Ethiopia</p></div></div>
-        <div class="contact-detail"><div class="contact-icon"><i class="fas fa-phone"></i></div><div><h4>Phone</h4><p>+251 911 234 567</p></div></div>
-        <div class="contact-detail"><div class="contact-icon"><i class="fas fa-envelope"></i></div><div><h4>Email</h4><p>hello@beantobag.et</p></div></div>
-        <div class="contact-detail"><div class="contact-icon"><i class="fas fa-clock"></i></div><div><h4>Working Hours</h4><p>Mon–Sat: 8:00 AM – 6:00 PM</p></div></div>
+      <h2>Let's Talk<br><em>Coffee</em></h2>
+      <p>Have questions about our coffee, bulk orders, or partnerships? We'd love to hear from you.</p>
+      
+      <div class="contact-item">
+        <div class="contact-icon"><i class="fas fa-map-marker-alt"></i></div>
+        <div>
+          <h4>Location</h4>
+          <p>Addis Ababa, Ethiopia</p>
+        </div>
       </div>
-      <div class="socials">
-        <a href="#" class="social"><i class="fab fa-instagram"></i></a>
-        <a href="#" class="social"><i class="fab fa-facebook-f"></i></a>
-        <a href="#" class="social"><i class="fab fa-telegram-plane"></i></a>
-        <a href="#" class="social"><i class="fab fa-tiktok"></i></a>
+      
+      <div class="contact-item">
+        <div class="contact-icon"><i class="fas fa-phone"></i></div>
+        <div>
+          <h4>Phone</h4>
+          <p>+251 911 234 567</p>
+        </div>
+      </div>
+      
+      <div class="contact-item">
+        <div class="contact-icon"><i class="fas fa-envelope"></i></div>
+        <div>
+          <h4>Email</h4>
+          <p>hello@beantobag.et</p>
+        </div>
+      </div>
+      
+      <div style="display:flex;gap:12px;margin-top:30px;">
+        <a href="#" style="width:44px;height:44px;border-radius:12px;background:rgba(200,132,42,.1);display:flex;align-items:center;justify-content:center;color:var(--amber);text-decoration:none;transition:.3s;"><i class="fab fa-instagram"></i></a>
+        <a href="#" style="width:44px;height:44px;border-radius:12px;background:rgba(200,132,42,.1);display:flex;align-items:center;justify-content:center;color:var(--amber);text-decoration:none;transition:.3s;"><i class="fab fa-facebook-f"></i></a>
+        <a href="#" style="width:44px;height:44px;border-radius:12px;background:rgba(200,132,42,.1);display:flex;align-items:center;justify-content:center;color:var(--amber);text-decoration:none;transition:.3s;"><i class="fab fa-telegram-plane"></i></a>
       </div>
     </div>
-    <form class="contact-form" onsubmit="event.preventDefault();alert('Thank you! We will get back to you soon.')">
-      <h3>Send a Message</h3>
-      <div class="form-row">
-        <div class="form-group"><label>First Name</label><input type="text" placeholder="Your first name" required></div>
-        <div class="form-group"><label>Last Name</label><input type="text" placeholder="Your last name"></div>
+    
+    <form class="contact-form" onsubmit="event.preventDefault();alert('Thank you! We will contact you soon.');">
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:16px;">
+        <div class="form-group">
+          <label>First Name</label>
+          <input type="text" placeholder="Your name" required>
+        </div>
+        <div class="form-group">
+          <label>Last Name</label>
+          <input type="text" placeholder="Last name">
+        </div>
       </div>
-      <div class="form-group"><label>Email</label><input type="email" placeholder="your@email.com" required></div>
-      <div class="form-group"><label>Subject</label><select><option>General Inquiry</option><option>Bulk Order</option><option>Partnership</option><option>Feedback</option></select></div>
-      <div class="form-group"><label>Message</label><textarea placeholder="Tell us what you need..."></textarea></div>
-      <button type="submit" class="form-submit">Send Message <i class="fas fa-paper-plane"></i></button>
+      <div class="form-group">
+        <label>Email</label>
+        <input type="email" placeholder="your@email.com" required>
+      </div>
+      <div class="form-group">
+        <label>Subject</label>
+        <select style="width:100%;">
+          <option>General Inquiry</option>
+          <option>Bulk Order</option>
+          <option>Wholesale</option>
+        </select>
+      </div>
+      <div class="form-group">
+        <label>Message</label>
+        <textarea placeholder="Tell us what you need..."></textarea>
+      </div>
+      <button type="submit" class="submit-btn">Send Message <i class="fas fa-paper-plane"></i></button>
     </form>
   </div>
 </section>
 
-<!-- FOOTER -->
-<footer class="footer">
-  <div class="footer-grid">
-    <div>
-      <div class="footer-logo"><div class="footer-logo-icon"><i class="fas fa-mug-hot"></i></div><h3>Bean to <span>Bag</span></h3></div>
-      <p class="footer-desc">Premium Ethiopian specialty coffee, carefully sourced and roasted to perfection. From the highlands of Ethiopia to your cup.</p>
-      <div class="socials">
-        <a href="#" class="social"><i class="fab fa-instagram"></i></a>
-        <a href="#" class="social"><i class="fab fa-facebook-f"></i></a>
-        <a href="#" class="social"><i class="fab fa-telegram-plane"></i></a>
-      </div>
-    </div>
-    <div><h4>Quick Links</h4><a href="#home">Home</a><a href="#about">About Us</a><a href="#products">Products</a><a href="#origin">Coffee Origin</a><a href="#contact">Contact</a></div>
-    <div><h4>Our Products</h4><a href="#">Caskara</a><a href="#">Qalid's Choice</a><a href="#">Chemina</a><a href="#">Origin Green</a></div>
-    <div><h4>Support</h4><a href="#">Shipping Info</a><a href="#">Returns Policy</a><a href="#">FAQ</a><a href="#">Brewing Guide</a><a href="#">Wholesale</a></div>
-  </div>
-  <div class="footer-bottom"><p>© 2025 <a href="#">Bean to Bag</a>. Premium Ethiopian Specialty Coffee | Made with ☕ in Ethiopia</p></div>
-</footer>
-
 <!-- FLOATING BUTTONS -->
 <div class="float-btns">
-  <a href="https://wa.me/251911234567?text=Hello%20Bean%20to%20Bag" class="float-btn wa" target="_blank"><i class="fab fa-whatsapp"></i></a>
+  <a href="https://wa.me/251911234567" class="float-btn wa" target="_blank"><i class="fab fa-whatsapp"></i></a>
   <a href="https://t.me/beantobag" class="float-btn tg" target="_blank"><i class="fab fa-telegram-plane"></i></a>
 </div>
 
 <script>
-// Loader
-window.addEventListener('load',()=>setTimeout(()=>document.getElementById('loader').classList.add('hide'),2200));
+// Remove loader
+window.addEventListener('load',()=>{
+  setTimeout(()=>document.getElementById('loader').classList.add('hide'),2000);
+});
 
-// Nav scroll
+// Nav scroll effect
 window.addEventListener('scroll',()=>{
-  document.getElementById('mainNav').classList.toggle('scrolled',scrollY>50);
-});
-
-// Mobile menu
-document.querySelector('.menu-toggle').addEventListener('click',function(){
-  document.getElementById('navLinks').classList.toggle('active');
-});
-
-// Active nav link
-const sections=document.querySelectorAll('section[id]');
-window.addEventListener('scroll',()=>{
-  const sp=scrollY+100;
-  sections.forEach(sec=>{
-    const top=sec.offsetTop,height=sec.offsetHeight,id=sec.getAttribute('id');
-    const link=document.querySelector(`.nav-links a[href="#${id}"]`);
-    if(link&&sp>=top&&sp<top+height){
-      document.querySelectorAll('.nav-links a').forEach(a=>a.classList.remove('active'));
-      link.classList.add('active');
-    }
-  });
-});
-
-// Smooth scroll
-document.querySelectorAll('a[href^="#"]').forEach(a=>{
-  a.addEventListener('click',e=>{
-    const t=document.querySelector(a.getAttribute('href'));
-    if(t){e.preventDefault();t.scrollIntoView({behavior:'smooth',block:'start'})}
-  });
-});
-
-// Close mobile menu on link click
-document.querySelectorAll('.nav-links a').forEach(a=>{
-  a.addEventListener('click',()=>document.getElementById('navLinks').classList.remove('active'));
+  const nav=document.getElementById('nav');
+  if(scrollY>50){nav.classList.add('scrolled');}
+  else{nav.classList.remove('scrolled');}
 });
 </script>
 
