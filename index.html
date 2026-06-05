@@ -63,7 +63,7 @@
     .nav-cta:hover { transform: scale(1.05); background: var(--amber-glow); }
     .menu-toggle { display: none; background: none; border: none; color: white; font-size: 1.8rem; cursor: pointer; }
 
-    /* Hero Section with hero-coffee.jpg */
+    /* Hero Section with your hero-coffee.jpg */
     .hero {
       min-height: 100vh; position: relative; display: flex; align-items: center;
       background: linear-gradient(135deg, #0a0705 0%, #1a120c 100%);
@@ -132,7 +132,7 @@
     .feature-item { display: flex; gap: 15px; align-items: flex-start; }
     .feature-icon { width: 45px; height: 45px; background: rgba(193,127,78,0.15); border-radius: 14px; display: flex; align-items: center; justify-content: center; color: var(--amber); font-size: 1.2rem; }
 
-    /* Visual Archive — ceremony & roasting  */
+    /* The Visual Archive — ceremony & roasting  */
     .visual-archive {
       background: var(--charcoal);
       position: relative;
@@ -195,8 +195,8 @@
 <div class="loader" id="loader"><div class="loader-content"><div class="loader-ring"></div><div class="loader-text">BEAN TO BAG</div></div></div>
 
 <nav class="nav" id="navbar">
-  <a href="#" class="nav-logo"><div class="logo-mark"><i class="fas fa-mug-hot"></i></div><div class="logo-text"><h1>Bean to Bag</h1><span>ETHIOPIAN ORIGIN</span></div></a>
-  <div class="nav-links" id="navLinks"><a href="#home">Home</a><a href="#origin">Origin</a><a href="#archive">Archive</a><a href="#process">Process</a><a href="#contact">Contact</a></div>
+  <a href="index.html" class="nav-logo"><div class="logo-mark"><i class="fas fa-mug-hot"></i></div><div class="logo-text"><h1>Bean to Bag</h1><span>ETHIOPIAN ORIGIN</span></div></a>
+  <div class="nav-links" id="navLinks"><a href="index.html" class="active">Home</a><a href="origin.html">Origin</a><a href="#archive">Archive</a><a href="#process">Process</a><a href="#contact">Contact</a></div>
   <a href="#contact" class="nav-cta">Reserve Coffee</a>
   <button class="menu-toggle" onclick="document.getElementById('navLinks').classList.toggle('active')"><i class="fas fa-bars"></i></button>
 </nav>
@@ -210,7 +210,7 @@
       <div class="hero-badge"><i class="fas fa-seedling"></i> DIRECT TRADE · ETHIOPIA</div>
       <h1 class="hero-title">From Highland<br><em>to Your Cup</em></h1>
       <p class="hero-desc">Single-origin Arabica, ethically sourced from Ethiopia's ancient coffee forests. Roasted in small batches, delivered fresh — honoring centuries of tradition.</p>
-      <div class="hero-buttons"><a href="#archive" class="btn btn-primary">Explore Visual Story <i class="fas fa-arrow-right"></i></a><a href="#origin" class="btn btn-secondary">The Origin</a></div>
+      <div class="hero-buttons"><a href="#archive" class="btn btn-primary">Explore Visual Story <i class="fas fa-arrow-right"></i></a><a href="origin.html" class="btn btn-secondary">The Origin</a></div>
       <div class="hero-stats"><div class="stat-item"><div class="number">1,900-2,200m</div><div class="label">Altitude</div></div><div class="stat-item"><div class="number">100%</div><div class="label">Arabica</div></div><div class="stat-item"><div class="number">90+ pts</div><div class="label">SCA Score</div></div></div>
     </div>
     <div class="hero-visual-placeholder"></div>
@@ -226,7 +226,7 @@
       <div class="rich-text"><h2 class="section-title" style="color: var(--dark);">Birthplace of <em>Coffee Arabica</em></h2><p>Ethiopia's lush highlands offer the perfect conditions for exceptional coffee: volcanic soil, natural shade, and the perfect balance of sun and rain. Our partner farmers cultivate heirloom varieties using traditional methods passed down through generations.</p><div class="feature-list"><div class="feature-item"><div class="feature-icon"><i class="fas fa-mountain"></i></div><div><strong>High Altitude</strong><br><span style="font-size:0.85rem;">1,900–2,200m above sea level</span></div></div><div class="feature-item"><div class="feature-icon"><i class="fas fa-hand-holding-heart"></i></div><div><strong>Hand Sorted</strong><br><span style="font-size:0.85rem;">Selective harvesting only</span></div></div></div></div>
     </div>
     <div class="two-column-grid" style="margin-top: 100px;">
-      <div class="rich-text"><h2 class="section-title" style="color: var(--dark);">A Culture of <em>Coffee Ceremony</em></h2><p>In Ethiopia, coffee is more than a drink — it's a sacred ritual of connection. The traditional Jebena ceremony involves roasting beans over an open flame, grinding by hand, and brewing three rounds of coffee, each with its own blessing.</p><p>We bring this spirit of hospitality into every bag, connecting you directly to the farmers and traditions behind each bean.</p></div>
+      <div class="rich-text"><h2 class="section-title" style="color: var(--dark);">A Culture of <em>Coffee Ceremony</em></h2><p>In Ethiopia, coffee is more than a drink — it's a sacred ritual of connection. The traditional Jebena ceremony involves roasting beans over an open flame, grinding by hand, and brewing three rounds of coffee, each with its own blessing.</p><p>We bring this spirit of hospitality into every bag, connecting you directly to the farmers and traditions behind each bean.</p><div class="hero-buttons" style="margin-top: 30px;"><a href="origin.html" class="btn btn-primary" style="background: var(--amber); color:var(--dark);">Discover Full Origin Story →</a></div></div>
       <div class="image-frame"><img src="about-coffee.jpg" alt="Coffee ceremony culture" onerror="this.src='https://images.unsplash.com/photo-1512568400610-62da28bc8a13?w=900&q=80'"></div>
     </div>
   </div>
