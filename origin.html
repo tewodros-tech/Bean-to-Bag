@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
   <title>Coffee Origin | Ethiopian Highlands | Bean to Bag</title>
   <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;0,800;0,900;1,400;1,500;1,600;1,700;1,800&family=Inter:opsz,wght@14..32,300;14..32,400;14..32,500;14..32,600;14..32,700;14..32,800&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
@@ -13,28 +13,19 @@
 
   <nav class="nav" id="navbar">
     <a href="index.html" class="nav-logo"><div class="logo-mark"><i class="fas fa-mug-hot"></i></div><div class="logo-text"><h1>Bean to Bag</h1><span>ETHIOPIAN COFFEE</span></div></a>
-    <div class="nav-links"><a href="index.html">Home</a><a href="about.html">About</a><a href="products.html">Products</a><a href="origin.html" class="active">Coffee Origin</a><a href="contact.html">Contact</a></div>
+    <div class="nav-links" id="navLinks"><a href="index.html">Home</a><a href="about.html">About</a><a href="products.html">Products</a><a href="origin.html" class="active">Coffee Origin</a><a href="contact.html">Contact</a></div>
     <a href="products.html" class="nav-cta">Shop Now</a><button class="menu-toggle" id="menuToggle"><i class="fas fa-bars"></i></button>
   </nav>
 
   <main>
-    <section class="page-hero">
-      <div class="page-hero-bg origin-bg"></div>
-      <div class="page-hero-content"><h1>Coffee <em>Origin</em></h1><p>100% Coffea Arabica · Ethiopian Highlands</p></div>
-    </section>
-
-    <section class="origin-story">
-      <div class="section-container"><div class="origin-grid"><div class="origin-text"><div class="section-label">The Birthplace of Coffee</div><h2>Grown at <em>1,900–2,200 meters</em></h2><p>Our coffee is cultivated by small-scale farmers in traditional garden farms across Ethiopia's renowned coffee regions. The cool highland climate, natural shade trees, fertile volcanic soil, and balanced seasonal rainfall create perfect conditions for slow-ripening cherries.</p><p>This careful, natural process allows the beans to develop complex flavors that are uniquely Ethiopian — bright, fruity, and incomparably smooth.</p></div><div class="origin-image"><img src="images/ethiopia-coffee.jpg" alt="Ethiopian Highlands" onerror="this.src='https://images.unsplash.com/photo-1495474472287-4d71bcdd2085?w=800&q=80'"></div></div></div>
-    </section>
-
-    <section class="cup-profile">
-      <div class="section-container"><h2 class="section-title-center">Our <em>Cup Profile</em></h2><div class="profile-grid"><div class="profile-card"><i class="fas fa-wind"></i><h3>Floral Aroma</h3><p>Elegant jasmine and bergamot notes</p></div><div class="profile-card"><i class="fas fa-bolt"></i><h3>Bright Acidity</h3><p>Vibrant and lively</p></div><div class="profile-card"><i class="fas fa-lemon"></i><h3>Citrus & Fruit</h3><p>Lemon, bergamot, wild berries</p></div><div class="profile-card"><i class="fas fa-water"></i><h3>Smooth Clean Finish</h3><p>Velvety and long-lasting</p></div></div></div>
-    </section>
-
-    <section class="roast-profile-deep">
-      <div class="section-container two-column"><div class="roast-text"><div class="section-label">Roast Profile</div><h2>Medium-<em>Dark</em> Roast</h2><p>All roasted coffees from Bean to Bag are roasted to a Medium-Dark roast level. This profile provides balanced acidity, full body, rich chocolate and cocoa notes, and a smooth finish.</p><div class="brew-methods"><strong>Perfect for:</strong> Jebena brewing · Espresso · Macchiato · French press · Milk-based drinks</div></div><div class="roast-image"><img src="images/roasting.jpg" alt="Coffee Roasting" onerror="this.src='https://images.pexels.com/photos/312782/pexels-photo-312782.jpeg?w=600&q=80'"></div></div>
-    </section>
-
+    <section class="page-hero"><div class="page-hero-bg" style="background-image: url('https://images.unsplash.com/photo-1495474472287-4d71bcdd2085?w=1920&q=80');"></div><div class="page-hero-content"><h1>Coffee <em>Origin</em></h1><p>100% Coffea Arabica · Ethiopian Highlands</p></div></section>
+    
+    <section class="origin-story"><div class="section-container"><div class="origin-grid"><div class="origin-text"><div class="section-label">The Birthplace of Coffee</div><h2>Grown at <em>1,900–2,200 meters</em></h2><p>Our coffee is cultivated by small-scale farmers in traditional garden farms across Ethiopia's renowned coffee regions. The cool highland climate, natural shade trees, fertile volcanic soil, and balanced seasonal rainfall create perfect conditions for slow-ripening cherries.</p><p>This careful, natural process allows the beans to develop complex flavors that are uniquely Ethiopian — bright, fruity, and incomparably smooth.</p></div><div class="origin-image"><img src="https://images.unsplash.com/photo-1495474472287-4d71bcdd2085?w=800&q=80" alt="Ethiopian Highlands"></div></div></div></section>
+    
+    <section class="cup-profile"><div class="section-container"><h2 class="section-title-center">Our <em>Cup Profile</em></h2><div class="profile-grid"><div class="profile-card"><i class="fas fa-wind"></i><h3>Floral Aroma</h3><p>Elegant jasmine and bergamot notes</p></div><div class="profile-card"><i class="fas fa-bolt"></i><h3>Bright Acidity</h3><p>Vibrant and lively</p></div><div class="profile-card"><i class="fas fa-lemon"></i><h3>Citrus & Fruit</h3><p>Lemon, bergamot, wild berries</p></div><div class="profile-card"><i class="fas fa-water"></i><h3>Smooth Clean Finish</h3><p>Velvety and long-lasting</p></div></div></div></section>
+    
+    <section class="roast-profile-deep"><div class="section-container two-column"><div class="roast-text"><div class="section-label">Roast Profile</div><h2>Medium-<em>Dark</em> Roast</h2><p>All roasted coffees from Bean to Bag are roasted to a Medium-Dark roast level. This profile provides balanced acidity, full body, rich chocolate and cocoa notes, and a smooth finish.</p><div class="brew-methods"><strong>Perfect for:</strong> Jebena brewing · Espresso · Macchiato · French press · Milk-based drinks</div></div><div class="roast-image"><img src="https://images.pexels.com/photos/312782/pexels-photo-312782.jpeg?w=600&q=80" alt="Coffee Roasting"></div></div></section>
+    
     <section class="farmer-partnership"><div class="section-container"><div class="farmer-card"><i class="fas fa-handshake"></i><h3>Supporting Smallholder Farmers</h3><p>We work directly with traditional garden farm families, ensuring fair prices and long-term relationships that sustain Ethiopia's coffee heritage for generations to come.</p></div></div></section>
   </main>
 
