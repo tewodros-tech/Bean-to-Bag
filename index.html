@@ -63,7 +63,7 @@
     .nav-cta:hover { transform: scale(1.05); background: var(--amber-glow); }
     .menu-toggle { display: none; background: none; border: none; color: white; font-size: 1.8rem; cursor: pointer; }
 
-    /* Hero Section with your hero-coffee.jpg */
+    /* Hero Section with hero-coffee.jpg */
     .hero {
       min-height: 100vh; position: relative; display: flex; align-items: center;
       background: linear-gradient(135deg, #0a0705 0%, #1a120c 100%);
@@ -132,7 +132,7 @@
     .feature-item { display: flex; gap: 15px; align-items: flex-start; }
     .feature-icon { width: 45px; height: 45px; background: rgba(193,127,78,0.15); border-radius: 14px; display: flex; align-items: center; justify-content: center; color: var(--amber); font-size: 1.2rem; }
 
-    /* The Visual Archive — Your Images (about-coffee, ceremony, ethiopia-coffee, roasting) */
+    /* Visual Archive — ceremony & roasting  */
     .visual-archive {
       background: var(--charcoal);
       position: relative;
@@ -187,6 +187,8 @@
       .menu-toggle { display: block; }
       .archive-img { height: 350px; }
     }
+    .nav-links.active { display: flex; flex-direction: column; position: absolute; top: 85px; left: 0; right: 0; background: rgba(10,7,5,0.98); backdrop-filter: blur(20px); padding: 30px; text-align: center; gap: 28px; border-bottom: 1px solid rgba(193,127,78,0.3); }
+    .hero-visual-placeholder { display: none; }
   </style>
 </head>
 <body>
@@ -194,12 +196,12 @@
 
 <nav class="nav" id="navbar">
   <a href="#" class="nav-logo"><div class="logo-mark"><i class="fas fa-mug-hot"></i></div><div class="logo-text"><h1>Bean to Bag</h1><span>ETHIOPIAN ORIGIN</span></div></a>
-  <div class="nav-links"><a href="#home">Home</a><a href="#origin">Origin</a><a href="#archive">Archive</a><a href="#process">Process</a><a href="#contact">Contact</a></div>
+  <div class="nav-links" id="navLinks"><a href="#home">Home</a><a href="#origin">Origin</a><a href="#archive">Archive</a><a href="#process">Process</a><a href="#contact">Contact</a></div>
   <a href="#contact" class="nav-cta">Reserve Coffee</a>
-  <button class="menu-toggle" onclick="document.querySelector('.nav-links').classList.toggle('active')"><i class="fas fa-bars"></i></button>
+  <button class="menu-toggle" onclick="document.getElementById('navLinks').classList.toggle('active')"><i class="fas fa-bars"></i></button>
 </nav>
 
-<!-- HERO with hero-coffee.jpg -->
+<!-- HERO with hero-coffee.jpg (full page) -->
 <section class="hero" id="home">
   <div class="hero-bg-image"></div>
   <div class="hero-overlay"></div>
@@ -230,13 +232,13 @@
   </div>
 </section>
 
-<!-- VISUAL ARCHIVE: ceremony.jpg & roasting.jpg with left/right narrative -->
+<!-- VISUAL ARCHIVE: ceremony.jpg & roasting.jpg -->
 <section class="visual-archive page-section" id="archive">
   <div class="section-container">
     <div class="section-label">Visual Chronicle</div>
     <h2 class="section-title" style="color: white;">The <em>Ethiopian</em> Coffee Journey</h2>
     <div class="archive-stack">
-      <!-- ceremony.jpg left / description right -->
+      <!-- ceremony.jpg left / narrative right -->
       <div class="archive-card"><div class="archive-img"><img src="ceremony.jpg" alt="Traditional Ethiopian coffee ceremony" onerror="this.src='https://images.pexels.com/photos/1337380/pexels-photo-1337380.jpeg?auto=compress&cs=tinysrgb&w=800'"></div><div class="archive-text"><h3>The Jebena Ritual</h3><p>The coffee ceremony is the heart of Ethiopian hospitality. Fresh beans are roasted in a pan over charcoal, filling the room with an intoxicating aroma. The roasted beans are then ground using a mortar and pestle, then brewed in a clay pot called a Jebena. This timeless ritual symbolizes friendship, respect, and the soul of the nation.</p><div class="archive-tags"><span>☕ Three Rounds (Abol, Tona, Baraka)</span><span>🔥 Open-fire roasting</span><span>🌿 Incense & popcorn</span></div></div></div>
       <!-- roasting.jpg left / description right -->
       <div class="archive-card"><div class="archive-img"><img src="roasting.jpg" alt="Artisan roasting process" onerror="this.src='https://images.pexels.com/photos/312782/pexels-photo-312782.jpeg?auto=compress&cs=tinysrgb&w=800'"></div><div class="archive-text"><h3>Master Roasting</h3><p>Small-batch roasting is an art form. We use a precision Loring roaster to carefully develop each bean's potential — unlocking notes of wild berries, jasmine, dark chocolate, and a winey acidity. Our medium-dark profile honors Ethiopian tradition while delivering a smooth, balanced cup that works beautifully for espresso, filter, or Jebena.</p><div class="archive-tags"><span>🎚️ Real-time profiling</span><span>📊 First crack precision</span><span>🍫 Chocolate & berry notes</span></div></div></div>
@@ -251,7 +253,7 @@
 
 <!-- CONTACT + final call to action -->
 <section class="contact-section page-section" id="contact">
-  <div class="section-container"><div class="contact-grid"><div class="contact-info"><div class="section-label" style="color: var(--amber);">connect with us</div><h2 class="section-title" style="color: white;">Share a <em>cup</em> with us</h2><p style="color: rgba(255,250,235,0.8); font-size: 1.1rem; line-height: 1.7; margin: 25px 0;">Wholesale inquiries, café partnerships, or simply want to learn more about our Ethiopian single-origin coffees? Reach out — our team is passionate about great coffee.</p><div style="display: flex; gap: 25px; margin-top: 40px;"><div><i class="fas fa-map-marker-alt" style="color: var(--amber);"></i><p>Bole, Addis Ababa, Ethiopia</p></div><div><i class="fas fa-envelope" style="color: var(--amber);"></i><p>hello@beantobag.et</p></div></div></div><div class="contact-card"><form id="contactForm"><div class="form-group"><input type="text" placeholder="Full name" required></div><div class="form-group"><input type="email" placeholder="Email address" required></div><div class="form-group"><textarea rows="4" placeholder="Tell us about your coffee needs..."></textarea></div><button type="submit" class="submit-btn">Send Message <i class="fas fa-paper-plane"></i></button></form></div></div></div>
+  <div class="section-container"><div class="contact-grid"><div class="contact-info"><div class="section-label" style="color: var(--amber);">connect with us</div><h2 class="section-title" style="color: white;">Share a <em>cup</em> with us</h2><p style="color: rgba(255,250,235,0.8); font-size: 1.1rem; line-height: 1.7; margin: 25px 0;">Wholesale inquiries, café partnerships, or simply want to learn more about our Ethiopian single-origin coffees? Reach out — our team is passionate about great coffee.</p><div style="display: flex; gap: 25px; margin-top: 40px; flex-wrap: wrap;"><div><i class="fas fa-map-marker-alt" style="color: var(--amber);"></i><p>Bole, Addis Ababa, Ethiopia</p></div><div><i class="fas fa-envelope" style="color: var(--amber);"></i><p>hello@beantobag.et</p></div></div></div><div class="contact-card"><form id="contactForm"><div class="form-group"><input type="text" placeholder="Full name" required></div><div class="form-group"><input type="email" placeholder="Email address" required></div><div class="form-group"><textarea rows="4" placeholder="Tell us about your coffee needs..."></textarea></div><button type="submit" class="submit-btn">Send Message <i class="fas fa-paper-plane"></i></button></form></div></div></div>
 </section>
 
 <footer class="footer"><div class="footer-content"><div style="font-family: 'Playfair Display', serif; font-size: 1.8rem; color: var(--amber); margin-bottom: 20px;">Bean to Bag</div><p>© 2025 Bean to Bag Specialty Coffee — Ethically sourced from Ethiopian highlands. Freshness guaranteed.</p><div style="margin-top: 25px; display: flex; gap: 25px; justify-content: center;"><a href="#" style="color: var(--amber);"><i class="fab fa-instagram"></i></a><a href="#" style="color: var(--amber);"><i class="fab fa-facebook-f"></i></a><a href="#" style="color: var(--amber);"><i class="fab fa-telegram-plane"></i></a></div></div></footer>
@@ -263,7 +265,7 @@
   const navbar = document.getElementById('navbar');
   window.addEventListener('scroll', () => { window.scrollY > 60 ? navbar.classList.add('scrolled') : navbar.classList.remove('scrolled'); });
   document.getElementById('contactForm').addEventListener('submit', (e) => { e.preventDefault(); alert('✨ Thank you! Our coffee team will respond within 24 hours. ☕'); });
-  document.querySelectorAll('a[href^="#"]').forEach(anchor => { anchor.addEventListener('click', function(e) { e.preventDefault(); const target = document.querySelector(this.getAttribute('href')); if(target) target.scrollIntoView({ behavior: 'smooth', block: 'start' }); }); });
+  document.querySelectorAll('a[href^="#"]').forEach(anchor => { anchor.addEventListener('click', function(e) { e.preventDefault(); const target = document.querySelector(this.getAttribute('href')); if(target) target.scrollIntoView({ behavior: 'smooth', block: 'start' }); if (window.innerWidth <= 1024) document.getElementById('navLinks')?.classList.remove('active'); }); });
 </script>
 </body>
 </html>
