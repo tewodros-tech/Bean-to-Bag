@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
   <title>Our Coffee | Bean to Bag Products</title>
   <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;0,800;0,900;1,400;1,500;1,600;1,700;1,800&family=Inter:opsz,wght@14..32,300;14..32,400;14..32,500;14..32,600;14..32,700;14..32,800&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
@@ -13,55 +13,24 @@
 
   <nav class="nav" id="navbar">
     <a href="index.html" class="nav-logo"><div class="logo-mark"><i class="fas fa-mug-hot"></i></div><div class="logo-text"><h1>Bean to Bag</h1><span>ETHIOPIAN COFFEE</span></div></a>
-    <div class="nav-links"><a href="index.html">Home</a><a href="about.html">About</a><a href="products.html" class="active">Products</a><a href="origin.html">Coffee Origin</a><a href="contact.html">Contact</a></div>
+    <div class="nav-links" id="navLinks"><a href="index.html">Home</a><a href="about.html">About</a><a href="products.html" class="active">Products</a><a href="origin.html">Coffee Origin</a><a href="contact.html">Contact</a></div>
     <a href="products.html" class="nav-cta">Shop Now</a><button class="menu-toggle" id="menuToggle"><i class="fas fa-bars"></i></button>
   </nav>
 
   <main>
-    <section class="page-hero">
-      <div class="page-hero-bg"></div>
-      <div class="page-hero-content"><h1>Our <em>Coffee Collection</em></h1><p>Freshly roasted and crafted for every brewing method</p></div>
-    </section>
-
-    <section class="products-catalog">
-      <div class="section-container">
-        <!-- Caskara -->
-        <div class="product-detail" id="caskara">
-          <div class="product-detail-grid">
-            <div class="product-detail-image"><img src="images/caskara.jpg" alt="Caskara" onerror="this.src='https://images.unsplash.com/photo-1511920170033-f8396924c348?w=600&q=80'"><span class="pack-badge orange">Orange Pack</span></div>
-            <div class="product-detail-info"><h2>Caskara</h2><p class="product-type">Dried Coffee Cherry · Naturally Sweet & Fruity</p><p>Caskara is made from the dried skin of coffee cherries. It produces a naturally sweet and fruity beverage with delicate floral notes — a traditional Ethiopian delicacy.</p><div class="taste-profile"><strong>Taste Profile:</strong> Fruity · Sweet · Floral</div><div class="sizes"><strong>Available Sizes:</strong> 250g · 500g · 1kg</div><a href="contact.html" class="btn btn-primary">Order Now <i class="fas fa-arrow-right"></i></a></div>
-          </div>
-        </div>
-
-        <!-- Qalid's Choice -->
-        <div class="product-detail alt" id="qalid">
-          <div class="product-detail-grid reverse">
-            <div class="product-detail-info"><h2>Qalid's Choice</h2><p class="product-type">House Blend · Ground Coffee · Medium-Dark Roast</p><p>Our signature house blend designed for everyday coffee enjoyment. The medium-dark roast creates a balanced cup with smooth body and chocolate notes.</p><div class="taste-profile"><strong>Taste Profile:</strong> Balanced · Smooth · Chocolate notes</div><div class="grind-options"><strong>Grind Options:</strong> Jebena · French Press · Espresso</div><div class="sizes"><strong>Available Sizes:</strong> 250g · 500g · 1kg</div><a href="contact.html" class="btn btn-primary">Order Now <i class="fas fa-arrow-right"></i></a></div>
-            <div class="product-detail-image"><img src="images/qalid.jpg" alt="Qalid's Choice" onerror="this.src='https://images.unsplash.com/photo-1514432324607-a09d9b4a8665?w=600&q=80'"><span class="pack-badge brown">Warm Brown Pack</span></div>
-          </div>
-        </div>
-
-        <!-- Chemina -->
-        <div class="product-detail" id="chemina">
-          <div class="product-detail-grid">
-            <div class="product-detail-image"><img src="images/chemina.jpg" alt="Chemina" onerror="this.src='https://images.unsplash.com/photo-1559056199-641a0ac8b55e?w=600&q=80'"><span class="pack-badge black">Black / Dark Gray Pack</span></div>
-            <div class="product-detail-info"><h2>Chemina</h2><p class="product-type">Whole Bean Coffee · Medium-Dark Roast</p><p>Chemina offers a bold coffee experience with a rich body and deep cocoa notes. The medium-dark roast is ideal for espresso and milk-based coffee drinks.</p><div class="taste-profile"><strong>Taste Profile:</strong> Bold body · Cocoa notes · Smooth finish</div><div class="sizes"><strong>Available Sizes:</strong> 250g · 500g · 1kg</div><a href="contact.html" class="btn btn-primary">Order Now <i class="fas fa-arrow-right"></i></a></div>
-          </div>
-        </div>
-
-        <!-- Origin Green -->
-        <div class="product-detail alt" id="origin-green">
-          <div class="product-detail-grid reverse">
-            <div class="product-detail-info"><h2>Origin Green</h2><p class="product-type">Raw Green Coffee Beans · Unroasted</p><p>Premium green coffee beans for home roasters, cafés, and coffee enthusiasts. Take control of your roast profile with our premium highland beans.</p><div class="target"><strong>Perfect for:</strong> Home Roasters · Cafés · Coffee Enthusiasts</div><div class="sizes"><strong>Available Sizes:</strong> 500g · 1kg · 5kg (bulk)</div><a href="contact.html" class="btn btn-primary">Order Now <i class="fas fa-arrow-right"></i></a></div>
-            <div class="product-detail-image"><img src="images/green-beans.jpg" alt="Origin Green" onerror="this.src='https://images.unsplash.com/photo-1504630083234-14187a9df0f5?w=600&q=80'"><span class="pack-badge green">Natural Kraft / Green Pack</span></div>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <section class="packaging-info">
-      <div class="section-container"><div class="packaging-card"><i class="fas fa-box"></i><h3>Premium Packaging</h3><p>All our coffee bags feature a one-way degassing valve, zip-lock resealable top, matte finish, roast date, and batch number for full traceability.</p></div></div>
-    </section>
+    <section class="page-hero"><div class="page-hero-bg" style="background-image: url('https://images.unsplash.com/photo-1447933601403-0c6688de566e?w=1920&q=80');"></div><div class="page-hero-content"><h1>Our <em>Coffee Collection</em></h1><p>Freshly roasted and crafted for every brewing method</p></div></section>
+    
+    <section class="products-catalog"><div class="section-container">
+      <div class="product-detail" id="caskara"><div class="product-detail-grid"><div class="product-detail-image"><img src="https://images.unsplash.com/photo-1511920170033-f8396924c348?w=600&q=80" alt="Caskara"><span class="pack-badge orange">Orange Pack</span></div><div class="product-detail-info"><h2>Caskara</h2><p class="product-type">Dried Coffee Cherry · Naturally Sweet & Fruity</p><p>Caskara is made from the dried skin of coffee cherries. It produces a naturally sweet and fruity beverage with delicate floral notes — a traditional Ethiopian delicacy.</p><div class="taste-profile"><strong>Taste Profile:</strong> Fruity · Sweet · Floral</div><div class="sizes"><strong>Available Sizes:</strong> 250g · 500g · 1kg</div><a href="contact.html" class="btn btn-primary">Order Now <i class="fas fa-arrow-right"></i></a></div></div></div>
+      
+      <div class="product-detail" id="qalid"><div class="product-detail-grid reverse"><div class="product-detail-info"><h2>Qalid's Choice</h2><p class="product-type">House Blend · Ground Coffee · Medium-Dark Roast</p><p>Our signature house blend designed for everyday coffee enjoyment. The medium-dark roast creates a balanced cup with smooth body and chocolate notes.</p><div class="taste-profile"><strong>Taste Profile:</strong> Balanced · Smooth · Chocolate notes</div><div class="grind-options"><strong>Grind Options:</strong> Jebena · French Press · Espresso</div><div class="sizes"><strong>Available Sizes:</strong> 250g · 500g · 1kg</div><a href="contact.html" class="btn btn-primary">Order Now <i class="fas fa-arrow-right"></i></a></div><div class="product-detail-image"><img src="https://images.unsplash.com/photo-1514432324607-a09d9b4a8665?w=600&q=80" alt="Qalid's Choice"><span class="pack-badge brown">Warm Brown Pack</span></div></div></div>
+      
+      <div class="product-detail" id="chemina"><div class="product-detail-grid"><div class="product-detail-image"><img src="https://images.unsplash.com/photo-1559056199-641a0ac8b55e?w=600&q=80" alt="Chemina"><span class="pack-badge black">Black / Dark Gray Pack</span></div><div class="product-detail-info"><h2>Chemina</h2><p class="product-type">Whole Bean Coffee · Medium-Dark Roast</p><p>Chemina offers a bold coffee experience with a rich body and deep cocoa notes. The medium-dark roast is ideal for espresso and milk-based coffee drinks.</p><div class="taste-profile"><strong>Taste Profile:</strong> Bold body · Cocoa notes · Smooth finish</div><div class="sizes"><strong>Available Sizes:</strong> 250g · 500g · 1kg</div><a href="contact.html" class="btn btn-primary">Order Now <i class="fas fa-arrow-right"></i></a></div></div></div>
+      
+      <div class="product-detail" id="origin-green"><div class="product-detail-grid reverse"><div class="product-detail-info"><h2>Origin Green</h2><p class="product-type">Raw Green Coffee Beans · Unroasted</p><p>Premium green coffee beans for home roasters, cafés, and coffee enthusiasts. Take control of your roast profile with our premium highland beans.</p><div class="target"><strong>Perfect for:</strong> Home Roasters · Cafés · Coffee Enthusiasts</div><div class="sizes"><strong>Available Sizes:</strong> 500g · 1kg · 5kg (bulk)</div><a href="contact.html" class="btn btn-primary">Order Now <i class="fas fa-arrow-right"></i></a></div><div class="product-detail-image"><img src="https://images.unsplash.com/photo-1504630083234-14187a9df0f5?w=600&q=80" alt="Origin Green"><span class="pack-badge green">Natural Kraft / Green Pack</span></div></div></div>
+    </div></section>
+    
+    <section class="packaging-info"><div class="section-container"><div class="packaging-card"><i class="fas fa-box"></i><h3>Premium Packaging</h3><p>All our coffee bags feature a one-way degassing valve, zip-lock resealable top, matte finish, roast date, and batch number for full traceability.</p></div></div></section>
   </main>
 
   <footer class="footer"><div class="footer-content"><div class="footer-logo">Bean to Bag</div><p class="footer-tagline">Premium Ethiopian Specialty Coffee</p><div class="footer-links"><a href="index.html">Home</a><a href="about.html">About</a><a href="products.html">Products</a><a href="origin.html">Origin</a><a href="contact.html">Contact</a></div><div class="footer-social"><a href="#"><i class="fab fa-instagram"></i></a><a href="#"><i class="fab fa-facebook-f"></i></a><a href="#"><i class="fab fa-telegram-plane"></i></a></div><p class="footer-copyright">© 2025 Bean to Bag Coffee. Addis Ababa, Ethiopia</p></div></footer>
