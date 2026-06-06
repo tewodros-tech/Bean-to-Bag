@@ -44,7 +44,7 @@
     @keyframes spin { to { transform: rotate(360deg); } }
     .loader-text { font-family: 'Playfair Display', serif; font-size: 1.8rem; letter-spacing: 10px; color: var(--amber); text-transform: uppercase; }
 
-    /* Navigation */
+    /* Navigation - Cleaned: only logo and CTA, no other page links */
     .nav {
       position: fixed; top: 0; left: 0; right: 0; z-index: 1000;
       padding: 28px 6%; display: flex; justify-content: space-between; align-items: center;
@@ -56,14 +56,21 @@
     .logo-mark { width: 52px; height: 52px; background: var(--amber); border-radius: 16px; display: flex; align-items: center; justify-content: center; font-size: 1.6rem; color: var(--dark); box-shadow: 0 0 18px rgba(193,127,78,0.5); }
     .logo-text h1 { font-family: 'Playfair Display', serif; font-size: 1.6rem; color: white; font-weight: 600; letter-spacing: -0.3px; }
     .logo-text span { font-size: 0.65rem; letter-spacing: 3px; color: var(--amber); text-transform: uppercase; }
-    .nav-links { display: flex; gap: 24px; }
-    .nav-links a { text-decoration: none; color: rgba(255,255,255,0.9); font-weight: 500; padding: 8px 20px; border-radius: 40px; transition: 0.25s; font-size: 0.9rem; }
-    .nav-links a:hover, .nav-links a.active { background: var(--amber); color: var(--dark); }
-    .nav-cta { padding: 12px 30px; background: var(--amber); border-radius: 50px; color: var(--dark); font-weight: 700; text-decoration: none; transition: 0.3s; box-shadow: 0 5px 18px rgba(0,0,0,0.3); }
+    /* Removed .nav-links styles (previously had Home/Origin/Archive etc) — making navigation minimal */
+    .nav-cta { 
+      padding: 12px 30px; background: var(--amber); border-radius: 50px; 
+      color: var(--dark); font-weight: 700; text-decoration: none; transition: 0.3s; 
+      box-shadow: 0 5px 18px rgba(0,0,0,0.3);
+      font-size: 0.9rem;
+    }
     .nav-cta:hover { transform: scale(1.05); background: var(--amber-glow); }
-    .menu-toggle { display: none; background: none; border: none; color: white; font-size: 1.8rem; cursor: pointer; }
+    /* Mobile menu toggle not needed since nav links removed, but hide it gracefully */
+    .menu-toggle { display: none; }
+    @media (max-width: 1024px) {
+      .menu-toggle { display: none; } /* no links, so toggle irrelevant */
+    }
 
-    /* Hero Section with your hero-coffee.jpg */
+    /* Hero Section with hero-coffee.jpg (full immersive homepage) */
     .hero {
       min-height: 100vh; position: relative; display: flex; align-items: center;
       background: linear-gradient(135deg, #0a0705 0%, #1a120c 100%);
@@ -179,27 +186,28 @@
     .fab-telegram { background: #0088cc; color: white; }
     .fab:hover { transform: scale(1.1); }
 
+    /* Responsive: full page immersion, no top menu links to clutter */
     @media (max-width: 1024px) {
       .two-column-grid, .archive-card, .contact-grid { grid-template-columns: 1fr; gap: 50px; }
       .hero-content { grid-template-columns: 1fr; text-align: center; gap: 40px; }
       .hero-stats { justify-content: center; }
-      .nav-links { display: none; }
-      .menu-toggle { display: block; }
       .archive-img { height: 350px; }
+      .nav { padding: 20px 6%; }
     }
   </style>
 </head>
 <body>
 <div class="loader" id="loader"><div class="loader-content"><div class="loader-ring"></div><div class="loader-text">BEAN TO BAG</div></div></div>
 
+<!-- Clean navigation — removed all "Home, Origin, Archive, Process, Contact" links, only logo and Reserve Coffee CTA remains -->
 <nav class="nav" id="navbar">
   <a href="#" class="nav-logo"><div class="logo-mark"><i class="fas fa-mug-hot"></i></div><div class="logo-text"><h1>Bean to Bag</h1><span>ETHIOPIAN ORIGIN</span></div></a>
-  <div class="nav-links"><a href="#home">Home</a><a href="#origin">Origin</a><a href="#archive">Archive</a><a href="#process">Process</a><a href="#contact">Contact</a></div>
-  <a href="#contact" class="nav-cta">Reserve Coffee</a>
-  <button class="menu-toggle" onclick="document.querySelector('.nav-links').classList.toggle('active')"><i class="fas fa-bars"></i></button>
+  <!-- No internal page links anymore — only CTA button that smoothly scrolls to contact section -->
+  <a href="#contact" class="nav-cta">Reserve Coffee <i class="fas fa-chevron-right"></i></a>
+  <!-- menu-toggle removed/hidden (no mobile links needed) -->
 </nav>
 
-<!-- HERO with hero-coffee.jpg -->
+<!-- HERO with hero-coffee.jpg (full homepage focus) -->
 <section class="hero" id="home">
   <div class="hero-bg-image"></div>
   <div class="hero-overlay"></div>
@@ -251,7 +259,7 @@
 
 <!-- CONTACT + final call to action -->
 <section class="contact-section page-section" id="contact">
-  <div class="section-container"><div class="contact-grid"><div class="contact-info"><div class="section-label" style="color: var(--amber);">connect with us</div><h2 class="section-title" style="color: white;">Share a <em>cup</em> with us</h2><p style="color: rgba(255,250,235,0.8); font-size: 1.1rem; line-height: 1.7; margin: 25px 0;">Wholesale inquiries, café partnerships, or simply want to learn more about our Ethiopian single-origin coffees? Reach out — our team is passionate about great coffee.</p><div style="display: flex; gap: 25px; margin-top: 40px;"><div><i class="fas fa-map-marker-alt" style="color: var(--amber);"></i><p>Bole, Addis Ababa, Ethiopia</p></div><div><i class="fas fa-envelope" style="color: var(--amber);"></i><p>hello@beantobag.et</p></div></div></div><div class="contact-card"><form id="contactForm"><div class="form-group"><input type="text" placeholder="Full name" required></div><div class="form-group"><input type="email" placeholder="Email address" required></div><div class="form-group"><textarea rows="4" placeholder="Tell us about your coffee needs..."></textarea></div><button type="submit" class="submit-btn">Send Message <i class="fas fa-paper-plane"></i></button></form></div></div></div>
+  <div class="section-container"><div class="contact-grid"><div class="contact-info"><div class="section-label" style="color: var(--amber);">connect with us</div><h2 class="section-title" style="color: white;">Share a <em>cup</em> with us</h2><p style="color: rgba(255,250,235,0.8); font-size: 1.1rem; line-height: 1.7; margin: 25px 0;">Wholesale inquiries, café partnerships, or simply want to learn more about our Ethiopian single-origin coffees? Reach out — our team is passionate about great coffee.</p><div style="display: flex; gap: 25px; margin-top: 40px; flex-wrap: wrap;"><div><i class="fas fa-map-marker-alt" style="color: var(--amber); font-size: 1.3rem;"></i><p style="margin-top: 5px;">Bole, Addis Ababa, Ethiopia</p></div><div><i class="fas fa-envelope" style="color: var(--amber); font-size: 1.3rem;"></i><p style="margin-top: 5px;">hello@beantobag.et</p></div></div></div><div class="contact-card"><form id="contactForm"><div class="form-group"><input type="text" placeholder="Full name" required></div><div class="form-group"><input type="email" placeholder="Email address" required></div><div class="form-group"><textarea rows="4" placeholder="Tell us about your coffee needs..."></textarea></div><button type="submit" class="submit-btn">Send Message <i class="fas fa-paper-plane"></i></button></form></div></div></div>
 </section>
 
 <footer class="footer"><div class="footer-content"><div style="font-family: 'Playfair Display', serif; font-size: 1.8rem; color: var(--amber); margin-bottom: 20px;">Bean to Bag</div><p>© 2025 Bean to Bag Specialty Coffee — Ethically sourced from Ethiopian highlands. Freshness guaranteed.</p><div style="margin-top: 25px; display: flex; gap: 25px; justify-content: center;"><a href="#" style="color: var(--amber);"><i class="fab fa-instagram"></i></a><a href="#" style="color: var(--amber);"><i class="fab fa-facebook-f"></i></a><a href="#" style="color: var(--amber);"><i class="fab fa-telegram-plane"></i></a></div></div></footer>
