@@ -145,6 +145,22 @@
     .journey-steps { display: flex; flex-wrap: wrap; gap: 30px; margin-top: 60px; justify-content: space-between; }
     .step { flex: 1; background: rgba(255,255,245,0.02); padding: 30px; border-radius: 28px; text-align: center; border-left: 4px solid var(--amber); }
 
+    /* Image frame helper */
+    .image-frame { width: 100%; height: 100%; min-height: 380px; border-radius: 32px; overflow: hidden; box-shadow: 0 25px 40px -12px rgba(0,0,0,0.5); }
+    .image-frame img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.5s ease; display: block; }
+    .image-frame img:hover { transform: scale(1.02); }
+    .feature-list { display: flex; flex-direction: column; gap: 28px; margin-top: 30px; }
+    .feature-item { display: flex; gap: 20px; align-items: center; }
+    .feature-icon { width: 54px; height: 54px; background: rgba(193,127,78,0.15); border-radius: 30px; display: flex; align-items: center; justify-content: center; font-size: 1.6rem; color: var(--amber); }
+
+    /* Contact styling */
+    .contact-card { background: #fff; border-radius: 36px; padding: 45px; color: var(--dark); box-shadow: 0 30px 40px rgba(0,0,0,0.2); }
+    .form-group { margin-bottom: 22px; }
+    .form-group input, .form-group select, .form-group textarea { width: 100%; padding: 16px 20px; border-radius: 28px; border: 1px solid #e0d6cc; background: #fefaf5; font-size: 1rem; transition: 0.2s; }
+    .form-group input:focus, .form-group select:focus, .form-group textarea:focus { outline: none; border-color: var(--amber); box-shadow: 0 0 0 3px rgba(193,127,78,0.2); }
+    .submit-btn { background: var(--amber); color: var(--dark); font-weight: 700; border: none; padding: 16px 32px; border-radius: 50px; font-size: 1rem; cursor: pointer; transition: 0.3s; width: 100%; display: inline-flex; align-items: center; justify-content: center; gap: 10px; }
+    .submit-btn:hover { background: var(--amber-glow); transform: translateY(-3px); }
+    
     /* Responsive */
     @media (max-width: 1024px) {
       .nav-links { display: none; }
@@ -152,6 +168,8 @@
       .hero-content { grid-template-columns: 1fr; text-align: center; }
       .origin-facts { grid-template-columns: 1fr; }
       .journey-steps { flex-direction: column; }
+      .contact-grid { grid-template-columns: 1fr !important; }
+      .image-frame { margin-top: 20px; }
     }
     .floating-actions { position: fixed; bottom: 35px; right: 35px; display: flex; flex-direction: column; gap: 18px; z-index: 99; }
     .fab { width: 60px; height: 60px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 1.6rem; transition: 0.2s; box-shadow: 0 10px 25px rgba(0,0,0,0.4); }
@@ -159,6 +177,9 @@
     .fab-telegram { background: #0088cc; color: white; }
     .fab:hover { transform: scale(1.1); }
     footer { background: #050302; padding: 60px 6% 40px; text-align: center; border-top: 1px solid rgba(193,127,78,0.2); }
+    .footer-content a { color: var(--amber); margin: 0 12px; font-size: 1.3rem; transition: 0.2s; }
+    .nav-links.show { display: flex; flex-direction: column; background: #0f0c0a; position: absolute; top: 80px; left: 0; width: 100%; padding: 20px; gap: 20px; backdrop-filter: blur(12px); border-bottom: 1px solid var(--amber); }
+    @media (max-width: 768px) { .hero-stats { justify-content: center; } }
   </style>
 </head>
 <body>
@@ -166,9 +187,9 @@
 
 <nav class="nav" id="navbar">
   <a href="#" class="nav-logo"><div class="logo-mark"><i class="fas fa-mug-hot"></i></div><div class="logo-text"><h1>Bean to Bag</h1><span>ETHIOPIAN ORIGIN</span></div></a>
-  <div class="nav-links"><a href="#home">Home</a><a href="#about">About</a><a href="#products">Products</a><a href="#origin">Coffee Origin</a><a href="#contact">Contact</a></div>
+  <div class="nav-links" id="navLinks"><a href="#home">Home</a><a href="#about">About</a><a href="#products">Products</a><a href="#origin">Coffee Origin</a><a href="#contact">Contact</a></div>
   <a href="#contact" class="nav-cta"><i class="fas fa-store"></i> Shop Now</a>
-  <button class="menu-toggle" onclick="document.querySelector('.nav-links').classList.toggle('active')"><i class="fas fa-bars"></i></button>
+  <button class="menu-toggle" id="menuToggleBtn"><i class="fas fa-bars"></i></button>
 </nav>
 
 <section class="hero" id="home">
@@ -181,18 +202,23 @@
       <div class="hero-buttons"><a href="#products" class="btn btn-primary">Explore Coffee <i class="fas fa-arrow-right"></i></a><a href="#about" class="btn btn-secondary">Our Story</a></div>
       <div class="hero-stats"><div class="stat-item"><div class="number">1,900m+</div><div class="label">Altitude</div></div><div class="stat-item"><div class="number">100%</div><div class="label">Arabica</div></div><div class="stat-item"><div class="number">Small-batch</div><div class="label">Fresh Roast</div></div></div>
     </div>
+    <div class="image-frame"><img src="ceremony.jpg" alt="Ethiopian coffee ceremony" onerror="this.src='https://images.unsplash.com/photo-1541167760496-1628856ab772?w=800&q=80'"></div>
   </div>
 </section>
 
-<!-- About Section: Bean to Bag Concept + vision -->
+<!-- About Section: Bean to Bag Concept + vision featuring about-coffee.jpg and roasting.jpg -->
 <section class="page-section" id="about" style="background: var(--cream); color: var(--dark);">
   <div class="section-container">
     <div class="section-label" style="color: var(--amber);">Legacy & Craft</div>
     <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 70px; align-items: center;">
       <div><h2 class="section-title" style="color: var(--dark);">The <em>Bean to Bag</em> Philosophy</h2><p style="font-size:1.1rem; line-height:1.7;">We oversee every step — from sourcing green beans from Ethiopian highland farmers to small-batch roasting and premium packaging. Our mission: deliver freshly roasted specialty coffee that honors origin, quality, and tradition.</p><div class="journey-steps" style="margin-top:40px;"><div class="step"><i class="fas fa-hand-holding-heart" style="font-size:2rem; color:var(--amber);"></i><h4 style="margin:15px 0">Sourcing</h4><p>Smallholder farms, 1,900-2,200m</p></div><div class="step"><i class="fas fa-fire" style="font-size:2rem; color:var(--amber);"></i><h4 style="margin:15px 0">Roasting</h4><p>Medium-Dark, small-batch</p></div><div class="step"><i class="fas fa-box" style="font-size:2rem; color:var(--amber);"></i><h4 style="margin:15px 0">Packaging</h4><p>Valve bags, zip-lock, fresh</p></div></div></div>
-      <div class="image-frame" style="height:450px;"><img src="about-coffee.jpg" alt="Bean to bag journey" onerror="this.src='https://images.unsplash.com/photo-1442512595331-e89e73853f31?w=800&q=80'"></div>
+      <div class="image-frame"><img src="about-coffee.jpg" alt="Bean to bag journey" onerror="this.src='https://images.unsplash.com/photo-1442512595331-e89e73853f31?w=800&q=80'"></div>
     </div>
-    <div class="origin-facts" style="background:rgba(193,127,78,0.05); margin-top:80px;"><div><div class="fact-number">100-200 kg</div><div>Monthly Production (Launch)</div></div><div><div class="fact-number">500+ kg</div><div>Year 2 Target</div></div><div><div class="fact-number">1,900-2,200m</div><div>Highland Terroir</div></div></div>
+    <!-- additional row with roasting image to the right side of the stats -->
+    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 50px; margin-top: 70px; align-items: center;">
+      <div class="image-frame"><img src="roasting.jpg" alt="Fresh roasting process" onerror="this.src='https://images.unsplash.com/photo-1461023058943-07fcbe16d735?w=800&q=80'"></div>
+      <div><div class="origin-facts" style="margin:0; background:rgba(193,127,78,0.08);"><div><div class="fact-number">100-200 kg</div><div>Monthly Production (Launch)</div></div><div><div class="fact-number">500+ kg</div><div>Year 2 Target</div></div><div><div class="fact-number">1,900-2,200m</div><div>Highland Terroir</div></div></div><p style="margin-top:25px; font-style:italic;">Our roasting facility ensures every batch reaches peak aroma, then sealed immediately in valve bags to lock freshness.</p></div>
+    </div>
   </div>
 </section>
 
@@ -202,26 +228,22 @@
     <div class="section-label">Our Signature Collection</div>
     <h2 class="section-title" style="color:white;">Freshly Roasted <em>Coffee</em> for Every Brewer</h2>
     <div class="products-grid">
-      <!-- Caskara -->
       <div class="product-card"><div class="product-icon"><i class="fas fa-apple-alt"></i></div><h3>Caskara</h3><div class="product-tag">Dried Coffee Cherry / Cascara</div><p>Naturally sweet & fruity infusion — delicate floral notes, sun-dried skins of Arabica cherries.</p><div class="price-row">250g · 250 ETB</div><a href="#contact" class="btn-outline-light">Inquire <i class="fas fa-shopping-cart"></i></a></div>
-      <!-- Qalid’s Choice (House Blend) -->
       <div class="product-card"><div class="product-icon"><i class="fas fa-blender"></i></div><h3>Qalid’s Choice</h3><div class="product-tag">House Blend · Ground</div><p>Balanced, smooth with chocolate notes. Medium-dark roast. Perfect for Jebena, French press & espresso.</p><div class="price-row">250g · 220 ETB | 500g · 400 ETB</div><a href="#contact" class="btn-outline-light">Order Now</a></div>
-      <!-- Chemina Whole Bean -->
       <div class="product-card"><div class="product-icon"><i class="fas fa-mug-hot"></i></div><h3>Chemina</h3><div class="product-tag">Whole Bean · Bold Espresso</div><p>Rich body, deep cocoa notes, smooth finish. Ideal for espresso, macchiato, and milk drinks.</p><div class="price-row">250g · 240 ETB | 1kg · 850 ETB</div><a href="#contact" class="btn-outline-light">Shop Whole Bean</a></div>
-      <!-- Origin Green -->
       <div class="product-card"><div class="product-icon"><i class="fas fa-leaf"></i></div><h3>Origin Green</h3><div class="product-tag">Raw Green Coffee</div><p>Unroasted 100% Arabica for home roasters & cafés. Traceable, high-altitude beans.</p><div class="price-row">500g · 300 ETB | 5kg · 2,700 ETB</div><a href="#contact" class="btn-outline-light">Wholesale Inquiry</a></div>
     </div>
     <div style="text-align:center; margin-top:50px;"><p style="opacity:0.8;">Also available: 500g, 1kg roasted bags. Resealable valve bags, roast date & batch number.</p></div>
   </div>
 </section>
 
-<!-- Coffee Origin Deep Dive: terroir, cup profile, farmers -->
+<!-- Coffee Origin Deep Dive: terroir, cup profile, farmers (with ethiopia-coffee.jpg and ceremony vibe) -->
 <section class="page-section" id="origin" style="background: var(--cream-light); color: var(--dark);">
   <div class="section-container">
     <div class="section-label">Origin & Terroir</div>
-    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 70px;">
+    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 70px; align-items: center;">
       <div><h2 class="section-title" style="color:var(--dark);">Ethiopian Highlands <em>1,900–2,200m</em></h2><p>Cultivated by small-scale farmers in traditional garden farms under natural shade. Slow ripening yields refined floral aromas, bright acidity, and citrus & fruit notes. Our coffee represents the true essence of Ethiopian Arabica.</p><div class="feature-list" style="margin-top:30px;"><div class="feature-item"><div class="feature-icon"><i class="fas fa-chart-line"></i></div><div><strong>Cup Profile</strong><br>Floral aroma · Citrus · Bright acidity · Clean finish</div></div><div class="feature-item"><div class="feature-icon"><i class="fas fa-temperature-low"></i></div><div><strong>Cool Climate</strong><br>Natural shade · Balanced rainfall · Volcanic soil</div></div></div></div>
-      <div class="image-frame" style="height:450px;"><img src="ethiopia-coffee.jpg" alt="Ethiopia coffee farm" onerror="this.src='https://images.unsplash.com/photo-1495474472287-4d71bcdd2085?w=800&q=80'"></div>
+      <div class="image-frame"><img src="ethiopia-coffee.jpg" alt="Ethiopia coffee farm landscape" onerror="this.src='https://images.unsplash.com/photo-1495474472287-4d71bcdd2085?w=800&q=80'"></div>
     </div>
     <div style="margin-top:80px; background: rgba(193,127,78,0.08); border-radius: 48px; padding: 50px;"><h3 style="font-family:'Playfair Display'; font-size:2rem; text-align:center;">Roast Profile: Medium-Dark</h3><p style="text-align:center; max-width:800px; margin:20px auto;">Balanced acidity, full body, rich chocolate notes — versatile for Jebena, espresso, French press, and milk-based drinks. Designed to honor Ethiopian tradition while delivering a modern specialty experience.</p></div>
   </div>
@@ -246,7 +268,7 @@
   <div class="section-container">
     <div class="contact-grid" style="display: grid; grid-template-columns: 1fr 1fr; gap: 70px;">
       <div><div class="section-label">Connect & Order</div><h2 class="section-title" style="color:white;">Reserve Your <em>Fresh Roast</em></h2><p style="color:rgba(255,250,235,0.85); font-size:1.1rem;">Wholesale, retail, or home delivery — reach us via WhatsApp, Telegram, or the form. We supply offices, cafés, and coffee lovers across Ethiopia.</p><div style="margin: 40px 0; display: flex; gap: 30px; flex-wrap: wrap;"><div><i class="fas fa-map-marker-alt" style="color:var(--amber);"></i><p>Addis Ababa, Bole</p></div><div><i class="fab fa-whatsapp" style="color:#25D366;"></i><p>+251 911 234567</p></div><div><i class="fab fa-telegram" style="color:#0088cc;"></i><p>@beantobag</p></div></div><div class="social-proof"><i class="fab fa-instagram" style="color:var(--amber); font-size:1.6rem;"></i><span style="margin-left:12px;">@bean2bag_ethiopia</span></div></div>
-      <div class="contact-card" style="background:#fff; border-radius: 36px; padding: 45px; color: var(--dark);"><form id="contactForm"><div class="form-group"><input type="text" placeholder="Full name" required></div><div class="form-group"><input type="email" placeholder="Email address" required></div><div class="form-group"><select style="width:100%; padding:16px 20px; border-radius:24px; background:#fefaf5; border:1px solid #e0d6cc;"><option>Select Product: Caskara</option><option>Qalid's Choice (Ground)</option><option>Chemina Whole Bean</option><option>Origin Green</option><option>Wholesale / Bulk</option></select></div><div class="form-group"><textarea rows="4" placeholder="Tell us your coffee needs..."></textarea></div><button type="submit" class="submit-btn">Send Inquiry <i class="fas fa-paper-plane"></i></button></form></div>
+      <div class="contact-card"><form id="contactForm"><div class="form-group"><input type="text" placeholder="Full name" required></div><div class="form-group"><input type="email" placeholder="Email address" required></div><div class="form-group"><select style="width:100%; padding:16px 20px; border-radius:24px; background:#fefaf5; border:1px solid #e0d6cc;"><option>Select Product: Caskara</option><option>Qalid's Choice (Ground)</option><option>Chemina Whole Bean</option><option>Origin Green</option><option>Wholesale / Bulk</option></select></div><div class="form-group"><textarea rows="4" placeholder="Tell us your coffee needs..."></textarea></div><button type="submit" class="submit-btn">Send Inquiry <i class="fas fa-paper-plane"></i></button></form></div>
     </div>
   </div>
 </section>
@@ -263,8 +285,10 @@
   window.addEventListener('scroll', () => { window.scrollY > 60 ? navbar.classList.add('scrolled') : navbar.classList.remove('scrolled'); });
   document.getElementById('contactForm').addEventListener('submit', (e) => { e.preventDefault(); alert('☕ Thank you! Our team will respond within 24h with pricing & availability.'); });
   document.querySelectorAll('a[href^="#"]').forEach(anchor => { anchor.addEventListener('click', function(e) { e.preventDefault(); const target = document.querySelector(this.getAttribute('href')); if(target) target.scrollIntoView({ behavior: 'smooth', block: 'start' }); }); });
-  if(document.querySelector('.menu-toggle')) {
-    document.querySelector('.menu-toggle').addEventListener('click', () => { document.querySelector('.nav-links').classList.toggle('show'); });
+  const toggleBtn = document.getElementById('menuToggleBtn');
+  const navLinks = document.getElementById('navLinks');
+  if(toggleBtn) {
+    toggleBtn.addEventListener('click', () => { navLinks.classList.toggle('show'); });
   }
 </script>
 </body>
