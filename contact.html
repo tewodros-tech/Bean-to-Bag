@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover, user-scalable=yes">
+  <meta name="description" content="Contact Bean to Bag Coffee for wholesale, retail, custom roast orders, and partnerships. WhatsApp, Email, Telegram, Instagram.">
+  <title>Bean to Bag | Contact Us</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Playfair+Display:ital,wght@0,500;0,600;0,700;0,800;0,900;1,600;1,700&display=swap" rel="stylesheet">
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    :root { --ink: #090604; --cream: #fbf1df; --clay: #b56c38; --gold: #e8bc6a; --white: #fffaf1; --muted: rgba(255,250,241,0.72); }
+    body { font-family: 'Inter', sans-serif; background: var(--ink); color: var(--white); }
+    .container { max-width: 1400px; margin: 0 auto; padding: 0 24px; }
+    a { text-decoration: none; color: inherit; }
+    .site-header { position: fixed; top: 0; left: 0; right: 0; z-index: 1000; padding: 20px 24px; background: linear-gradient(to bottom, rgba(5,3,2,0.9), transparent); transition: all 0.3s; }
+    .site-header.scrolled { background: rgba(8,5,3,0.95); backdrop-filter: blur(12px); padding: 12px 24px; border-bottom: 1px solid rgba(232,188,106,0.2); }
+    .nav-wrap { display: flex; justify-content: space-between; align-items: center; max-width: 1400px; margin: 0 auto; }
+    .brand { display: flex; align-items: center; gap: 12px; }
+    .brand-mark { width: 42px; height: 42px; background: linear-gradient(145deg, var(--gold), var(--clay)); border-radius: 50%; display: flex; align-items: center; justify-content: center; }
+    .brand-mark::before { content: ""; width: 14px; height: 24px; background: rgba(30,13,7,0.9); border-radius: 50%; transform: rotate(-24deg); }
+    .brand-name strong { font-family: 'Playfair Display', serif; font-size: 1.2rem; }
+    .brand-name span { font-size: 0.6rem; letter-spacing: 0.2em; color: var(--gold); }
+    .desktop-nav { display: flex; gap: 28px; }
+    .desktop-nav a { font-size: 0.8rem; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase; transition: color 0.2s; }
+    .desktop-nav a:hover, .desktop-nav a.active { color: var(--gold); }
+    .menu-button { display: none; width: 44px; height: 44px; border: 1px solid rgba(255,250,241,0.2); border-radius: 50%; background: rgba(255,250,241,0.05); flex-direction: column; align-items: center; justify-content: center; gap: 5px; cursor: pointer; }
+    .menu-button span { width: 20px; height: 2px; background: white; }
+    .mobile-menu { position: fixed; top: 0; left: 0; right: 0; bottom: 0; background: rgba(5,3,2,0.98); backdrop-filter: blur(20px); z-index: 999; display: flex; flex-direction: column; justify-content: center; align-items: center; gap: 30px; transform: translateX(100%); transition: transform 0.3s; }
+    .mobile-menu.open { transform: translateX(0); }
+    .mobile-menu a { font-family: 'Playfair Display', serif; font-size: 2rem; color: var(--cream); }
+    .close-menu { position: absolute; top: 24px; right: 24px; font-size: 2rem; background: none; border: none; color: white; cursor: pointer; }
+    .btn { display: inline-flex; align-items: center; justify-content: center; gap: 12px; padding: 12px 28px; border-radius: 999px; font-weight: 700; font-size: 0.85rem; letter-spacing: 0.1em; text-transform: uppercase; transition: all 0.3s; cursor: pointer; border: 1px solid transparent; }
+    .btn-primary { background: linear-gradient(135deg, #f3cc80, #c9783e); color: #160b05; }
+    .btn-outline { border-color: rgba(255,250,241,0.3); background: rgba(255,250,241,0.05); }
+    .section-title { font-family: 'Playfair Display', serif; font-size: clamp(2.5rem, 6vw, 4rem); line-height: 1.1; margin-bottom: 1.5rem; }
+    .contact-item { display: flex; justify-content: space-between; align-items: center; padding: 28px 0; border-bottom: 1px solid rgba(255,250,241,0.1); flex-wrap: wrap; gap: 20px; }
+    .grid-2 { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 48px; }
+    .footer { padding: 48px 24px; background: #050302; border-top: 1px solid rgba(232,188,106,0.1); text-align: center; }
+    .whatsapp-float { position: fixed; bottom: 24px; right: 24px; background: #25d366; width: 56px; height: 56px; border-radius: 50%; display: flex; align-items: center; justify-content: center; color: white; font-weight: bold; font-size: 1.5rem; z-index: 100; box-shadow: 0 4px 12px rgba(0,0,0,0.3); }
+    @media (max-width: 768px) { .desktop-nav { display: none; } .menu-button { display: flex; } .container { padding: 0 20px; } .contact-item { flex-direction: column; align-items: flex-start; } }
+  </style>
+</head>
+<body>
+<header class="site-header" id="siteHeader"><div class="nav-wrap"><a href="index.html" class="brand"><div class="brand-mark"></div><div class="brand-name"><strong>Bean to Bag</strong><span>Ethiopian Origin</span></div></a><nav class="desktop-nav"><a href="index.html">Home</a><a href="about.html">About</a><a href="products.html">Products</a><a href="origin.html">Coffee Origin</a><a href="contact.html" class="active">Contact</a></nav><button class="menu-button" id="menuToggle"><span></span><span></span><span></span></button></div></header>
+<div class="mobile-menu" id="mobileMenu"><button class="close-menu" id="closeMenu">✕</button><a href="index.html">Home</a><a href="about.html">About</a><a href="products.html">Products</a><a href="origin.html">Coffee Origin</a><a href="contact.html">Contact</a></div>
+<a href="https://wa.me/251911234567" class="whatsapp-float" target="_blank">W</a>
+
+<main>
+  <section style="padding: 140px 0 60px; background: linear-gradient(135deg, #0a0705, #1a100b); text-align: center;"><div class="container"><span style="color: var(--gold); letter-spacing: 0.2em;">Get In Touch</span><h1 class="section-title">Let's Talk Coffee</h1><p style="max-width: 600px; margin: 1rem auto; color: var(--muted);">Retail, wholesale, gifts, custom roast orders — reach out and we'll craft the perfect partnership.</p></div></section>
+
+  <section style="padding: 60px 0;"><div class="container"><div style="max-width: 800px; margin: 0 auto;">
+    <div class="contact-item"><strong style="font-size: 1.5rem; font-family: 'Playfair Display';">📱 WhatsApp</strong><span>Fast orders & samples — reply within hours</span><a href="https://wa.me/251911234567" class="btn btn-primary" target="_blank">Message Us →</a></div>
+    <div class="contact-item"><strong style="font-size: 1.5rem; font-family: 'Playfair Display';">📧 Email</strong><span>Wholesale inquiries, partnerships, bulk orders</span><a href="mailto:hello@beantobag.coffee" class="btn btn-primary">hello@beantobag.coffee</a></div>
+    <div class="contact-item"><strong style="font-size: 1.5rem; font-family: 'Playfair Display';">📢 Telegram</strong><span>Join our channel for updates and new releases</span><a href="https://t.me/beantobag" class="btn btn-primary" target="_blank">Join Channel →</a></div>
+    <div class="contact-item"><strong style="font-size: 1.5rem; font-family: 'Playfair Display';">📸 Instagram</strong><span>Follow our journey — roasting, brewing, origin stories</span><a href="#" class="btn btn-primary">@beantobag</a></div>
+  </div></div></section>
+
+  <section style="background: #0a0705; padding: 80px 0;"><div class="container"><div class="grid-2"><div><h3 style="font-size: 1.8rem; color: var(--gold); margin-bottom: 24px;">Wholesale Inquiries</h3><p style="line-height: 1.7; color: var(--muted); margin-bottom: 16px;">We supply cafes, offices, hotels, and retailers with fresh roasted Ethiopian coffee. Our wholesale program includes:</p><ul style="list-style: none;"><li style="margin-bottom: 12px;">✓ Competitive bulk pricing</li><li style="margin-bottom: 12px;">✓ Custom grind options (Jebena, espresso, French press, pour-over)</li><li style="margin-bottom: 12px;">✓ Scheduled roasting to ensure freshness</li><li style="margin-bottom: 12px;">✓ Branded packaging available for partners</li><li style="margin-bottom: 12px;">✓ Sample packs for tasting</li></ul><div style="margin-top: 24px;"><a href="mailto:hello@beantobag.coffee" class="btn btn-outline">Request Wholesale Pricing →</a></div></div><div><h3 style="font-size: 1.8rem; color: var(--gold); margin-bottom: 24px;">Visit Our Roastery</h3><p style="line-height: 1.7; color: var(--muted); margin-bottom: 16px;"><strong>📍 Location:</strong> Addis Ababa, Ethiopia</p><p style="line-height: 1.7; color: var(--muted); margin-bottom: 16px;">We welcome café owners, retail buyers, and coffee enthusiasts to visit our roastery for a tasting and tour of our operation.</p><p style="line-height: 1.7; color: var(--muted); margin-bottom: 16px;"><strong>🕐 By appointment only.</strong> Please contact us at least 48 hours in advance to schedule your visit.</p><p style="line-height: 1.7; color: var(--muted);">During your visit, you can sample our full product line, discuss custom roasting profiles, and learn about our sourcing practices directly from our team.</p></div></div></div></section>
+
+  <section style="padding: 60px 0;"><div class="container"><div style="text-align: center; max-width: 800px; margin: 0 auto;"><h2 class="section-title">Ready to partner with Bean to Bag?</h2><p style="font-size: 1.1rem; color: var(--muted); margin-bottom: 32px;">Whether you're a café looking for a reliable coffee supplier, an office wanting fresh coffee weekly, or a customer looking for the perfect gift — we're here to help.</p><div style="display: flex; gap: 20px; justify-content: center; flex-wrap: wrap;"><a href="https://wa.me/251911234567" class="btn btn-primary" target="_blank">WhatsApp Us</a><a href="products.html" class="btn btn-outline">View Products</a></div></div></div></section>
+
+  <section style="background: var(--cream); color: #1b110b; padding: 60px 0;"><div class="container"><div style="text-align: center;"><h3 style="font-family: 'Playfair Display', serif; font-size: 1.8rem; margin-bottom: 16px;">Follow Bean to Bag</h3><p style="margin-bottom: 24px;">Stay updated on new roasts, brewing tips, and origin stories.</p><div style="display: flex; gap: 24px; justify-content: center;"><a href="#" style="color: var(--clay); font-weight: 600;">Instagram</a><a href="#" style="color: var(--clay); font-weight: 600;">Facebook</a><a href="#" style="color: var(--clay); font-weight: 600;">Telegram</a><a href="#" style="color: var(--clay); font-weight: 600;">TikTok</a></div></div></div></section>
+</main>
+<footer class="footer"><p>© 2025 Bean to Bag Coffee. Ethiopian specialty Arabica, freshly roasted in small batches.</p><div style="margin-top: 12px;"><p style="font-size: 0.8rem;">📍 Addis Ababa, Ethiopia | 📞 +251 911 234567 | ✉️ hello@beantobag.coffee</p></div></footer>
+<script>
+  const header = document.getElementById('siteHeader');
+  window.addEventListener('scroll', () => { window.scrollY > 50 ? header.classList.add('scrolled') : header.classList.remove('scrolled'); });
+  const menuBtn = document.getElementById('menuToggle'), mobileMenu = document.getElementById('mobileMenu'), closeMenu = document.getElementById('closeMenu');
+  menuBtn.addEventListener('click', () => mobileMenu.classList.add('open'));
+  closeMenu.addEventListener('click', () => mobileMenu.classList.remove('open'));
+  document.querySelectorAll('.mobile-menu a').forEach(link => link.addEventListener('click', () => mobileMenu.classList.remove('open')));
+</script>
+</body>
+</html>
