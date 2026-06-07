@@ -146,14 +146,16 @@
       position: relative; width: 100%; aspect-ratio: 16 / 9; max-height: 92vh; overflow: hidden;
       background: #000;
     }
+    /* The video and fallback fill the container exactly without cropping — object-fit contain will show letterboxing on weird aspect ratios, but we want full visible area without cut off. object-fit: contain ensures the full frame is visible; background color will fill gaps. To ensure no cut, use contain. But 'cover' could cut; we choose 'contain' for full frame visibility. */
     .hero-media video,
     .hero-media .hero-fallback {
-      position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover;
+      position: absolute; inset: 0; width: 100%; height: 100%; object-fit: contain; /* ensures entire video fits without cropping, may add bars but keeps content whole */
       will-change: transform;
+      background: #000; /* consistent background if letterbox */
     }
     .hero-fallback {
       background-image: url("https://images.pexels.com/photos/34792532/pexels-photo-34792532.jpeg?auto=compress&cs=tinysrgb&w=1600&h=900&fit=crop");
-      background-size: cover; background-position: center;
+      background-size: contain; background-repeat: no-repeat; background-position: center; background-color: #000;
     }
     .hero-shade {
       position: absolute; inset: 0; z-index: 1; pointer-events: none;
@@ -573,10 +575,10 @@
   </div>
 
   <main id="top">
-    <!-- ===== HERO ===== -->
+    <!-- ===== HERO with full-size video (no cropping) ===== -->
     <section class="hero" aria-labelledby="heroTitle">
       <div class="hero-media" id="heroMedia">
-        <video id="heroVideo" autoplay muted loop playsinline preload="auto" poster="https://images.pexels.com/photos/34792532/pexels-photo-34792532.jpeg?auto=compress&cs=tinysrgb&w=1600&h=900&fit=crop">
+        <video id="heroVideo" autoplay muted loop playsinline preload="auto">
           <source src="Bean.mp4" type="video/mp4">
         </video>
         <div class="hero-fallback" id="heroFallback" style="display:none"></div>
@@ -927,7 +929,6 @@
       if (heroVideo) {
         heroVideo.addEventListener("error", () => showFallback(), { once: true });
         heroVideo.addEventListener("loadeddata", () => { heroFallback.style.display = "none"; }, { once: true });
-        // Some mobile browsers block autoplay; fallback after 2.5s
         setTimeout(() => {
           if (heroVideo.readyState < 2) showFallback();
         }, 2500);
@@ -943,7 +944,6 @@
         header.classList.toggle("is-scrolled", y > 30);
         toTop.classList.toggle("is-visible", y > 600);
 
-        // Active nav link based on section in view
         const sections = ["story","origin","collection","quiz","contact"];
         let activeId = "top";
         for (const id of sections) {
@@ -1164,20 +1164,15 @@
         quizSteps.forEach(s => s.classList.remove("is-active"));
         quizResult.classList.add("is-active");
 
-        // Scoring: pick the product that best matches
-        const { brew, feel, roast } = quizState;
         let match = "house";
-        if (brew === "filter" || feel === "bright" || roast === "light") match = "forest";
-        if (brew === "espresso" || brew === "milk" || feel === "bold" || roast === "dark") match = "espresso";
-        // Small priority tie-breakers
-        if (feel === "balanced") match = "house";
+        if (quizState.brew === "filter" || quizState.feel === "bright" || quizState.roast === "light") match = "forest";
+        if (quizState.brew === "espresso" || quizState.brew === "milk" || quizState.feel === "bold" || quizState.roast === "dark") match = "espresso";
+        if (quizState.feel === "balanced") match = "house";
 
         const p = products[match];
         quizResultName.textContent = p.name;
         quizResultCopy.textContent = p.copy;
         quizResultNotes.innerHTML = p.notes.map(n => `<li>${n}</li>`).join("");
-
-        // Also sync the main product panel
         setProduct(match);
       }
 
