@@ -233,7 +233,7 @@
       transform: translateY(-3px);
     }
 
-    /* Hero Section with Video Background - Full Width Video */
+    /* Hero Video Section */
     .hero-video-section {
       position: relative;
       width: 100%;
@@ -257,14 +257,14 @@
       left: 0;
       width: 100%;
       height: 100%;
-      background: linear-gradient(135deg, rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.3));
+      background: linear-gradient(135deg, rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.4));
       z-index: 1;
     }
 
-    /* Hero Content - Below the Video */
+    /* Hero Content Below Video */
     .hero-content-section {
       background: linear-gradient(135deg, #faf8f5, #f5f0ea);
-      padding: 80px 0;
+      padding: 100px 0;
       text-align: center;
     }
 
@@ -281,7 +281,7 @@
       font-family: 'Playfair Display', serif;
       font-size: clamp(2.5rem, 6vw, 4.5rem);
       line-height: 1.2;
-      margin-bottom: 1rem;
+      margin-bottom: 1.5rem;
       color: var(--dark);
     }
 
@@ -393,6 +393,28 @@
       font-size: 1.05rem;
     }
 
+    /* Stats Section */
+    .stats-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 48px;
+      text-align: center;
+    }
+
+    .stat-number {
+      font-family: 'Playfair Display', serif;
+      font-size: 3.2rem;
+      color: var(--accent);
+      font-weight: 700;
+    }
+
+    .stat-label {
+      color: var(--text-light);
+      font-size: 0.9rem;
+      letter-spacing: 0.05em;
+      margin-top: 8px;
+    }
+
     /* Cafe Section */
     .cafe-section {
       background: linear-gradient(135deg, #faf8f5, #f5f0ea);
@@ -494,27 +516,6 @@
       color: var(--accent-light);
     }
 
-    /* Stats Section */
-    .stats-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-      gap: 48px;
-      text-align: center;
-    }
-
-    .stat-number {
-      font-family: 'Playfair Display', serif;
-      font-size: 3.2rem;
-      color: var(--accent);
-      font-weight: 700;
-    }
-
-    .stat-label {
-      color: var(--text-light);
-      font-size: 0.9rem;
-      letter-spacing: 0.05em;
-    }
-
     /* Gallery Grid */
     .gallery-grid {
       display: grid;
@@ -553,7 +554,7 @@
 
     .products-grid {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
       gap: 35px;
       margin-top: 60px;
     }
@@ -703,6 +704,9 @@
       .roast-card {
         padding: 30px 20px;
       }
+      .products-grid {
+        gap: 20px;
+      }
     }
 
     @media (max-width: 480px) {
@@ -716,6 +720,9 @@
       }
       .team-highlight {
         gap: 15px;
+      }
+      .product-card {
+        padding: 25px 20px;
       }
     }
   </style>
@@ -733,10 +740,10 @@
     </a>
     <nav class="desktop-nav">
       <a href="index.html" class="active">Home</a>
-      <a href="#">About</a>
-      <a href="#">Products</a>
-      <a href="#">Origin</a>
-      <a href="#">Contact</a>
+      <a href="about.html">About</a>
+      <a href="products.html">Products</a>
+      <a href="origin.html">Origin</a>
+      <a href="contact.html">Contact</a>
     </nav>
     <button class="menu-button" id="menuToggle">
       <span></span><span></span><span></span>
@@ -747,16 +754,16 @@
 <div class="mobile-menu" id="mobileMenu">
   <button class="close-menu" id="closeMenu">✕</button>
   <a href="index.html">Home</a>
-  <a href="#">About</a>
-  <a href="#">Products</a>
-  <a href="#">Origin</a>
-  <a href="#">Contact</a>
+  <a href="about.html">About</a>
+  <a href="products.html">Products</a>
+  <a href="origin.html">Origin</a>
+  <a href="contact.html">Contact</a>
 </div>
 
 <a href="https://wa.me/251911234567" class="whatsapp-float" target="_blank">W</a>
 
 <main>
-  <!-- Full Width Video Section (No Text Overlay) -->
+  <!-- Full Width Video Section -->
   <div class="hero-video-section">
     <video class="hero-video" autoplay muted loop playsinline id="heroVideo">
       <source src="Bean.mp4" type="video/mp4">
@@ -765,20 +772,20 @@
     <div class="hero-overlay"></div>
   </div>
 
-  <!-- Hero Content Section (Below the Video) -->
+  <!-- Hero Content Section Below Video -->
   <div class="hero-content-section">
     <div class="container">
       <span class="tag">Bean to Bag</span>
       <h1>From Bean to Bag —<br>Premium Ethiopian Coffee</h1>
       <p>Carefully sourced Ethiopian Arabica coffee roasted to a balanced medium-dark profile for a rich and smooth cup.</p>
       <div class="hero-actions">
-        <a href="#" class="btn btn-primary">Explore Coffee</a>
-        <a href="#" class="btn btn-outline">Shop Coffee</a>
+        <a href="products.html" class="btn btn-primary">Explore Coffee</a>
+        <a href="products.html" class="btn btn-outline">Shop Coffee</a>
       </div>
     </div>
   </div>
 
-  <!-- Alternating Image Gallery -->
+  <!-- Our Journey Section - Alternating Images -->
   <section>
     <div class="container">
       <div style="text-align: center; margin-bottom: 70px;">
@@ -788,48 +795,63 @@
       </div>
 
       <div class="alternating-grid">
+        <!-- Item 1 - Image Left -->
         <div class="alternating-item">
-          <div class="image-wrapper"><img src="10.JPG" alt="Ethiopian coffee farm"></div>
+          <div class="image-wrapper">
+            <img src="10.JPG" alt="Ethiopian coffee farm">
+          </div>
           <div class="content">
             <h3>Highland Farms</h3>
-            <p>Our coffee is cultivated by small-scale farmers in traditional garden farms at 1,900–2,200 meters above sea level. The cool highland climate, natural shade trees, and fertile volcanic soil allow cherries to ripen slowly, developing refined and complex flavors.</p>
-            <a href="#" class="btn btn-outline">Discover Origin →</a>
+            <p>Our coffee is cultivated by small-scale farmers in traditional garden farms at 1,900–2,200 meters above sea level. The cool highland climate, natural shade trees, and fertile volcanic soil allow cherries to ripen slowly, developing refined and complex flavors that can only come from Ethiopia's ancient coffee forests.</p>
+            <a href="origin.html" class="btn btn-outline">Discover Origin →</a>
           </div>
         </div>
 
+        <!-- Item 2 - Image Right -->
         <div class="alternating-item reverse">
-          <div class="image-wrapper"><img src="11.JPG" alt="Coffee cherry harvest"></div>
+          <div class="image-wrapper">
+            <img src="11.JPG" alt="Coffee cherry harvest">
+          </div>
           <div class="content">
             <h3>Selective Harvest</h3>
-            <p>Only perfectly ripe cherries are hand-picked by our partner farmers. This meticulous selection process ensures that every bean meets our quality standards, resulting in a cup with bright acidity, floral aroma, and exceptional sweetness.</p>
-            <a href="#" class="btn btn-outline">Learn More →</a>
+            <p>Only perfectly ripe cherries are hand-picked by our partner farmers. This meticulous selection process ensures that every bean meets our quality standards, resulting in a cup with bright acidity, floral aroma, and exceptional sweetness. Each cherry is carefully inspected before being sorted for processing.</p>
+            <a href="origin.html" class="btn btn-outline">Learn More →</a>
           </div>
         </div>
 
+        <!-- Item 3 - Image Left -->
         <div class="alternating-item">
-          <div class="image-wrapper"><img src="12.JPG" alt="Coffee processing"></div>
+          <div class="image-wrapper">
+            <img src="12.JPG" alt="Coffee processing">
+          </div>
           <div class="content">
             <h3>Traditional Processing</h3>
-            <p>Using both washed and natural processing methods, we preserve the unique characteristics of each lot. Our careful fermentation and drying on raised beds develop the coffee's signature clarity and fruit-forward notes.</p>
-            <a href="#" class="btn btn-outline">View Products →</a>
+            <p>Using both washed and natural processing methods, we preserve the unique characteristics of each lot. Our careful fermentation and drying on raised beds develop the coffee's signature clarity and fruit-forward notes. The traditional Ethiopian processing methods bring out the best in every bean.</p>
+            <a href="products.html" class="btn btn-outline">View Products →</a>
           </div>
         </div>
 
+        <!-- Item 4 - Image Right -->
         <div class="alternating-item reverse">
-          <div class="image-wrapper"><img src="13.JPG" alt="Small batch roasting"></div>
+          <div class="image-wrapper">
+            <img src="13.JPG" alt="Small batch roasting">
+          </div>
           <div class="content">
             <h3>Small-Batch Roasting</h3>
-            <p>Every batch is roasted to a precise medium-dark profile, balancing acidity and body while developing rich chocolate and cocoa notes. Our small-batch approach ensures freshness and allows us to highlight each coffee's unique character.</p>
-            <a href="#" class="btn btn-outline">Our Process →</a>
+            <p>Every batch is roasted to a precise medium-dark profile, balancing acidity and body while developing rich chocolate and cocoa notes. Our small-batch approach ensures freshness and allows us to highlight each coffee's unique character. Roasting is done weekly to guarantee peak freshness.</p>
+            <a href="about.html" class="btn btn-outline">Our Process →</a>
           </div>
         </div>
 
+        <!-- Item 5 - Image Left -->
         <div class="alternating-item">
-          <div class="image-wrapper"><img src="14.JPG" alt="Premium packaging"></div>
+          <div class="image-wrapper">
+            <img src="14.JPG" alt="Premium packaging">
+          </div>
           <div class="content">
             <h3>Premium Packaging</h3>
-            <p>Our stand-up bags feature one-way degassing valves and zip-lock resealable tops to preserve freshness. Each bag includes roast date, batch number, and brewing recommendations — because you deserve to know exactly what you're brewing.</p>
-            <a href="#" class="btn btn-outline">Shop Now →</a>
+            <p>Our stand-up bags feature one-way degassing valves and zip-lock resealable tops to preserve freshness. Each bag includes roast date, batch number, and brewing recommendations — because you deserve to know exactly what you're brewing. Premium materials protect your coffee from light, moisture, and oxygen.</p>
+            <a href="products.html" class="btn btn-outline">Shop Now →</a>
           </div>
         </div>
       </div>
@@ -840,10 +862,22 @@
   <section style="background: #f5f0ea;">
     <div class="container">
       <div class="stats-grid">
-        <div><div class="stat-number">1,900–2,200m</div><div class="stat-label">Altitude above sea level</div></div>
-        <div><div class="stat-number">100%</div><div class="stat-label">Coffea Arabica</div></div>
-        <div><div class="stat-number">Small Batch</div><div class="stat-label">Fresh roasted weekly</div></div>
-        <div><div class="stat-number">12+</div><div class="stat-label">Partner co-ops</div></div>
+        <div>
+          <div class="stat-number">1,900–2,200m</div>
+          <div class="stat-label">Altitude above sea level</div>
+        </div>
+        <div>
+          <div class="stat-number">100%</div>
+          <div class="stat-label">Coffea Arabica</div>
+        </div>
+        <div>
+          <div class="stat-number">Small Batch</div>
+          <div class="stat-label">Fresh roasted weekly</div>
+        </div>
+        <div>
+          <div class="stat-number">12+</div>
+          <div class="stat-label">Partner co-ops</div>
+        </div>
       </div>
     </div>
   </section>
@@ -852,62 +886,122 @@
   <section class="cafe-section">
     <div class="container">
       <div class="cafe-grid">
-        <div class="cafe-image"><img src="15.JPG" alt="Bean to Bag Cafe in Addis Ababa"></div>
+        <div class="cafe-image">
+          <img src="15.JPG" alt="Bean to Bag Cafe in Addis Ababa">
+        </div>
         <div class="cafe-content">
           <span class="badge">✦ Visit Us ✦</span>
           <h2>OUR CAFE</h2>
-          <p>We invite you to visit our cozy cafe in Addis Ababa, where you can enjoy a cup of our delicious coffee and meet our all-women team of baristas. Experience the warmth of Ethiopian hospitality while savoring freshly brewed Bean to Bag coffee.</p>
+          <p>We invite you to visit our cozy cafe in Addis Ababa, where you can enjoy a cup of our delicious coffee and meet our all-women team of baristas. Experience the warmth of Ethiopian hospitality while savoring freshly brewed Bean to Bag coffee. Our cafe is designed to be a welcoming space where coffee lovers can gather, learn about Ethiopian coffee culture, and enjoy specialty brews prepared by our expert team.</p>
           <div class="team-highlight">
             <span>All-Women Barista Team</span>
             <span>Cozy Atmosphere</span>
             <span>Fresh Brews Daily</span>
           </div>
-          <div style="margin-top: 35px;"><a href="#" class="btn btn-primary">Find Our Cafe →</a></div>
+          <div style="margin-top: 35px;">
+            <a href="contact.html" class="btn btn-primary">Find Our Cafe →</a>
+          </div>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- Gallery Grid -->
+  <!-- Gallery Section -->
   <section>
     <div class="container">
       <div style="text-align: center; margin-bottom: 60px;">
         <span style="color: var(--accent); letter-spacing: 0.2em; font-weight: 600;">Moments</span>
         <h2 class="section-title">From Our Cafe & Roastery</h2>
+        <p class="section-subtitle" style="margin: 0 auto;">Behind the scenes at Bean to Bag — where passion meets craft.</p>
       </div>
       <div class="gallery-grid">
-        <div class="gallery-item"><img src="16.JPG" alt="Coffee brewing"></div>
-        <div class="gallery-item"><img src="17.JPG" alt="Barista at work"></div>
-        <div class="gallery-item"><img src="19.JPG" alt="Coffee tasting"></div>
+        <div class="gallery-item">
+          <img src="16.JPG" alt="Coffee brewing at Bean to Bag">
+        </div>
+        <div class="gallery-item">
+          <img src="17.JPG" alt="Barista at work">
+        </div>
+        <div class="gallery-item">
+          <img src="19.JPG" alt="Coffee tasting experience">
+        </div>
       </div>
     </div>
   </section>
 
-  <!-- Products Preview -->
+  <!-- Products Preview Section -->
   <section class="products-preview">
     <div class="container">
       <div style="text-align: center; margin-bottom: 50px;">
         <span style="color: var(--accent); letter-spacing: 0.2em; font-weight: 600;">Our Collection</span>
         <h2 class="section-title">Premium Ethiopian Coffee</h2>
-        <p style="color: var(--text-light); max-width: 700px; margin: 0 auto;">Discover our range of specialty coffees, from whole bean to ground, and dried coffee cherry.</p>
+        <p style="color: var(--text-light); max-width: 700px; margin: 0 auto;">Discover our range of specialty coffees, from whole bean to ground, and dried coffee cherry. Each product is carefully crafted to showcase the best of Ethiopian Arabica.</p>
       </div>
       <div class="products-grid">
-        <div class="product-card"><h3>Caskara</h3><div><span class="taste-badge">Fruity</span><span class="taste-badge">Sweet</span><span class="taste-badge">Floral</span></div><p style="margin-top: 16px;">Dried coffee cherry — naturally sweet and fruity beverage.</p><a href="#" style="display: inline-block; margin-top: 18px; color: var(--accent); font-weight: 600;">Learn More →</a></div>
-        <div class="product-card"><h3>Qalid's Choice</h3><div><span class="taste-badge">Balanced</span><span class="taste-badge">Smooth</span><span class="taste-badge">Chocolate</span></div><p style="margin-top: 16px;">House Blend – Ground Coffee for everyday enjoyment.</p><a href="#" style="display: inline-block; margin-top: 18px; color: var(--accent); font-weight: 600;">Learn More →</a></div>
-        <div class="product-card"><h3>Chemina</h3><div><span class="taste-badge">Bold</span><span class="taste-badge">Cocoa</span><span class="taste-badge">Smooth</span></div><p style="margin-top: 16px;">Whole Bean Coffee — ideal for espresso and milk drinks.</p><a href="#" style="display: inline-block; margin-top: 18px; color: var(--accent); font-weight: 600;">Learn More →</a></div>
-        <div class="product-card"><h3>Origin Green</h3><div><span class="taste-badge">Unroasted</span><span class="taste-badge">Traceable</span></div><p style="margin-top: 16px;">Raw green coffee beans for home roasters and cafés.</p><a href="#" style="display: inline-block; margin-top: 18px; color: var(--accent); font-weight: 600;">Learn More →</a></div>
+        <div class="product-card">
+          <h3>Caskara</h3>
+          <div>
+            <span class="taste-badge">Fruity</span>
+            <span class="taste-badge">Sweet</span>
+            <span class="taste-badge">Floral</span>
+          </div>
+          <p style="margin-top: 16px;">Dried coffee cherry — naturally sweet and fruity beverage. Made from the dried skin of coffee cherries, Caskara is a traditional Ethiopian drink that's gaining worldwide popularity.</p>
+          <a href="products.html" style="display: inline-block; margin-top: 18px; color: var(--accent); font-weight: 600;">Learn More →</a>
+        </div>
+        <div class="product-card">
+          <h3>Qalid's Choice</h3>
+          <div>
+            <span class="taste-badge">Balanced</span>
+            <span class="taste-badge">Smooth</span>
+            <span class="taste-badge">Chocolate</span>
+          </div>
+          <p style="margin-top: 16px;">House Blend – Ground Coffee for everyday enjoyment. Our signature blend is perfect for traditional Jebena brewing, French press, or espresso.</p>
+          <a href="products.html" style="display: inline-block; margin-top: 18px; color: var(--accent); font-weight: 600;">Learn More →</a>
+        </div>
+        <div class="product-card">
+          <h3>Chemina</h3>
+          <div>
+            <span class="taste-badge">Bold</span>
+            <span class="taste-badge">Cocoa</span>
+            <span class="taste-badge">Smooth</span>
+          </div>
+          <p style="margin-top: 16px;">Whole Bean Coffee — ideal for espresso and milk drinks. A bold coffee experience with rich body and deep cocoa notes that stands up beautifully to milk.</p>
+          <a href="products.html" style="display: inline-block; margin-top: 18px; color: var(--accent); font-weight: 600;">Learn More →</a>
+        </div>
+        <div class="product-card">
+          <h3>Origin Green</h3>
+          <div>
+            <span class="taste-badge">Unroasted</span>
+            <span class="taste-badge">Traceable</span>
+          </div>
+          <p style="margin-top: 16px;">Raw green coffee beans for home roasters and cafés. Take control of your roast profile and experience coffee at its most authentic stage.</p>
+          <a href="products.html" style="display: inline-block; margin-top: 18px; color: var(--accent); font-weight: 600;">Learn More →</a>
+        </div>
       </div>
-      <div style="text-align: center; margin-top: 55px;"><a href="#" class="btn btn-primary">View All Products →</a></div>
+      <div style="text-align: center; margin-top: 55px;">
+        <a href="products.html" class="btn btn-primary">View All Products →</a>
+      </div>
     </div>
   </section>
 
-  <!-- Roast Profile -->
+  <!-- Roast Profile Section -->
   <section>
     <div class="container">
       <div class="roast-card">
         <span style="color: var(--accent); letter-spacing: 0.2em; font-weight: 600;">Roast Profile</span>
         <h2 class="section-title" style="margin-top: 15px;">Medium-Dark Roast</h2>
-        <p style="max-width: 700px; margin: 0 auto; line-height: 1.7; color: var(--text-light);">All roasted coffees from Bean to Bag are roasted to a Medium-Dark roast level. This provides balanced acidity, full body, rich chocolate and cocoa notes, and a smooth finish. Perfect for Jebena brewing, espresso, macchiato, French press, and milk-based drinks.</p>
+        <p style="max-width: 700px; margin: 0 auto; line-height: 1.7; color: var(--text-light);">All roasted coffees from Bean to Bag are roasted to a Medium-Dark roast level. This provides balanced acidity, full body, rich chocolate and cocoa notes, and a smooth finish. Perfect for Jebena brewing, espresso, macchiato, French press, and milk-based drinks. Our roasting profile is designed to honor Ethiopian coffee heritage while appealing to modern palates.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Call to Action Section -->
+  <section style="background: linear-gradient(135deg, #faf8f5, #f5f0ea); text-align: center;">
+    <div class="container">
+      <h2 class="section-title">Ready to experience Bean to Bag?</h2>
+      <p style="font-size: 1.1rem; color: var(--text-light); max-width: 600px; margin: 0 auto 30px;">Join our community of coffee lovers who appreciate quality, traceability, and the rich heritage of Ethiopian coffee.</p>
+      <div style="display: flex; gap: 20px; justify-content: center; flex-wrap: wrap;">
+        <a href="products.html" class="btn btn-primary">Shop Now</a>
+        <a href="contact.html" class="btn btn-outline">Contact Us</a>
       </div>
     </div>
   </section>
@@ -920,7 +1014,9 @@
     <a href="#">Facebook</a>
     <a href="#">Telegram</a>
   </div>
-  <div style="margin-top: 18px;"><p style="font-size: 0.8rem;">📍 Addis Ababa, Ethiopia | ✉️ hello@beantobag.coffee</p></div>
+  <div style="margin-top: 18px;">
+    <p style="font-size: 0.8rem;">📍 Addis Ababa, Ethiopia | ✉️ hello@beantobag.coffee | 📞 +251 911 234 567</p>
+  </div>
 </footer>
 
 <script>
@@ -938,7 +1034,6 @@
   closeMenu.addEventListener('click', () => mobileMenu.classList.remove('open'));
   document.querySelectorAll('.mobile-menu a').forEach(link => link.addEventListener('click', () => mobileMenu.classList.remove('open')));
 
-  // Ensure video plays on mobile
   const video = document.getElementById('heroVideo');
   if (video) {
     video.play().catch(e => console.log('Video autoplay failed:', e));
