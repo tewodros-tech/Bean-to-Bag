@@ -9,2133 +9,690 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Playfair+Display:ital,wght@0,500;0,600;0,700;0,800;0,900;1,600;1,700&display=swap" rel="stylesheet">
-  <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
   <style>
-    :root {
-      --ink: #090604;
-      --ink-2: #130d09;
-      --smoke: #21150f;
-      --cream: #fbf1df;
-      --cream-2: #ecdcc0;
-      --clay: #b56c38;
-      --clay-2: #d7965d;
-      --gold: #e8bc6a;
-      --leaf: #5c6b3c;
-      --white: #fffaf1;
-      --muted: rgba(255, 250, 241, 0.72);
-      --line: rgba(232, 188, 106, 0.2);
-      --nav-height: 84px;
-    }
-
     * {
+      margin: 0;
+      padding: 0;
       box-sizing: border-box;
     }
 
-    html {
-      scroll-behavior: smooth;
-      background: var(--ink);
-    }
-
     body {
-      margin: 0;
-      font-family: Inter, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
-      color: var(--white);
-      background: var(--ink);
+      font-family: 'Inter', sans-serif;
+      background: #090604;
+      color: #fffaf1;
       overflow-x: hidden;
-      text-rendering: optimizeLegibility;
-    }
-
-    body.menu-open {
-      overflow: hidden;
-    }
-
-    img,
-    svg,
-    canvas {
-      display: block;
-      max-width: 100%;
     }
 
     a {
-      color: inherit;
       text-decoration: none;
+      color: inherit;
     }
 
-    button {
-      font: inherit;
-    }
-
-    ::selection {
-      background: var(--gold);
-      color: var(--ink);
-    }
-
-    ::-webkit-scrollbar {
-      width: 10px;
-    }
-
-    ::-webkit-scrollbar-track {
-      background: #050302;
-    }
-
-    ::-webkit-scrollbar-thumb {
-      background: linear-gradient(var(--gold), var(--clay));
-      border: 2px solid #050302;
-      border-radius: 999px;
-    }
-
-    .font-display {
-      font-family: "Playfair Display", Georgia, serif;
-    }
-
-    .noise {
+    /* Header */
+    .header {
       position: fixed;
-      inset: 0;
-      z-index: 9998;
-      pointer-events: none;
-      opacity: 0.08;
-      mix-blend-mode: soft-light;
-      background-image:
-        radial-gradient(circle at 17% 21%, rgba(255, 255, 255, 0.7) 0 1px, transparent 1px),
-        radial-gradient(circle at 83% 73%, rgba(255, 255, 255, 0.5) 0 1px, transparent 1px);
-      background-size: 41px 41px, 67px 67px;
-    }
-
-    .cursor-glow {
-      position: fixed;
-      left: 0;
       top: 0;
-      width: 360px;
-      height: 360px;
-      z-index: 0;
-      pointer-events: none;
-      border-radius: 50%;
-      opacity: 0;
-      background: radial-gradient(circle, rgba(232, 188, 106, 0.16), transparent 68%);
-      transform: translate3d(-50%, -50%, 0);
-      transition: opacity 400ms ease;
-    }
-
-    .loader {
-      position: fixed;
-      inset: 0;
-      z-index: 10000;
-      display: grid;
-      place-items: center;
-      background:
-        radial-gradient(circle at center, rgba(181, 108, 56, 0.15), transparent 32rem),
-        #050302;
-      transition: opacity 700ms ease, visibility 700ms ease;
-    }
-
-    .loader.is-hidden {
-      opacity: 0;
-      visibility: hidden;
-      pointer-events: none;
-    }
-
-    .loader-mark {
-      width: min(48vw, 220px);
-      aspect-ratio: 1;
-      position: relative;
-      margin-inline: auto;
-    }
-
-    .loader-mark::before,
-    .loader-mark::after {
-      content: "";
-      position: absolute;
-      inset: 0;
-      border-radius: 50%;
-      border: 1px solid rgba(232, 188, 106, 0.16);
-    }
-
-    .loader-mark::after {
-      inset: 18%;
-      border-top-color: var(--gold);
-      border-right-color: rgba(232, 188, 106, 0.45);
-      animation: spin 1200ms linear infinite;
-    }
-
-    .loader-bean {
-      position: absolute;
-      inset: 29% 39%;
-      border-radius: 50% 50% 48% 52%;
-      background: linear-gradient(135deg, #3d1f11, #c0753f 48%, #f0b270);
-      box-shadow: 0 22px 50px rgba(0, 0, 0, 0.45);
-      transform: rotate(-28deg);
-    }
-
-    .loader-bean::after {
-      content: "";
-      position: absolute;
-      left: 48%;
-      top: 8%;
-      width: 11%;
-      height: 84%;
-      border-radius: 50%;
-      background: rgba(34, 17, 9, 0.55);
-      filter: blur(1px);
-    }
-
-    .loader-title {
-      margin-top: 28px;
-      font-family: "Playfair Display", Georgia, serif;
-      font-size: clamp(1.7rem, 4vw, 3rem);
-      letter-spacing: 0.12em;
-      text-align: center;
-      text-transform: uppercase;
-      color: var(--cream);
-    }
-
-    @keyframes spin {
-      to { transform: rotate(360deg); }
-    }
-
-    .site-header {
-      position: fixed;
-      inset: 0 0 auto 0;
-      z-index: 9000;
-      height: var(--nav-height);
-      display: flex;
-      align-items: center;
-      padding-inline: clamp(18px, 5vw, 72px);
-      color: var(--white);
-      transition: background 300ms ease, border-color 300ms ease, height 300ms ease, transform 300ms ease;
-      border-bottom: 1px solid transparent;
-      background: linear-gradient(to bottom, rgba(5, 3, 2, 0.78), rgba(5, 3, 2, 0));
-    }
-
-    .site-header.is-scrolled {
-      height: 70px;
-      background: rgba(8, 5, 3, 0.82);
-      backdrop-filter: blur(22px);
-      border-color: rgba(232, 188, 106, 0.16);
-    }
-
-    .nav-wrap {
-      width: min(100%, 1520px);
-      margin-inline: auto;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      gap: 24px;
-    }
-
-    .brand {
-      display: flex;
-      align-items: center;
-      gap: 14px;
-      min-width: max-content;
-    }
-
-    .brand-mark {
-      width: 46px;
-      height: 46px;
-      position: relative;
-      border-radius: 50%;
-      display: grid;
-      place-items: center;
-      background:
-        radial-gradient(circle at 35% 28%, #ffe4a9, transparent 22%),
-        linear-gradient(145deg, var(--gold), var(--clay));
-      box-shadow: 0 0 0 1px rgba(255, 255, 255, 0.15), 0 18px 45px rgba(181, 108, 56, 0.28);
-    }
-
-    .brand-mark::before {
-      content: "";
-      width: 16px;
-      height: 27px;
-      border-radius: 50%;
-      transform: rotate(-24deg);
-      background: rgba(30, 13, 7, 0.88);
-      box-shadow: inset 5px 0 0 rgba(255, 236, 193, 0.18);
-    }
-
-    .brand-name {
-      display: grid;
-      line-height: 1;
-    }
-
-    .brand-name strong {
-      font-family: "Playfair Display", Georgia, serif;
-      font-size: 1.28rem;
-      letter-spacing: -0.02em;
-      font-weight: 800;
-    }
-
-    .brand-name span {
-      margin-top: 5px;
-      font-size: 0.62rem;
-      letter-spacing: 0.28em;
-      color: var(--gold);
-      text-transform: uppercase;
-    }
-
-    /* Desktop Navigation - Only Home remains */
-    .desktop-nav {
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      gap: clamp(18px, 2.5vw, 34px);
-    }
-
-    .desktop-nav a {
-      position: relative;
-      font-size: 0.78rem;
-      font-weight: 700;
-      letter-spacing: 0.13em;
-      text-transform: uppercase;
-      color: rgba(255, 250, 241, 0.78);
-      transition: color 240ms ease;
-    }
-
-    .desktop-nav a::after {
-      content: "";
-      position: absolute;
       left: 0;
       right: 0;
-      bottom: -9px;
-      height: 1px;
-      transform: scaleX(0);
-      transform-origin: right;
-      background: var(--gold);
-      transition: transform 240ms ease;
+      z-index: 1000;
+      padding: 20px 5vw;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      background: linear-gradient(to bottom, rgba(0,0,0,0.8), transparent);
+      transition: all 0.3s;
     }
 
-    .desktop-nav a:hover,
-    .desktop-nav a:focus-visible,
-    .desktop-nav a.is-active {
-      color: var(--white);
+    .header.scrolled {
+      background: rgba(8, 5, 3, 0.95);
+      backdrop-filter: blur(10px);
+      padding: 15px 5vw;
     }
 
-    .desktop-nav a:hover::after,
-    .desktop-nav a:focus-visible::after,
-    .desktop-nav a.is-active::after {
-      transform: scaleX(1);
-      transform-origin: left;
-    }
-
-    .nav-actions {
+    .logo {
       display: flex;
       align-items: center;
       gap: 12px;
     }
 
-    /* Order Roast button removed */
-    .text-link {
-      display: none;
-    }
-
-    .menu-button {
-      display: none;
-      width: 48px;
-      height: 48px;
-      border: 1px solid rgba(255, 250, 241, 0.2);
+    .logo-icon {
+      width: 45px;
+      height: 45px;
       border-radius: 50%;
-      color: var(--white);
-      background: rgba(255, 250, 241, 0.06);
-      cursor: pointer;
-    }
-
-    .menu-button span {
-      display: block;
-      width: 18px;
-      height: 1px;
-      margin: 5px auto;
-      background: currentColor;
-      transition: transform 240ms ease, opacity 240ms ease;
-    }
-
-    .menu-button[aria-expanded="true"] span:nth-child(1) {
-      transform: translateY(6px) rotate(45deg);
-    }
-
-    .menu-button[aria-expanded="true"] span:nth-child(2) {
-      opacity: 0;
-    }
-
-    .menu-button[aria-expanded="true"] span:nth-child(3) {
-      transform: translateY(-6px) rotate(-45deg);
-    }
-
-    .mobile-menu {
-      position: fixed;
-      inset: 0;
-      z-index: 8999;
-      display: grid;
-      place-items: center;
-      padding: 100px 28px 40px;
-      background:
-        radial-gradient(circle at 20% 20%, rgba(232, 188, 106, 0.12), transparent 18rem),
-        rgba(5, 3, 2, 0.96);
-      backdrop-filter: blur(18px);
-      opacity: 0;
-      visibility: hidden;
-      transform: translateY(-12px);
-      transition: opacity 260ms ease, visibility 260ms ease, transform 260ms ease;
-    }
-
-    .mobile-menu.is-open {
-      opacity: 1;
-      visibility: visible;
-      transform: translateY(0);
-    }
-
-    .mobile-menu nav {
-      display: grid;
-      gap: 22px;
-      text-align: center;
-    }
-
-    .mobile-menu a {
-      font-family: "Playfair Display", Georgia, serif;
-      font-size: clamp(2rem, 10vw, 4rem);
-      line-height: 0.95;
-      color: var(--cream);
-    }
-
-    .hero {
+      background: linear-gradient(135deg, #e8bc6a, #b56c38);
       position: relative;
-      min-height: 100svh;
-      overflow: hidden;
-      isolation: isolate;
-      display: grid;
-      align-items: end;
-      padding: calc(var(--nav-height) + 60px) clamp(20px, 6vw, 92px) clamp(54px, 8vw, 92px);
-      background: var(--ink);
     }
 
-    .hero-media,
-    .hero-shade,
-    .hero-canvas {
+    .logo-icon::before {
+      content: "";
       position: absolute;
-      inset: 0;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      width: 18px;
+      height: 28px;
+      border-radius: 50%;
+      background: rgba(30, 13, 7, 0.88);
     }
 
-    .hero-media {
-      z-index: -4;
-      background-image: url("hero-coffee.jpg");
+    .logo-text h1 {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.3rem;
+      font-weight: 800;
+    }
+
+    .logo-text p {
+      font-size: 0.62rem;
+      letter-spacing: 3px;
+      color: #e8bc6a;
+      text-transform: uppercase;
+    }
+
+    .nav {
+      display: flex;
+      gap: 2rem;
+    }
+
+    .nav a {
+      font-size: 0.75rem;
+      font-weight: 700;
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+      transition: color 0.3s;
+      position: relative;
+    }
+
+    .nav a::after {
+      content: '';
+      position: absolute;
+      bottom: -8px;
+      left: 0;
+      width: 0;
+      height: 1px;
+      background: #e8bc6a;
+      transition: width 0.3s;
+    }
+
+    .nav a:hover::after,
+    .nav a.active::after {
+      width: 100%;
+    }
+
+    .nav a:hover,
+    .nav a.active {
+      color: #e8bc6a;
+    }
+
+    /* Hero Section */
+    .hero {
+      min-height: 100vh;
+      display: flex;
+      align-items: flex-end;
+      padding: 120px 5vw 80px;
+      background: linear-gradient(135deg, rgba(0,0,0,0.85), rgba(0,0,0,0.5)), url('https://images.pexels.com/photos/34792532/pexels-photo-34792532.jpeg?auto=compress&cs=tinysrgb&w=1600&h=900&fit=crop');
       background-size: cover;
       background-position: center 35%;
-      transform: scale(1.04);
-      filter: saturate(0.9) contrast(1.08) brightness(0.72);
-      will-change: transform;
-    }
-
-    .hero-shade {
-      z-index: -3;
-      background:
-        linear-gradient(90deg, rgba(5, 3, 2, 0.96) 0%, rgba(5, 3, 2, 0.7) 42%, rgba(5, 3, 2, 0.17) 100%),
-        linear-gradient(0deg, rgba(5, 3, 2, 0.95) 0%, rgba(5, 3, 2, 0.22) 44%, rgba(5, 3, 2, 0.6) 100%);
-    }
-
-    .hero-canvas {
-      z-index: -2;
-      opacity: 0.33;
-    }
-
-    .hero-inner {
-      width: min(100%, 1520px);
-      margin-inline: auto;
       position: relative;
     }
 
-    .hero-brand {
-      max-width: 980px;
+    .hero::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: linear-gradient(90deg, rgba(5,3,2,0.96) 0%, rgba(5,3,2,0.7) 42%, rgba(5,3,2,0.17) 100%);
+      pointer-events: none;
+    }
+
+    .hero-content {
+      position: relative;
+      z-index: 1;
+      max-width: 1200px;
     }
 
     .hero-kicker {
-      margin: 0 0 20px;
-      font-size: clamp(0.72rem, 1vw, 0.88rem);
+      color: #e8bc6a;
+      font-size: 0.75rem;
       font-weight: 900;
-      letter-spacing: 0.28em;
+      letter-spacing: 4px;
       text-transform: uppercase;
-      color: var(--gold);
+      margin-bottom: 1rem;
     }
 
-    .hero-logo {
-      margin: 0;
-      max-width: 12ch;
-      font-family: "Playfair Display", Georgia, serif;
-      font-size: clamp(5.6rem, 14vw, 14.8rem);
-      font-weight: 900;
-      letter-spacing: -0.095em;
-      line-height: 0.74;
-      text-wrap: balance;
-      color: var(--white);
-      text-shadow: 0 30px 80px rgba(0, 0, 0, 0.45);
+    .hero h1 {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(3.5rem, 12vw, 8rem);
+      line-height: 0.9;
+      letter-spacing: -0.05em;
     }
 
-    .hero-logo span {
-      display: inline-block;
+    .hero h1 span {
       font-style: italic;
       color: transparent;
-      -webkit-text-stroke: 1px rgba(255, 250, 241, 0.78);
-      text-shadow: none;
+      -webkit-text-stroke: 1px rgba(255,250,241,0.78);
     }
 
-    .hero-line {
-      width: min(680px, 100%);
-      height: 1px;
-      margin: clamp(28px, 4vw, 48px) 0 clamp(24px, 3vw, 36px);
-      background: linear-gradient(90deg, var(--gold), rgba(255, 250, 241, 0));
-      transform-origin: left;
+    .hero h2 {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(1.5rem, 4vw, 2.8rem);
+      margin: 1.5rem 0 1rem;
+      max-width: 600px;
     }
 
-    .hero-copy {
-      display: grid;
-      grid-template-columns: minmax(0, 680px) auto;
-      gap: clamp(24px, 6vw, 72px);
-      align-items: end;
-    }
-
-    .hero-copy h2 {
-      margin: 0 0 18px;
-      font-family: "Playfair Display", Georgia, serif;
-      font-size: clamp(2rem, 4.2vw, 4.3rem);
-      line-height: 0.96;
-      letter-spacing: -0.045em;
-      color: var(--cream);
-      text-wrap: balance;
-    }
-
-    .hero-copy p {
-      margin: 0;
-      max-width: 610px;
-      font-size: clamp(1rem, 1.22vw, 1.22rem);
+    .hero p {
+      max-width: 500px;
       line-height: 1.8;
-      color: rgba(255, 250, 241, 0.78);
+      opacity: 0.8;
+      margin-bottom: 2rem;
     }
 
-    .cta-row {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 14px;
-      align-items: center;
-    }
-
+    /* Buttons */
     .btn {
-      position: relative;
-      isolation: isolate;
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      gap: 12px;
-      min-height: 56px;
-      padding: 0 24px;
-      border-radius: 999px;
-      border: 1px solid transparent;
-      font-size: 0.78rem;
-      font-weight: 900;
-      letter-spacing: 0.12em;
+      display: inline-block;
+      padding: 14px 32px;
+      border-radius: 50px;
+      font-weight: 800;
+      letter-spacing: 1.5px;
       text-transform: uppercase;
+      font-size: 0.7rem;
+      transition: all 0.3s;
       cursor: pointer;
-      overflow: hidden;
-      transition: transform 240ms ease, border-color 240ms ease, color 240ms ease, background 240ms ease;
-    }
-
-    .btn::after {
-      content: "";
-      width: 32px;
-      height: 1px;
-      background: currentColor;
-      transition: width 240ms ease;
-    }
-
-    .btn:hover {
-      transform: translateY(-3px);
-    }
-
-    .btn:hover::after {
-      width: 48px;
     }
 
     .btn-primary {
-      color: #160b05;
-      background: linear-gradient(135deg, #f3cc80, #c9783e);
-      box-shadow: 0 18px 45px rgba(181, 108, 56, 0.28);
+      background: linear-gradient(135deg, #e8bc6a, #b56c38);
+      color: #1a0e06;
     }
 
-    .btn-ghost {
-      color: var(--white);
-      border-color: rgba(255, 250, 241, 0.24);
-      background: rgba(255, 250, 241, 0.04);
-      backdrop-filter: blur(10px);
+    .btn-primary:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 15px 35px rgba(181,108,56,0.3);
     }
 
-    .scroll-cue {
-      position: absolute;
-      right: clamp(20px, 4vw, 60px);
-      bottom: clamp(24px, 5vw, 56px);
-      display: grid;
-      justify-items: center;
-      gap: 14px;
-      color: rgba(255, 250, 241, 0.72);
-      font-size: 0.66rem;
-      font-weight: 800;
-      letter-spacing: 0.23em;
-      text-transform: uppercase;
-      writing-mode: vertical-rl;
+    .btn-outline {
+      border: 1px solid rgba(255,250,241,0.3);
+      background: rgba(255,250,241,0.05);
+      margin-left: 1rem;
     }
 
-    .scroll-cue::after {
-      content: "";
-      width: 1px;
-      height: 72px;
-      background: linear-gradient(var(--gold), transparent);
-      animation: scrollPulse 1800ms ease-in-out infinite;
+    .btn-outline:hover {
+      border-color: #e8bc6a;
+      transform: translateY(-3px);
     }
 
-    @keyframes scrollPulse {
-      0%, 100% { transform: scaleY(0.35); opacity: 0.45; }
-      50% { transform: scaleY(1); opacity: 1; }
+    .btn-group {
+      display: flex;
+      gap: 1rem;
+      flex-wrap: wrap;
     }
 
+    /* Sections */
     .section {
-      position: relative;
-      padding: clamp(86px, 12vw, 176px) clamp(20px, 6vw, 92px);
-      overflow: hidden;
-    }
-
-    .section-inner {
-      width: min(100%, 1400px);
-      margin-inline: auto;
-      position: relative;
-      z-index: 1;
-    }
-
-    .section-eyebrow {
-      display: inline-flex;
-      align-items: center;
-      gap: 14px;
-      margin: 0 0 18px;
-      color: var(--clay);
-      font-size: 0.73rem;
-      font-weight: 900;
-      letter-spacing: 0.28em;
-      text-transform: uppercase;
-    }
-
-    .section-eyebrow::before {
-      content: "";
-      width: 48px;
-      height: 1px;
-      background: currentColor;
+      padding: 100px 5vw;
     }
 
     .section-title {
-      margin: 0;
-      font-family: "Playfair Display", Georgia, serif;
-      font-size: clamp(3rem, 6.5vw, 7rem);
-      line-height: 0.9;
-      letter-spacing: -0.07em;
-      text-wrap: balance;
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(2rem, 6vw, 4rem);
+      margin-bottom: 1.5rem;
+      letter-spacing: -0.03em;
     }
 
     .section-title em {
-      color: var(--clay);
+      color: #b56c38;
+      font-style: italic;
     }
 
-    .section-copy {
-      margin: 24px 0 0;
-      max-width: 720px;
-      font-size: clamp(1rem, 1.35vw, 1.28rem);
-      line-height: 1.8;
-      color: rgba(30, 19, 12, 0.72);
+    .grid-2 {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 4rem;
+      align-items: center;
+      max-width: 1400px;
+      margin: 0 auto;
     }
 
-    .section-dark .section-copy {
-      color: rgba(255, 250, 241, 0.72);
+    .grid-2 img {
+      width: 100%;
+      border-radius: 24px;
+      transition: transform 0.5s;
     }
 
-    .cream {
-      background: var(--cream);
+    .grid-2 img:hover {
+      transform: scale(1.02);
+    }
+
+    .dark-bg {
+      background: linear-gradient(135deg, #0a0604, #130b07);
+    }
+
+    .cream-bg {
+      background: #fbf1df;
       color: #1b110b;
     }
 
-    .section-dark {
-      background: var(--ink);
-      color: var(--cream);
+    .cream-bg .section-title em {
+      color: #b56c38;
     }
 
-    .story-grid {
+    /* Promise Cards */
+    .promise-grid {
       display: grid;
-      grid-template-columns: minmax(0, 0.9fr) minmax(320px, 1.1fr);
-      gap: clamp(42px, 8vw, 120px);
-      align-items: center;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 2rem;
+      max-width: 1400px;
+      margin: 4rem auto 0;
     }
 
-    .story-image {
-      min-height: clamp(460px, 64vw, 820px);
-      position: relative;
-      overflow: hidden;
-      background: #24140c;
-      clip-path: polygon(10% 0, 100% 0, 100% 90%, 90% 100%, 0 100%, 0 10%);
+    .promise-card {
+      padding: 2rem;
+      border-top: 1px solid rgba(27, 17, 11, 0.15);
     }
 
-    .story-image img {
-      width: 100%;
-      height: 100%;
-      min-height: inherit;
-      object-fit: cover;
-      filter: saturate(0.92) contrast(1.05);
-      transition: transform 1200ms cubic-bezier(0.2, 0.8, 0.2, 1);
+    .promise-card span {
+      color: #b56c38;
+      font-size: 0.7rem;
+      font-weight: 800;
+      letter-spacing: 2px;
     }
 
-    .story-image:hover img {
-      transform: scale(1.045);
+    .promise-card h3 {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.8rem;
+      margin: 1rem 0;
     }
 
-    .story-quote {
-      margin: clamp(36px, 5vw, 62px) 0 0;
-      padding-left: 24px;
-      border-left: 1px solid rgba(181, 108, 56, 0.45);
-      font-family: "Playfair Display", Georgia, serif;
-      font-size: clamp(1.5rem, 2.4vw, 2.6rem);
-      line-height: 1.12;
-      color: #2a1710;
+    .promise-card p {
+      opacity: 0.7;
+      line-height: 1.7;
     }
 
-    .promise-list {
-      display: grid;
-      grid-template-columns: repeat(3, minmax(0, 1fr));
-      gap: clamp(24px, 5vw, 70px);
-      margin-top: clamp(72px, 10vw, 132px);
-      border-top: 1px solid rgba(27, 17, 11, 0.16);
-    }
-
-    .promise-item {
-      padding-top: 30px;
-    }
-
-    .promise-item span {
-      display: block;
-      margin-bottom: 18px;
-      color: var(--clay);
-      font-weight: 900;
-      letter-spacing: 0.18em;
-      font-size: 0.72rem;
-    }
-
-    .promise-item h3 {
-      margin: 0 0 14px;
-      font-family: "Playfair Display", Georgia, serif;
-      font-size: clamp(1.6rem, 2.4vw, 2.6rem);
-      line-height: 1;
-      letter-spacing: -0.04em;
-    }
-
-    .promise-item p {
-      margin: 0;
-      color: rgba(30, 19, 12, 0.68);
-      line-height: 1.75;
-    }
-
-    .origin {
-      background:
-        radial-gradient(circle at 78% 18%, rgba(232, 188, 106, 0.12), transparent 34rem),
-        linear-gradient(135deg, #090604, #170d08 55%, #090604);
-    }
-
+    /* Origin Section */
     .origin-grid {
       display: grid;
-      grid-template-columns: minmax(0, 1fr) minmax(320px, 0.9fr);
-      gap: clamp(48px, 7vw, 100px);
+      grid-template-columns: 1fr 1fr;
+      gap: 4rem;
       align-items: center;
-    }
-
-    .origin-copy {
-      max-width: 780px;
-    }
-
-    .origin-lines {
-      position: relative;
-      min-height: 640px;
-      display: grid;
-      align-content: center;
-      overflow: hidden;
-    }
-
-    .topography {
-      position: absolute;
-      inset: 0;
-      opacity: 0.28;
-    }
-
-    .origin-photo {
-      position: relative;
-      width: min(100%, 600px);
-      margin-left: auto;
-      overflow: hidden;
-      clip-path: polygon(0 9%, 90% 0, 100% 90%, 12% 100%);
-      aspect-ratio: 0.82;
-      background: #21120a;
-    }
-
-    .origin-photo img {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-      filter: sepia(0.08) saturate(0.95) contrast(1.08);
+      max-width: 1400px;
+      margin: 0 auto;
     }
 
     .origin-notes {
-      display: grid;
-      gap: 28px;
-      margin-top: 46px;
-      max-width: 760px;
+      margin-top: 2rem;
     }
 
     .origin-note {
       display: grid;
-      grid-template-columns: 110px 1fr;
-      gap: 22px;
-      align-items: start;
-      padding-top: 24px;
-      border-top: 1px solid rgba(255, 250, 241, 0.14);
+      grid-template-columns: 100px 1fr;
+      gap: 1.5rem;
+      padding: 1.5rem 0;
+      border-top: 1px solid rgba(255,250,241,0.1);
     }
 
     .origin-note strong {
-      color: var(--gold);
-      font-family: "Playfair Display", Georgia, serif;
-      font-size: 1.7rem;
-      line-height: 0.95;
+      color: #e8bc6a;
+      font-family: 'Playfair Display', serif;
+      font-size: 1.5rem;
     }
 
-    .origin-note p {
-      margin: 0;
-      color: rgba(255, 250, 241, 0.72);
-      line-height: 1.72;
-    }
-
-    .process {
-      background: var(--cream);
-      color: #1b110b;
-    }
-
-    .process-head {
+    /* Process Section */
+    .process-grid {
       display: grid;
-      grid-template-columns: minmax(0, 0.9fr) minmax(280px, 0.55fr);
-      gap: clamp(32px, 7vw, 86px);
-      align-items: end;
-      margin-bottom: clamp(56px, 8vw, 96px);
-    }
-
-    .process-path {
-      position: relative;
-      display: grid;
-      grid-template-columns: repeat(5, minmax(0, 1fr));
-      gap: 24px;
-    }
-
-    .process-path::before {
-      content: "";
-      position: absolute;
-      left: 0;
-      right: 0;
-      top: 41px;
-      height: 1px;
-      background: rgba(27, 17, 11, 0.16);
+      grid-template-columns: repeat(5, 1fr);
+      gap: 1.5rem;
+      max-width: 1400px;
+      margin: 3rem auto 0;
     }
 
     .process-step {
+      text-align: center;
       position: relative;
-      padding-top: 86px;
     }
 
     .process-step::before {
       content: attr(data-step);
       position: absolute;
-      left: 0;
-      top: 0;
-      width: 82px;
-      height: 82px;
-      display: grid;
-      place-items: center;
+      top: -30px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 60px;
+      height: 60px;
+      background: #fbf1df;
       border-radius: 50%;
-      background: var(--cream);
-      border: 1px solid rgba(181, 108, 56, 0.35);
-      color: var(--clay);
-      font-family: "Playfair Display", Georgia, serif;
-      font-size: 1.8rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-family: 'Playfair Display', serif;
+      font-size: 1.5rem;
       font-weight: 800;
-      box-shadow: 0 0 0 12px var(--cream);
+      color: #b56c38;
+      box-shadow: 0 0 0 8px #fbf1df;
     }
 
     .process-step h3 {
-      margin: 0 0 12px;
-      font-family: "Playfair Display", Georgia, serif;
-      font-size: clamp(1.55rem, 2vw, 2.3rem);
-      line-height: 1;
-      letter-spacing: -0.04em;
+      font-family: 'Playfair Display', serif;
+      font-size: 1.3rem;
+      margin: 2rem 0 0.5rem;
     }
 
     .process-step p {
-      margin: 0;
-      color: rgba(30, 19, 12, 0.66);
-      line-height: 1.72;
-      font-size: 0.98rem;
+      font-size: 0.85rem;
+      opacity: 0.7;
+      line-height: 1.6;
     }
 
-    .roast {
-      background:
-        radial-gradient(circle at 18% 18%, rgba(232, 188, 106, 0.11), transparent 28rem),
-        radial-gradient(circle at 74% 76%, rgba(92, 107, 60, 0.15), transparent 34rem),
-        #080503;
-      color: var(--cream);
-    }
-
-    .roast-grid {
+    /* Coffee Section */
+    .coffee-grid {
       display: grid;
-      grid-template-columns: minmax(280px, 0.78fr) minmax(320px, 1fr);
-      gap: clamp(42px, 8vw, 116px);
+      grid-template-columns: 1fr 1fr;
+      gap: 4rem;
       align-items: center;
+      max-width: 1400px;
+      margin: 0 auto;
     }
 
-    .bag-stage {
-      min-height: 720px;
-      display: grid;
-      place-items: center;
+    .coffee-bag-mockup {
       position: relative;
-    }
-
-    .bag-stage::before {
-      content: "";
-      position: absolute;
-      width: min(86vw, 520px);
-      aspect-ratio: 1;
-      border-radius: 50%;
-      background: radial-gradient(circle, rgba(232, 188, 106, 0.16), transparent 66%);
-      filter: blur(8px);
+      display: flex;
+      justify-content: center;
     }
 
     .coffee-bag {
+      width: 280px;
+      height: 420px;
+      background: linear-gradient(160deg, #f2d9a9, #b97242, #5a2e19);
+      border-radius: 30px;
       position: relative;
-      width: min(78vw, 360px);
-      height: 540px;
-      color: #160c07;
-      border-radius: 34px 34px 28px 28px;
-      background:
-        linear-gradient(110deg, transparent 0 18%, rgba(255, 255, 255, 0.3) 20%, transparent 27%),
-        linear-gradient(160deg, #f2d9a9, #b97242 48%, #5a2e19 100%);
-      box-shadow: 0 70px 120px rgba(0, 0, 0, 0.48), inset 0 0 0 1px rgba(255, 255, 255, 0.18);
-      transform: rotate(-2deg);
-      transition: transform 500ms cubic-bezier(0.2, 0.8, 0.2, 1), background 500ms ease;
+      box-shadow: 0 30px 50px rgba(0,0,0,0.5);
+      transition: transform 0.3s;
     }
 
     .coffee-bag:hover {
-      transform: rotate(0deg) translateY(-10px);
+      transform: translateY(-10px);
     }
 
     .coffee-bag::before {
-      content: "";
+      content: '';
       position: absolute;
+      top: -20px;
       left: 10%;
       right: 10%;
-      top: -28px;
-      height: 60px;
+      height: 40px;
+      background: #5b2e17;
       border-radius: 20px 20px 8px 8px;
-      background: linear-gradient(180deg, #5b2e17, #2d160b);
-      box-shadow: inset 0 -12px 18px rgba(0, 0, 0, 0.22);
     }
 
-    .coffee-bag::after {
-      content: "";
+    .coffee-bag .valve {
       position: absolute;
-      inset: 20px;
-      border-radius: 26px;
-      border: 1px solid rgba(27, 17, 11, 0.24);
-      pointer-events: none;
-    }
-
-    .valve {
-      position: absolute;
-      right: 44px;
-      top: 64px;
-      width: 36px;
-      height: 36px;
+      top: 50px;
+      right: 30px;
+      width: 30px;
+      height: 30px;
+      background: radial-gradient(circle, #fff0c8, #8f4b27);
       border-radius: 50%;
-      background: radial-gradient(circle at 35% 35%, #fff0c8, #8f4b27 55%, #2a1309);
-      box-shadow: inset 0 2px 8px rgba(0, 0, 0, 0.28);
     }
 
     .bag-label {
       position: absolute;
-      left: 42px;
-      right: 42px;
-      top: 128px;
-      bottom: 60px;
+      top: 100px;
+      left: 30px;
+      right: 30px;
+      bottom: 40px;
+      background: rgba(255,250,241,0.9);
+      border-radius: 20px;
+      padding: 20px;
       display: flex;
       flex-direction: column;
       justify-content: space-between;
-      padding: 30px 26px;
-      background: rgba(255, 250, 241, 0.88);
-      border-radius: 24px;
-      box-shadow: inset 0 0 0 1px rgba(27, 17, 11, 0.12);
     }
 
     .bag-label small {
-      display: block;
-      font-size: 0.66rem;
-      font-weight: 900;
-      letter-spacing: 0.24em;
-      text-transform: uppercase;
       color: #7b4527;
+      font-size: 0.6rem;
+      letter-spacing: 2px;
     }
 
     .bag-label h3 {
-      margin: 18px 0 0;
-      font-family: "Playfair Display", Georgia, serif;
-      font-size: 2.55rem;
-      line-height: 0.9;
-      letter-spacing: -0.06em;
-    }
-
-    .bag-meta {
-      display: grid;
-      gap: 8px;
-      padding-top: 18px;
-      border-top: 1px solid rgba(27, 17, 11, 0.18);
-      color: rgba(27, 17, 11, 0.74);
-      font-size: 0.8rem;
-      line-height: 1.4;
-    }
-
-    .steam {
-      position: absolute;
-      top: 12px;
-      left: 50%;
-      width: 1px;
-      height: 160px;
-      transform: translateX(-50%);
-      pointer-events: none;
-    }
-
-    .steam span {
-      position: absolute;
-      bottom: 0;
-      width: 60px;
-      height: 100%;
-      border-radius: 50%;
-      border-left: 1px solid rgba(255, 250, 241, 0.3);
-      filter: blur(1px);
-      animation: steam 3600ms ease-in-out infinite;
-      opacity: 0;
-    }
-
-    .steam span:nth-child(1) { left: -60px; animation-delay: 0ms; }
-    .steam span:nth-child(2) { left: -18px; animation-delay: 900ms; }
-    .steam span:nth-child(3) { left: 30px; animation-delay: 1700ms; }
-
-    @keyframes steam {
-      0% { transform: translateY(40px) scaleY(0.5); opacity: 0; }
-      30% { opacity: 0.75; }
-      100% { transform: translateY(-110px) scaleY(1.15); opacity: 0; }
-    }
-
-    .roast-panel {
-      position: relative;
-      border: 1px solid rgba(255, 250, 241, 0.14);
-      background: rgba(255, 250, 241, 0.045);
-      backdrop-filter: blur(18px);
-      border-radius: 36px;
-      padding: clamp(24px, 4vw, 48px);
-      overflow: hidden;
-    }
-
-    .roast-panel::before {
-      content: "";
-      position: absolute;
-      inset: -1px;
-      background: linear-gradient(135deg, rgba(232, 188, 106, 0.18), transparent 38%, rgba(255, 250, 241, 0.08));
-      pointer-events: none;
-      mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
-      mask-composite: exclude;
-      padding: 1px;
-      border-radius: inherit;
-    }
-
-    .product-tabs {
-      display: grid;
-      gap: 10px;
-      margin: 36px 0;
-    }
-
-    .product-tab {
-      display: grid;
-      grid-template-columns: 1fr auto;
-      gap: 18px;
-      align-items: center;
-      width: 100%;
-      padding: 18px 0;
-      border: 0;
-      border-top: 1px solid rgba(255, 250, 241, 0.13);
-      background: transparent;
-      color: rgba(255, 250, 241, 0.72);
-      text-align: left;
-      cursor: pointer;
-      transition: color 220ms ease, padding-left 220ms ease;
-    }
-
-    .product-tab:last-child {
-      border-bottom: 1px solid rgba(255, 250, 241, 0.13);
-    }
-
-    .product-tab span:first-child {
-      font-family: "Playfair Display", Georgia, serif;
-      font-size: clamp(1.5rem, 2.4vw, 2.35rem);
-      line-height: 1;
-      letter-spacing: -0.04em;
-    }
-
-    .product-tab span:last-child {
-      font-size: 0.72rem;
-      font-weight: 900;
-      letter-spacing: 0.18em;
-      text-transform: uppercase;
-      color: var(--gold);
-    }
-
-    .product-tab.is-active,
-    .product-tab:hover {
-      color: var(--white);
-      padding-left: 18px;
-    }
-
-    .product-detail {
-      display: grid;
-      gap: 24px;
-    }
-
-    .product-detail h3 {
-      margin: 0;
-      font-family: "Playfair Display", Georgia, serif;
-      font-size: clamp(2.2rem, 4vw, 4.5rem);
-      line-height: 0.9;
-      letter-spacing: -0.06em;
-    }
-
-    .product-detail p {
-      margin: 0;
-      color: rgba(255, 250, 241, 0.72);
-      line-height: 1.78;
-      font-size: 1.05rem;
-    }
-
-    .taste-list {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 10px;
-      margin: 0;
-      padding: 0;
-      list-style: none;
-    }
-
-    .taste-list li {
-      padding: 9px 13px;
-      border-radius: 999px;
-      background: rgba(232, 188, 106, 0.1);
-      border: 1px solid rgba(232, 188, 106, 0.18);
-      color: var(--gold);
-      font-size: 0.76rem;
-      font-weight: 800;
-      letter-spacing: 0.06em;
-      text-transform: uppercase;
-    }
-
-    .profile-bars {
-      display: grid;
-      gap: 15px;
-    }
-
-    .profile-row {
-      display: grid;
-      grid-template-columns: 92px 1fr 36px;
-      gap: 14px;
-      align-items: center;
-      font-size: 0.76rem;
-      font-weight: 900;
-      letter-spacing: 0.12em;
-      text-transform: uppercase;
-      color: rgba(255, 250, 241, 0.7);
-    }
-
-    .profile-track {
-      height: 8px;
-      border-radius: 999px;
-      background: rgba(255, 250, 241, 0.11);
-      overflow: hidden;
-    }
-
-    .profile-fill {
-      width: 0;
-      height: 100%;
-      border-radius: inherit;
-      background: linear-gradient(90deg, var(--clay), var(--gold));
-      transition: width 700ms cubic-bezier(0.2, 0.8, 0.2, 1);
-    }
-
-    .origin-strip {
-      display: grid;
-      grid-template-columns: repeat(3, minmax(0, 1fr));
-      gap: 1px;
-      margin-top: clamp(62px, 8vw, 104px);
-      background: rgba(255, 250, 241, 0.11);
-      border: 1px solid rgba(255, 250, 241, 0.11);
-    }
-
-    .origin-strip div {
-      padding: clamp(24px, 4vw, 40px);
-      background: rgba(8, 5, 3, 0.88);
-    }
-
-    .origin-strip strong {
-      display: block;
-      margin-bottom: 12px;
-      color: var(--gold);
-      font-family: "Playfair Display", Georgia, serif;
-      font-size: clamp(1.8rem, 3vw, 3.3rem);
-      line-height: 0.9;
-      letter-spacing: -0.06em;
-    }
-
-    .origin-strip span {
-      color: rgba(255, 250, 241, 0.68);
-      line-height: 1.62;
-    }
-
-    .ritual {
-      min-height: 92vh;
-      display: grid;
-      align-items: center;
-      background: #070402;
-      color: var(--cream);
-      isolation: isolate;
-    }
-
-    .ritual-bg {
-      position: absolute;
-      inset: 0;
-      z-index: -2;
-      background-image: url("ceremony.jpg");
-      background-size: cover;
-      background-position: center;
-      filter: brightness(0.62) contrast(1.1) saturate(0.9);
-    }
-
-    .ritual::after {
-      content: "";
-      position: absolute;
-      inset: 0;
-      z-index: -1;
-      background:
-        linear-gradient(90deg, rgba(5, 3, 2, 0.9), rgba(5, 3, 2, 0.42)),
-        linear-gradient(0deg, rgba(5, 3, 2, 0.8), rgba(5, 3, 2, 0.2));
-    }
-
-    .ritual-content {
-      max-width: 860px;
-    }
-
-    .ritual-title {
-      margin: 0;
-      font-family: "Playfair Display", Georgia, serif;
-      font-size: clamp(3.6rem, 8vw, 9rem);
-      line-height: 0.86;
-      letter-spacing: -0.08em;
-      text-wrap: balance;
-    }
-
-    .ritual-copy {
-      margin: 28px 0 0;
-      max-width: 640px;
-      color: rgba(255, 250, 241, 0.76);
-      font-size: clamp(1.05rem, 1.45vw, 1.35rem);
-      line-height: 1.78;
-    }
-
-    .contact {
-      background: var(--cream);
+      font-family: 'Playfair Display', serif;
       color: #1b110b;
+      font-size: 1.8rem;
+      margin-top: 1rem;
     }
 
-    .contact-grid {
-      display: grid;
-      grid-template-columns: minmax(0, 1fr) minmax(300px, 0.72fr);
-      gap: clamp(40px, 8vw, 118px);
-      align-items: end;
-    }
-
-    .contact-actions {
-      display: grid;
-      gap: 14px;
-    }
-
-    .contact-link {
-      display: flex;
-      justify-content: space-between;
-      gap: 22px;
-      padding: 24px 0;
-      border-top: 1px solid rgba(27, 17, 11, 0.16);
-      color: #1b110b;
-      transition: color 220ms ease, padding-left 220ms ease;
-    }
-
-    .contact-link:last-child {
-      border-bottom: 1px solid rgba(27, 17, 11, 0.16);
-    }
-
-    .contact-link strong {
-      font-family: "Playfair Display", Georgia, serif;
-      font-size: clamp(1.4rem, 2.2vw, 2.4rem);
-      line-height: 1;
-      letter-spacing: -0.045em;
-    }
-
-    .contact-link span {
-      color: rgba(30, 19, 12, 0.58);
-      font-size: 0.82rem;
-      font-weight: 800;
-      letter-spacing: 0.12em;
-      text-transform: uppercase;
-      align-self: center;
-    }
-
-    .contact-link:hover {
-      color: var(--clay);
-      padding-left: 16px;
-    }
-
+    /* Footer */
     .footer {
-      padding: 44px clamp(20px, 6vw, 92px);
-      background: #050302;
-      color: rgba(255, 250, 241, 0.58);
-      border-top: 1px solid rgba(232, 188, 106, 0.12);
+      padding: 2rem 5vw;
+      text-align: center;
+      border-top: 1px solid rgba(232,188,106,0.2);
     }
 
-    .footer-inner {
-      width: min(100%, 1400px);
-      margin-inline: auto;
-      display: flex;
-      justify-content: space-between;
-      gap: 24px;
-      align-items: center;
-      flex-wrap: wrap;
-      font-size: 0.9rem;
-    }
-
-    .footer strong {
-      color: var(--cream);
-      font-family: "Playfair Display", Georgia, serif;
-      font-size: 1.5rem;
-    }
-
-    .socials {
-      display: flex;
-      gap: 18px;
-      align-items: center;
-    }
-
-    .socials a {
-      color: rgba(255, 250, 241, 0.72);
-      font-weight: 800;
-      letter-spacing: 0.08em;
-      text-transform: uppercase;
-      font-size: 0.72rem;
-    }
-
-    .float-actions {
-      position: fixed;
-      right: clamp(16px, 3vw, 32px);
-      bottom: clamp(16px, 3vw, 32px);
-      z-index: 7000;
-      display: grid;
-      gap: 12px;
-    }
-
-    .float-actions a {
-      width: 54px;
-      height: 54px;
-      display: grid;
-      place-items: center;
-      border-radius: 50%;
-      background: rgba(255, 250, 241, 0.1);
-      color: var(--white);
-      border: 1px solid rgba(255, 250, 241, 0.18);
-      backdrop-filter: blur(18px);
-      font-weight: 900;
-      transition: transform 220ms ease, background 220ms ease;
-    }
-
-    .float-actions a:first-child {
-      background: #25d366;
-      color: #07130b;
-      border: 0;
-    }
-
-    .float-actions a:hover {
-      transform: translateY(-4px) scale(1.04);
-    }
-
-    .reveal {
-      opacity: 0;
-      transform: translateY(34px);
-      transition: opacity 800ms ease, transform 800ms cubic-bezier(0.2, 0.8, 0.2, 1);
-    }
-
-    .reveal.is-visible {
-      opacity: 1;
-      transform: translateY(0);
-    }
-
-    .split-reveal {
-      overflow: hidden;
-    }
-
-    .split-reveal > span {
-      display: inline-block;
-      transform: translateY(110%);
-      animation: riseText 1000ms cubic-bezier(0.2, 0.8, 0.2, 1) forwards;
-    }
-
-    .split-reveal:nth-of-type(2) > span {
-      animation-delay: 140ms;
-    }
-
-    @keyframes riseText {
-      to { transform: translateY(0); }
-    }
-
-    @media (max-width: 1180px) {
-      .desktop-nav {
-        display: flex;
-      }
-      
-      .desktop-nav a {
-        display: none;
-      }
-      
-      .desktop-nav a:first-child {
-        display: block;
-      }
-      
-      .menu-button {
-        display: block;
-      }
-
-      .hero-copy,
-      .story-grid,
-      .origin-grid,
-      .process-head,
-      .roast-grid,
-      .contact-grid {
+    /* Responsive */
+    @media (max-width: 1000px) {
+      .grid-2, .origin-grid, .coffee-grid, .promise-grid {
         grid-template-columns: 1fr;
+        gap: 2rem;
       }
-
-      .hero-copy {
-        max-width: 760px;
+      .process-grid {
+        grid-template-columns: 1fr;
+        gap: 3rem;
       }
-
-      .scroll-cue {
+      .process-step::before {
+        top: -40px;
+      }
+      .nav {
         display: none;
       }
-
-      .origin-lines {
-        min-height: auto;
+      .btn-group {
+        flex-direction: column;
       }
-
-      .origin-photo {
+      .btn-outline {
         margin-left: 0;
-        width: 100%;
-        aspect-ratio: 16 / 10;
-      }
-
-      .bag-stage {
-        min-height: 610px;
       }
     }
 
-    @media (max-width: 860px) {
-      :root {
-        --nav-height: 76px;
+    @media (max-width: 640px) {
+      .section {
+        padding: 60px 5vw;
       }
-
-      .brand-mark {
-        width: 42px;
-        height: 42px;
-      }
-
-      .brand-name strong {
-        font-size: 1.1rem;
-      }
-
-      .brand-name span {
-        letter-spacing: 0.18em;
-      }
-
-      .hero {
-        align-items: center;
-      }
-
-      .hero-shade {
-        background:
-          linear-gradient(90deg, rgba(5, 3, 2, 0.94), rgba(5, 3, 2, 0.58)),
-          linear-gradient(0deg, rgba(5, 3, 2, 0.96), rgba(5, 3, 2, 0.18));
-      }
-
-      .hero-logo {
-        font-size: clamp(4.8rem, 23vw, 8.5rem);
-      }
-
-      .cta-row {
-        align-items: stretch;
-      }
-
-      .btn {
-        width: 100%;
-        justify-content: space-between;
-      }
-
-      .promise-list,
-      .process-path,
-      .origin-strip {
-        grid-template-columns: 1fr;
-      }
-
-      .process-path::before {
-        display: none;
-      }
-
-      .process-step {
-        min-height: 120px;
-        padding-top: 0;
-        padding-left: 104px;
-      }
-
-      .profile-row {
-        grid-template-columns: 82px 1fr 34px;
-      }
-
       .origin-note {
         grid-template-columns: 1fr;
-      }
-
-      .float-actions {
-        display: none;
-      }
-    }
-
-    @media (max-width: 560px) {
-      .section,
-      .hero {
-        padding-inline: 18px;
-      }
-
-      .hero-kicker,
-      .section-eyebrow {
-        letter-spacing: 0.18em;
-      }
-
-      .section-title {
-        font-size: clamp(2.6rem, 14vw, 4.2rem);
-      }
-
-      .coffee-bag {
-        width: min(86vw, 318px);
-        height: 500px;
-      }
-
-      .bag-label {
-        left: 30px;
-        right: 30px;
-      }
-
-      .contact-link {
-        display: grid;
-      }
-    }
-
-    @media (prefers-reduced-motion: reduce) {
-      *,
-      *::before,
-      *::after {
-        animation-duration: 0.001ms !important;
-        animation-iteration-count: 1 !important;
-        scroll-behavior: auto !important;
-        transition-duration: 0.001ms !important;
-      }
-
-      .hero-media {
-        transform: none !important;
+        gap: 0.5rem;
       }
     }
   </style>
 </head>
 <body>
-  <div class="loader" id="loader" aria-label="Loading Bean to Bag">
-    <div>
-      <div class="loader-mark"><div class="loader-bean"></div></div>
-      <div class="loader-title">Bean to Bag</div>
-    </div>
-  </div>
-
-  <div class="noise" aria-hidden="true"></div>
-  <div class="cursor-glow" id="cursorGlow" aria-hidden="true"></div>
-
-  <header class="site-header" id="siteHeader">
-    <div class="nav-wrap">
-      <a class="brand" href="#top" aria-label="Bean to Bag home">
-        <span class="brand-mark" aria-hidden="true"></span>
-        <span class="brand-name">
-          <strong>Bean to Bag</strong>
-          <span>Ethiopian Origin</span>
-        </span>
-      </a>
-
-      <!-- Navigation: Home is the only item -->
-      <nav class="desktop-nav" aria-label="Primary navigation">
-        <a href="#story">Home</a>
-      </nav>
-
-      <div class="nav-actions">
-        <!-- Order Roast button removed -->
-        <button class="menu-button" id="menuButton" type="button" aria-label="Open menu" aria-expanded="false" aria-controls="mobileMenu">
-          <span></span>
-          <span></span>
-          <span></span>
-        </button>
+  <header class="header" id="header">
+    <a href="index.html" class="logo">
+      <div class="logo-icon"></div>
+      <div class="logo-text">
+        <h1>Bean to Bag</h1>
+        <p>ETHIOPIAN ORIGIN</p>
       </div>
-    </div>
+    </a>
+    <nav class="nav">
+      <a href="index.html" class="active">Home</a>
+      <a href="about.html">About</a>
+      <a href="#coffee">Coffee</a>
+      <a href="#contact">Contact</a>
+    </nav>
   </header>
 
-  <div class="mobile-menu" id="mobileMenu" aria-hidden="true">
-    <nav aria-label="Mobile navigation">
-      <a href="#story">Home</a>
-    </nav>
-  </div>
-
-  <main id="top">
-    <section class="hero" aria-labelledby="heroTitle">
-      <div class="hero-media" id="heroMedia" aria-hidden="true"></div>
-      <div class="hero-shade" aria-hidden="true"></div>
-      <canvas class="hero-canvas" id="beanCanvas" aria-hidden="true"></canvas>
-
-      <div class="hero-inner">
-        <div class="hero-brand">
-          <p class="hero-kicker reveal">Direct trade specialty coffee from Ethiopia</p>
-          <h1 class="hero-logo" id="heroTitle" aria-label="Bean to Bag">
-            <span class="split-reveal"><span>Bean</span></span>
-            <span class="split-reveal"><span>to Bag</span></span>
-          </h1>
-          <div class="hero-line reveal" aria-hidden="true"></div>
-        </div>
-
-        <div class="hero-copy reveal">
-          <div>
-            <h2>Ethiopian Arabica, roasted with restraint and packed at peak aroma.</h2>
-            <p>We trace every lot from highland smallholder farms to the final sealed bag, preserving floral aromatics, cocoa depth, clean sweetness, and the ceremony of Ethiopian coffee.</p>
-          </div>
-          <div class="cta-row" aria-label="Hero actions">
-            <a class="btn btn-primary" href="#collection">Explore Coffee</a>
-            <a class="btn btn-ghost" href="#story">Follow The Journey</a>
-          </div>
+  <main>
+    <!-- Hero Section -->
+    <section class="hero">
+      <div class="hero-content">
+        <p class="hero-kicker">DIRECT TRADE SPECIALTY COFFEE FROM ETHIOPIA</p>
+        <h1>Bean<br>to <span>Bag</span></h1>
+        <h2>Ethiopian Arabica, roasted with restraint and packed at peak aroma.</h2>
+        <p>We trace every lot from highland smallholder farms to the final sealed bag, preserving floral aromatics, cocoa depth, clean sweetness, and the ceremony of Ethiopian coffee.</p>
+        <div class="btn-group">
+          <a href="#coffee" class="btn btn-primary">Explore Coffee →</a>
+          <a href="#story" class="btn btn-outline">Follow The Journey →</a>
         </div>
       </div>
-
-      <div class="scroll-cue" aria-hidden="true">Scroll</div>
     </section>
 
-    <section class="section cream" id="story" aria-labelledby="storyTitle">
-      <div class="section-inner story-grid">
+    <!-- Story Section -->
+    <section id="story" class="section cream-bg">
+      <div class="grid-2">
         <div>
-          <p class="section-eyebrow reveal">The Bean to Bag Promise</p>
-          <h2 class="section-title reveal" id="storyTitle">Built for the full <em>coffee journey</em>.</h2>
-          <p class="section-copy reveal">Bean to Bag is not only a name. It is the standard: carefully selected cherries, responsible relationships, controlled roasting, and professional packaging that protects the life inside every bean.</p>
-          <blockquote class="story-quote reveal">A bag should feel like the origin is still breathing when you open it.</blockquote>
+          <p style="color: #b56c38; font-size: 0.7rem; font-weight: 800; letter-spacing: 3px; margin-bottom: 1rem;">THE BEAN TO BAG PROMISE</p>
+          <h2 class="section-title">Built for the full <em>coffee journey</em>.</h2>
+          <p style="line-height: 1.8; opacity: 0.7;">Bean to Bag is not only a name. It is the standard: carefully selected cherries, responsible relationships, controlled roasting, and professional packaging that protects the life inside every bean.</p>
+          <p style="margin-top: 1.5rem; font-family: 'Playfair Display', serif; font-size: 1.3rem; font-style: italic; border-left: 3px solid #b56c38; padding-left: 1rem;">"A bag should feel like the origin is still breathing when you open it."</p>
         </div>
-
-        <figure class="story-image reveal">
-          <img src="roasting.jpg" alt="Artisanal coffee beans roasting in drum roaster, golden brown development">
-        </figure>
+        <img src="https://images.pexels.com/photos/2711959/pexels-photo-2711959.jpeg?auto=compress&cs=tinysrgb&w=800&h=600&fit=crop" alt="Roasting coffee beans">
       </div>
 
-      <div class="section-inner promise-list" aria-label="Bean to Bag standards">
-        <article class="promise-item reveal">
-          <span>01 / Sourcing</span>
+      <div class="promise-grid">
+        <div class="promise-card">
+          <span>01 / SOURCING</span>
           <h3>Highland smallholders</h3>
           <p>Coffee grows slowly under shade, volcanic soil, and cool mountain air, giving the cup its clean acidity and layered aromatics.</p>
-        </article>
-        <article class="promise-item reveal">
-          <span>02 / Roasting</span>
+        </div>
+        <div class="promise-card">
+          <span>02 / ROASTING</span>
           <h3>Medium-dark discipline</h3>
           <p>Roasting is developed for chocolate body and caramel depth without burying the floral character Ethiopia is known for.</p>
-        </article>
-        <article class="promise-item reveal">
-          <span>03 / Packing</span>
+        </div>
+        <div class="promise-card">
+          <span>03 / PACKING</span>
           <h3>Freshness with proof</h3>
-          <p>Every bag can carry roast date, batch identity, grind choice, and a one-way valve to protect aroma after degassing.</p>
-        </article>
+          <p>Every bag carries roast date, batch identity, grind choice, and a one-way valve to protect aroma after degassing.</p>
+        </div>
       </div>
     </section>
 
-    <section class="section section-dark origin" id="origin" aria-labelledby="originTitle">
-      <div class="section-inner origin-grid">
-        <div class="origin-copy">
-          <p class="section-eyebrow reveal">Origin With Memory</p>
-          <h2 class="section-title reveal" id="originTitle">From cool highlands to a cup with <em>clarity</em>.</h2>
-          <p class="section-copy reveal">Our Ethiopian lots are selected for altitude, harvest care, and expressive sensory profile. The result is coffee that feels vivid but grounded: floral on the nose, sweet through the middle, and smooth at the finish.</p>
-
-          <div class="origin-notes" aria-label="Origin notes">
-            <div class="origin-note reveal">
+    <!-- Origin Section -->
+    <section id="origin" class="section dark-bg">
+      <div class="origin-grid">
+        <div>
+          <p style="color: #e8bc6a; font-size: 0.7rem; font-weight: 800; letter-spacing: 3px; margin-bottom: 1rem;">ORIGIN WITH MEMORY</p>
+          <h2 class="section-title">From cool highlands to a cup with <em>clarity</em>.</h2>
+          <p style="line-height: 1.8; opacity: 0.7;">Our Ethiopian lots are selected for altitude, harvest care, and expressive sensory profile. The result is coffee that feels vivid but grounded: floral on the nose, sweet through the middle, and smooth at the finish.</p>
+          <div class="origin-notes">
+            <div class="origin-note">
               <strong>1,900-2,200 m</strong>
-              <p>Slow cherry maturation encourages sweetness, elegant acidity, and a denser green bean structure that responds beautifully to careful roasting.</p>
+              <p>Slow cherry maturation encourages sweetness, elegant acidity, and a denser green bean structure.</p>
             </div>
-            <div class="origin-note reveal">
+            <div class="origin-note">
               <strong>100% Arabica</strong>
-              <p>Selected for balance and aromatic lift, then roasted to preserve origin character while adding cocoa, toasted sugar, and rounded body.</p>
+              <p>Selected for balance and aromatic lift, then roasted to preserve origin character.</p>
             </div>
-            <div class="origin-note reveal">
+            <div class="origin-note">
               <strong>Traceable lots</strong>
-              <p>Batch details help customers connect the finished bag to region, process, roast date, and the people behind the harvest.</p>
+              <p>Batch details help customers connect the finished bag to region, process, and harvest date.</p>
             </div>
           </div>
         </div>
-
-        <div class="origin-lines reveal" aria-hidden="true">
-          <svg class="topography" viewBox="0 0 600 720" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <path d="M55 100C160 20 275 22 380 94C504 179 493 324 410 392C332 456 205 452 151 369C95 284 168 205 270 230C376 257 401 362 331 431C251 510 103 503 54 606" stroke="#e8bc6a" stroke-width="1"/>
-            <path d="M92 133C185 67 275 70 359 126C458 193 449 302 383 357C318 411 219 407 176 340C131 271 191 210 272 230C354 249 375 332 318 390C252 457 132 452 94 583" stroke="#e8bc6a" stroke-width="1"/>
-            <path d="M132 171C207 124 279 127 343 168C418 216 410 292 361 333C310 376 235 371 204 320C172 268 219 224 276 239C333 254 350 312 309 354C260 405 170 400 143 558" stroke="#e8bc6a" stroke-width="1"/>
-            <path d="M170 209C226 178 279 180 326 210C378 244 372 293 337 322C299 354 246 348 226 312C206 277 238 249 278 258C316 267 329 306 300 335C265 370 204 367 190 523" stroke="#e8bc6a" stroke-width="1"/>
-            <path d="M210 250C247 232 281 233 311 252C342 272 339 300 317 317C292 337 259 333 247 309C236 288 255 273 280 278C303 283 310 305 292 323C271 344 237 342 232 480" stroke="#e8bc6a" stroke-width="1"/>
-          </svg>
-          <figure class="origin-photo">
-            <img src="ethiopia-coffee.jpg" alt="High altitude coffee forest in Ethiopia with ripening cherries">
-          </figure>
-        </div>
+        <img src="https://images.pexels.com/photos/29639314/pexels-photo-29639314.jpeg?auto=compress&cs=tinysrgb&w=800&h=600&fit=crop" alt="Coffee cherries in Ethiopia" style="border-radius: 24px;">
       </div>
     </section>
 
-    <section class="section process" id="process" aria-labelledby="processTitle">
-      <div class="section-inner process-head">
-        <div>
-          <p class="section-eyebrow reveal">From Cherry To Cup</p>
-          <h2 class="section-title reveal" id="processTitle">A process you can <em>taste</em>.</h2>
-        </div>
-        <p class="section-copy reveal">The strongest design choice in coffee is restraint. Each step protects what the farm created instead of covering it up later.</p>
+    <!-- Process Section -->
+    <section id="process" class="section cream-bg">
+      <div style="text-align: center; max-width: 800px; margin: 0 auto 3rem;">
+        <p style="color: #b56c38; font-size: 0.7rem; font-weight: 800; letter-spacing: 3px; margin-bottom: 1rem;">FROM CHERRY TO CUP</p>
+        <h2 class="section-title">A process you can <em>taste</em>.</h2>
+        <p style="opacity: 0.7;">The strongest design choice in coffee is restraint. Each step protects what the farm created instead of covering it up later.</p>
       </div>
-
-      <div class="section-inner process-path" aria-label="Coffee production process">
-        <article class="process-step reveal" data-step="01">
+      <div class="process-grid">
+        <div class="process-step" data-step="01">
           <h3>Selective harvest</h3>
-          <p>Only ripe cherries are picked, reducing harshness and improving sweetness in the final cup.</p>
-        </article>
-        <article class="process-step reveal" data-step="02">
+          <p>Only ripe cherries are picked, reducing harshness and improving sweetness.</p>
+        </div>
+        <div class="process-step" data-step="02">
           <h3>Washed clarity</h3>
-          <p>Careful fermentation and washing highlight floral aroma, citrus brightness, and a clean finish.</p>
-        </article>
-        <article class="process-step reveal" data-step="03">
+          <p>Careful fermentation highlights floral aroma, citrus brightness.</p>
+        </div>
+        <div class="process-step" data-step="03">
           <h3>Raised bed drying</h3>
-          <p>Slow drying supports stable moisture and lets the green coffee arrive ready for precise roasting.</p>
-        </article>
-        <article class="process-step reveal" data-step="04">
+          <p>Slow drying supports stable moisture and precise roasting.</p>
+        </div>
+        <div class="process-step" data-step="04">
           <h3>Small-batch roast</h3>
-          <p>Curves are tuned for balance: developed body, sweet aromatics, and no flat burnt finish.</p>
-        </article>
-        <article class="process-step reveal" data-step="05">
+          <p>Curves tuned for balance: developed body, sweet aromatics.</p>
+        </div>
+        <div class="process-step" data-step="05">
           <h3>Sealed fresh</h3>
-          <p>Valve bags, batch information, and grind options keep the coffee expressive after roasting.</p>
-        </article>
+          <p>Valve bags and batch information keep coffee expressive.</p>
+        </div>
       </div>
     </section>
 
-    <section class="section roast" id="collection" aria-labelledby="collectionTitle">
-      <div class="section-inner roast-grid">
-        <div class="bag-stage reveal" aria-label="Animated Bean to Bag coffee bag mockup">
-          <div class="steam" aria-hidden="true"><span></span><span></span><span></span></div>
-          <div class="coffee-bag" id="coffeeBag">
-            <div class="valve" aria-hidden="true"></div>
+    <!-- Coffee Section -->
+    <section id="coffee" class="section dark-bg">
+      <div class="coffee-grid">
+        <div class="coffee-bag-mockup">
+          <div class="coffee-bag">
+            <div class="valve"></div>
             <div class="bag-label">
               <div>
-                <small>Bean to Bag</small>
-                <h3 id="bagName">House Blend</h3>
+                <small>BEAN TO BAG</small>
+                <h3>House Blend</h3>
               </div>
-              <div class="bag-meta">
-                <span id="bagRoast">Medium-dark roast</span>
-                <span id="bagSize">250 g / 500 g / 1 kg</span>
-                <span id="bagOrigin">Ethiopian Arabica</span>
+              <div>
+                <p style="font-size: 0.7rem; color: #1b110b;">Medium-dark roast</p>
+                <p style="font-size: 0.7rem; color: #1b110b;">Ethiopian Arabica</p>
               </div>
             </div>
           </div>
         </div>
-
-        <div class="roast-panel reveal">
-          <p class="section-eyebrow">Choose Your Roast</p>
-          <h2 class="section-title" id="collectionTitle">Coffee that adapts to your <em>ritual</em>.</h2>
-          <p class="section-copy">Select a profile and watch the bag, tasting notes, and cup balance respond. This section is built like a mini coffee counter for your homepage.</p>
-
-          <div class="product-tabs" role="tablist" aria-label="Coffee profiles">
-            <button class="product-tab is-active" type="button" role="tab" aria-selected="true" data-product="house">
-              <span>House Blend</span><span>Everyday</span>
-            </button>
-            <button class="product-tab" type="button" role="tab" aria-selected="false" data-product="forest">
-              <span>Forest Origin</span><span>Filter</span>
-            </button>
-            <button class="product-tab" type="button" role="tab" aria-selected="false" data-product="espresso">
-              <span>Espresso Roast</span><span>Crema</span>
-            </button>
-          </div>
-
-          <div class="product-detail" aria-live="polite">
-            <h3 id="productName">House Blend</h3>
-            <p id="productCopy">A balanced medium-dark Ethiopian roast designed for chocolate body, soft citrus, and a clean finish across espresso, moka pot, and milk drinks.</p>
-            <ul class="taste-list" id="tasteList">
-              <li>Cocoa</li>
-              <li>Caramel</li>
-              <li>Orange Peel</li>
-            </ul>
-            <div class="profile-bars" aria-label="Flavor profile">
-              <div class="profile-row"><span>Acidity</span><div class="profile-track"><div class="profile-fill" data-profile="acidity"></div></div><b id="acidityValue">68</b></div>
-              <div class="profile-row"><span>Body</span><div class="profile-track"><div class="profile-fill" data-profile="body"></div></div><b id="bodyValue">86</b></div>
-              <div class="profile-row"><span>Sweet</span><div class="profile-track"><div class="profile-fill" data-profile="sweetness"></div></div><b id="sweetnessValue">82</b></div>
-            </div>
-            <a class="btn btn-primary" href="#contact">Request Wholesale Or Retail</a>
-          </div>
-        </div>
-      </div>
-
-      <div class="section-inner origin-strip" aria-label="Packaging details">
-        <div class="reveal"><strong>250 g</strong><span>Premium retail pack for home brewers who want freshness without waste.</span></div>
-        <div class="reveal"><strong>500 g</strong><span>Best for regular drinkers, offices, cafes testing a new Ethiopian profile, and gifting.</span></div>
-        <div class="reveal"><strong>1 kg</strong><span>Wholesale-ready format for consistent demand, custom grind, and scheduled roasting.</span></div>
-      </div>
-    </section>
-
-    <section class="section ritual" aria-labelledby="ritualTitle">
-      <div class="ritual-bg" aria-hidden="true"></div>
-      <div class="section-inner ritual-content">
-        <p class="section-eyebrow reveal">Freshness Is A Feeling</p>
-        <h2 class="ritual-title reveal" id="ritualTitle">Open the bag. Let Ethiopia enter the room.</h2>
-        <p class="ritual-copy reveal">The aroma should arrive first: warm cocoa, light florals, toasted sugar, and the quiet confidence of coffee that has moved through every step with intention.</p>
-      </div>
-    </section>
-
-    <section class="section contact" id="contact" aria-labelledby="contactTitle">
-      <div class="section-inner contact-grid">
         <div>
-          <p class="section-eyebrow reveal">Bring Bean To Bag To Your Shelf</p>
-          <h2 class="section-title reveal" id="contactTitle">Retail, wholesale, gifts, and custom roast orders.</h2>
-          <p class="section-copy reveal">Use this homepage as your GitHub-ready launch page. Replace the contact links with your real channels and start taking orders.</p>
+          <p style="color: #e8bc6a; font-size: 0.7rem; font-weight: 800; letter-spacing: 3px; margin-bottom: 1rem;">CHOOSE YOUR ROAST</p>
+          <h2 class="section-title">Coffee that adapts to your <em>ritual</em>.</h2>
+          <p style="line-height: 1.8; opacity: 0.7; margin-bottom: 2rem;">Select a profile that matches your brewing style — from bright filter roasts to full-bodied espresso blends.</p>
+          <div style="display: flex; gap: 1rem; flex-wrap: wrap; margin-bottom: 2rem;">
+            <span style="padding: 8px 20px; border-radius: 50px; background: rgba(232,188,106,0.1); border: 1px solid rgba(232,188,106,0.3);">House Blend</span>
+            <span style="padding: 8px 20px; border-radius: 50px; background: rgba(232,188,106,0.05); border: 1px solid rgba(232,188,106,0.15);">Forest Origin</span>
+            <span style="padding: 8px 20px; border-radius: 50px; background: rgba(232,188,106,0.05); border: 1px solid rgba(232,188,106,0.15);">Espresso Roast</span>
+          </div>
+          <a href="#contact" class="btn btn-primary">Request Wholesale →</a>
         </div>
+      </div>
+    </section>
 
-        <div class="contact-actions reveal" aria-label="Contact actions">
-          <a class="contact-link" href="https://wa.me/251911234567" target="_blank" rel="noopener">
-            <strong>WhatsApp</strong><span>Fast orders</span>
-          </a>
-          <a class="contact-link" href="mailto:hello@beantobag.coffee">
-            <strong>Email</strong><span>Wholesale</span>
-          </a>
-          <a class="contact-link" href="https://t.me/beantobag" target="_blank" rel="noopener">
-            <strong>Telegram</strong><span>Updates</span>
-          </a>
+    <!-- Ritual Section -->
+    <section class="section cream-bg" style="text-align: center;">
+      <div style="max-width: 800px; margin: 0 auto;">
+        <p style="color: #b56c38; font-size: 0.7rem; font-weight: 800; letter-spacing: 3px; margin-bottom: 1rem;">FRESHNESS IS A FEELING</p>
+        <h2 class="section-title">Open the bag. Let Ethiopia <em>enter the room</em>.</h2>
+        <p style="line-height: 1.8; opacity: 0.7;">The aroma should arrive first: warm cocoa, light florals, toasted sugar, and the quiet confidence of coffee that has moved through every step with intention.</p>
+      </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="section dark-bg">
+      <div style="text-align: center; max-width: 800px; margin: 0 auto;">
+        <p style="color: #e8bc6a; font-size: 0.7rem; font-weight: 800; letter-spacing: 3px; margin-bottom: 1rem;">BRING BEAN TO BAG TO YOUR SHELF</p>
+        <h2 class="section-title">Retail, wholesale, gifts, and <em>custom roast orders</em>.</h2>
+        <p style="line-height: 1.8; opacity: 0.7; margin-bottom: 2rem;">Contact us to start your journey with Ethiopia's finest specialty coffee.</p>
+        <div style="display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap;">
+          <a href="https://wa.me/251911234567" class="btn btn-primary">WhatsApp</a>
+          <a href="mailto:hello@beantobag.coffee" class="btn btn-outline">Email</a>
+          <a href="https://t.me/beantobag" class="btn btn-outline">Telegram</a>
         </div>
       </div>
     </section>
   </main>
 
   <footer class="footer">
-    <div class="footer-inner">
-      <strong>Bean to Bag</strong>
-      <span>(c) 2025 Bean to Bag Coffee. Ethiopian specialty Arabica, freshly roasted in small batches.</span>
-      <div class="socials" aria-label="Social links">
-        <a href="#contact">Instagram</a>
-        <a href="#contact">Facebook</a>
-        <a href="#contact">Telegram</a>
-      </div>
-    </div>
+    <p>© 2025 Bean to Bag Coffee — Ethiopian specialty Arabica, freshly roasted in small batches.</p>
   </footer>
 
-  <div class="float-actions" aria-label="Quick contact links">
-    <a href="https://wa.me/251911234567" target="_blank" rel="noopener" aria-label="Contact on WhatsApp">W</a>
-    <a href="https://t.me/beantobag" target="_blank" rel="noopener" aria-label="Contact on Telegram">T</a>
-  </div>
-
   <script>
-    const style = document.createElement('style');
-    style.textContent = ` 
-      .about-moments {
-        position: relative;
-        display: inline-block;
-        cursor: pointer;
+    // Header scroll effect
+    const header = document.getElementById('header');
+    window.addEventListener('scroll', () => {
+      if (window.scrollY > 50) {
+        header.classList.add('scrolled');
+      } else {
+        header.classList.remove('scrolled');
       }
-      .about-moments::after {
-        content: "☕";
-        font-size: 2rem;
-        position: absolute;
-        right: -2rem;
-        top: -1rem;
-        opacity: 0.6;
-        transition: 0.3s;
-      }
-      .about-moments:hover::after {
-        content: url('about-coffee.jpg');
-        width: 180px;
-        position: absolute;
-        right: -80px;
-        top: -90px;
-        border-radius: 28px;
-        box-shadow: 0 20px 40px rgba(0,0,0,0.3);
-        border: 2px solid var(--gold);
-        background: #0c0704;
-        padding: 8px;
-        z-index: 20;
-        opacity: 1;
-      }
-      .story-quote:after {
-        content: '';
-        background: url('about-coffee.jpg') center/cover no-repeat;
-        width: 70px;
-        height: 70px;
-        position: absolute;
-        right: 10px;
-        bottom: -30px;
-        opacity: 0.5;
-        border-radius: 50%;
-        pointer-events: none;
-      }
-      @media (max-width: 860px) {
-        .story-quote:after { display: none; }
-      }
-    `;
-    document.head.appendChild(style);
-    document.querySelector('.brand').classList.add('about-moments');
-    
-    const loader = document.getElementById("loader");
-    const header = document.getElementById("siteHeader");
-    const menuButton = document.getElementById("menuButton");
-    const mobileMenu = document.getElementById("mobileMenu");
-    const heroMedia = document.getElementById("heroMedia");
-    const cursorGlow = document.getElementById("cursorGlow");
-
-    window.addEventListener("load", () => {
-      window.setTimeout(() => loader.classList.add("is-hidden"), 650);
-      initialiseProfileBars();
     });
-
-    const setHeaderState = () => {
-      header.classList.toggle("is-scrolled", window.scrollY > 30);
-    };
-
-    setHeaderState();
-    window.addEventListener("scroll", setHeaderState, { passive: true });
-
-    const closeMenu = () => {
-      menuButton.setAttribute("aria-expanded", "false");
-      mobileMenu.classList.remove("is-open");
-      mobileMenu.setAttribute("aria-hidden", "true");
-      document.body.classList.remove("menu-open");
-    };
-
-    menuButton.addEventListener("click", () => {
-      const isOpen = menuButton.getAttribute("aria-expanded") === "true";
-      menuButton.setAttribute("aria-expanded", String(!isOpen));
-      mobileMenu.classList.toggle("is-open", !isOpen);
-      mobileMenu.setAttribute("aria-hidden", String(isOpen));
-      document.body.classList.toggle("menu-open", !isOpen);
-    });
-
-    mobileMenu.querySelectorAll("a").forEach((link) => {
-      link.addEventListener("click", closeMenu);
-    });
-
-    const revealObserver = new IntersectionObserver((entries) => {
-      entries.forEach((entry) => {
-        if (entry.isIntersecting) {
-          entry.target.classList.add("is-visible");
-          revealObserver.unobserve(entry.target);
-        }
-      });
-    }, { threshold: 0.14, rootMargin: "0px 0px -8% 0px" });
-
-    document.querySelectorAll(".reveal").forEach((element, index) => {
-      element.style.transitionDelay = `${Math.min(index % 5, 4) * 70}ms`;
-      revealObserver.observe(element);
-    });
-
-    const navLinks = document.querySelectorAll(".desktop-nav a");
-    const navSections = [...navLinks].map((link) => document.querySelector(link.getAttribute("href"))).filter(Boolean);
-
-    const activeObserver = new IntersectionObserver((entries) => {
-      entries.forEach((entry) => {
-        if (entry.isIntersecting) {
-          navLinks.forEach((link) => {
-            link.classList.toggle("is-active", link.getAttribute("href") === `#${entry.target.id}`);
-          });
-        }
-      });
-    }, { threshold: 0.45 });
-
-    navSections.forEach((section) => activeObserver.observe(section));
-
-    let ticking = false;
-    const parallaxHero = () => {
-      const offset = Math.min(window.scrollY * 0.12, 90);
-      heroMedia.style.transform = `translate3d(0, ${offset}px, 0) scale(1.04)`;
-      ticking = false;
-    };
-
-    window.addEventListener("scroll", () => {
-      if (!ticking && window.matchMedia("(prefers-reduced-motion: no-preference)").matches) {
-        window.requestAnimationFrame(parallaxHero);
-        ticking = true;
-      }
-    }, { passive: true });
-
-    window.addEventListener("pointermove", (event) => {
-      cursorGlow.style.opacity = "1";
-      cursorGlow.style.transform = `translate3d(${event.clientX}px, ${event.clientY}px, 0) translate(-50%, -50%)`;
-    }, { passive: true });
-
-    const products = {
-      house: {
-        name: "House Blend",
-        copy: "A balanced medium-dark Ethiopian roast designed for chocolate body, soft citrus, and a clean finish across espresso, moka pot, and milk drinks.",
-        notes: ["Cocoa", "Caramel", "Orange Peel"],
-        roast: "Medium-dark roast",
-        size: "250 g / 500 g / 1 kg",
-        origin: "Ethiopian Arabica",
-        colors: ["#f2d9a9", "#b97242", "#5a2e19"],
-        profile: { acidity: 68, body: 86, sweetness: 82 }
-      },
-      forest: {
-        name: "Forest Origin",
-        copy: "A brighter single-origin expression for pour-over and batch brew: jasmine lift, honeyed sweetness, gentle berry, and tea-like clarity.",
-        notes: ["Jasmine", "Honey", "Red Berry"],
-        roast: "Medium roast",
-        size: "Whole bean preferred",
-        origin: "Highland forest lot",
-        colors: ["#efe2b8", "#8f7f3e", "#293219"],
-        profile: { acidity: 84, body: 67, sweetness: 88 }
-      },
-      espresso: {
-        name: "Espresso Roast",
-        copy: "A deeper roast for dense crema, syrupy body, dark chocolate, toasted almond, and a sweet finish that holds its shape in milk.",
-        notes: ["Dark Chocolate", "Almond", "Molasses"],
-        roast: "Full medium-dark roast",
-        size: "Cafe and retail packs",
-        origin: "Ethiopian espresso lot",
-        colors: ["#c7834f", "#683119", "#1b0b05"],
-        profile: { acidity: 54, body: 92, sweetness: 76 }
-      }
-    };
-
-    const productName = document.getElementById("productName");
-    const productCopy = document.getElementById("productCopy");
-    const tasteList = document.getElementById("tasteList");
-    const bagName = document.getElementById("bagName");
-    const bagRoast = document.getElementById("bagRoast");
-    const bagSize = document.getElementById("bagSize");
-    const bagOrigin = document.getElementById("bagOrigin");
-    const coffeeBag = document.getElementById("coffeeBag");
-
-    function setProduct(key) {
-      const product = products[key];
-      productName.textContent = product.name;
-      productCopy.textContent = product.copy;
-      bagName.textContent = product.name;
-      bagRoast.textContent = product.roast;
-      bagSize.textContent = product.size;
-      bagOrigin.textContent = product.origin;
-      coffeeBag.style.background = `linear-gradient(110deg, transparent 0 18%, rgba(255, 255, 255, 0.28) 20%, transparent 27%), linear-gradient(160deg, ${product.colors[0]}, ${product.colors[1]} 48%, ${product.colors[2]} 100%)`;
-
-      tasteList.innerHTML = product.notes.map((note) => `<li>${note}</li>`).join("");
-
-      Object.entries(product.profile).forEach(([name, value]) => {
-        document.querySelector(`[data-profile="${name}"]`).style.width = `${value}%`;
-        document.getElementById(`${name}Value`).textContent = value;
-      });
-
-      document.querySelectorAll(".product-tab").forEach((button) => {
-        const isActive = button.dataset.product === key;
-        button.classList.toggle("is-active", isActive);
-        button.setAttribute("aria-selected", String(isActive));
-      });
-    }
-
-    document.querySelectorAll(".product-tab").forEach((button) => {
-      button.addEventListener("click", () => setProduct(button.dataset.product));
-    });
-
-    function initialiseProfileBars() {
-      setProduct("house");
-    }
-
-    const canvas = document.getElementById("beanCanvas");
-    const context = canvas.getContext("2d");
-    let beans = [];
-    let canvasWidth = 0;
-    let canvasHeight = 0;
-
-    function resizeCanvas() {
-      const ratio = Math.min(window.devicePixelRatio || 1, 2);
-      canvasWidth = canvas.offsetWidth;
-      canvasHeight = canvas.offsetHeight;
-      canvas.width = Math.floor(canvasWidth * ratio);
-      canvas.height = Math.floor(canvasHeight * ratio);
-      context.setTransform(ratio, 0, 0, ratio, 0, 0);
-      beans = Array.from({ length: Math.round(Math.min(46, Math.max(20, canvasWidth / 34))) }, () => ({
-        x: Math.random() * canvasWidth,
-        y: Math.random() * canvasHeight,
-        r: 2 + Math.random() * 4,
-        speed: 0.12 + Math.random() * 0.42,
-        drift: -0.18 + Math.random() * 0.36,
-        spin: Math.random() * Math.PI
-      }));
-    }
-
-    function drawBeans() {
-      context.clearRect(0, 0, canvasWidth, canvasHeight);
-      context.save();
-      beans.forEach((bean) => {
-        bean.y -= bean.speed;
-        bean.x += bean.drift;
-        bean.spin += 0.004;
-
-        if (bean.y < -20) {
-          bean.y = canvasHeight + 20;
-          bean.x = Math.random() * canvasWidth;
-        }
-
-        if (bean.x < -20) bean.x = canvasWidth + 20;
-        if (bean.x > canvasWidth + 20) bean.x = -20;
-
-        context.save();
-        context.translate(bean.x, bean.y);
-        context.rotate(bean.spin);
-        context.scale(0.72, 1.22);
-        context.beginPath();
-        context.ellipse(0, 0, bean.r, bean.r * 1.7, 0, 0, Math.PI * 2);
-        context.fillStyle = "rgba(232, 188, 106, 0.34)";
-        context.fill();
-        context.beginPath();
-        context.moveTo(0, -bean.r * 1.25);
-        context.quadraticCurveTo(bean.r * 0.8, 0, 0, bean.r * 1.25);
-        context.strokeStyle = "rgba(22, 10, 5, 0.34)";
-        context.lineWidth = 0.7;
-        context.stroke();
-        context.restore();
-      });
-      context.restore();
-
-      if (window.matchMedia("(prefers-reduced-motion: no-preference)").matches) {
-        window.requestAnimationFrame(drawBeans);
-      }
-    }
-
-    resizeCanvas();
-    drawBeans();
-    window.addEventListener("resize", resizeCanvas);
   </script>
 </body>
 </html>
