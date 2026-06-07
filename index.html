@@ -21,7 +21,6 @@
       --accent-dark: #8b4e1f;
       --text-dark: #2c2c2c;
       --text-light: #6b6b6b;
-      --gold: #d4a373;
       --shadow-sm: 0 10px 30px rgba(0, 0, 0, 0.05);
       --shadow-md: 0 20px 40px rgba(0, 0, 0, 0.08);
       --shadow-lg: 0 30px 60px rgba(0, 0, 0, 0.1);
@@ -59,16 +58,15 @@
       right: 0;
       z-index: 1000;
       padding: 20px 24px;
-      background: rgba(255, 255, 255, 0.98);
+      background: rgba(0, 0, 0, 0.6);
       backdrop-filter: blur(10px);
       transition: all 0.3s ease;
-      border-bottom: 1px solid rgba(0, 0, 0, 0.05);
-      box-shadow: 0 2px 20px rgba(0, 0, 0, 0.02);
+      border-bottom: 1px solid rgba(255, 255, 255, 0.1);
     }
 
     .site-header.scrolled {
+      background: rgba(0, 0, 0, 0.85);
       padding: 12px 24px;
-      box-shadow: 0 5px 30px rgba(0, 0, 0, 0.08);
     }
 
     .nav-wrap {
@@ -107,13 +105,13 @@
     .brand-name strong {
       font-family: 'Playfair Display', serif;
       font-size: 1.2rem;
-      color: var(--dark);
+      color: white;
     }
 
     .brand-name span {
       font-size: 0.6rem;
       letter-spacing: 0.2em;
-      color: var(--accent);
+      color: var(--accent-light);
     }
 
     .desktop-nav {
@@ -127,19 +125,19 @@
       letter-spacing: 0.1em;
       text-transform: uppercase;
       transition: color 0.2s;
-      color: var(--text-dark);
+      color: rgba(255, 255, 255, 0.9);
     }
 
     .desktop-nav a:hover,
     .desktop-nav a.active {
-      color: var(--accent);
+      color: var(--accent-light);
     }
 
     .menu-button {
       display: none;
       width: 44px;
       height: 44px;
-      border: 1px solid rgba(0, 0, 0, 0.1);
+      border: 1px solid rgba(255, 255, 255, 0.3);
       border-radius: 50%;
       background: transparent;
       flex-direction: column;
@@ -152,7 +150,7 @@
     .menu-button span {
       width: 20px;
       height: 2px;
-      background: var(--dark);
+      background: white;
       display: block;
     }
 
@@ -162,7 +160,7 @@
       left: 0;
       right: 0;
       bottom: 0;
-      background: rgba(255, 255, 255, 0.98);
+      background: rgba(0, 0, 0, 0.95);
       backdrop-filter: blur(20px);
       z-index: 999;
       display: flex;
@@ -181,7 +179,7 @@
     .mobile-menu a {
       font-family: 'Playfair Display', serif;
       font-size: 2rem;
-      color: var(--dark);
+      color: white;
     }
 
     .close-menu {
@@ -191,7 +189,7 @@
       font-size: 2rem;
       background: none;
       border: none;
-      color: var(--dark);
+      color: white;
       cursor: pointer;
     }
 
@@ -215,12 +213,12 @@
     .btn-primary {
       background: linear-gradient(135deg, var(--accent-light), var(--accent));
       color: white;
-      box-shadow: 0 10px 25px rgba(196, 122, 58, 0.25);
+      box-shadow: 0 10px 25px rgba(196, 122, 58, 0.3);
     }
 
     .btn-primary:hover {
       transform: translateY(-3px);
-      box-shadow: 0 15px 35px rgba(196, 122, 58, 0.35);
+      box-shadow: 0 15px 35px rgba(196, 122, 58, 0.4);
     }
 
     .btn-outline {
@@ -235,26 +233,71 @@
       transform: translateY(-3px);
     }
 
-    /* Hero Section */
-    .hero {
-      min-height: 90vh;
-      display: flex;
-      align-items: center;
-      background: linear-gradient(135deg, #faf8f5, #f5f0ea);
+    /* Hero Section with Video Background - Full Width Video */
+    .hero-video-section {
       position: relative;
-      margin-top: 80px;
+      width: 100%;
+      height: 100vh;
+      overflow: hidden;
     }
 
-    .hero h1 {
+    .hero-video {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      z-index: 0;
+    }
+
+    .hero-overlay {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(135deg, rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.3));
+      z-index: 1;
+    }
+
+    /* Hero Content - Below the Video */
+    .hero-content-section {
+      background: linear-gradient(135deg, #faf8f5, #f5f0ea);
+      padding: 80px 0;
+      text-align: center;
+    }
+
+    .hero-content-section .tag {
+      color: var(--accent);
+      letter-spacing: 0.2em;
+      font-size: 0.8rem;
+      font-weight: 600;
+      margin-bottom: 1rem;
+      display: inline-block;
+    }
+
+    .hero-content-section h1 {
       font-family: 'Playfair Display', serif;
-      font-size: clamp(3rem, 8vw, 5.5rem);
-      line-height: 1.1;
-      margin-bottom: 1.5rem;
+      font-size: clamp(2.5rem, 6vw, 4.5rem);
+      line-height: 1.2;
+      margin-bottom: 1rem;
       color: var(--dark);
     }
 
-    .hero p {
+    .hero-content-section p {
+      font-size: 1.1rem;
+      line-height: 1.6;
+      margin: 1.5rem auto;
       color: var(--text-light);
+      max-width: 600px;
+    }
+
+    .hero-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 18px;
+      justify-content: center;
     }
 
     /* Section Styles */
@@ -277,7 +320,7 @@
       margin-bottom: 2rem;
     }
 
-    /* Alternating Image Layout - SPECTACULAR */
+    /* Alternating Image Layout */
     .alternating-grid {
       display: flex;
       flex-direction: column;
@@ -323,23 +366,6 @@
       transform: scale(1.06);
     }
 
-    .image-wrapper::after {
-      content: "";
-      position: absolute;
-      bottom: 0;
-      left: 0;
-      right: 0;
-      height: 60%;
-      background: linear-gradient(to top, rgba(0, 0, 0, 0.15), transparent);
-      pointer-events: none;
-      opacity: 0;
-      transition: opacity 0.4s;
-    }
-
-    .image-wrapper:hover::after {
-      opacity: 1;
-    }
-
     .content h3 {
       font-family: 'Playfair Display', serif;
       font-size: 2.2rem;
@@ -367,7 +393,7 @@
       font-size: 1.05rem;
     }
 
-    /* Cafe Section - SPECTACULAR */
+    /* Cafe Section */
     .cafe-section {
       background: linear-gradient(135deg, #faf8f5, #f5f0ea);
       position: relative;
@@ -656,9 +682,8 @@
       .container {
         padding: 0 20px;
       }
-      .hero {
-        margin-top: 70px;
-        min-height: 70vh;
+      .hero-content-section {
+        padding: 50px 0;
       }
       .image-wrapper img {
         height: 280px;
@@ -687,6 +712,7 @@
       }
       .hero-actions {
         flex-direction: column;
+        align-items: center;
       }
       .team-highlight {
         gap: 15px;
@@ -730,20 +756,29 @@
 <a href="https://wa.me/251911234567" class="whatsapp-float" target="_blank">W</a>
 
 <main>
-  <!-- Hero Section -->
-  <section class="hero">
+  <!-- Full Width Video Section (No Text Overlay) -->
+  <div class="hero-video-section">
+    <video class="hero-video" autoplay muted loop playsinline id="heroVideo">
+      <source src="Bean.mp4" type="video/mp4">
+      Your browser does not support the video tag.
+    </video>
+    <div class="hero-overlay"></div>
+  </div>
+
+  <!-- Hero Content Section (Below the Video) -->
+  <div class="hero-content-section">
     <div class="container">
-      <span style="color: var(--accent); letter-spacing: 0.2em; font-size: 0.8rem; font-weight: 600;">Bean to Bag</span>
+      <span class="tag">Bean to Bag</span>
       <h1>From Bean to Bag —<br>Premium Ethiopian Coffee</h1>
-      <p style="font-size: 1.2rem; max-width: 550px; margin: 1.5rem 0; line-height: 1.6;">Carefully sourced Ethiopian Arabica coffee roasted to a balanced medium-dark profile for a rich and smooth cup.</p>
-      <div style="display: flex; flex-wrap: wrap; gap: 18px;">
+      <p>Carefully sourced Ethiopian Arabica coffee roasted to a balanced medium-dark profile for a rich and smooth cup.</p>
+      <div class="hero-actions">
         <a href="#" class="btn btn-primary">Explore Coffee</a>
         <a href="#" class="btn btn-outline">Shop Coffee</a>
       </div>
     </div>
-  </section>
+  </div>
 
-  <!-- Alternating Image Gallery - SPECTACULAR LEFT/RIGHT LAYOUT -->
+  <!-- Alternating Image Gallery -->
   <section>
     <div class="container">
       <div style="text-align: center; margin-bottom: 70px;">
@@ -753,7 +788,6 @@
       </div>
 
       <div class="alternating-grid">
-        <!-- Item 1 - Image Left -->
         <div class="alternating-item">
           <div class="image-wrapper"><img src="10.JPG" alt="Ethiopian coffee farm"></div>
           <div class="content">
@@ -763,7 +797,6 @@
           </div>
         </div>
 
-        <!-- Item 2 - Image Right -->
         <div class="alternating-item reverse">
           <div class="image-wrapper"><img src="11.JPG" alt="Coffee cherry harvest"></div>
           <div class="content">
@@ -773,7 +806,6 @@
           </div>
         </div>
 
-        <!-- Item 3 - Image Left -->
         <div class="alternating-item">
           <div class="image-wrapper"><img src="12.JPG" alt="Coffee processing"></div>
           <div class="content">
@@ -783,7 +815,6 @@
           </div>
         </div>
 
-        <!-- Item 4 - Image Right -->
         <div class="alternating-item reverse">
           <div class="image-wrapper"><img src="13.JPG" alt="Small batch roasting"></div>
           <div class="content">
@@ -793,7 +824,6 @@
           </div>
         </div>
 
-        <!-- Item 5 - Image Left -->
         <div class="alternating-item">
           <div class="image-wrapper"><img src="14.JPG" alt="Premium packaging"></div>
           <div class="content">
@@ -818,7 +848,7 @@
     </div>
   </section>
 
-  <!-- OUR CAFE Section - SPECTACULAR -->
+  <!-- OUR CAFE Section -->
   <section class="cafe-section">
     <div class="container">
       <div class="cafe-grid">
@@ -838,7 +868,7 @@
     </div>
   </section>
 
-  <!-- Gallery Grid - USING 16.JPG, 17.JPG, 19.JPG -->
+  <!-- Gallery Grid -->
   <section>
     <div class="container">
       <div style="text-align: center; margin-bottom: 60px;">
@@ -907,6 +937,12 @@
   menuBtn.addEventListener('click', () => mobileMenu.classList.add('open'));
   closeMenu.addEventListener('click', () => mobileMenu.classList.remove('open'));
   document.querySelectorAll('.mobile-menu a').forEach(link => link.addEventListener('click', () => mobileMenu.classList.remove('open')));
+
+  // Ensure video plays on mobile
+  const video = document.getElementById('heroVideo');
+  if (video) {
+    video.play().catch(e => console.log('Video autoplay failed:', e));
+  }
 </script>
 
 </body>
