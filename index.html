@@ -3,29 +3,20 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover, user-scalable=yes">
-  <title>Bean to Bag | Ethiopian Specialty Coffee</title>
+  <meta name="description" content="Bean to Bag - Premium Ethiopian specialty coffee, freshly roasted and professionally packaged. From highland farms to your cup.">
+  <title>Bean to Bag | Premium Ethiopian Coffee</title>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Playfair+Display:ital,wght@0,500;0,600;0,700;0,800;0,900;1,600;1,700&display=swap" rel="stylesheet">
   <style>
     * { margin: 0; padding: 0; box-sizing: border-box; }
     :root {
-      --ink: #090604;
-      --cream: #fbf1df;
-      --clay: #b56c38;
-      --gold: #e8bc6a;
-      --white: #fffaf1;
-      --muted: rgba(255, 250, 241, 0.72);
+      --ink: #090604; --cream: #fbf1df; --clay: #b56c38; --gold: #e8bc6a;
+      --white: #fffaf1; --muted: rgba(255, 250, 241, 0.72);
     }
     body { font-family: 'Inter', system-ui, sans-serif; background: var(--ink); color: var(--white); overflow-x: hidden; }
     .container { max-width: 1400px; margin: 0 auto; padding: 0 24px; }
     img { max-width: 100%; height: auto; display: block; }
     a { text-decoration: none; color: inherit; }
-    
-    /* Header */
-    .site-header {
-      position: fixed; top: 0; left: 0; right: 0; z-index: 1000;
-      padding: 20px 24px; background: linear-gradient(to bottom, rgba(5,3,2,0.9), transparent);
-      transition: all 0.3s ease;
-    }
+    .site-header { position: fixed; top: 0; left: 0; right: 0; z-index: 1000; padding: 20px 24px; background: linear-gradient(to bottom, rgba(5,3,2,0.9), transparent); transition: all 0.3s ease; }
     .site-header.scrolled { background: rgba(8,5,3,0.95); backdrop-filter: blur(12px); padding: 12px 24px; border-bottom: 1px solid rgba(232,188,106,0.2); }
     .nav-wrap { display: flex; justify-content: space-between; align-items: center; max-width: 1400px; margin: 0 auto; }
     .brand { display: flex; align-items: center; gap: 12px; }
@@ -38,131 +29,56 @@
     .desktop-nav a:hover, .desktop-nav a.active { color: var(--gold); }
     .menu-button { display: none; width: 44px; height: 44px; border: 1px solid rgba(255,250,241,0.2); border-radius: 50%; background: rgba(255,250,241,0.05); flex-direction: column; align-items: center; justify-content: center; gap: 5px; cursor: pointer; }
     .menu-button span { width: 20px; height: 2px; background: white; display: block; }
-    .mobile-menu {
-      position: fixed; top: 0; left: 0; right: 0; bottom: 0; background: rgba(5,3,2,0.98); backdrop-filter: blur(20px);
-      z-index: 999; display: flex; flex-direction: column; justify-content: center; align-items: center; gap: 30px;
-      transform: translateX(100%); transition: transform 0.3s ease;
-    }
+    .mobile-menu { position: fixed; top: 0; left: 0; right: 0; bottom: 0; background: rgba(5,3,2,0.98); backdrop-filter: blur(20px); z-index: 999; display: flex; flex-direction: column; justify-content: center; align-items: center; gap: 30px; transform: translateX(100%); transition: transform 0.3s ease; }
     .mobile-menu.open { transform: translateX(0); }
     .mobile-menu a { font-family: 'Playfair Display', serif; font-size: 2rem; color: var(--cream); }
     .close-menu { position: absolute; top: 24px; right: 24px; font-size: 2rem; background: none; border: none; color: white; cursor: pointer; }
-    
-    /* Buttons */
-    .btn { display: inline-flex; align-items: center; justify-content: center; gap: 12px; padding: 12px 28px; border-radius: 999px; font-weight: 700; font-size: 0.85rem; letter-spacing: 0.1em; text-transform: uppercase; transition: all 0.3s; cursor: pointer; border: 1px solid transparent; }
+    .btn { display: inline-flex; align-items: center; justify-content: center; gap: 12px; padding: 12px 32px; border-radius: 999px; font-weight: 700; font-size: 0.85rem; letter-spacing: 0.1em; text-transform: uppercase; transition: all 0.3s; cursor: pointer; border: 1px solid transparent; }
     .btn-primary { background: linear-gradient(135deg, #f3cc80, #c9783e); color: #160b05; box-shadow: 0 10px 30px rgba(181,108,56,0.3); }
     .btn-primary:hover { transform: translateY(-3px); }
     .btn-outline { border-color: rgba(255,250,241,0.3); background: rgba(255,250,241,0.05); }
     .btn-outline:hover { background: rgba(255,250,241,0.15); transform: translateY(-3px); }
-    
-    /* Sections */
-    .hero { min-height: 100vh; display: flex; flex-direction: column; justify-content: flex-end; padding: 120px 20px 80px; background: linear-gradient(135deg, #0a0705, #1a100b); }
-    .hero h1 { font-family: 'Playfair Display', serif; font-size: clamp(3rem, 12vw, 6rem); line-height: 0.9; margin-bottom: 1.5rem; }
-    .section-title { font-family: 'Playfair Display', serif; font-size: clamp(2rem, 6vw, 3.5rem); line-height: 1.1; margin-bottom: 1.5rem; }
-    .grid-2 { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 48px; align-items: center; }
-    .stat-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(160px, 1fr)); gap: 32px; margin: 48px 0; }
-    .stat-number { font-family: 'Playfair Display', serif; font-size: 2.8rem; color: var(--gold); }
+    .hero { min-height: 90vh; display: flex; align-items: center; background: linear-gradient(135deg, #0a0705, #1a100b); position: relative; }
+    .hero h1 { font-family: 'Playfair Display', serif; font-size: clamp(3rem, 8vw, 5rem); line-height: 1.1; margin-bottom: 1.5rem; }
+    .section-title { font-family: 'Playfair Display', serif; font-size: clamp(2.5rem, 6vw, 4rem); line-height: 1.1; margin-bottom: 1.5rem; }
+    .grid-2 { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 48px; align-items: center; }
+    .grid-3 { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 32px; }
     .card { background: rgba(255,250,241,0.03); border: 1px solid rgba(232,188,106,0.15); border-radius: 28px; padding: 32px; transition: transform 0.3s; }
-    .card:hover { transform: translateY(-6px); }
+    .card:hover { transform: translateY(-8px); }
+    .stat-number { font-family: 'Playfair Display', serif; font-size: 2.8rem; color: var(--gold); }
     .footer { padding: 48px 24px; background: #050302; border-top: 1px solid rgba(232,188,106,0.1); text-align: center; }
-    
-    @media (max-width: 768px) {
-      .desktop-nav { display: none; }
-      .menu-button { display: flex; }
-      .container { padding: 0 20px; }
-      .hero { padding: 100px 20px 60px; }
-    }
+    .whatsapp-float { position: fixed; bottom: 24px; right: 24px; background: #25d366; width: 56px; height: 56px; border-radius: 50%; display: flex; align-items: center; justify-content: center; color: white; font-weight: bold; font-size: 1.5rem; z-index: 100; box-shadow: 0 4px 12px rgba(0,0,0,0.3); transition: transform 0.2s; }
+    .whatsapp-float:hover { transform: scale(1.1); }
+    @media (max-width: 768px) { .desktop-nav { display: none; } .menu-button { display: flex; } .container { padding: 0 20px; } }
   </style>
 </head>
 <body>
-
 <header class="site-header" id="siteHeader">
   <div class="nav-wrap">
-    <a href="index.html" class="brand">
-      <div class="brand-mark"></div>
-      <div class="brand-name"><strong>Bean to Bag</strong><span>Ethiopian Origin</span></div>
-    </a>
-    <nav class="desktop-nav">
-      <a href="index.html" class="active">Home</a>
-      <a href="story.html">Story</a>
-      <a href="origin.html">Origin</a>
-      <a href="coffee.html">Coffee</a>
-      <a href="match.html">Match</a>
-      <a href="contact.html">Contact</a>
-    </nav>
+    <a href="index.html" class="brand"><div class="brand-mark"></div><div class="brand-name"><strong>Bean to Bag</strong><span>Ethiopian Origin</span></div></a>
+    <nav class="desktop-nav"><a href="index.html" class="active">Home</a><a href="about.html">About</a><a href="products.html">Products</a><a href="origin.html">Coffee Origin</a><a href="contact.html">Contact</a></nav>
     <button class="menu-button" id="menuToggle"><span></span><span></span><span></span></button>
   </div>
 </header>
-
-<div class="mobile-menu" id="mobileMenu">
-  <button class="close-menu" id="closeMenu">✕</button>
-  <a href="index.html">Home</a>
-  <a href="story.html">Story</a>
-  <a href="origin.html">Origin</a>
-  <a href="coffee.html">Coffee</a>
-  <a href="match.html">Match</a>
-  <a href="contact.html">Contact</a>
-</div>
+<div class="mobile-menu" id="mobileMenu"><button class="close-menu" id="closeMenu">✕</button><a href="index.html">Home</a><a href="about.html">About</a><a href="products.html">Products</a><a href="origin.html">Coffee Origin</a><a href="contact.html">Contact</a></div>
+<a href="https://wa.me/251911234567" class="whatsapp-float" target="_blank">W</a>
 
 <main>
-  <section class="hero">
-    <div class="container">
-      <span style="color: var(--gold); letter-spacing: 0.2em; font-size: 0.8rem;">Direct trade specialty coffee</span>
-      <h1>Bean<br>to Bag</h1>
-      <p style="font-size: clamp(1rem, 4vw, 1.2rem); max-width: 600px; margin: 1.5rem 0; color: var(--muted);">Ethiopian Arabica, roasted with restraint and packed at peak aroma. Traceable lots from highland smallholder farms.</p>
-      <div style="display: flex; flex-wrap: wrap; gap: 16px;">
-        <a href="coffee.html" class="btn btn-primary">Explore Coffee</a>
-        <a href="story.html" class="btn btn-outline">Follow The Journey</a>
-      </div>
-    </div>
-  </section>
+  <section class="hero"><div class="container"><span style="color: var(--gold); letter-spacing: 0.2em; font-size: 0.8rem;">Bean to Bag</span><h1>From Bean to Bag —<br>Premium Ethiopian Coffee</h1><p style="font-size: 1.2rem; max-width: 600px; margin: 1.5rem 0; color: var(--muted);">Carefully sourced Ethiopian Arabica coffee roasted to a balanced medium-dark profile for a rich and smooth cup.</p><div style="display: flex; flex-wrap: wrap; gap: 16px;"><a href="products.html" class="btn btn-primary">Explore Coffee</a><a href="products.html" class="btn btn-outline">Shop Coffee</a></div></div></section>
 
-  <section style="padding: 60px 0; background: #0a0705;">
-    <div class="container">
-      <div class="stat-grid">
-        <div><div class="stat-number">2,200m</div><p>Altitude above sea</p></div>
-        <div><div class="stat-number">100%</div><p>Arabica</p></div>
-        <div><div class="stat-number">72h</div><p>Rest & seal</p></div>
-        <div><div class="stat-number">12+</div><p>Partner co-ops</p></div>
-      </div>
-    </div>
-  </section>
+  <section style="background: #0a0705; padding: 80px 0;"><div class="container"><div class="grid-2"><div><img src="https://images.pexels.com/photos/312418/pexels-photo-312418.jpeg?auto=compress&w=600" alt="Coffee roasting" style="border-radius: 28px; width: 100%;"></div><div><span style="color: var(--gold); letter-spacing: 0.2em;">The Complete Journey</span><h2 class="section-title">Coffee Bean → Roasting → Packaging → Customer</h2><p style="line-height: 1.7; color: var(--muted);">Bean to Bag represents the full coffee journey — from carefully sourced Ethiopian green beans to freshly roasted and professionally packaged coffee delivered to customers. We focus on high-quality Arabica coffee, sourcing from smallholder farmers, fresh roasting, and premium packaging with one-way degassing valves to preserve aroma and freshness.</p></div></div></div></section>
 
-  <section style="padding: 80px 0; background: var(--cream); color: #1b110b;">
-    <div class="container">
-      <div class="grid-2">
-        <div>
-          <span style="color: var(--clay); letter-spacing: 0.2em;">The Promise</span>
-          <h2 class="section-title">Built for the full <em style="color: var(--clay);">coffee journey</em>.</h2>
-          <p style="font-size: 1.1rem; line-height: 1.6; color: #2a1a10;">Bean to Bag is the standard: carefully selected cherries, responsible relationships, controlled roasting, and professional packaging that protects the life inside every bean.</p>
-          <div style="margin-top: 32px;"><a href="story.html" class="btn btn-primary">Read Our Story →</a></div>
-        </div>
-        <div><img src="https://images.pexels.com/photos/2711959/pexels-photo-2711959.jpeg?auto=compress&w=600" alt="Roasting coffee" style="border-radius: 28px; width: 100%; clip-path: polygon(10% 0, 100% 0, 100% 90%, 90% 100%, 0 100%, 0 10%);"></div>
-      </div>
-    </div>
-  </section>
+  <section style="background: #0a0705; padding: 60px 0;"><div class="container"><div class="grid-3" style="text-align: center;"><div><div class="stat-number">1,900–2,200m</div><p>Altitude above sea level</p></div><div><div class="stat-number">100%</div><p>Coffea Arabica</p></div><div><div class="stat-number">Small Batch</div><p>Fresh roasted weekly</p></div></div></div></section>
 
-  <section style="padding: 80px 0; background: #0a0705;">
-    <div class="container">
-      <div style="text-align: center; margin-bottom: 48px;">
-        <span style="color: var(--gold); letter-spacing: 0.2em;">Our Coffees</span>
-        <h2 class="section-title">Choose your ritual</h2>
-      </div>
-      <div class="grid-2" style="gap: 30px;">
-        <div class="card"><h3 style="font-size: 1.8rem;">House Blend</h3><div style="display: flex; gap: 8px; flex-wrap: wrap; margin: 16px 0;"><span style="background:rgba(232,188,106,0.2); padding:4px 12px; border-radius:40px;">Cocoa</span><span style="background:rgba(232,188,106,0.2); padding:4px 12px; border-radius:40px;">Caramel</span><span style="background:rgba(232,188,106,0.2); padding:4px 12px; border-radius:40px;">Orange</span></div><p>Balanced medium-dark, chocolate body.</p><a href="coffee.html" style="margin-top: 20px; display: inline-block; color: var(--gold);">Learn more →</a></div>
-        <div class="card"><h3 style="font-size: 1.8rem;">Forest Origin</h3><div style="display: flex; gap: 8px; flex-wrap: wrap; margin: 16px 0;"><span style="background:rgba(232,188,106,0.2); padding:4px 12px; border-radius:40px;">Jasmine</span><span style="background:rgba(232,188,106,0.2); padding:4px 12px; border-radius:40px;">Honey</span><span style="background:rgba(232,188,106,0.2); padding:4px 12px; border-radius:40px;">Berry</span></div><p>Bright single-origin, tea-like clarity.</p><a href="coffee.html" style="margin-top: 20px; display: inline-block; color: var(--gold);">Learn more →</a></div>
-        <div class="card"><h3 style="font-size: 1.8rem;">Espresso Roast</h3><div style="display: flex; gap: 8px; flex-wrap: wrap; margin: 16px 0;"><span style="background:rgba(232,188,106,0.2); padding:4px 12px; border-radius:40px;">Dark Chocolate</span><span style="background:rgba(232,188,106,0.2); padding:4px 12px; border-radius:40px;">Almond</span><span style="background:rgba(232,188,106,0.2); padding:4px 12px; border-radius:40px;">Molasses</span></div><p>Syrupy body, dense crema.</p><a href="coffee.html" style="margin-top: 20px; display: inline-block; color: var(--gold);">Learn more →</a></div>
-      </div>
-    </div>
-  </section>
+  <section style="background: var(--cream); color: #1b110b; padding: 80px 0;"><div class="container"><div style="text-align: center; margin-bottom: 48px;"><span style="color: var(--clay); letter-spacing: 0.2em;">Our Collection</span><h2 class="section-title">Premium Ethiopian Coffee</h2><p class="section-subtitle" style="color: #2a1a10;">Discover our range of specialty coffees, from whole bean to ground, green beans to dried coffee cherry.</p></div><div class="grid-3"><div class="card"><h3 style="color: var(--clay);">Caskara</h3><p style="font-style: italic;">Dried coffee cherry</p><p>Made from dried coffee cherry skins, producing a naturally sweet and fruity beverage with delicate floral notes. Packaging: Orange</p></div><div class="card"><h3 style="color: var(--clay);">Qalid's Choice</h3><p style="font-style: italic;">House Blend – Ground Coffee</p><p>Our signature house blend for everyday enjoyment. Medium-dark roast creates balanced cup with smooth body and chocolate notes.</p></div><div class="card"><h3 style="color: var(--clay);">Chemina</h3><p style="font-style: italic;">Whole Bean Coffee</p><p>A bold coffee experience with rich body and deep cocoa notes. Ideal for espresso and milk-based coffee drinks.</p></div><div class="card"><h3 style="color: var(--clay);">Origin Green</h3><p style="font-style: italic;">Raw Green Coffee Beans</p><p>Premium green coffee beans for home roasters, cafés, and coffee enthusiasts who want to roast their own.</p></div></div><div style="text-align: center; margin-top: 48px;"><a href="products.html" class="btn btn-primary">View All Products →</a></div></div></section>
+
+  <section style="background: #0a0705; padding: 80px 0;"><div class="container"><div class="grid-2"><div><span style="color: var(--gold); letter-spacing: 0.2em;">Our Heritage</span><h2 class="section-title">100% Coffea Arabica from Ethiopia's Highlands</h2><p style="line-height: 1.7; color: var(--muted);">Our coffee is cultivated by small-scale farmers in traditional garden farms at 1,900–2,200 meters above sea level. The cool highland climate, natural shade trees, fertile soil, and balanced seasonal rainfall allow the coffee cherries to ripen slowly, developing refined and complex flavors.</p><div style="margin-top: 24px;"><a href="origin.html" class="btn btn-outline">Discover Our Origin →</a></div></div><div><img src="https://images.pexels.com/photos/29639314/pexels-photo-29639314.jpeg?auto=compress&w=600" alt="Ethiopian coffee farm" style="border-radius: 28px; width: 100%;"></div></div></div></section>
+
+  <section style="background: var(--cream); color: #1b110b; padding: 80px 0;"><div class="container" style="text-align: center;"><span style="color: var(--clay); letter-spacing: 0.2em;">Roast Profile</span><h2 class="section-title">Medium-Dark Roast</h2><p style="max-width: 800px; margin: 0 auto; line-height: 1.7;">All roasted coffees from Bean to Bag are roasted to a Medium-Dark roast level. This provides balanced acidity, full body, rich chocolate and cocoa notes, and a smooth finish. Perfect for Jebena brewing, espresso, macchiato, French press, and milk-based drinks.</p><div class="grid-3" style="margin-top: 48px;"><div class="card"><h3 style="color: var(--clay);">Balanced Acidity</h3><p>Smooth and approachable, never sharp or bitter.</p></div><div class="card"><h3 style="color: var(--clay);">Full Body</h3><p>Rich, satisfying mouthfeel that lingers.</p></div><div class="card"><h3 style="color: var(--clay);">Chocolate & Cocoa</h3><p>Deep, comforting notes with natural sweetness.</p></div></div></div></section>
+
+  <section style="background: #0a0705; padding: 80px 0;"><div class="container"><div style="text-align: center; margin-bottom: 48px;"><span style="color: var(--gold); letter-spacing: 0.2em;">Packaging Options</span><h2 class="section-title">Freshness Guaranteed</h2></div><div class="grid-3"><div class="card"><h3>Roasted Coffee</h3><p>250g · 500g · 1kg</p><p style="margin-top: 12px;">Premium stand-up bags with one-way degassing valve and zip-lock resealable top. Each bag includes roast date, batch number, and brewing recommendations.</p></div><div class="card"><h3>Green Coffee</h3><p>500g · 1kg · 5kg</p><p style="margin-top: 12px;">For home roasters and cafés who want to roast their own Ethiopian Arabica. Traceable directly to smallholder farms.</p></div><div class="card"><h3>Custom Wholesale</h3><p>Contact us for bulk orders and café partnerships.</p><p style="margin-top: 12px;">Custom grind options and branded packaging available for businesses.</p></div></div></div></section>
 </main>
-
-<footer class="footer">
-  <p>© 2025 Bean to Bag Coffee. Ethiopian specialty Arabica, freshly roasted in small batches.</p>
-  <div style="margin-top: 16px; display: flex; gap: 24px; justify-content: center;">
-    <a href="#">Instagram</a> <a href="#">Facebook</a> <a href="#">Telegram</a>
-  </div>
-</footer>
-
+<footer class="footer"><p>© 2025 Bean to Bag Coffee. Ethiopian specialty Arabica, freshly roasted in small batches.</p><div style="margin-top: 16px; display: flex; gap: 24px; justify-content: center;"><a href="#">Instagram</a> <a href="#">Facebook</a> <a href="#">Telegram</a></div></footer>
 <script>
   const header = document.getElementById('siteHeader');
   window.addEventListener('scroll', () => { if (window.scrollY > 50) header.classList.add('scrolled'); else header.classList.remove('scrolled'); });
