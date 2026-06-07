@@ -272,7 +272,6 @@
       text-transform: uppercase;
     }
 
-    /* Desktop Navigation - Only Home remains */
     .desktop-nav {
       display: flex;
       align-items: center;
@@ -322,7 +321,6 @@
       gap: 12px;
     }
 
-    /* Order Roast button removed */
     .text-link {
       display: none;
     }
@@ -1585,7 +1583,7 @@
 
   <header class="site-header" id="siteHeader">
     <div class="nav-wrap">
-      <a class="brand" href="#top" aria-label="Bean to Bag home">
+      <a class="brand" href="index.html" aria-label="Bean to Bag home">
         <span class="brand-mark" aria-hidden="true"></span>
         <span class="brand-name">
           <strong>Bean to Bag</strong>
@@ -1593,13 +1591,14 @@
         </span>
       </a>
 
-      <!-- Navigation: Home is the only item -->
       <nav class="desktop-nav" aria-label="Primary navigation">
-        <a href="#story">Home</a>
+        <a href="index.html">Home</a>
+        <a href="about.html">About</a>
+        <a href="index.html#collection">Coffee</a>
+        <a href="index.html#contact">Contact</a>
       </nav>
 
       <div class="nav-actions">
-        <!-- Order Roast button removed -->
         <button class="menu-button" id="menuButton" type="button" aria-label="Open menu" aria-expanded="false" aria-controls="mobileMenu">
           <span></span>
           <span></span>
@@ -1611,7 +1610,10 @@
 
   <div class="mobile-menu" id="mobileMenu" aria-hidden="true">
     <nav aria-label="Mobile navigation">
-      <a href="#story">Home</a>
+      <a href="index.html">Home</a>
+      <a href="about.html">About</a>
+      <a href="index.html#collection">Coffee</a>
+      <a href="index.html#contact">Contact</a>
     </nav>
   </div>
 
