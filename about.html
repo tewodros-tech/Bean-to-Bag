@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover, user-scalable=yes">
+  <meta name="description" content="Learn about Bean to Bag Coffee - our mission, values, and commitment to quality Ethiopian coffee from farm to cup.">
+  <title>Bean to Bag | About Us</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Playfair+Display:ital,wght@0,500;0,600;0,700;0,800;0,900;1,600;1,700&display=swap" rel="stylesheet">
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    :root { --ink: #090604; --cream: #fbf1df; --clay: #b56c38; --gold: #e8bc6a; --white: #fffaf1; --muted: rgba(255,250,241,0.72); }
+    body { font-family: 'Inter', sans-serif; background: var(--ink); color: var(--white); }
+    .container { max-width: 1400px; margin: 0 auto; padding: 0 24px; }
+    img { max-width: 100%; height: auto; display: block; }
+    a { text-decoration: none; color: inherit; }
+    .site-header { position: fixed; top: 0; left: 0; right: 0; z-index: 1000; padding: 20px 24px; background: linear-gradient(to bottom, rgba(5,3,2,0.9), transparent); transition: all 0.3s; }
+    .site-header.scrolled { background: rgba(8,5,3,0.95); backdrop-filter: blur(12px); padding: 12px 24px; border-bottom: 1px solid rgba(232,188,106,0.2); }
+    .nav-wrap { display: flex; justify-content: space-between; align-items: center; max-width: 1400px; margin: 0 auto; }
+    .brand { display: flex; align-items: center; gap: 12px; }
+    .brand-mark { width: 42px; height: 42px; background: linear-gradient(145deg, var(--gold), var(--clay)); border-radius: 50%; display: flex; align-items: center; justify-content: center; }
+    .brand-mark::before { content: ""; width: 14px; height: 24px; background: rgba(30,13,7,0.9); border-radius: 50%; transform: rotate(-24deg); }
+    .brand-name strong { font-family: 'Playfair Display', serif; font-size: 1.2rem; }
+    .brand-name span { font-size: 0.6rem; letter-spacing: 0.2em; color: var(--gold); }
+    .desktop-nav { display: flex; gap: 28px; }
+    .desktop-nav a { font-size: 0.8rem; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase; transition: color 0.2s; }
+    .desktop-nav a:hover, .desktop-nav a.active { color: var(--gold); }
+    .menu-button { display: none; width: 44px; height: 44px; border: 1px solid rgba(255,250,241,0.2); border-radius: 50%; background: rgba(255,250,241,0.05); flex-direction: column; align-items: center; justify-content: center; gap: 5px; cursor: pointer; }
+    .menu-button span { width: 20px; height: 2px; background: white; }
+    .mobile-menu { position: fixed; top: 0; left: 0; right: 0; bottom: 0; background: rgba(5,3,2,0.98); backdrop-filter: blur(20px); z-index: 999; display: flex; flex-direction: column; justify-content: center; align-items: center; gap: 30px; transform: translateX(100%); transition: transform 0.3s; }
+    .mobile-menu.open { transform: translateX(0); }
+    .mobile-menu a { font-family: 'Playfair Display', serif; font-size: 2rem; color: var(--cream); }
+    .close-menu { position: absolute; top: 24px; right: 24px; font-size: 2rem; background: none; border: none; color: white; cursor: pointer; }
+    .btn { display: inline-flex; align-items: center; justify-content: center; gap: 12px; padding: 12px 28px; border-radius: 999px; font-weight: 700; font-size: 0.85rem; letter-spacing: 0.1em; text-transform: uppercase; transition: all 0.3s; cursor: pointer; border: 1px solid transparent; }
+    .btn-primary { background: linear-gradient(135deg, #f3cc80, #c9783e); color: #160b05; }
+    .btn-outline { border-color: rgba(255,250,241,0.3); background: rgba(255,250,241,0.05); }
+    .section-title { font-family: 'Playfair Display', serif; font-size: clamp(2.5rem, 6vw, 4rem); line-height: 1.1; margin-bottom: 1.5rem; }
+    .grid-2 { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 48px; align-items: center; }
+    .grid-3 { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 32px; }
+    .value-card { background: rgba(255,250,241,0.03); border: 1px solid rgba(232,188,106,0.15); border-radius: 28px; padding: 32px; text-align: center; }
+    .footer { padding: 48px 24px; background: #050302; border-top: 1px solid rgba(232,188,106,0.1); text-align: center; }
+    .whatsapp-float { position: fixed; bottom: 24px; right: 24px; background: #25d366; width: 56px; height: 56px; border-radius: 50%; display: flex; align-items: center; justify-content: center; color: white; font-weight: bold; font-size: 1.5rem; z-index: 100; box-shadow: 0 4px 12px rgba(0,0,0,0.3); }
+    @media (max-width: 768px) { .desktop-nav { display: none; } .menu-button { display: flex; } .container { padding: 0 20px; } }
+  </style>
+</head>
+<body>
+<header class="site-header" id="siteHeader"><div class="nav-wrap"><a href="index.html" class="brand"><div class="brand-mark"></div><div class="brand-name"><strong>Bean to Bag</strong><span>Ethiopian Origin</span></div></a><nav class="desktop-nav"><a href="index.html">Home</a><a href="about.html" class="active">About</a><a href="products.html">Products</a><a href="origin.html">Coffee Origin</a><a href="contact.html">Contact</a></nav><button class="menu-button" id="menuToggle"><span></span><span></span><span></span></button></div></header>
+<div class="mobile-menu" id="mobileMenu"><button class="close-menu" id="closeMenu">✕</button><a href="index.html">Home</a><a href="about.html">About</a><a href="products.html">Products</a><a href="origin.html">Coffee Origin</a><a href="contact.html">Contact</a></div>
+<a href="https://wa.me/251911234567" class="whatsapp-float" target="_blank">W</a>
+
+<main>
+  <section style="padding: 140px 0 60px; background: linear-gradient(135deg, #0a0705, #1a100b); text-align: center;"><div class="container"><span style="color: var(--gold); letter-spacing: 0.2em;">Our Story</span><h1 class="section-title">Bean to Bag Coffee</h1><p style="max-width: 700px; margin: 1rem auto; color: var(--muted);">Coffee roasting, packaging, and distribution business based in Addis Ababa, Ethiopia. We bring the finest Ethiopian Arabica from highland farms to your cup.</p></div></section>
+
+  <section style="padding: 80px 0;"><div class="container"><div class="grid-2"><div><img src="https://images.pexels.com/photos/34792532/pexels-photo-34792532.jpeg?auto=compress&w=600" style="border-radius: 28px; width: 100%;" alt="Coffee farm"></div><div><h2 class="section-title">From Origin to Cup — With Intention</h2><p style="line-height: 1.7; color: var(--muted); margin-bottom: 1rem;">Bean to Bag is dedicated to delivering high-quality Ethiopian coffee from origin to cup. Our coffee is grown by smallholder farmers in traditional garden farms across Ethiopia's highlands. Every step — from sourcing green beans to roasting and packaging — is carefully handled to ensure freshness and quality.</p><p style="line-height: 1.7; color: var(--muted);">We believe in traceability, sustainability, and honoring Ethiopian coffee heritage. Each bag tells the story of the farmers, the land, and the craft of roasting.</p></div></div></div></section>
+
+  <section style="background: #0a0705; padding: 80px 0;"><div class="container"><div class="grid-2"><div><h2 class="section-title">Our Mission</h2><p style="line-height: 1.7; color: var(--muted); margin-bottom: 1rem;">To provide customers with freshly roasted Ethiopian Arabica coffee that reflects the unique flavors of Ethiopia's highland coffee regions while supporting small-scale farmers and maintaining high quality standards.</p><div style="margin-top: 24px;"><span style="display: block; margin-bottom: 12px;">✓ Premium Arabica beans from 1,900–2,200m altitude</span><span style="display: block; margin-bottom: 12px;">✓ Small-batch roasting for optimal freshness</span><span style="display: block; margin-bottom: 12px;">✓ Traceable sourcing from smallholder farmers</span><span style="display: block;">✓ Premium packaging with degassing valve</span></div></div><div><img src="https://images.pexels.com/photos/2711959/pexels-photo-2711959.jpeg?auto=compress&w=600" style="border-radius: 28px; width: 100%;" alt="Roasting"></div></div></div></section>
+
+  <section style="padding: 80px 0;"><div class="container"><div style="text-align: center; margin-bottom: 48px;"><span style="color: var(--gold); letter-spacing: 0.2em;">Our Values</span><h2 class="section-title">What We Stand For</h2></div><div class="grid-3"><div class="value-card"><h3 style="color: var(--gold); margin-bottom: 16px;">Quality</h3><p style="color: var(--muted);">We never compromise on quality. From bean selection to roasting curves, every decision prioritizes the final cup experience.</p></div><div class="value-card"><h3 style="color: var(--gold); margin-bottom: 16px;">Traceability</h3><p style="color: var(--muted);">Every bag includes roast date, batch number, and origin information. You know exactly where your coffee comes from.</p></div><div class="value-card"><h3 style="color: var(--gold); margin-bottom: 16px;">Sustainability</h3><p style="color: var(--muted);">We support smallholder farmers and plan to invest in dry-processing land to control quality and reduce costs.</p></div></div></div></section>
+
+  <section style="background: var(--cream); color: #1b110b; padding: 80px 0;"><div class="container"><div style="text-align: center;"><h2 class="section-title">Bean to Bag represents the complete coffee journey</h2><p style="max-width: 800px; margin: 0 auto; font-size: 1.2rem; color: #2a1a10; margin-bottom: 32px;">Coffee Bean → Roasting → Packaging → Customer</p><div><a href="products.html" class="btn btn-primary">Explore Our Coffees</a></div></div></div></section>
+
+  <section style="padding: 80px 0;"><div class="container"><div class="grid-2"><div><img src="https://images.pexels.com/photos/7659397/pexels-photo-7659397.jpeg?auto=compress&w=600" style="border-radius: 28px; width: 100%;" alt="Future plans"></div><div><h2 class="section-title">Our Long-Term Vision</h2><p style="line-height: 1.7; color: var(--muted); margin-bottom: 1rem;">After the first year of operation, Bean to Bag plans to invest in dry-processing coffee land. This strategy will allow us to reduce raw coffee costs, control coffee quality, improve traceability, and increase profit margins.</p><p style="line-height: 1.7; color: var(--muted);">Year 1: Establish brand, reach 200kg monthly sales. Year 2: Increase to 500kg/month, expand retail distribution. Year 3: Open a small retail shop, begin exporting roasted Ethiopian coffee.</p></div></div></div></section>
+</main>
+<footer class="footer"><p>© 2025 Bean to Bag Coffee. Ethiopian specialty Arabica, freshly roasted in small batches.</p></footer>
+<script>
+  const header = document.getElementById('siteHeader');
+  window.addEventListener('scroll', () => { window.scrollY > 50 ? header.classList.add('scrolled') : header.classList.remove('scrolled'); });
+  const menuBtn = document.getElementById('menuToggle'), mobileMenu = document.getElementById('mobileMenu'), closeMenu = document.getElementById('closeMenu');
+  menuBtn.addEventListener('click', () => mobileMenu.classList.add('open'));
+  closeMenu.addEventListener('click', () => mobileMenu.classList.remove('open'));
+  document.querySelectorAll('.mobile-menu a').forEach(link => link.addEventListener('click', () => mobileMenu.classList.remove('open')));
+</script>
+</body>
+</html>
