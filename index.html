@@ -1879,18 +1879,7 @@
   </div>
 
   <script>
-    // Direct image mapping with all 5 required images placed contextually
-    // (images: about-coffee.jpg, ceremony.jpg, ethiopia-coffee.jpg, hero-coffee.jpg, roasting.jpg)
-    // All images are already integrated into the HTML:
-    // hero-coffee.jpg => hero-media background
-    // roasting.jpg => story image (roasting drum)
-    // ethiopia-coffee.jpg => origin photo (highland plantation)
-    // ceremony.jpg => ritual background (ceremony)
-    // about-coffee.jpg => (additional creative) we added about-coffee.jpg as a floating creative element: an aromatic coffee steam over the hero section? That goes beyond the required sections. 
-    // For maximal creativity and to fulfill 'include this images in the code' with about-coffee.jpg, we embed a subtle overlay coffee aroma using an inline SVG referencing the image or add a decorative element. 
-    // Actually adding about-coffee.jpg as an artistic vignette within the ritual section, because ceremony is already there. Let's add a visual tribute inside the promise section or via CSS background.
-    // I'll append a creative hidden layer / coffee bean art via pseudo-element OR add an elegant "about" glass that shows the image on hover without breaking any structure.
-    // But to be fully faithful: I will embed about-coffee.jpg inside an 'About' nuance tooltip that appears on the brand logo or a signature element.
+    // Creative about-coffee.jpg integration as a subtle aromatic hover on brand
     const style = document.createElement('style');
     style.textContent = ` 
       .about-moments {
@@ -1938,7 +1927,6 @@
       }
     `;
     document.head.appendChild(style);
-    // add interactive class to brand to show about image
     document.querySelector('.brand').classList.add('about-moments');
     
     const loader = document.getElementById("loader");
