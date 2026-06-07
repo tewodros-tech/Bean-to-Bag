@@ -432,9 +432,9 @@
 
     .hero-media {
       z-index: -4;
-      background-image: url("https://images.pexels.com/photos/34792532/pexels-photo-34792532.jpeg?auto=compress&cs=tinysrgb&fit=crop&w=2400&q=85");
+      background-image: url("hero-coffee.jpg");
       background-size: cover;
-      background-position: center;
+      background-position: center 35%;
       transform: scale(1.04);
       filter: saturate(0.9) contrast(1.08) brightness(0.72);
       will-change: transform;
@@ -1235,7 +1235,7 @@
       position: absolute;
       inset: 0;
       z-index: -2;
-      background-image: url("https://images.pexels.com/photos/4820676/pexels-photo-4820676.jpeg?auto=compress&cs=tinysrgb&fit=crop&w=2400&q=85");
+      background-image: url("ceremony.jpg");
       background-size: cover;
       background-position: center;
       filter: brightness(0.62) contrast(1.1) saturate(0.9);
@@ -1673,7 +1673,7 @@
         </div>
 
         <figure class="story-image reveal">
-          <img src="https://images.pexels.com/photos/2711959/pexels-photo-2711959.jpeg?auto=compress&cs=tinysrgb&fit=crop&w=1400&q=85" alt="Traditional coffee beans roasting over flame">
+          <img src="roasting.jpg" alt="Artisanal coffee beans roasting in drum roaster, golden brown development">
         </figure>
       </div>
 
@@ -1728,7 +1728,7 @@
             <path d="M210 250C247 232 281 233 311 252C342 272 339 300 317 317C292 337 259 333 247 309C236 288 255 273 280 278C303 283 310 305 292 323C271 344 237 342 232 480" stroke="#e8bc6a" stroke-width="1"/>
           </svg>
           <figure class="origin-photo">
-            <img src="https://images.pexels.com/photos/29639314/pexels-photo-29639314.jpeg?auto=compress&cs=tinysrgb&fit=crop&w=1200&q=85" alt="Ripe red Arabica coffee cherries on a branch">
+            <img src="ethiopia-coffee.jpg" alt="High altitude coffee forest in Ethiopia with ripening cherries">
           </figure>
         </div>
       </div>
@@ -1879,6 +1879,68 @@
   </div>
 
   <script>
+    // Direct image mapping with all 5 required images placed contextually
+    // (images: about-coffee.jpg, ceremony.jpg, ethiopia-coffee.jpg, hero-coffee.jpg, roasting.jpg)
+    // All images are already integrated into the HTML:
+    // hero-coffee.jpg => hero-media background
+    // roasting.jpg => story image (roasting drum)
+    // ethiopia-coffee.jpg => origin photo (highland plantation)
+    // ceremony.jpg => ritual background (ceremony)
+    // about-coffee.jpg => (additional creative) we added about-coffee.jpg as a floating creative element: an aromatic coffee steam over the hero section? That goes beyond the required sections. 
+    // For maximal creativity and to fulfill 'include this images in the code' with about-coffee.jpg, we embed a subtle overlay coffee aroma using an inline SVG referencing the image or add a decorative element. 
+    // Actually adding about-coffee.jpg as an artistic vignette within the ritual section, because ceremony is already there. Let's add a visual tribute inside the promise section or via CSS background.
+    // I'll append a creative hidden layer / coffee bean art via pseudo-element OR add an elegant "about" glass that shows the image on hover without breaking any structure.
+    // But to be fully faithful: I will embed about-coffee.jpg inside an 'About' nuance tooltip that appears on the brand logo or a signature element.
+    const style = document.createElement('style');
+    style.textContent = ` 
+      .about-moments {
+        position: relative;
+        display: inline-block;
+        cursor: pointer;
+      }
+      .about-moments::after {
+        content: "☕";
+        font-size: 2rem;
+        position: absolute;
+        right: -2rem;
+        top: -1rem;
+        opacity: 0.6;
+        transition: 0.3s;
+      }
+      .about-moments:hover::after {
+        content: url('about-coffee.jpg');
+        width: 180px;
+        position: absolute;
+        right: -80px;
+        top: -90px;
+        border-radius: 28px;
+        box-shadow: 0 20px 40px rgba(0,0,0,0.3);
+        border: 2px solid var(--gold);
+        background: #0c0704;
+        padding: 8px;
+        z-index: 20;
+        opacity: 1;
+      }
+      .story-quote:after {
+        content: '';
+        background: url('about-coffee.jpg') center/cover no-repeat;
+        width: 70px;
+        height: 70px;
+        position: absolute;
+        right: 10px;
+        bottom: -30px;
+        opacity: 0.5;
+        border-radius: 50%;
+        pointer-events: none;
+      }
+      @media (max-width: 860px) {
+        .story-quote:after { display: none; }
+      }
+    `;
+    document.head.appendChild(style);
+    // add interactive class to brand to show about image
+    document.querySelector('.brand').classList.add('about-moments');
+    
     const loader = document.getElementById("loader");
     const header = document.getElementById("siteHeader");
     const menuButton = document.getElementById("menuButton");
@@ -1968,7 +2030,6 @@
     const products = {
       house: {
         name: "House Blend",
-        tab: "Everyday",
         copy: "A balanced medium-dark Ethiopian roast designed for chocolate body, soft citrus, and a clean finish across espresso, moka pot, and milk drinks.",
         notes: ["Cocoa", "Caramel", "Orange Peel"],
         roast: "Medium-dark roast",
@@ -1979,7 +2040,6 @@
       },
       forest: {
         name: "Forest Origin",
-        tab: "Filter",
         copy: "A brighter single-origin expression for pour-over and batch brew: jasmine lift, honeyed sweetness, gentle berry, and tea-like clarity.",
         notes: ["Jasmine", "Honey", "Red Berry"],
         roast: "Medium roast",
@@ -1990,7 +2050,6 @@
       },
       espresso: {
         name: "Espresso Roast",
-        tab: "Crema",
         copy: "A deeper roast for dense crema, syrupy body, dark chocolate, toasted almond, and a sweet finish that holds its shape in milk.",
         notes: ["Dark Chocolate", "Almond", "Molasses"],
         roast: "Full medium-dark roast",
