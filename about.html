@@ -28,6 +28,8 @@
     }
 
     * {
+      margin: 0;
+      padding: 0;
       box-sizing: border-box;
     }
 
@@ -37,17 +39,16 @@
     }
 
     body {
-      margin: 0;
       font-family: Inter, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
       color: var(--white);
       background: var(--ink);
       overflow-x: hidden;
-      text-rendering: optimizeLegibility;
     }
 
     img {
       display: block;
       max-width: 100%;
+      height: auto;
     }
 
     a {
@@ -70,12 +71,7 @@
 
     ::-webkit-scrollbar-thumb {
       background: linear-gradient(var(--gold), var(--clay));
-      border: 2px solid #050302;
       border-radius: 999px;
-    }
-
-    .font-display {
-      font-family: "Playfair Display", Georgia, serif;
     }
 
     .noise {
@@ -83,9 +79,9 @@
       inset: 0;
       z-index: 9998;
       pointer-events: none;
-      opacity: 0.06;
+      opacity: 0.05;
       mix-blend-mode: soft-light;
-      background-image: radial-gradient(circle at 25% 40%, rgba(255,255,240,0.6) 0 1px, transparent 1px);
+      background-image: radial-gradient(circle at 25% 40%, rgba(255,255,240,0.5) 0 1px, transparent 1px);
       background-size: 48px 48px;
     }
 
@@ -93,15 +89,15 @@
       position: fixed;
       left: 0;
       top: 0;
-      width: 460px;
-      height: 460px;
+      width: 500px;
+      height: 500px;
       z-index: 0;
       pointer-events: none;
       border-radius: 50%;
       opacity: 0;
-      background: radial-gradient(circle, rgba(232, 188, 106, 0.12), transparent 70%);
+      background: radial-gradient(circle, rgba(232, 188, 106, 0.1), transparent 70%);
       transform: translate3d(-50%, -50%, 0);
-      transition: opacity 400ms ease;
+      transition: opacity 0.4s;
     }
 
     .site-header {
@@ -113,14 +109,14 @@
       align-items: center;
       padding-inline: clamp(18px, 5vw, 72px);
       color: var(--white);
-      transition: background 300ms ease, border-color 300ms ease;
+      transition: all 0.3s;
       border-bottom: 1px solid transparent;
       background: linear-gradient(to bottom, rgba(5, 3, 2, 0.88), rgba(5, 3, 2, 0));
     }
 
     .site-header.is-scrolled {
       height: 70px;
-      background: rgba(8, 5, 3, 0.86);
+      background: rgba(8, 5, 3, 0.92);
       backdrop-filter: blur(22px);
       border-color: rgba(232, 188, 106, 0.2);
     }
@@ -131,7 +127,6 @@
       display: flex;
       align-items: center;
       justify-content: space-between;
-      gap: 24px;
     }
 
     .brand {
@@ -161,7 +156,7 @@
     }
 
     .brand-name strong {
-      font-family: "Playfair Display", Georgia, serif;
+      font-family: "Playfair Display", serif;
       font-size: 1.28rem;
       font-weight: 800;
     }
@@ -175,7 +170,7 @@
 
     .desktop-nav {
       display: flex;
-      gap: 32px;
+      gap: 42px;
     }
 
     .desktop-nav a {
@@ -184,10 +179,28 @@
       letter-spacing: 0.13em;
       text-transform: uppercase;
       color: rgba(255,250,241,0.78);
-      transition: color 240ms;
+      transition: color 0.24s;
+      position: relative;
     }
 
-    .desktop-nav a:hover, .desktop-nav a.active {
+    .desktop-nav a::after {
+      content: "";
+      position: absolute;
+      bottom: -8px;
+      left: 0;
+      width: 0;
+      height: 1px;
+      background: var(--gold);
+      transition: width 0.3s;
+    }
+
+    .desktop-nav a:hover::after,
+    .desktop-nav a.active::after {
+      width: 100%;
+    }
+
+    .desktop-nav a:hover,
+    .desktop-nav a.active {
       color: var(--white);
     }
 
@@ -207,7 +220,7 @@
       position: fixed;
       inset: 0;
       z-index: 8999;
-      background: rgba(5,3,2,0.98);
+      background: rgba(5, 3, 2, 0.98);
       backdrop-filter: blur(24px);
       display: grid;
       place-items: center;
@@ -234,13 +247,13 @@
       color: var(--cream);
     }
 
+    /* Hero Section */
     .hero-about {
       position: relative;
-      min-height: 75vh;
+      min-height: 85vh;
       display: flex;
       align-items: flex-end;
-      padding: calc(var(--nav-height) + 80px) clamp(20px, 6vw, 92px) 80px;
-      background: var(--ink);
+      padding: calc(var(--nav-height) + 100px) clamp(20px, 6vw, 92px) 100px;
       isolation: isolate;
     }
 
@@ -250,15 +263,15 @@
       z-index: -2;
       background-image: url("about-coffee.jpg");
       background-size: cover;
-      background-position: center 40%;
-      filter: brightness(0.45) saturate(0.9) contrast(1.05);
+      background-position: center 30%;
+      filter: brightness(0.4) saturate(0.95);
     }
 
     .hero-overlay {
       position: absolute;
       inset: 0;
       z-index: -1;
-      background: linear-gradient(90deg, rgba(5,3,2,0.94) 0%, rgba(5,3,2,0.55) 55%, rgba(5,3,2,0.25) 100%);
+      background: linear-gradient(135deg, rgba(5,3,2,0.95) 0%, rgba(5,3,2,0.6) 60%, rgba(5,3,2,0.2) 100%);
     }
 
     .hero-inner {
@@ -267,20 +280,20 @@
     }
 
     .hero-kicker {
-      font-size: 0.75rem;
+      font-size: 0.8rem;
       font-weight: 900;
       letter-spacing: 0.32em;
       text-transform: uppercase;
       color: var(--gold);
-      margin-bottom: 20px;
+      margin-bottom: 24px;
     }
 
     .hero-title {
-      font-family: "Playfair Display", Georgia, serif;
-      font-size: clamp(3.8rem, 9vw, 7rem);
-      line-height: 0.9;
-      letter-spacing: -0.07em;
-      max-width: 900px;
+      font-family: "Playfair Display", serif;
+      font-size: clamp(4rem, 10vw, 8rem);
+      line-height: 0.92;
+      letter-spacing: -0.06em;
+      max-width: 1000px;
     }
 
     .hero-title em {
@@ -288,159 +301,175 @@
       font-style: italic;
     }
 
-    .breadcrumb {
-      margin-top: 32px;
-      display: flex;
-      gap: 12px;
-      font-size: 0.85rem;
-      color: rgba(255,250,241,0.65);
+    /* Alternating Layout Sections */
+    .story-section {
+      padding: clamp(80px, 10vw, 140px) clamp(20px, 6vw, 92px);
     }
 
-    .section {
-      padding: clamp(80px, 12vw, 160px) clamp(20px, 6vw, 92px);
-    }
-
-    .section-inner {
-      width: min(100%, 1400px);
-      margin-inline: auto;
-    }
-
-    .about-grid {
+    .alternating-grid {
       display: grid;
-      grid-template-columns: 1fr 0.9fr;
-      gap: 64px;
+      grid-template-columns: 1fr 1fr;
+      gap: 80px;
       align-items: center;
+      max-width: 1400px;
+      margin: 0 auto;
     }
 
-    .about-text .eyebrow {
-      color: var(--clay);
+    .alternating-grid.reverse {
+      direction: rtl;
+    }
+
+    .alternating-grid.reverse .content-block {
+      direction: ltr;
+    }
+
+    .content-block {
+      direction: ltr;
+    }
+
+    .section-eyebrow {
+      color: var(--gold);
       font-size: 0.75rem;
       font-weight: 800;
       letter-spacing: 0.28em;
       text-transform: uppercase;
-      margin-bottom: 18px;
+      margin-bottom: 20px;
+      display: inline-block;
     }
 
-    .about-text h2 {
-      font-family: "Playfair Display", Georgia, serif;
+    .content-block h2 {
+      font-family: "Playfair Display", serif;
       font-size: clamp(2.5rem, 5vw, 4.2rem);
       line-height: 1.05;
       letter-spacing: -0.05em;
       margin-bottom: 28px;
     }
 
-    .about-text p {
+    .content-block p {
       font-size: 1.08rem;
       line-height: 1.8;
-      color: rgba(255,250,241,0.78);
-      margin-bottom: 28px;
+      color: rgba(255, 250, 241, 0.8);
+      margin-bottom: 24px;
     }
 
-    .signature {
-      margin-top: 32px;
-      padding-top: 24px;
-      border-top: 1px solid rgba(232,188,106,0.25);
-      font-family: "Playfair Display", Georgia, serif;
-      font-size: 1.4rem;
-      font-style: italic;
-      color: var(--gold);
-    }
-
-    .about-image {
-      border-radius: 24px;
+    .image-block {
       overflow: hidden;
-      box-shadow: 0 40px 70px rgba(0,0,0,0.5);
+      border-radius: 28px;
+      box-shadow: 0 40px 70px rgba(0, 0, 0, 0.5);
+      transition: transform 0.5s ease;
     }
 
-    .about-image img {
+    .image-block:hover {
+      transform: scale(1.02);
+    }
+
+    .image-block img {
       width: 100%;
       height: 100%;
       object-fit: cover;
-      transition: transform 0.9s ease;
+      transition: transform 0.8s ease;
     }
 
-    .about-image:hover img {
-      transform: scale(1.03);
+    .image-block:hover img {
+      transform: scale(1.05);
+    }
+
+    .image-block.rounded-left {
+      border-radius: 28px 8px 28px 8px;
+    }
+
+    .image-block.rounded-right {
+      border-radius: 8px 28px 8px 28px;
+    }
+
+    /* Values Section */
+    .values-section {
+      background: linear-gradient(135deg, #0a0604, #130b07);
+      padding: clamp(80px, 10vw, 140px) clamp(20px, 6vw, 92px);
+    }
+
+    .values-header {
+      text-align: center;
+      max-width: 800px;
+      margin: 0 auto 80px;
+    }
+
+    .values-header h2 {
+      font-family: "Playfair Display", serif;
+      font-size: clamp(2.8rem, 5vw, 4.5rem);
+      letter-spacing: -0.05em;
     }
 
     .values-grid {
       display: grid;
       grid-template-columns: repeat(3, 1fr);
       gap: 48px;
-      margin-top: 80px;
+      max-width: 1400px;
+      margin: 0 auto;
     }
 
     .value-card {
-      padding: 28px;
-      background: rgba(255,250,241,0.03);
-      border: 1px solid rgba(232,188,106,0.12);
-      border-radius: 28px;
-      backdrop-filter: blur(4px);
+      padding: 40px 32px;
+      background: rgba(255, 250, 241, 0.03);
+      border: 1px solid rgba(232, 188, 106, 0.15);
+      border-radius: 32px;
+      transition: all 0.3s;
+      text-align: center;
+    }
+
+    .value-card:hover {
+      border-color: var(--gold);
+      transform: translateY(-8px);
+      background: rgba(255, 250, 241, 0.06);
     }
 
     .value-icon {
-      font-size: 2.8rem;
-      margin-bottom: 20px;
-    }
-
-    .value-card h3 {
-      font-family: "Playfair Display", Georgia, serif;
-      font-size: 1.8rem;
-      margin-bottom: 14px;
-    }
-
-    .value-card p {
-      color: rgba(255,250,241,0.72);
-      line-height: 1.7;
-    }
-
-    .story-ceremony {
-      background: linear-gradient(135deg, #0b0705, #120b07);
-    }
-
-    .ceremony-grid {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 70px;
-      align-items: center;
-    }
-
-    .ceremony-text h2 {
-      font-family: "Playfair Display", Georgia, serif;
-      font-size: clamp(2.4rem, 4.5vw, 3.8rem);
-      line-height: 1.1;
-      letter-spacing: -0.05em;
+      font-size: 3.5rem;
       margin-bottom: 24px;
     }
 
-    .ceremony-text p {
-      color: rgba(255,250,241,0.78);
-      line-height: 1.75;
+    .value-card h3 {
+      font-family: "Playfair Display", serif;
+      font-size: 1.8rem;
+      margin-bottom: 16px;
     }
 
-    .ceremony-image {
-      border-radius: 32px;
-      overflow: hidden;
-      clip-path: polygon(0 0, 100% 0, 100% 85%, 92% 100%, 0 100%);
+    .value-card p {
+      color: rgba(255, 250, 241, 0.7);
+      line-height: 1.7;
     }
 
-    .team {
+    /* Team Section */
+    .team-section {
       background: var(--cream);
+      color: #1b110b;
+      padding: clamp(80px, 10vw, 140px) clamp(20px, 6vw, 92px);
+    }
+
+    .team-header {
+      text-align: center;
+      max-width: 800px;
+      margin: 0 auto 80px;
+    }
+
+    .team-header h2 {
+      font-family: "Playfair Display", serif;
+      font-size: clamp(2.8rem, 5vw, 4.5rem);
+      letter-spacing: -0.05em;
       color: #1b110b;
     }
 
-    .team h2 {
-      font-family: "Playfair Display", Georgia, serif;
-      font-size: clamp(2.8rem, 5vw, 4.5rem);
-      letter-spacing: -0.05em;
-      margin-bottom: 18px;
+    .team-header p {
+      color: rgba(27, 17, 11, 0.7);
+      font-size: 1.1rem;
     }
 
     .team-grid {
       display: grid;
       grid-template-columns: repeat(3, 1fr);
-      gap: 40px;
-      margin-top: 56px;
+      gap: 50px;
+      max-width: 1200px;
+      margin: 0 auto;
     }
 
     .member {
@@ -448,12 +477,18 @@
     }
 
     .member-img {
-      width: 180px;
-      height: 180px;
+      width: 220px;
+      height: 220px;
       border-radius: 50%;
-      margin: 0 auto 20px;
+      margin: 0 auto 24px;
       overflow: hidden;
-      border: 3px solid var(--gold);
+      border: 4px solid var(--gold);
+      box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
+      transition: transform 0.3s;
+    }
+
+    .member-img:hover {
+      transform: scale(1.03);
     }
 
     .member-img img {
@@ -463,28 +498,31 @@
     }
 
     .member h4 {
-      font-family: "Playfair Display", Georgia, serif;
-      font-size: 1.7rem;
-      margin-bottom: 6px;
+      font-family: "Playfair Display", serif;
+      font-size: 1.8rem;
+      margin-bottom: 8px;
     }
 
     .member p {
-      color: rgba(27,17,11,0.68);
+      color: rgba(27, 17, 11, 0.65);
+      font-size: 1rem;
     }
 
+    /* CTA Section */
     .cta-section {
       background: var(--ink);
       text-align: center;
+      padding: clamp(80px, 10vw, 120px) clamp(20px, 6vw, 92px);
     }
 
     .cta-inner {
       max-width: 800px;
-      margin-inline: auto;
+      margin: 0 auto;
     }
 
     .cta-section h2 {
-      font-family: "Playfair Display", Georgia, serif;
-      font-size: clamp(2.2rem, 5vw, 3.8rem);
+      font-family: "Playfair Display", serif;
+      font-size: clamp(2.5rem, 5vw, 4rem);
       margin-bottom: 24px;
     }
 
@@ -492,7 +530,7 @@
       display: inline-flex;
       align-items: center;
       gap: 12px;
-      padding: 0 28px;
+      padding: 0 32px;
       min-height: 56px;
       border-radius: 999px;
       font-size: 0.8rem;
@@ -500,6 +538,7 @@
       letter-spacing: 0.12em;
       text-transform: uppercase;
       transition: all 0.25s;
+      cursor: pointer;
     }
 
     .btn-primary {
@@ -509,14 +548,14 @@
 
     .btn-primary:hover {
       transform: translateY(-3px);
-      box-shadow: 0 18px 35px rgba(181,108,56,0.35);
+      box-shadow: 0 18px 35px rgba(181, 108, 56, 0.4);
     }
 
     .footer {
       padding: 44px clamp(20px, 6vw, 92px);
       background: #050302;
-      color: rgba(255,250,241,0.58);
-      border-top: 1px solid rgba(232,188,106,0.12);
+      color: rgba(255, 250, 241, 0.58);
+      border-top: 1px solid rgba(232, 188, 106, 0.12);
     }
 
     .footer-inner {
@@ -525,12 +564,28 @@
       flex-wrap: wrap;
       gap: 24px;
       align-items: center;
+      max-width: 1400px;
+      margin: 0 auto;
+    }
+
+    .socials {
+      display: flex;
+      gap: 24px;
+    }
+
+    .socials a {
+      color: rgba(255, 250, 241, 0.7);
+      transition: color 0.2s;
+    }
+
+    .socials a:hover {
+      color: var(--gold);
     }
 
     .reveal {
       opacity: 0;
-      transform: translateY(32px);
-      transition: opacity 0.8s ease, transform 0.8s cubic-bezier(0.2,0.8,0.2,1);
+      transform: translateY(40px);
+      transition: opacity 0.8s ease, transform 0.8s cubic-bezier(0.2, 0.8, 0.2, 1);
     }
 
     .reveal.is-visible {
@@ -538,18 +593,39 @@
       transform: translateY(0);
     }
 
-    @media (max-width: 960px) {
-      .about-grid, .ceremony-grid, .values-grid, .team-grid {
+    @media (max-width: 1000px) {
+      .alternating-grid {
         grid-template-columns: 1fr;
+        gap: 50px;
       }
-      .desktop-nav { display: none; }
-      .menu-button { display: block; }
-      .hero-about { min-height: 60vh; }
+      .alternating-grid.reverse {
+        direction: ltr;
+      }
+      .values-grid, .team-grid {
+        grid-template-columns: 1fr;
+        max-width: 500px;
+        margin: 0 auto;
+      }
+      .desktop-nav {
+        display: none;
+      }
+      .menu-button {
+        display: block;
+      }
+      .hero-about {
+        min-height: 60vh;
+        padding-bottom: 60px;
+      }
     }
 
     @media (max-width: 640px) {
-      .hero-title { font-size: 3.2rem; }
-      .value-card { padding: 20px; }
+      .member-img {
+        width: 160px;
+        height: 160px;
+      }
+      .value-card {
+        padding: 28px 20px;
+      }
     }
   </style>
 </head>
@@ -586,30 +662,67 @@
   </div>
 
   <main>
+    <!-- Hero Section -->
     <section class="hero-about">
       <div class="hero-bg"></div>
       <div class="hero-overlay"></div>
       <div class="hero-inner">
         <p class="hero-kicker reveal">The story behind the bean</p>
-        <h1 class="hero-title reveal">Honoring Ethiopian <em>heritage</em>, one bag at a time.</h1>
-        <div class="breadcrumb reveal">Bean to Bag / About</div>
+        <h1 class="hero-title reveal">Honoring Ethiopian <em>heritage</em>,<br>one bag at a time.</h1>
       </div>
     </section>
 
-    <section class="section">
-      <div class="section-inner about-grid">
-        <div class="about-text reveal">
-          <div class="eyebrow">Our ethos</div>
+    <!-- Section 1: Image Left, Text Right -->
+    <section class="story-section">
+      <div class="alternating-grid reveal">
+        <div class="image-block rounded-left">
+          <img src="ethiopia-coffee.jpg" alt="Coffee cherries ripening on branch in Ethiopian highlands">
+        </div>
+        <div class="content-block">
+          <span class="section-eyebrow">Our Ethos</span>
           <h2>Coffee is memory. We protect it from highland to your cup.</h2>
           <p>Bean to Bag was born from a single belief: that specialty coffee should never lose its soul. We work directly with smallholder farmers in Ethiopia's Gedeo and Sidama zones — families who have cultivated heirloom Arabica for generations. Every cherry is hand-picked, every lot is traceable, and every roast is a quiet conversation between the land and the roaster.</p>
           <p>We don't chase trends. We chase clarity, sweetness, and the kind of aroma that stops you mid-sentence. Our name says it all: from the moment the bean is harvested to the moment you tear open the bag, we're guardians of that journey.</p>
-          <div class="signature">— Meron T., Head of Origin & Quality</div>
-        </div>
-        <div class="about-image reveal">
-          <img src="ethiopia-coffee.jpg" alt="Coffee cherries in the highlands of Ethiopia">
         </div>
       </div>
+    </section>
 
+    <!-- Section 2: Text Left, Image Right (Reverse) -->
+    <section class="story-section" style="background: linear-gradient(135deg, #0b0705, #100a06);">
+      <div class="alternating-grid reverse reveal">
+        <div class="image-block rounded-right">
+          <img src="ceremony.jpg" alt="Traditional Ethiopian coffee ceremony with jebena clay pot">
+        </div>
+        <div class="content-block">
+          <span class="section-eyebrow">Living Tradition</span>
+          <h2>The Ethiopian coffee ceremony: a ritual of connection</h2>
+          <p>In Ethiopia, coffee is more than a drink — it is an invitation. The traditional ceremony, led by a woman of the household, involves washing green beans, roasting them over an open flame, grinding them by hand, and brewing in a clay pot called a jebena. The aroma of frankincense fills the room as three rounds of coffee are served: Abol, Tona, and Baraka. Each cup represents a blessing.</p>
+          <p>At Bean to Bag, we carry that spirit into every bag we seal. It's why we roast with care, package with intention, and invite you to slow down and truly taste the story.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Section 3: Image Left, Text Right -->
+    <section class="story-section">
+      <div class="alternating-grid reveal">
+        <div class="image-block rounded-left">
+          <img src="roasting.jpg" alt="Freshly roasted coffee beans cooling on tray">
+        </div>
+        <div class="content-block">
+          <span class="section-eyebrow">Mastery in Every Batch</span>
+          <h2>Restrained roasting. Maximum expression.</h2>
+          <p>Our approach is minimal and precise: develop sweetness, preserve florals, and never hide the origin behind roast flavours. We use small-batch roasters that allow us to adjust curves for each lot — whether it's a bright, tea-like washed coffee or a honey-processed gem with wild berry notes.</p>
+          <p>Every bag includes a one-way valve, roast date, grind selection, and full traceability. Because great coffee should arrive as intended: alive, aromatic, and unforgettable.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Values Section -->
+    <section class="values-section">
+      <div class="values-header reveal">
+        <span class="section-eyebrow" style="color: var(--gold);">What We Stand For</span>
+        <h2>Principles that guide every bean</h2>
+      </div>
       <div class="values-grid">
         <div class="value-card reveal">
           <div class="value-icon">🌱</div>
@@ -629,51 +742,37 @@
       </div>
     </section>
 
-    <section class="section story-ceremony">
-      <div class="section-inner ceremony-grid">
-        <div class="ceremony-text reveal">
-          <div class="eyebrow">Living tradition</div>
-          <h2>The Ethiopian coffee ceremony: a ritual of connection</h2>
-          <p>In Ethiopia, coffee is more than a drink — it is an invitation. The traditional ceremony, led by a woman of the household, involves washing green beans, roasting them over an open flame, grinding them by hand, and brewing in a clay pot called a jebena. The aroma of frankincense fills the room as three rounds of coffee are served: Abol, Tona, and Baraka. Each cup represents a blessing.</p>
-          <p>At Bean to Bag, we carry that spirit into every bag we seal. It's why we roast with care, package with intention, and invite you to slow down and truly taste the story.</p>
+    <!-- Team Section -->
+    <section class="team-section">
+      <div class="team-header reveal">
+        <span class="section-eyebrow" style="color: var(--clay);">The People</span>
+        <h2>Behind every bean, a human story</h2>
+        <p>From highland pickers to our small-batch roasting team in Addis — we are a collective of coffee lovers who believe in transparency, quality, and warmth.</p>
+      </div>
+      <div class="team-grid">
+        <div class="member reveal">
+          <div class="member-img"><img src="about-coffee.jpg" alt="Founder Meron Assefa"></div>
+          <h4>Meron Assefa</h4>
+          <p>Founder & Head Roaster</p>
         </div>
-        <div class="ceremony-image reveal">
-          <img src="ceremony.jpg" alt="Traditional Ethiopian coffee ceremony with jebena and roasting pan">
+        <div class="member reveal">
+          <div class="member-img"><img src="hero-coffee.jpg" alt="Quality lead Dawit Hailu"></div>
+          <h4>Dawit Hailu</h4>
+          <p>Quality & Sourcing Lead</p>
+        </div>
+        <div class="member reveal">
+          <div class="member-img"><img src="ethiopia-coffee.jpg" alt="Partnership director Selam Tesfaye"></div>
+          <h4>Selam Tesfaye</h4>
+          <p>Farm Partnership Director</p>
         </div>
       </div>
     </section>
 
-    <section class="section team">
-      <div class="section-inner">
-        <div class="reveal" style="text-align: center; max-width: 760px; margin: 0 auto;">
-          <div class="eyebrow" style="color: var(--clay);">The people</div>
-          <h2>Behind every bean, a human story</h2>
-          <p style="color: rgba(27,17,11,0.72);">From highland pickers to our small-batch roasting team in Addis — we are a collective of coffee lovers who believe in transparency, quality, and warmth.</p>
-        </div>
-        <div class="team-grid">
-          <div class="member reveal">
-            <div class="member-img"><img src="about-coffee.jpg" alt="Founder portrait"></div>
-            <h4>Meron Assefa</h4>
-            <p>Founder & Head Roaster</p>
-          </div>
-          <div class="member reveal">
-            <div class="member-img"><img src="roasting.jpg" alt="Quality control specialist"></div>
-            <h4>Dawit Hailu</h4>
-            <p>Quality & Sourcing Lead</p>
-          </div>
-          <div class="member reveal">
-            <div class="member-img"><img src="hero-coffee.jpg" alt="Community liaison"></div>
-            <h4>Selam Tesfaye</h4>
-            <p>Farm Partnership Director</p>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <section class="section cta-section">
-      <div class="section-inner cta-inner">
+    <!-- CTA Section -->
+    <section class="cta-section">
+      <div class="cta-inner">
         <h2 class="reveal">Become part of the journey.</h2>
-        <p class="reveal" style="color: rgba(255,250,241,0.72); margin-bottom: 32px;">Explore our current harvests, sign up for wholesale, or simply brew a cup that brings Ethiopia to your morning ritual.</p>
+        <p class="reveal" style="color: rgba(255,250,241,0.75); margin-bottom: 32px; font-size: 1.1rem;">Explore our current harvests, sign up for wholesale, or simply brew a cup that brings Ethiopia to your morning ritual.</p>
         <a href="index.html#collection" class="btn btn-primary reveal">Explore Coffee →</a>
       </div>
     </section>
@@ -683,10 +782,10 @@
     <div class="footer-inner">
       <strong>Bean to Bag</strong>
       <span>© 2025 Bean to Bag Coffee — Ethiopian specialty Arabica, roasted fresh.</span>
-      <div class="socials" style="display: flex; gap: 20px;">
-        <a href="#">IG</a>
-        <a href="#">FB</a>
-        <a href="#">TG</a>
+      <div class="socials">
+        <a href="#">Instagram</a>
+        <a href="#">Facebook</a>
+        <a href="#">Telegram</a>
       </div>
     </div>
   </footer>
@@ -710,6 +809,7 @@
       mobileMenu.classList.toggle("is-open");
       document.body.style.overflow = mobileMenu.classList.contains("is-open") ? "hidden" : "";
     });
+
     mobileMenu.querySelectorAll("a").forEach(link => {
       link.addEventListener("click", () => {
         mobileMenu.classList.remove("is-open");
