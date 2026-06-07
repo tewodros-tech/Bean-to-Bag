@@ -2,233 +2,64 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
-  <title>Bean to Bag | Coffee Origin — Ethiopian Highlands Terroir</title>
-  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;0,800;0,900;1,400;1,500;1,600;1,700;1,800&family=Inter:opsz,wght@14..32,300;14..32,400;14..32,500;14..32,600;14..32,700;14..32,800&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover, user-scalable=yes">
+  <title>Bean to Bag | Our Coffee</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Playfair+Display:ital,wght@0,500;0,600;0,700;0,800;0,900;1,600;1,700&display=swap" rel="stylesheet">
   <style>
     * { margin: 0; padding: 0; box-sizing: border-box; }
-
-    :root {
-      --amber: #c17f4e;
-      --amber-deep: #9b5e2e;
-      --amber-glow: #e4a97a;
-      --dark: #0f0c0a;
-      --charcoal: #1a1613;
-      --cream: #faf5ea;
-      --cream-light: #fffaf2;
-    }
-
-    body {
-      font-family: 'Inter', sans-serif;
-      background: var(--dark);
-      color: #ece5dc;
-      overflow-x: hidden;
-    }
-
-    /* Navigation */
-    .nav {
-      position: fixed; top: 0; left: 0; right: 0; z-index: 1000;
-      padding: 28px 6%; display: flex; justify-content: space-between; align-items: center;
-      transition: all 0.4s;
-      background: linear-gradient(to bottom, rgba(0,0,0,0.85), transparent);
-    }
-    .nav.scrolled { background: rgba(10,7,5,0.96); backdrop-filter: blur(16px); padding: 18px 6%; border-bottom: 1px solid rgba(193,127,78,0.3); }
-    .nav-logo { display: flex; align-items: center; gap: 14px; text-decoration: none; }
-    .logo-mark { width: 52px; height: 52px; background: var(--amber); border-radius: 16px; display: flex; align-items: center; justify-content: center; font-size: 1.6rem; color: var(--dark); }
-    .logo-text h1 { font-family: 'Playfair Display', serif; font-size: 1.6rem; color: white; font-weight: 600; }
-    .logo-text span { font-size: 0.65rem; letter-spacing: 3px; color: var(--amber); text-transform: uppercase; }
-    .nav-links { display: flex; gap: 24px; }
-    .nav-links a { text-decoration: none; color: rgba(255,255,255,0.9); font-weight: 500; padding: 8px 20px; border-radius: 40px; transition: 0.25s; font-size: 0.9rem; }
-    .nav-links a:hover, .nav-links a.active { background: var(--amber); color: var(--dark); }
-    .nav-cta { padding: 12px 30px; background: var(--amber); border-radius: 50px; color: var(--dark); font-weight: 700; text-decoration: none; transition: 0.3s; }
-    .nav-cta:hover { transform: scale(1.05); background: var(--amber-glow); }
-    .menu-toggle { display: none; background: none; border: none; color: white; font-size: 1.8rem; cursor: pointer; }
-
-    /* Origin Hero */
-    .origin-hero {
-      min-height: 70vh; position: relative; display: flex; align-items: center;
-      background: linear-gradient(125deg, #0c0805 0%, #1f150e 100%);
-    }
-    .origin-bg {
-      position: absolute; inset: 0; z-index: 0;
-      background-image: url('https://images.pexels.com/photos/6502228/pexels-photo-6502228.jpeg?auto=compress&cs=tinysrgb&w=1600');
-      background-size: cover; background-position: center 35%;
-      opacity: 0.4;
-    }
-    .hero-overlay {
-      position: absolute; inset: 0;
-      background: radial-gradient(circle at 20% 50%, rgba(0,0,0,0.65), rgba(12,8,5,0.9));
-      z-index: 1;
-    }
-    .origin-hero-content {
-      position: relative; z-index: 2; max-width: 1400px; margin: 0 auto;
-      padding: 150px 6% 100px; text-align: center;
-    }
-    .hero-badge {
-      display: inline-flex; gap: 12px; background: rgba(193,127,78,0.2); backdrop-filter: blur(8px);
-      padding: 10px 24px; border-radius: 60px; font-size: 0.7rem; letter-spacing: 4px;
-      color: var(--amber); margin-bottom: 30px;
-    }
-    .origin-hero-content h1 {
-      font-family: 'Playfair Display', serif; font-size: clamp(3rem, 7vw, 5.5rem);
-      line-height: 1.1; color: white; font-weight: 700; margin-bottom: 25px;
-    }
-    .origin-hero-content h1 em { font-style: italic; color: var(--amber); }
-    .origin-sub {
-      font-size: 1.2rem; max-width: 750px; margin: 0 auto; color: rgba(255,250,235,0.85);
-    }
-
-    /* Sections */
-    .page-section { padding: 110px 6%; position: relative; }
-    .section-container { max-width: 1400px; margin: 0 auto; }
-    .section-label {
-      display: flex; align-items: center; gap: 15px; color: var(--amber);
-      letter-spacing: 5px; font-weight: 600; text-transform: uppercase; margin-bottom: 20px; font-size: 0.8rem;
-    }
-    .section-label::before { content: ''; width: 50px; height: 2px; background: var(--amber); }
-    .section-title {
-      font-family: 'Playfair Display', serif; font-size: clamp(2.5rem, 4.5vw, 3.8rem);
-      line-height: 1.2; margin-bottom: 30px;
-    }
-    .section-title em { font-style: italic; color: var(--amber); }
-    .two-col-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 80px; align-items: center; }
-    .image-frame { border-radius: 32px; overflow: hidden; box-shadow: 0 30px 60px rgba(0,0,0,0.4); height: 500px; width: 100%; }
-    .image-frame img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.7s ease; }
-    .image-frame:hover img { transform: scale(1.05); }
-    .flavor-wheel { display: grid; grid-template-columns: repeat(auto-fit, minmax(180px,1fr)); gap: 28px; margin-top: 50px; }
-    .flavor-item { text-align: center; background: rgba(0,0,0,0.3); padding: 25px 15px; border-radius: 32px; transition: 0.3s; }
-    .flavor-item:hover { background: rgba(193,127,78,0.15); transform: translateY(-6px); }
-    .flavor-icon { font-size: 2.2rem; color: var(--amber); margin-bottom: 15px; }
-    .roast-profile { background: var(--charcoal); border-radius: 48px; padding: 60px; margin-top: 60px; text-align: center; }
-    .method-list { display: flex; flex-wrap: wrap; justify-content: center; gap: 20px; margin-top: 30px; }
-    .method-list span { background: rgba(193,127,78,0.2); padding: 8px 24px; border-radius: 40px; }
-    .footer { text-align: center; padding: 60px 6% 40px; background: #050302; border-top: 1px solid rgba(193,127,78,0.15); }
-    .floating-actions { position: fixed; bottom: 35px; right: 35px; display: flex; flex-direction: column; gap: 18px; z-index: 99; }
-    .fab { width: 60px; height: 60px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 1.6rem; transition: 0.2s; box-shadow: 0 10px 25px rgba(0,0,0,0.4); }
-    .fab-whatsapp { background: #25D366; color: white; }
-    .fab-telegram { background: #0088cc; color: white; }
-    .fab:hover { transform: scale(1.1); }
-    .btn-primary { padding: 14px 34px; background: var(--amber); border-radius: 50px; color: var(--dark); font-weight: 700; text-decoration: none; display: inline-flex; gap: 10px; transition: 0.3s; }
-    .btn-primary:hover { transform: translateY(-4px); background: #d68951; }
-
-    @media (max-width: 1024px) {
-      .two-col-grid { grid-template-columns: 1fr; gap: 50px; }
-      .nav-links { display: none; }
-      .menu-toggle { display: block; }
-      .roast-profile { padding: 35px; }
-    }
-    .nav-links.active { display: flex; flex-direction: column; position: absolute; top: 85px; left: 0; right: 0; background: rgba(10,7,5,0.98); backdrop-filter: blur(20px); padding: 30px; text-align: center; gap: 28px; }
+    :root { --ink: #090604; --cream: #fbf1df; --clay: #b56c38; --gold: #e8bc6a; --white: #fffaf1; --muted: rgba(255, 250, 241, 0.72); }
+    body { font-family: 'Inter', system-ui, sans-serif; background: var(--ink); color: var(--white); }
+    .container { max-width: 1400px; margin: 0 auto; padding: 0 24px; }
+    a { text-decoration: none; color: inherit; }
+    .site-header { position: fixed; top: 0; left: 0; right: 0; z-index: 1000; padding: 20px 24px; background: linear-gradient(to bottom, rgba(5,3,2,0.9), transparent); transition: all 0.3s; }
+    .site-header.scrolled { background: rgba(8,5,3,0.95); backdrop-filter: blur(12px); padding: 12px 24px; }
+    .nav-wrap { display: flex; justify-content: space-between; align-items: center; max-width: 1400px; margin: 0 auto; }
+    .brand { display: flex; align-items: center; gap: 12px; }
+    .brand-mark { width: 42px; height: 42px; background: linear-gradient(145deg, var(--gold), var(--clay)); border-radius: 50%; display: flex; align-items: center; justify-content: center; }
+    .brand-mark::before { content: ""; width: 14px; height: 24px; background: rgba(30,13,7,0.9); border-radius: 50%; transform: rotate(-24deg); }
+    .brand-name strong { font-family: 'Playfair Display', serif; font-size: 1.2rem; }
+    .brand-name span { font-size: 0.6rem; letter-spacing: 0.2em; color: var(--gold); }
+    .desktop-nav { display: flex; gap: 28px; }
+    .desktop-nav a { font-size: 0.8rem; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase; transition: color 0.2s; }
+    .desktop-nav a:hover, .desktop-nav a.active { color: var(--gold); }
+    .menu-button { display: none; width: 44px; height: 44px; border: 1px solid rgba(255,250,241,0.2); border-radius: 50%; background: rgba(255,250,241,0.05); flex-direction: column; align-items: center; justify-content: center; gap: 5px; cursor: pointer; }
+    .menu-button span { width: 20px; height: 2px; background: white; }
+    .mobile-menu { position: fixed; top: 0; left: 0; right: 0; bottom: 0; background: rgba(5,3,2,0.98); backdrop-filter: blur(20px); z-index: 999; display: flex; flex-direction: column; justify-content: center; align-items: center; gap: 30px; transform: translateX(100%); transition: transform 0.3s; }
+    .mobile-menu.open { transform: translateX(0); }
+    .mobile-menu a { font-family: 'Playfair Display', serif; font-size: 2rem; color: var(--cream); }
+    .close-menu { position: absolute; top: 24px; right: 24px; font-size: 2rem; background: none; border: none; color: white; cursor: pointer; }
+    .btn { display: inline-flex; align-items: center; justify-content: center; gap: 12px; padding: 12px 28px; border-radius: 999px; font-weight: 700; font-size: 0.85rem; letter-spacing: 0.1em; text-transform: uppercase; transition: all 0.3s; cursor: pointer; border: 1px solid transparent; }
+    .btn-primary { background: linear-gradient(135deg, #f3cc80, #c9783e); color: #160b05; }
+    .page-header { padding: 140px 24px 60px; background: linear-gradient(135deg, #0a0705, #1a100b); text-align: center; }
+    .product-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 32px; margin-top: 40px; }
+    .product-card { background: rgba(255,250,241,0.03); border: 1px solid rgba(232,188,106,0.15); border-radius: 32px; padding: 32px; transition: transform 0.3s; }
+    .product-card:hover { transform: translateY(-6px); }
+    .taste-badge { display: inline-block; background: rgba(232,188,106,0.15); padding: 6px 14px; border-radius: 40px; font-size: 0.7rem; margin: 4px; }
+    .footer { padding: 48px 24px; background: #050302; border-top: 1px solid rgba(232,188,106,0.1); text-align: center; }
+    @media (max-width: 768px) { .desktop-nav { display: none; } .menu-button { display: flex; } .container { padding: 0 20px; } }
   </style>
 </head>
 <body>
-
-<nav class="nav" id="navbar">
-  <a href="index.html" class="nav-logo"><div class="logo-mark"><i class="fas fa-mug-hot"></i></div><div class="logo-text"><h1>Bean to Bag</h1><span>ETHIOPIAN ORIGIN</span></div></a>
-  <div class="nav-links" id="navLinks">
-    <a href="index.html">Home</a>
-    <a href="origin.html" class="active">Origin</a>
-    <a href="index.html#process">Process</a>
-    <a href="index.html#contact">Contact</a>
+<header class="site-header" id="siteHeader">
+  <div class="nav-wrap">
+    <a href="index.html" class="brand"><div class="brand-mark"></div><div class="brand-name"><strong>Bean to Bag</strong><span>Ethiopian Origin</span></div></a>
+    <nav class="desktop-nav"><a href="index.html">Home</a><a href="story.html">Story</a><a href="origin.html">Origin</a><a href="coffee.html" class="active">Coffee</a><a href="match.html">Match</a><a href="contact.html">Contact</a></nav>
+    <button class="menu-button" id="menuToggle"><span></span><span></span><span></span></button>
   </div>
-  <a href="index.html#contact" class="nav-cta">Reserve Coffee</a>
-  <button class="menu-toggle" onclick="document.getElementById('navLinks').classList.toggle('active')"><i class="fas fa-bars"></i></button>
-</nav>
-
-<!-- Origin Hero -->
-<section class="origin-hero">
-  <div class="origin-bg"></div>
-  <div class="hero-overlay"></div>
-  <div class="origin-hero-content">
-    <div class="hero-badge"><i class="fas fa-map-pin"></i> ETHIOPIAN HIGHLANDS</div>
-    <h1>The Birthplace of <em>Coffea Arabica</em></h1>
-    <p class="origin-sub">100% Arabica grown in traditional garden farms at 1,900–2,200 meters above sea level. Discover the terroir that shapes every Bean to Bag cup.</p>
-  </div>
-</section>
-
-<!-- Terroir Section -->
-<section class="page-section" style="background: var(--cream); color: var(--dark);">
-  <div class="section-container">
-    <div class="section-label" style="color: var(--amber);">The Land</div>
-    <div class="two-col-grid">
-      <div class="image-frame"><img src="https://images.pexels.com/photos/1441426/pexels-photo-1441426.jpeg?auto=compress&cs=tinysrgb&w=1200" alt="Ethiopian highland coffee farm"></div>
-      <div><h2 class="section-title" style="color: var(--dark);">High Altitude · <em>Slow Ripening</em></h2>
-      <p style="font-size:1.1rem; line-height:1.7; margin-bottom:25px;">Our coffee is cultivated by small-scale farmers in traditional garden systems under natural shade. The cool climate, volcanic soil, and balanced rainfall allow cherries to mature slowly — developing complex sugars and dense flavor compounds.</p>
-      <div style="background:rgba(193,127,78,0.08); border-left: 4px solid var(--amber); padding:25px; border-radius:20px;"><i class="fas fa-mountain" style="color:var(--amber); margin-right:12px;"></i> <strong>1,900 – 2,200 meters above sea level</strong> — one of the highest cultivation zones, producing refined brightness and floral aroma.</div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- Cup Profile -->
-<section class="page-section" style="background: var(--dark);">
-  <div class="section-container">
-    <div class="section-label">Cup Profile</div>
-    <h2 class="section-title">A Symphony of <em>Floral & Fruit</em> Notes</h2>
-    <div class="flavor-wheel">
-      <div class="flavor-item"><div class="flavor-icon"><i class="fas fa-leaf"></i></div><h4>Floral Aroma</h4><p>Jasmine & blossom</p></div>
-      <div class="flavor-item"><div class="flavor-icon"><i class="fas fa-lemon"></i></div><h4>Bright Acidity</h4><p>Citrus & bergamot</p></div>
-      <div class="flavor-item"><div class="flavor-icon"><i class="fas fa-apple-alt"></i></div><h4>Fruit Notes</h4><p>Red berry, stone fruit</p></div>
-      <div class="flavor-item"><div class="flavor-icon"><i class="fas fa-wine-bottle"></i></div><h4>Clean Finish</h4><p>Silky, winey aftertaste</p></div>
-    </div>
-  </div>
-</section>
-
-<!-- Roast Profile -->
-<section class="page-section" style="background: var(--charcoal);">
-  <div class="section-container">
-    <div class="roast-profile">
-      <div style="background: var(--amber); display: inline-block; padding: 5px 20px; border-radius: 40px; color: var(--dark); font-weight: bold; margin-bottom: 20px;">Signature Roast Profile</div>
-      <h2 style="font-family: 'Playfair Display', serif; font-size: clamp(2rem,4vw,3rem); color:var(--amber);">Medium‑Dark Roast</h2>
-      <p style="max-width:800px; margin:20px auto; font-size:1.1rem;">Balanced acidity, full body, and rich chocolate notes. Our medium-dark profile honors Ethiopian tradition while delivering a smooth cup that excels in any brewing method.</p>
-      <div class="method-list">
-        <span>☕ Jebena (Ethiopian ceremony)</span> <span>🔘 Espresso</span> <span>🥛 Macchiato</span> <span>🇫🇷 French Press</span>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- Farmer Connection -->
-<section class="page-section" style="background: var(--cream-light); color: var(--dark);">
-  <div class="section-container">
-    <div class="two-col-grid">
-      <div class="image-frame"><img src="https://images.pexels.com/photos/6502229/pexels-photo-6502229.jpeg?auto=compress&cs=tinysrgb&w=1200" alt="Ethiopian coffee farmer"></div>
-      <div><div class="section-label" style="color: var(--amber);">Direct Relationships</div><h2 class="section-title" style="color: var(--dark);">From <em>Smallholder</em> to Your Bag</h2>
-      <p style="font-size:1.1rem; line-height:1.7;">We work directly with farmer cooperatives in Sidama, Yirgacheffe, and Guji zones. By paying premium prices and maintaining traceability, we ensure farmers receive fair compensation while you receive exceptional, single-origin coffee.</p>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- Cultural Heritage -->
-<section class="page-section" style="background: var(--dark);">
-  <div class="section-container" style="text-align: center;">
-    <div class="section-label" style="justify-content: center;">Tradition & Heritage</div>
-    <h2 class="section-title">The Ethiopian <em>Coffee Ceremony</em></h2>
-    <p style="max-width: 850px; margin: 0 auto; font-size: 1.1rem;">More than a beverage — a ritual of hospitality, connection, and blessing. Our medium-dark roast is the perfect bridge between ancient Jebena preparation and modern espresso culture.</p>
-  </div>
-</section>
-
-<footer class="footer">
-  <div class="footer-content">
-    <div style="font-family: 'Playfair Display', serif; font-size: 1.8rem; color: var(--amber); margin-bottom: 20px;">Bean to Bag</div>
-    <p>© 2025 Bean to Bag Specialty Coffee — Ethically sourced from Ethiopian highlands. Freshness guaranteed.</p>
-    <div style="margin-top: 25px; display: flex; gap: 25px; justify-content: center;">
-      <a href="#" style="color: var(--amber);"><i class="fab fa-instagram"></i></a>
-      <a href="#" style="color: var(--amber);"><i class="fab fa-facebook-f"></i></a>
-      <a href="#" style="color: var(--amber);"><i class="fab fa-telegram-plane"></i></a>
-    </div>
-  </div>
-</footer>
-
-<div class="floating-actions">
-  <a href="https://wa.me/251911234567" class="fab fab-whatsapp"><i class="fab fa-whatsapp"></i></a>
-  <a href="https://t.me/beantobag" class="fab fab-telegram"><i class="fab fa-telegram-plane"></i></a>
-</div>
-
+</header>
+<div class="mobile-menu" id="mobileMenu"><button class="close-menu" id="closeMenu">✕</button><a href="index.html">Home</a><a href="story.html">Story</a><a href="origin.html">Origin</a><a href="coffee.html">Coffee</a><a href="match.html">Match</a><a href="contact.html">Contact</a></div>
+<main>
+  <section class="page-header"><div class="container"><span style="color:var(--gold);letter-spacing:0.2em;">Choose Your Roast</span><h1>Coffee that adapts to your <em style="color:var(--clay)">ritual</em></h1><p style="max-width:700px;margin:1rem auto;color:var(--muted);">Select a profile and experience the full expression of Ethiopian Arabica.</p></div></section>
+  <section style="padding:60px 0"><div class="container"><div class="product-grid"><div class="product-card"><h3 style="font-size:2rem;">House Blend</h3><div style="margin:16px 0"><span class="taste-badge">Cocoa</span><span class="taste-badge">Caramel</span><span class="taste-badge">Orange Peel</span></div><p>A balanced medium-dark Ethiopian roast designed for chocolate body, soft citrus, and a clean finish across espresso, moka pot, and milk drinks.</p><div style="margin-top:20px"><strong>Roast:</strong> Medium-dark<br><strong>Size:</strong> 250g / 500g / 1kg</div><a href="contact.html" class="btn btn-primary" style="margin-top:24px;width:100%">Order Now</a></div><div class="product-card"><h3 style="font-size:2rem;">Forest Origin</h3><div style="margin:16px 0"><span class="taste-badge">Jasmine</span><span class="taste-badge">Honey</span><span class="taste-badge">Red Berry</span></div><p>A brighter single-origin expression for pour-over and batch brew: jasmine lift, honeyed sweetness, gentle berry, and tea-like clarity.</p><div style="margin-top:20px"><strong>Roast:</strong> Medium<br><strong>Size:</strong> Whole bean preferred</div><a href="contact.html" class="btn btn-primary" style="margin-top:24px;width:100%">Order Now</a></div><div class="product-card"><h3 style="font-size:2rem;">Espresso Roast</h3><div style="margin:16px 0"><span class="taste-badge">Dark Chocolate</span><span class="taste-badge">Almond</span><span class="taste-badge">Molasses</span></div><p>A deeper roast for dense crema, syrupy body, dark chocolate, toasted almond, and a sweet finish that holds its shape in milk.</p><div style="margin-top:20px"><strong>Roast:</strong> Full medium-dark<br><strong>Size:</strong> Cafe & retail packs</div><a href="contact.html" class="btn btn-primary" style="margin-top:24px;width:100%">Order Now</a></div></div></div></section>
+</main>
+<footer class="footer"><p>© 2025 Bean to Bag Coffee. Ethiopian specialty Arabica.</p></footer>
 <script>
-  const navbar = document.getElementById('navbar');
-  window.addEventListener('scroll', () => { window.scrollY > 60 ? navbar.classList.add('scrolled') : navbar.classList.remove('scrolled'); });
+  const header = document.getElementById('siteHeader');
+  window.addEventListener('scroll', () => { window.scrollY > 50 ? header.classList.add('scrolled') : header.classList.remove('scrolled'); });
+  const menuBtn = document.getElementById('menuToggle'), mobileMenu = document.getElementById('mobileMenu'), closeMenu = document.getElementById('closeMenu');
+  menuBtn.addEventListener('click', () => mobileMenu.classList.add('open'));
+  closeMenu.addEventListener('click', () => mobileMenu.classList.remove('open'));
+  document.querySelectorAll('.mobile-menu a').forEach(link => link.addEventListener('click', () => mobileMenu.classList.remove('open')));
 </script>
 </body>
 </html>
