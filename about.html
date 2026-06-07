@@ -3,758 +3,373 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
-  <meta name="description" content="Bean to Bag About — Our heritage, craft, and the people behind Ethiopia's finest specialty coffee.">
-  <meta name="theme-color" content="#090604">
-  <title>Bean to Bag | About — Our Heritage & Craft</title>
+  <title>Bean to Bag | About — Our Heritage</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Playfair+Display:ital,wght@0,500;0,600;0,700;0,800;0,900;1,600;1,700&display=swap" rel="stylesheet">
   <style>
-    :root {
-      --ink: #090604;
-      --ink-2: #130d09;
-      --smoke: #21150f;
-      --cream: #fbf1df;
-      --cream-2: #ecdcc0;
-      --clay: #b56c38;
-      --clay-2: #d7965d;
-      --gold: #e8bc6a;
-      --leaf: #5c6b3c;
-      --white: #fffaf1;
-      --muted: rgba(255, 250, 241, 0.72);
-      --line: rgba(232, 188, 106, 0.2);
-      --nav-height: 84px;
-    }
-
     * {
       margin: 0;
       padding: 0;
       box-sizing: border-box;
     }
-
-    html {
-      scroll-behavior: smooth;
-      background: var(--ink);
-    }
-
     body {
-      font-family: Inter, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
-      color: var(--white);
-      background: var(--ink);
+      font-family: 'Inter', sans-serif;
+      background: #090604;
+      color: #fffaf1;
       overflow-x: hidden;
     }
-
-    img {
-      display: block;
-      max-width: 100%;
-      height: auto;
-    }
-
     a {
-      color: inherit;
       text-decoration: none;
+      color: inherit;
     }
-
-    ::selection {
-      background: var(--gold);
-      color: var(--ink);
-    }
-
-    ::-webkit-scrollbar {
-      width: 10px;
-    }
-
-    ::-webkit-scrollbar-track {
-      background: #050302;
-    }
-
-    ::-webkit-scrollbar-thumb {
-      background: linear-gradient(var(--gold), var(--clay));
-      border-radius: 999px;
-    }
-
-    .noise {
+    .header {
       position: fixed;
-      inset: 0;
-      z-index: 9998;
-      pointer-events: none;
-      opacity: 0.05;
-      mix-blend-mode: soft-light;
-      background-image: radial-gradient(circle at 25% 40%, rgba(255,255,240,0.5) 0 1px, transparent 1px);
-      background-size: 48px 48px;
-    }
-
-    .cursor-glow {
-      position: fixed;
-      left: 0;
       top: 0;
-      width: 500px;
-      height: 500px;
-      z-index: 0;
-      pointer-events: none;
-      border-radius: 50%;
-      opacity: 0;
-      background: radial-gradient(circle, rgba(232, 188, 106, 0.1), transparent 70%);
-      transform: translate3d(-50%, -50%, 0);
-      transition: opacity 0.4s;
-    }
-
-    .site-header {
-      position: fixed;
-      inset: 0 0 auto 0;
-      z-index: 9000;
-      height: var(--nav-height);
-      display: flex;
-      align-items: center;
-      padding-inline: clamp(18px, 5vw, 72px);
-      color: var(--white);
-      transition: all 0.3s;
-      border-bottom: 1px solid transparent;
-      background: linear-gradient(to bottom, rgba(5, 3, 2, 0.88), rgba(5, 3, 2, 0));
-    }
-
-    .site-header.is-scrolled {
-      height: 70px;
-      background: rgba(8, 5, 3, 0.92);
-      backdrop-filter: blur(22px);
-      border-color: rgba(232, 188, 106, 0.2);
-    }
-
-    .nav-wrap {
-      width: min(100%, 1520px);
-      margin-inline: auto;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-    }
-
-    .brand {
-      display: flex;
-      align-items: center;
-      gap: 14px;
-    }
-
-    .brand-mark {
-      width: 46px;
-      height: 46px;
-      border-radius: 50%;
-      display: grid;
-      place-items: center;
-      background: radial-gradient(circle at 35% 28%, #ffe4a9, transparent 22%), linear-gradient(145deg, var(--gold), var(--clay));
-      box-shadow: 0 0 0 1px rgba(255,255,255,0.12);
-    }
-
-    .brand-mark::before {
-      content: "";
-      width: 16px;
-      height: 27px;
-      border-radius: 50%;
-      transform: rotate(-24deg);
-      background: rgba(30,13,7,0.88);
-      box-shadow: inset 5px 0 0 rgba(255,236,193,0.2);
-    }
-
-    .brand-name strong {
-      font-family: "Playfair Display", serif;
-      font-size: 1.28rem;
-      font-weight: 800;
-    }
-
-    .brand-name span {
-      font-size: 0.62rem;
-      letter-spacing: 0.28em;
-      color: var(--gold);
-      text-transform: uppercase;
-    }
-
-    .desktop-nav {
-      display: flex;
-      gap: 42px;
-    }
-
-    .desktop-nav a {
-      font-size: 0.78rem;
-      font-weight: 700;
-      letter-spacing: 0.13em;
-      text-transform: uppercase;
-      color: rgba(255,250,241,0.78);
-      transition: color 0.24s;
-      position: relative;
-    }
-
-    .desktop-nav a::after {
-      content: "";
-      position: absolute;
-      bottom: -8px;
       left: 0;
-      width: 0;
-      height: 1px;
-      background: var(--gold);
-      transition: width 0.3s;
-    }
-
-    .desktop-nav a:hover::after,
-    .desktop-nav a.active::after {
-      width: 100%;
-    }
-
-    .desktop-nav a:hover,
-    .desktop-nav a.active {
-      color: var(--white);
-    }
-
-    .menu-button {
-      display: none;
-      width: 48px;
-      height: 48px;
-      border: 1px solid rgba(255,250,241,0.2);
-      border-radius: 50%;
-      background: rgba(255,250,241,0.06);
-      cursor: pointer;
-      color: var(--white);
-      font-size: 1.5rem;
-    }
-
-    .mobile-menu {
-      position: fixed;
-      inset: 0;
-      z-index: 8999;
-      background: rgba(5, 3, 2, 0.98);
-      backdrop-filter: blur(24px);
-      display: grid;
-      place-items: center;
-      opacity: 0;
-      visibility: hidden;
-      transition: all 0.3s;
-    }
-
-    .mobile-menu.is-open {
-      opacity: 1;
-      visibility: visible;
-    }
-
-    .mobile-menu nav {
+      right: 0;
+      z-index: 1000;
+      padding: 20px 5vw;
       display: flex;
-      flex-direction: column;
-      gap: 32px;
-      text-align: center;
+      justify-content: space-between;
+      align-items: center;
+      background: linear-gradient(to bottom, rgba(0,0,0,0.8), transparent);
     }
-
-    .mobile-menu a {
-      font-family: "Playfair Display", serif;
-      font-size: 2.5rem;
-      color: var(--cream);
+    .logo {
+      display: flex;
+      align-items: center;
+      gap: 12px;
     }
-
+    .logo-icon {
+      width: 45px;
+      height: 45px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, #e8bc6a, #b56c38);
+    }
+    .logo-text h1 {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.3rem;
+    }
+    .logo-text p {
+      font-size: 0.65rem;
+      letter-spacing: 3px;
+      color: #e8bc6a;
+    }
+    .nav {
+      display: flex;
+      gap: 2rem;
+    }
+    .nav a {
+      font-size: 0.75rem;
+      font-weight: 600;
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+      transition: color 0.3s;
+    }
+    .nav a:hover, .nav a.active {
+      color: #e8bc6a;
+    }
     .hero-about {
-      position: relative;
-      min-height: 85vh;
+      min-height: 70vh;
       display: flex;
       align-items: flex-end;
-      padding: calc(var(--nav-height) + 100px) clamp(20px, 6vw, 92px) 100px;
-      isolation: isolate;
-    }
-
-    .hero-bg {
-      position: absolute;
-      inset: 0;
-      z-index: -2;
-      background-image: url("https://images.pexels.com/photos/34792532/pexels-photo-34792532.jpeg?auto=compress&cs=tinysrgb&w=1600&h=900&fit=crop");
+      padding: 120px 5vw 80px;
+      background: linear-gradient(135deg, rgba(0,0,0,0.85), rgba(0,0,0,0.6)), url('https://images.pexels.com/photos/34792532/pexels-photo-34792532.jpeg?auto=compress&cs=tinysrgb&w=1600&h=900&fit=crop');
       background-size: cover;
-      background-position: center 30%;
-      filter: brightness(0.4) saturate(0.95);
+      background-position: center;
     }
-
-    .hero-overlay {
-      position: absolute;
-      inset: 0;
-      z-index: -1;
-      background: linear-gradient(135deg, rgba(5,3,2,0.95) 0%, rgba(5,3,2,0.6) 60%, rgba(5,3,2,0.2) 100%);
+    .hero-about h1 {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(3rem, 10vw, 6rem);
+      line-height: 0.95;
+      letter-spacing: -0.03em;
     }
-
-    .hero-inner {
-      width: min(100%, 1400px);
-      margin-inline: auto;
-    }
-
-    .hero-kicker {
-      font-size: 0.8rem;
-      font-weight: 900;
-      letter-spacing: 0.32em;
-      text-transform: uppercase;
-      color: var(--gold);
-      margin-bottom: 24px;
-    }
-
-    .hero-title {
-      font-family: "Playfair Display", serif;
-      font-size: clamp(4rem, 10vw, 8rem);
-      line-height: 0.92;
-      letter-spacing: -0.06em;
-      max-width: 1000px;
-    }
-
-    .hero-title em {
-      color: var(--clay);
+    .hero-about h1 span {
+      color: #b56c38;
       font-style: italic;
     }
-
-    .story-section {
-      padding: clamp(80px, 10vw, 140px) clamp(20px, 6vw, 92px);
+    .section {
+      padding: 100px 5vw;
     }
-
-    .alternating-grid {
+    .alternating {
       display: grid;
       grid-template-columns: 1fr 1fr;
-      gap: 80px;
+      gap: 5rem;
       align-items: center;
       max-width: 1400px;
       margin: 0 auto;
     }
-
-    .alternating-grid.reverse {
+    .alternating.reverse {
       direction: rtl;
     }
-
-    .alternating-grid.reverse .content-block {
+    .alternating.reverse .content {
       direction: ltr;
     }
-
-    .content-block {
+    .content {
       direction: ltr;
     }
-
-    .section-eyebrow {
-      color: var(--gold);
-      font-size: 0.75rem;
+    .eyebrow {
+      color: #e8bc6a;
+      font-size: 0.7rem;
       font-weight: 800;
-      letter-spacing: 0.28em;
+      letter-spacing: 3px;
       text-transform: uppercase;
-      margin-bottom: 20px;
+      margin-bottom: 1rem;
       display: inline-block;
     }
-
-    .content-block h2 {
-      font-family: "Playfair Display", serif;
-      font-size: clamp(2.5rem, 5vw, 4.2rem);
-      line-height: 1.05;
-      letter-spacing: -0.05em;
-      margin-bottom: 28px;
+    .content h2 {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(2rem, 5vw, 3.5rem);
+      line-height: 1.1;
+      margin-bottom: 1.5rem;
     }
-
-    .content-block p {
-      font-size: 1.08rem;
+    .content p {
       line-height: 1.8;
-      color: rgba(255, 250, 241, 0.8);
-      margin-bottom: 24px;
+      opacity: 0.8;
+      margin-bottom: 1rem;
     }
-
     .image-block {
+      border-radius: 24px;
       overflow: hidden;
-      border-radius: 28px;
-      box-shadow: 0 40px 70px rgba(0, 0, 0, 0.5);
-      transition: transform 0.5s ease;
+      box-shadow: 0 30px 50px rgba(0,0,0,0.4);
+      transition: transform 0.3s;
     }
-
     .image-block:hover {
       transform: scale(1.02);
     }
-
     .image-block img {
       width: 100%;
-      height: 100%;
-      object-fit: cover;
-      transition: transform 0.8s ease;
+      height: auto;
+      display: block;
     }
-
-    .image-block:hover img {
-      transform: scale(1.05);
-    }
-
-    .image-block.rounded-left {
-      border-radius: 28px 8px 28px 8px;
-    }
-
-    .image-block.rounded-right {
-      border-radius: 8px 28px 8px 28px;
-    }
-
-    .values-section {
+    .dark-section {
       background: linear-gradient(135deg, #0a0604, #130b07);
-      padding: clamp(80px, 10vw, 140px) clamp(20px, 6vw, 92px);
     }
-
-    .values-header {
-      text-align: center;
-      max-width: 800px;
-      margin: 0 auto 80px;
-    }
-
-    .values-header h2 {
-      font-family: "Playfair Display", serif;
-      font-size: clamp(2.8rem, 5vw, 4.5rem);
-      letter-spacing: -0.05em;
-    }
-
     .values-grid {
       display: grid;
       grid-template-columns: repeat(3, 1fr);
-      gap: 48px;
-      max-width: 1400px;
-      margin: 0 auto;
+      gap: 2rem;
+      max-width: 1200px;
+      margin: 3rem auto 0;
     }
-
     .value-card {
-      padding: 40px 32px;
-      background: rgba(255, 250, 241, 0.03);
-      border: 1px solid rgba(232, 188, 106, 0.15);
-      border-radius: 32px;
+      text-align: center;
+      padding: 2rem;
+      border: 1px solid rgba(232,188,106,0.2);
+      border-radius: 28px;
       transition: all 0.3s;
-      text-align: center;
     }
-
     .value-card:hover {
-      border-color: var(--gold);
-      transform: translateY(-8px);
-      background: rgba(255, 250, 241, 0.06);
+      border-color: #e8bc6a;
+      transform: translateY(-5px);
     }
-
     .value-icon {
-      font-size: 3.5rem;
-      margin-bottom: 24px;
+      font-size: 3rem;
+      margin-bottom: 1rem;
     }
-
     .value-card h3 {
-      font-family: "Playfair Display", serif;
-      font-size: 1.8rem;
-      margin-bottom: 16px;
+      font-family: 'Playfair Display', serif;
+      font-size: 1.6rem;
+      margin-bottom: 1rem;
     }
-
     .value-card p {
-      color: rgba(255, 250, 241, 0.7);
-      line-height: 1.7;
+      opacity: 0.7;
+      line-height: 1.6;
     }
-
-    .team-section {
-      background: var(--cream);
-      color: #1b110b;
-      padding: clamp(80px, 10vw, 140px) clamp(20px, 6vw, 92px);
-    }
-
-    .team-header {
-      text-align: center;
-      max-width: 800px;
-      margin: 0 auto 80px;
-    }
-
-    .team-header h2 {
-      font-family: "Playfair Display", serif;
-      font-size: clamp(2.8rem, 5vw, 4.5rem);
-      letter-spacing: -0.05em;
-      color: #1b110b;
-    }
-
-    .team-header p {
-      color: rgba(27, 17, 11, 0.7);
-      font-size: 1.1rem;
-    }
-
     .team-grid {
       display: grid;
       grid-template-columns: repeat(3, 1fr);
-      gap: 50px;
-      max-width: 1200px;
-      margin: 0 auto;
-    }
-
-    .member {
+      gap: 3rem;
+      max-width: 1000px;
+      margin: 3rem auto 0;
       text-align: center;
     }
-
     .member-img {
-      width: 220px;
-      height: 220px;
+      width: 180px;
+      height: 180px;
       border-radius: 50%;
-      margin: 0 auto 24px;
+      margin: 0 auto 1rem;
       overflow: hidden;
-      border: 4px solid var(--gold);
-      box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
-      transition: transform 0.3s;
+      border: 3px solid #e8bc6a;
     }
-
-    .member-img:hover {
-      transform: scale(1.03);
-    }
-
     .member-img img {
       width: 100%;
       height: 100%;
       object-fit: cover;
     }
-
     .member h4 {
-      font-family: "Playfair Display", serif;
-      font-size: 1.8rem;
-      margin-bottom: 8px;
+      font-family: 'Playfair Display', serif;
+      font-size: 1.5rem;
+      margin-bottom: 0.5rem;
     }
-
     .member p {
-      color: rgba(27, 17, 11, 0.65);
-      font-size: 1rem;
+      opacity: 0.6;
     }
-
-    .cta-section {
-      background: var(--ink);
-      text-align: center;
-      padding: clamp(80px, 10vw, 120px) clamp(20px, 6vw, 92px);
+    .cream-bg {
+      background: #fbf1df;
+      color: #1b110b;
     }
-
-    .cta-inner {
-      max-width: 800px;
-      margin: 0 auto;
+    .cream-bg .member p {
+      color: #1b110b;
+      opacity: 0.6;
     }
-
-    .cta-section h2 {
-      font-family: "Playfair Display", serif;
-      font-size: clamp(2.5rem, 5vw, 4rem);
-      margin-bottom: 24px;
-    }
-
     .btn {
-      display: inline-flex;
-      align-items: center;
-      gap: 12px;
-      padding: 0 32px;
-      min-height: 56px;
-      border-radius: 999px;
-      font-size: 0.8rem;
-      font-weight: 800;
-      letter-spacing: 0.12em;
+      display: inline-block;
+      padding: 14px 32px;
+      border-radius: 50px;
+      font-weight: 700;
+      letter-spacing: 1px;
       text-transform: uppercase;
-      transition: all 0.25s;
+      font-size: 0.75rem;
+      transition: all 0.3s;
       cursor: pointer;
     }
-
     .btn-primary {
-      background: linear-gradient(135deg, #f3cc80, #c9783e);
-      color: #160b05;
+      background: linear-gradient(135deg, #e8bc6a, #b56c38);
+      color: #1a0e06;
     }
-
     .btn-primary:hover {
       transform: translateY(-3px);
-      box-shadow: 0 18px 35px rgba(181, 108, 56, 0.4);
+      box-shadow: 0 15px 35px rgba(181,108,56,0.3);
     }
-
     .footer {
-      padding: 44px clamp(20px, 6vw, 92px);
-      background: #050302;
-      color: rgba(255, 250, 241, 0.58);
-      border-top: 1px solid rgba(232, 188, 106, 0.12);
+      padding: 2rem 5vw;
+      text-align: center;
+      border-top: 1px solid rgba(232,188,106,0.2);
     }
-
-    .footer-inner {
-      display: flex;
-      justify-content: space-between;
-      flex-wrap: wrap;
-      gap: 24px;
-      align-items: center;
-      max-width: 1400px;
-      margin: 0 auto;
-    }
-
-    .socials {
-      display: flex;
-      gap: 24px;
-    }
-
-    .socials a {
-      color: rgba(255, 250, 241, 0.7);
-      transition: color 0.2s;
-    }
-
-    .socials a:hover {
-      color: var(--gold);
-    }
-
-    .reveal {
-      opacity: 0;
-      transform: translateY(40px);
-      transition: opacity 0.8s ease, transform 0.8s cubic-bezier(0.2, 0.8, 0.2, 1);
-    }
-
-    .reveal.is-visible {
-      opacity: 1;
-      transform: translateY(0);
-    }
-
-    @media (max-width: 1000px) {
-      .alternating-grid {
+    @media (max-width: 900px) {
+      .alternating {
         grid-template-columns: 1fr;
-        gap: 50px;
+        gap: 2rem;
       }
-      .alternating-grid.reverse {
+      .alternating.reverse {
         direction: ltr;
       }
       .values-grid, .team-grid {
         grid-template-columns: 1fr;
-        max-width: 500px;
-        margin: 0 auto;
+        max-width: 400px;
       }
-      .desktop-nav {
+      .nav {
         display: none;
-      }
-      .menu-button {
-        display: block;
-      }
-      .hero-about {
-        min-height: 60vh;
-        padding-bottom: 60px;
-      }
-    }
-
-    @media (max-width: 640px) {
-      .member-img {
-        width: 160px;
-        height: 160px;
-      }
-      .value-card {
-        padding: 28px 20px;
       }
     }
   </style>
 </head>
 <body>
-  <div class="noise"></div>
-  <div class="cursor-glow" id="cursorGlow"></div>
-
-  <header class="site-header" id="siteHeader">
-    <div class="nav-wrap">
-      <a class="brand" href="index.html">
-        <span class="brand-mark"></span>
-        <div class="brand-name">
-          <strong>Bean to Bag</strong>
-          <span>Ethiopian Origin</span>
-        </div>
-      </a>
-      <nav class="desktop-nav">
-        <a href="index.html">Home</a>
-        <a href="about.html" class="active">About</a>
-        <a href="index.html#collection">Coffee</a>
-        <a href="index.html#contact">Contact</a>
-      </nav>
-      <button class="menu-button" id="menuBtn">☰</button>
-    </div>
-  </header>
-
-  <div class="mobile-menu" id="mobileMenu">
-    <nav>
+  <header class="header">
+    <a href="index.html" class="logo">
+      <div class="logo-icon"></div>
+      <div class="logo-text">
+        <h1>Bean to Bag</h1>
+        <p>ETHIOPIAN ORIGIN</p>
+      </div>
+    </a>
+    <nav class="nav">
       <a href="index.html">Home</a>
-      <a href="about.html">About</a>
-      <a href="index.html#collection">Coffee</a>
+      <a href="about.html" class="active">About</a>
+      <a href="index.html#coffee">Coffee</a>
       <a href="index.html#contact">Contact</a>
     </nav>
-  </div>
+  </header>
 
   <main>
     <section class="hero-about">
-      <div class="hero-bg"></div>
-      <div class="hero-overlay"></div>
-      <div class="hero-inner">
-        <p class="hero-kicker reveal">The story behind the bean</p>
-        <h1 class="hero-title reveal">Honoring Ethiopian <em>heritage</em>,<br>one bag at a time.</h1>
+      <div>
+        <p style="color: #e8bc6a; letter-spacing: 3px; margin-bottom: 1rem;">THE STORY BEHIND THE BEAN</p>
+        <h1>Honoring Ethiopian <span>heritage</span>,<br>one bag at a time.</h1>
       </div>
     </section>
 
     <!-- Section 1: Image Left, Text Right -->
-    <section class="story-section">
-      <div class="alternating-grid reveal">
-        <div class="image-block rounded-left">
-          <img src="https://images.pexels.com/photos/29639314/pexels-photo-29639314.jpeg?auto=compress&cs=tinysrgb&w=1200&h=800&fit=crop" alt="Coffee cherries ripening on branch in Ethiopian highlands">
+    <section class="section">
+      <div class="alternating">
+        <div class="image-block">
+          <img src="https://images.pexels.com/photos/29639314/pexels-photo-29639314.jpeg?auto=compress&cs=tinysrgb&w=800&h=600&fit=crop" alt="Coffee cherries in Ethiopia">
         </div>
-        <div class="content-block">
-          <span class="section-eyebrow">Our Ethos</span>
+        <div class="content">
+          <span class="eyebrow">OUR ETHOS</span>
           <h2>Coffee is memory. We protect it from highland to your cup.</h2>
-          <p>Bean to Bag was born from a single belief: that specialty coffee should never lose its soul. We work directly with smallholder farmers in Ethiopia's Gedeo and Sidama zones — families who have cultivated heirloom Arabica for generations. Every cherry is hand-picked, every lot is traceable, and every roast is a quiet conversation between the land and the roaster.</p>
-          <p>We don't chase trends. We chase clarity, sweetness, and the kind of aroma that stops you mid-sentence. Our name says it all: from the moment the bean is harvested to the moment you tear open the bag, we're guardians of that journey.</p>
+          <p>Bean to Bag was born from a single belief: that specialty coffee should never lose its soul. We work directly with smallholder farmers in Ethiopia's Gedeo and Sidama zones — families who have cultivated heirloom Arabica for generations.</p>
+          <p>Every cherry is hand-picked, every lot is traceable, and every roast is a quiet conversation between the land and the roaster. We don't chase trends. We chase clarity, sweetness, and the kind of aroma that stops you mid-sentence.</p>
         </div>
       </div>
     </section>
 
     <!-- Section 2: Text Left, Image Right (Reverse) -->
-    <section class="story-section" style="background: linear-gradient(135deg, #0b0705, #100a06);">
-      <div class="alternating-grid reverse reveal">
-        <div class="image-block rounded-right">
-          <img src="https://images.pexels.com/photos/4820676/pexels-photo-4820676.jpeg?auto=compress&cs=tinysrgb&w=1200&h=800&fit=crop" alt="Traditional Ethiopian coffee ceremony with jebena clay pot">
+    <section class="section dark-section">
+      <div class="alternating reverse">
+        <div class="image-block">
+          <img src="https://images.pexels.com/photos/4820676/pexels-photo-4820676.jpeg?auto=compress&cs=tinysrgb&w=800&h=600&fit=crop" alt="Ethiopian coffee ceremony">
         </div>
-        <div class="content-block">
-          <span class="section-eyebrow">Living Tradition</span>
+        <div class="content">
+          <span class="eyebrow">LIVING TRADITION</span>
           <h2>The Ethiopian coffee ceremony: a ritual of connection</h2>
-          <p>In Ethiopia, coffee is more than a drink — it is an invitation. The traditional ceremony, led by a woman of the household, involves washing green beans, roasting them over an open flame, grinding them by hand, and brewing in a clay pot called a jebena. The aroma of frankincense fills the room as three rounds of coffee are served: Abol, Tona, and Baraka. Each cup represents a blessing.</p>
-          <p>At Bean to Bag, we carry that spirit into every bag we seal. It's why we roast with care, package with intention, and invite you to slow down and truly taste the story.</p>
+          <p>In Ethiopia, coffee is more than a drink — it is an invitation. The traditional ceremony involves washing green beans, roasting them over an open flame, grinding them by hand, and brewing in a clay pot called a jebena.</p>
+          <p>Three rounds of coffee are served: Abol, Tona, and Baraka. Each cup represents a blessing. At Bean to Bag, we carry that spirit into every bag we seal.</p>
         </div>
       </div>
     </section>
 
     <!-- Section 3: Image Left, Text Right -->
-    <section class="story-section">
-      <div class="alternating-grid reveal">
-        <div class="image-block rounded-left">
-          <img src="https://images.pexels.com/photos/2711959/pexels-photo-2711959.jpeg?auto=compress&cs=tinysrgb&w=1200&h=800&fit=crop" alt="Freshly roasted coffee beans cooling on tray">
+    <section class="section">
+      <div class="alternating">
+        <div class="image-block">
+          <img src="https://images.pexels.com/photos/2711959/pexels-photo-2711959.jpeg?auto=compress&cs=tinysrgb&w=800&h=600&fit=crop" alt="Freshly roasted coffee">
         </div>
-        <div class="content-block">
-          <span class="section-eyebrow">Mastery in Every Batch</span>
+        <div class="content">
+          <span class="eyebrow">MASTERY IN EVERY BATCH</span>
           <h2>Restrained roasting. Maximum expression.</h2>
-          <p>Our approach is minimal and precise: develop sweetness, preserve florals, and never hide the origin behind roast flavours. We use small-batch roasters that allow us to adjust curves for each lot — whether it's a bright, tea-like washed coffee or a honey-processed gem with wild berry notes.</p>
+          <p>Our approach is minimal and precise: develop sweetness, preserve florals, and never hide the origin behind roast flavours. We use small-batch roasters that allow us to adjust curves for each lot.</p>
           <p>Every bag includes a one-way valve, roast date, grind selection, and full traceability. Because great coffee should arrive as intended: alive, aromatic, and unforgettable.</p>
         </div>
       </div>
     </section>
 
     <!-- Values Section -->
-    <section class="values-section">
-      <div class="values-header reveal">
-        <span class="section-eyebrow" style="color: var(--gold);">What We Stand For</span>
-        <h2>Principles that guide every bean</h2>
+    <section class="section dark-section">
+      <div style="text-align: center; max-width: 800px; margin: 0 auto;">
+        <span class="eyebrow">WHAT WE STAND FOR</span>
+        <h2 style="font-family: 'Playfair Display', serif; font-size: clamp(2rem, 5vw, 3.5rem);">Principles that guide every bean</h2>
       </div>
       <div class="values-grid">
-        <div class="value-card reveal">
+        <div class="value-card">
           <div class="value-icon">🌱</div>
           <h3>Direct Trade</h3>
-          <p>We pay above-fair prices and build lasting partnerships with washing stations, ensuring farmers receive the recognition — and reward — they deserve.</p>
+          <p>We pay above-fair prices and build lasting partnerships with washing stations, ensuring farmers receive the recognition they deserve.</p>
         </div>
-        <div class="value-card reveal">
+        <div class="value-card">
           <div class="value-icon">🔥</div>
           <h3>Restrained Roast</h3>
           <p>Our approach is minimal and precise: develop sweetness, preserve florals, and never hide the origin behind roast flavours.</p>
         </div>
-        <div class="value-card reveal">
+        <div class="value-card">
           <div class="value-icon">📦</div>
           <h3>Freshness Locked</h3>
-          <p>Every bag includes a one-way valve, roast date, grind selection, and full traceability — because great coffee should arrive as intended.</p>
+          <p>Every bag includes a one-way valve, roast date, grind selection, and full traceability.</p>
         </div>
       </div>
     </section>
 
     <!-- Team Section -->
-    <section class="team-section">
-      <div class="team-header reveal">
-        <span class="section-eyebrow" style="color: var(--clay);">The People</span>
-        <h2>Behind every bean, a human story</h2>
-        <p>From highland pickers to our small-batch roasting team in Addis — we are a collective of coffee lovers who believe in transparency, quality, and warmth.</p>
+    <section class="section cream-bg">
+      <div style="text-align: center; max-width: 800px; margin: 0 auto;">
+        <span class="eyebrow" style="color: #b56c38;">THE PEOPLE</span>
+        <h2 style="font-family: 'Playfair Display', serif; font-size: clamp(2rem, 5vw, 3.5rem); color: #1b110b;">Behind every bean, a human story</h2>
+        <p style="opacity: 0.7;">From highland pickers to our small-batch roasting team — we are a collective of coffee lovers who believe in transparency, quality, and warmth.</p>
       </div>
       <div class="team-grid">
-        <div class="member reveal">
-          <div class="member-img"><img src="https://images.pexels.com/photos/34792532/pexels-photo-34792532.jpeg?auto=compress&cs=tinysrgb&w=400&h=400&fit=crop" alt="Founder Meron Assefa"></div>
+        <div class="member">
+          <div class="member-img"><img src="https://images.pexels.com/photos/34792532/pexels-photo-34792532.jpeg?auto=compress&cs=tinysrgb&w=300&h=300&fit=crop" alt="Founder"></div>
           <h4>Meron Assefa</h4>
           <p>Founder & Head Roaster</p>
         </div>
-        <div class="member reveal">
-          <div class="member-img"><img src="https://images.pexels.com/photos/2711959/pexels-photo-2711959.jpeg?auto=compress&cs=tinysrgb&w=400&h=400&fit=crop" alt="Quality lead Dawit Hailu"></div>
+        <div class="member">
+          <div class="member-img"><img src="https://images.pexels.com/photos/2711959/pexels-photo-2711959.jpeg?auto=compress&cs=tinysrgb&w=300&h=300&fit=crop" alt="Quality lead"></div>
           <h4>Dawit Hailu</h4>
           <p>Quality & Sourcing Lead</p>
         </div>
-        <div class="member reveal">
-          <div class="member-img"><img src="https://images.pexels.com/photos/29639314/pexels-photo-29639314.jpeg?auto=compress&cs=tinysrgb&w=400&h=400&fit=crop" alt="Partnership director Selam Tesfaye"></div>
+        <div class="member">
+          <div class="member-img"><img src="https://images.pexels.com/photos/29639314/pexels-photo-29639314.jpeg?auto=compress&cs=tinysrgb&w=300&h=300&fit=crop" alt="Partnerships"></div>
           <h4>Selam Tesfaye</h4>
           <p>Farm Partnership Director</p>
         </div>
@@ -762,64 +377,15 @@
     </section>
 
     <!-- CTA Section -->
-    <section class="cta-section">
-      <div class="cta-inner">
-        <h2 class="reveal">Become part of the journey.</h2>
-        <p class="reveal" style="color: rgba(255,250,241,0.75); margin-bottom: 32px; font-size: 1.1rem;">Explore our current harvests, sign up for wholesale, or simply brew a cup that brings Ethiopia to your morning ritual.</p>
-        <a href="index.html#collection" class="btn btn-primary reveal">Explore Coffee →</a>
-      </div>
+    <section class="section" style="text-align: center;">
+      <h2 style="font-family: 'Playfair Display', serif; font-size: clamp(2rem, 5vw, 3.5rem);">Become part of the journey.</h2>
+      <p style="margin: 1.5rem auto 2rem; max-width: 600px; opacity: 0.7;">Explore our current harvests, sign up for wholesale, or simply brew a cup that brings Ethiopia to your morning ritual.</p>
+      <a href="index.html#coffee" class="btn btn-primary">Explore Coffee →</a>
     </section>
   </main>
 
   <footer class="footer">
-    <div class="footer-inner">
-      <strong>Bean to Bag</strong>
-      <span>© 2025 Bean to Bag Coffee — Ethiopian specialty Arabica, roasted fresh.</span>
-      <div class="socials">
-        <a href="#">Instagram</a>
-        <a href="#">Facebook</a>
-        <a href="#">Telegram</a>
-      </div>
-    </div>
+    <p>© 2025 Bean to Bag Coffee — Ethiopian specialty Arabica, roasted fresh.</p>
   </footer>
-
-  <script>
-    const cursorGlow = document.getElementById("cursorGlow");
-    const header = document.getElementById("siteHeader");
-    const menuBtn = document.getElementById("menuBtn");
-    const mobileMenu = document.getElementById("mobileMenu");
-
-    window.addEventListener("pointermove", (e) => {
-      cursorGlow.style.opacity = "1";
-      cursorGlow.style.transform = `translate3d(${e.clientX}px, ${e.clientY}px, 0) translate(-50%, -50%)`;
-    });
-
-    window.addEventListener("scroll", () => {
-      header.classList.toggle("is-scrolled", window.scrollY > 30);
-    });
-
-    menuBtn.addEventListener("click", () => {
-      mobileMenu.classList.toggle("is-open");
-      document.body.style.overflow = mobileMenu.classList.contains("is-open") ? "hidden" : "";
-    });
-
-    mobileMenu.querySelectorAll("a").forEach(link => {
-      link.addEventListener("click", () => {
-        mobileMenu.classList.remove("is-open");
-        document.body.style.overflow = "";
-      });
-    });
-
-    const revealObserver = new IntersectionObserver((entries) => {
-      entries.forEach(entry => {
-        if (entry.isIntersecting) {
-          entry.target.classList.add("is-visible");
-          revealObserver.unobserve(entry.target);
-        }
-      });
-    }, { threshold: 0.15, rootMargin: "0px 0px -8% 0px" });
-
-    document.querySelectorAll(".reveal").forEach(el => revealObserver.observe(el));
-  </script>
 </body>
 </html>
