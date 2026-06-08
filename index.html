@@ -29,7 +29,7 @@
 
     body {
       font-family: 'Inter', system-ui, sans-serif;
-      background: #0F3B1F;  /* Solid green matching logo background */
+      background: #0F3B1F;
       color: #FFF3C9;
       overflow-x: hidden;
       line-height: 1.6;
@@ -128,7 +128,6 @@
       align-items: center;
     }
 
-    /* Logo only - no text */
     .brand-logo-img {
       width: 55px;
       height: 55px;
@@ -142,7 +141,6 @@
       height: 48px;
     }
 
-    /* Hide brand text completely */
     .brand-name {
       display: none;
     }
@@ -240,12 +238,12 @@
     .btn-outline { border-color: #FFD700; color: #FFEEAA; background: transparent; }
     .btn-outline:hover { background: linear-gradient(145deg, #FFDF66, #FFC107); color: #0F3B1F; }
 
-    /* ==================== HERO VIDEO SECTION - FIXED (NO CROPPING) ==================== */
+    /* ==================== HERO VIDEO SECTION - ENLARGED FULL SCREEN ==================== */
     .hero-video-section {
       position: relative;
       width: 100%;
       height: 100vh;
-      min-height: 500px;
+      min-height: 650px;
       overflow: hidden;
       background: #0F3B1F;
     }
@@ -261,19 +259,16 @@
       z-index: 0;
     }
     
-    /* Mobile fix: ensure full video visible without cropping text */
+    /* Ensure video covers entire hero area on all devices */
     @media (max-width: 768px) {
       .hero-video-section {
-        height: auto;
-        min-height: 280px;
-        aspect-ratio: 16 / 9;
+        height: 100vh;
+        min-height: 500px;
       }
       .hero-video {
-        position: relative;
+        object-fit: cover;
         width: 100%;
-        height: auto;
-        object-fit: contain;
-        background: #0F3B1F;
+        height: 100%;
       }
     }
 
@@ -283,16 +278,9 @@
       left: 0;
       width: 100%;
       height: 100%;
-      background: linear-gradient(135deg, rgba(15, 59, 31, 0.55), rgba(15, 59, 31, 0.4));
+      background: linear-gradient(135deg, rgba(15, 59, 31, 0.6), rgba(15, 59, 31, 0.45));
       z-index: 1;
       pointer-events: none;
-    }
-
-    @media (max-width: 768px) {
-      .hero-overlay {
-        position: absolute;
-        height: 100%;
-      }
     }
 
     /* ==================== HERO CONTENT SECTION ==================== */
@@ -573,7 +561,7 @@
 <a href="https://wa.me/251911234567" class="whatsapp-float" target="_blank">💬</a>
 
 <main>
-  <!-- VIDEO SECTION - FIXED: Full video visible on all devices -->
+  <!-- VIDEO SECTION - ENLARGED FULL SCREEN (covers entire top area) -->
   <div class="hero-video-section">
     <video class="hero-video" autoplay muted loop playsinline webkit-playsinline="true" preload="auto" id="heroVideo">
       <source src="Bean.mp4" type="video/mp4">
