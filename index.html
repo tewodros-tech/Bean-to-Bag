@@ -103,7 +103,7 @@
       left: 0;
       right: 0;
       z-index: 1000;
-      padding: 20px 28px;
+      padding: 18px 28px;
       background: linear-gradient(180deg, rgba(10, 35, 18, 0.92) 0%, rgba(5, 25, 12, 0.8) 100%);
       backdrop-filter: blur(12px);
       transition: var(--transition);
@@ -112,7 +112,7 @@
 
     .site-header.scrolled {
       background: rgba(12, 40, 20, 0.96);
-      padding: 14px 28px;
+      padding: 12px 28px;
     }
 
     .nav-wrap {
@@ -126,34 +126,25 @@
     .brand {
       display: flex;
       align-items: center;
-      gap: 12px;
     }
 
+    /* Logo only - no text */
     .brand-logo-img {
-      width: 50px;
-      height: 50px;
+      width: 55px;
+      height: 55px;
       object-fit: contain;
-      filter: drop-shadow(0 2px 8px rgba(0,0,0,0.3));
+      filter: drop-shadow(0 4px 12px rgba(255, 215, 0, 0.3));
       transition: var(--transition);
     }
 
     .site-header.scrolled .brand-logo-img {
-      width: 42px;
-      height: 42px;
+      width: 48px;
+      height: 48px;
     }
 
-    .brand-name strong {
-      font-family: 'Playfair Display', serif;
-      font-size: 1.3rem;
-      color: #FFEB99;
-      letter-spacing: -0.02em;
-    }
-
-    .brand-name span {
-      font-size: 0.6rem;
-      letter-spacing: 0.25em;
-      color: #FFD966;
-      text-transform: uppercase;
+    /* Hide brand text completely */
+    .brand-name {
+      display: none;
     }
 
     .desktop-nav { display: flex; gap: 32px; }
@@ -525,11 +516,12 @@
       .hero-actions, .cta-actions { flex-direction: column; align-items: center; }
       .btn { width: 100%; max-width: 240px; padding: 12px 25px; }
       .hero-content-section { padding: 50px 0; }
+      .brand-logo-img { width: 45px; height: 45px; }
     }
     @media (max-width: 480px) {
-      .brand-name strong { font-size: 1rem; }
-      .brand-logo-img { width: 38px; height: 38px; }
+      .brand-logo-img { width: 40px; height: 40px; }
       .whatsapp-float { width: 48px; height: 48px; font-size: 1.3rem; }
+      .site-header { padding: 12px 16px; }
     }
 
     /* Animations */
@@ -554,11 +546,9 @@
 <header class="site-header" id="siteHeader">
   <div class="nav-wrap">
     <a href="index.html" class="brand">
+      <!-- Logo only - no text -->
       <img src="file_000000007ea4722f8a8ec553e737ed04.png" alt="Bean to Bag Logo" class="brand-logo-img">
-      <div class="brand-name">
-        <strong>Bean to Bag</strong>
-        <span>Ethiopian Origin</span>
-      </div>
+      <div class="brand-name"></div>
     </a>
     <nav class="desktop-nav">
       <a href="index.html" class="active">Home</a>
