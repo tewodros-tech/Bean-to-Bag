@@ -3,8 +3,8 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover, user-scalable=yes">
-  <meta name="description" content="Bean to Bag - Discover the soul of Ethiopian coffee. Our story, the traditional coffee ceremony, and the women behind Ethiopia's finest Arabica.">
-  <title>Bean to Bag | Our Story — Ethiopian Coffee Heritage</title>
+  <meta name="description" content="Bean to Bag - Premium Ethiopian specialty coffee, freshly roasted and professionally packaged. Meet our all-women team and discover our story.">
+  <title>Bean to Bag | About Us — Ethiopian Coffee Excellence</title>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;0,800;0,900;1,400;1,500;1,600;1,700&display=swap" rel="stylesheet">
   <style>
     * {
@@ -16,11 +16,10 @@
     :root {
       --accent: #FFD700;
       --accent-light: #FFDF66;
-      --accent-glow: #FFC107;
+      --accent-dark: #D4AF37;
       --deep-green: #0F3B1F;
       --forest: #1C4D2A;
       --emerald: #2A5C3A;
-      --cream: #FEF5E7;
       --shadow-gold: 0 20px 40px rgba(255, 215, 0, 0.12);
       --shadow-deep: 0 25px 50px rgba(0, 0, 0, 0.3);
       --transition: all 0.5s cubic-bezier(0.2, 0.9, 0.4, 1.1);
@@ -40,14 +39,13 @@
       padding: 0 28px;
     }
 
-    /* Custom Scrollbar */
     ::-webkit-scrollbar { width: 8px; }
     ::-webkit-scrollbar-track { background: var(--forest); }
     ::-webkit-scrollbar-thumb { background: linear-gradient(180deg, var(--accent-light), var(--accent)); border-radius: 10px; }
 
     ::selection { background: var(--accent); color: var(--deep-green); }
 
-    /* ===== HEADER ===== */
+    /* Header */
     .site-header {
       position: fixed;
       top: 0;
@@ -234,7 +232,7 @@
     }
     .gold-text { color: var(--accent-light); }
 
-    /* Hero Section with Ethiopian Vibe */
+    /* Hero Section */
     .hero-about {
       min-height: 85vh;
       display: flex;
@@ -242,16 +240,7 @@
       position: relative;
       background: linear-gradient(135deg, #0A2A14, #153B20);
       overflow: hidden;
-    }
-    .hero-about::before {
-      content: "☕";
-      position: absolute;
-      font-size: 30vw;
-      opacity: 0.03;
-      bottom: -10%;
-      right: -5%;
-      color: var(--accent);
-      pointer-events: none;
+      padding: 120px 0 60px;
     }
     .hero-grid {
       display: grid;
@@ -274,89 +263,55 @@
       border-radius: 40px;
       overflow: hidden;
       box-shadow: 0 30px 50px rgba(0,0,0,0.4);
-      transform: rotate(1deg);
       transition: 0.5s;
+      background: #1a4a2a;
     }
-    .hero-image-frame img { width: 100%; height: auto; display: block; transition: 0.6s; }
-    .hero-image-frame:hover { transform: rotate(0deg) scale(1.02); }
+    .hero-image-frame img { width: 100%; height: auto; display: block; object-fit: cover; }
+    .hero-image-frame:hover { transform: scale(1.02); }
 
-    /* Ceremony Feature Section - SPECTACULAR */
-    .ceremony-section {
-      position: relative;
-      padding: 100px 0;
-      background: linear-gradient(115deg, #0E321C, #1A4528);
-      overflow: hidden;
-    }
-    .ceremony-bg-pattern {
-      position: absolute;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      background-image: radial-gradient(circle at 20% 40%, rgba(255,215,0,0.03) 2%, transparent 2.5%);
-      background-size: 40px 40px;
-      pointer-events: none;
-    }
-    .ceremony-grid {
+    /* Section Styles */
+    section { padding: 80px 0; }
+    .grid-2 {
       display: grid;
       grid-template-columns: 1fr 1fr;
-      gap: 70px;
+      gap: 50px;
       align-items: center;
     }
-    .ceremony-card {
-      background: rgba(0, 0, 0, 0.25);
-      backdrop-filter: blur(8px);
-      border-radius: 48px;
-      padding: 40px;
-      border: 1px solid rgba(255, 215, 0, 0.25);
+    .image-card {
+      border-radius: 30px;
+      overflow: hidden;
+      box-shadow: var(--shadow-deep);
+      background: #1a4a2a;
       transition: 0.4s;
     }
-    .ceremony-card:hover { border-color: var(--accent); box-shadow: var(--shadow-gold); }
-    .ritual-steps { display: flex; flex-wrap: wrap; gap: 16px; margin-top: 32px; }
-    .step {
-      background: rgba(255,215,0,0.08);
-      padding: 12px 18px;
-      border-radius: 40px;
-      font-size: 0.85rem;
-      font-weight: 500;
-      color: #FFE8B5;
-    }
-    .step span { color: var(--accent); font-weight: bold; margin-right: 6px; }
+    .image-card img { width: 100%; height: auto; display: block; object-fit: cover; }
+    .image-card:hover { transform: translateY(-8px); }
 
-    /* Women of Ethiopian Coffee Gallery */
-    .women-gallery {
-      padding: 100px 0;
-      background: linear-gradient(135deg, #143B22, #1E502C);
+    /* Women Team Section */
+    .team-section {
+      background: linear-gradient(135deg, #0E321C, #1A4528);
+      padding: 80px 0;
     }
-    .gallery-grid {
+    .team-grid {
       display: grid;
       grid-template-columns: repeat(3, 1fr);
       gap: 35px;
-      margin-top: 60px;
+      margin-top: 50px;
     }
-    .gallery-card {
-      border-radius: 32px;
+    .team-card {
+      background: rgba(0, 0, 0, 0.25);
+      backdrop-filter: blur(4px);
+      border-radius: 30px;
       overflow: hidden;
-      background: rgba(0,0,0,0.3);
-      transition: 0.5s;
-      cursor: pointer;
-      box-shadow: 0 15px 30px rgba(0,0,0,0.2);
+      border: 1px solid rgba(255, 215, 0, 0.2);
+      transition: 0.4s;
     }
-    .gallery-card:hover { transform: translateY(-15px) scale(1.02); box-shadow: 0 30px 50px rgba(0,0,0,0.4); }
-    .gallery-card img { width: 100%; height: 320px; object-fit: cover; transition: 0.6s; }
-    .gallery-card:hover img { transform: scale(1.08); }
-    .gallery-caption {
-      padding: 24px;
-      text-align: center;
-      background: linear-gradient(to top, rgba(0,0,0,0.6), transparent);
-    }
-    .gallery-caption h4 { color: var(--accent-light); font-size: 1.2rem; margin-bottom: 8px; }
+    .team-card:hover { transform: translateY(-10px); border-color: var(--accent); }
+    .team-card img { width: 100%; height: 300px; object-fit: cover; }
+    .team-info { padding: 24px; text-align: center; }
+    .team-info h3 { color: var(--accent-light); margin-bottom: 8px; }
 
-    /* Stats & Impact */
-    .stats-showcase {
-      padding: 80px 0;
-      background: rgba(0, 0, 0, 0.2);
-    }
+    /* Stats */
     .stats-grid {
       display: grid;
       grid-template-columns: repeat(4, 1fr);
@@ -364,42 +319,54 @@
       text-align: center;
     }
     .stat-number {
-      font-size: 3.2rem;
+      font-size: 3rem;
       font-weight: 800;
       color: var(--accent);
       font-family: 'Playfair Display', serif;
     }
 
-    /* Journey Timeline */
-    .journey-section { padding: 100px 0; }
-    .timeline {
-      display: flex;
-      flex-wrap: wrap;
-      justify-content: space-between;
-      margin-top: 60px;
-      gap: 30px;
+    /* Ceremony Section */
+    .ceremony-section {
+      background: linear-gradient(115deg, #0E321C, #1A4528);
+      padding: 80px 0;
     }
-    .timeline-item {
-      flex: 1;
-      min-width: 200px;
-      background: rgba(255,215,0,0.05);
-      border-radius: 32px;
-      padding: 30px;
+    .ceremony-card {
+      background: rgba(0, 0, 0, 0.25);
+      backdrop-filter: blur(8px);
+      border-radius: 40px;
+      padding: 40px;
+      border: 1px solid rgba(255, 215, 0, 0.25);
+    }
+
+    /* Values */
+    .values-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 35px;
+    }
+    .value-card {
+      background: rgba(30, 77, 46, 0.6);
+      backdrop-filter: blur(4px);
+      border-radius: 28px;
+      padding: 35px 25px;
       text-align: center;
-      border: 1px solid rgba(255,215,0,0.2);
+      border: 1px solid rgba(255, 215, 0, 0.2);
+      transition: 0.3s;
     }
+    .value-card:hover { border-color: var(--accent); transform: translateY(-6px); }
+    .value-card h3 { color: var(--accent-light); margin-bottom: 15px; font-size: 1.5rem; }
 
     /* CTA */
     .cta-gold {
       background: linear-gradient(115deg, #1A4025, #0F2E1A);
-      padding: 90px 0;
+      padding: 80px 0;
       text-align: center;
     }
 
     /* Footer */
     .footer {
       background: #081F0E;
-      padding: 55px 24px 40px;
+      padding: 50px 24px 35px;
       text-align: center;
       border-top: 1px solid rgba(255,215,0,0.1);
     }
@@ -424,156 +391,206 @@
 
     /* Responsive */
     @media (max-width: 992px) {
-      .hero-grid, .ceremony-grid { grid-template-columns: 1fr; gap: 45px; }
-      .gallery-grid { grid-template-columns: repeat(2, 1fr); }
+      .hero-grid, .grid-2 { grid-template-columns: 1fr; gap: 40px; }
+      .team-grid, .values-grid { grid-template-columns: repeat(2, 1fr); }
       .stats-grid { grid-template-columns: repeat(2, 1fr); }
     }
     @media (max-width: 768px) {
       .desktop-nav { display: none; }
       .menu-button { display: flex; }
       .container { padding: 0 20px; }
-      .gallery-grid { grid-template-columns: 1fr; }
-      .timeline { flex-direction: column; }
-      .hero-about { min-height: auto; padding: 140px 0 60px; }
-      .section-title { font-size: 2.2rem; }
+      .team-grid, .values-grid { grid-template-columns: 1fr; }
+      .stats-grid { grid-template-columns: 1fr; }
+      .hero-about { min-height: auto; padding: 130px 0 50px; }
     }
     @media (max-width: 480px) {
-      .stats-grid { grid-template-columns: 1fr; }
       .brand-name strong { font-size: 1rem; }
+      .whatsapp-float { width: 50px; height: 50px; font-size: 1.4rem; }
     }
 
     /* Animations */
     .scroll-animate {
       opacity: 0;
-      transform: translateY(35px);
-      transition: opacity 0.8s ease, transform 0.8s ease;
+      transform: translateY(30px);
+      transition: opacity 0.7s ease, transform 0.7s ease;
     }
     .scroll-animate.animated { opacity: 1; transform: translateY(0); }
-    @keyframes fadeInUp { from { opacity: 0; transform: translateY(25px); } to { opacity: 1; transform: translateY(0); } }
-    .fade-up { animation: fadeInUp 0.7s ease forwards; }
   </style>
 </head>
 <body>
 
 <header class="site-header" id="siteHeader">
   <div class="nav-wrap">
-    <a href="index.html" class="brand"><div class="brand-mark"></div><div class="brand-name"><strong>Bean to Bag</strong><span>Ethiopian Origin</span></div></a>
-    <nav class="desktop-nav"><a href="index.html">Home</a><a href="about.html" class="active">About</a><a href="products.html">Products</a><a href="origin.html">Origin</a><a href="contact.html">Contact</a></nav>
+    <a href="index.html" class="brand">
+      <div class="brand-mark"></div>
+      <div class="brand-name"><strong>Bean to Bag</strong><span>Ethiopian Origin</span></div>
+    </a>
+    <nav class="desktop-nav">
+      <a href="index.html">Home</a>
+      <a href="about.html" class="active">About</a>
+      <a href="products.html">Products</a>
+      <a href="origin.html">Origin</a>
+      <a href="contact.html">Contact</a>
+    </nav>
     <button class="menu-button" id="menuToggle"><span></span><span></span><span></span></button>
   </div>
 </header>
-<div class="mobile-menu" id="mobileMenu"><button class="close-menu" id="closeMenu">✕</button><a href="index.html">Home</a><a href="about.html">About</a><a href="products.html">Products</a><a href="origin.html">Origin</a><a href="contact.html">Contact</a></div>
+
+<div class="mobile-menu" id="mobileMenu">
+  <button class="close-menu" id="closeMenu">✕</button>
+  <a href="index.html">Home</a>
+  <a href="about.html">About</a>
+  <a href="products.html">Products</a>
+  <a href="origin.html">Origin</a>
+  <a href="contact.html">Contact</a>
+</div>
+
 <a href="https://wa.me/251911234567" class="whatsapp-float" target="_blank">💬</a>
 
 <main>
-  <!-- Hero Section - Ethiopian Pride -->
+  <!-- Hero Section -->
   <div class="hero-about">
     <div class="container">
       <div class="hero-grid">
         <div class="scroll-animate">
-          <div class="hero-badge">🇪🇹 LANDS OF ORIGIN</div>
-          <h1 class="section-title">The Soul of Ethiopia<br>in Every <span class="gold-text">Bean</span></h1>
-          <p style="font-size: 1.1rem; margin: 24px 0 32px; color: #F5E6C4; line-height: 1.7;">Bean to Bag is more than coffee — it's a tribute to Ethiopian women, ancient coffee rituals, and highland farmers who have nurtured Arabica for centuries.</p>
-          <div><a href="#ceremony" class="btn btn-primary">Discover the Ceremony →</a></div>
+          <div class="hero-badge">✦ BEAN TO BAG ✦</div>
+          <h1 class="section-title">From Ethiopian Highlands<br>to Your <span class="gold-text">Coffee Cup</span></h1>
+          <p style="font-size: 1.1rem; margin: 24px 0 32px; color: #F5E6C4; line-height: 1.7;">We are a premium Ethiopian specialty coffee brand — roasting, packaging, and sharing the rich heritage of Arabica from small-scale highland farms.</p>
+          <a href="#story" class="btn btn-primary">Discover Our Story →</a>
         </div>
         <div class="hero-image-frame scroll-animate">
-          <img src="https://images.pexels.com/photos/9829400/pexels-photo-9829400.jpeg?auto=compress&w=800" alt="Ethiopian woman coffee ceremony traditional dress">
+          <img src="about-coffee.jpg" alt="Bean to Bag premium Ethiopian coffee">
         </div>
       </div>
     </div>
   </div>
 
-  <!-- SPECTACULAR COFFEE CEREMONY SECTION -->
-  <div class="ceremony-section" id="ceremony">
-    <div class="ceremony-bg-pattern"></div>
+  <!-- Our Story Section -->
+  <section id="story">
     <div class="container">
-      <div class="ceremony-grid">
+      <div class="grid-2">
+        <div class="image-card scroll-animate">
+          <img src="about-coffee.jpg" alt="Ethiopian coffee farm highlands">
+        </div>
+        <div class="scroll-animate">
+          <span class="section-tag">OUR ORIGIN</span>
+          <h2 class="section-title">Rooted in <span class="gold-text">Ethiopian Soil</span></h2>
+          <p style="line-height: 1.8; margin-bottom: 1rem;">Bean to Bag is dedicated to delivering high-quality Ethiopian coffee from origin to cup. Our coffee is grown by smallholder farmers in traditional garden farms across Ethiopia's highlands at 1,900–2,200 meters above sea level.</p>
+          <p style="line-height: 1.8;">Every step — from sourcing green beans to small-batch roasting and premium packaging — is carefully handled to ensure freshness and quality. We honor the farmers, the land, and the ancient coffee traditions of Ethiopia.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Ethiopian Coffee Ceremony -->
+  <div class="ceremony-section">
+    <div class="container">
+      <div class="grid-2">
         <div class="ceremony-card scroll-animate">
           <span class="section-tag">☕ ቡና ሥነ ሥርዓት</span>
-          <h2 class="section-title" style="margin-bottom: 20px;">The Sacred <span class="gold-text">Coffee Ceremony</span></h2>
-          <p style="margin-bottom: 20px; font-size: 1rem;">In Ethiopia, coffee is a ritual of connection. Women dressed in traditional white kemis roast green beans over open flame, pound them with a mortar, and brew three rounds — 'Abol' (first strength), 'Tona' (second), and 'Baraka' (blessing). It's a symbol of respect, friendship, and community.</p>
-          <div class="ritual-steps">
-            <div class="step"><span>✦</span> Washing green beans</div>
-            <div class="step"><span>✦</span> Roasting over charcoal</div>
-            <div class="step"><span>✦</span> Grinding with mukecha</div>
-            <div class="step"><span>✦</span> Brewing in Jebena</div>
-            <div class="step"><span>✦</span> Three rounds of serving</div>
-          </div>
+          <h2 class="section-title" style="margin-bottom: 20px;">The Ethiopian <span class="gold-text">Coffee Ceremony</span></h2>
+          <p style="margin-bottom: 20px;">In Ethiopia, coffee is a sacred ritual of connection. Women in traditional dress roast green beans over an open flame, grind them with a wooden mortar, and brew three rounds in a clay Jebena — 'Abol', 'Tona', and 'Baraka' (blessing). It's a symbol of respect, friendship, and community.</p>
+          <p>At Bean to Bag, we celebrate this heritage in every bag we roast.</p>
         </div>
-        <div class="hero-image-frame scroll-animate">
-          <img src="https://images.pexels.com/photos/12969333/pexels-photo-12969333.jpeg?auto=compress&w=800" alt="Ethiopian coffee ceremony with Jebena and incense">
+        <div class="image-card scroll-animate">
+          <img src="ceremony.jpg" alt="Traditional Ethiopian coffee ceremony">
         </div>
       </div>
     </div>
   </div>
 
-  <!-- Ethiopian Women in Coffee Gallery - POWERFUL & ELEGANT -->
-  <div class="women-gallery">
+  <!-- Our All-Women Team Section -->
+  <div class="team-section">
     <div class="container">
-      <div class="section-header text-center" style="text-align: center;">
-        <span class="section-tag">❤️ THE HEARTBEAT</span>
-        <h2 class="section-title">Women of Ethiopian Coffee</h2>
-        <p style="max-width: 700px; margin: 16px auto 0; color: #EEDDBB;">From highland harvests to the ceremonial Jebena, Ethiopian women are the guardians of coffee culture. Bean to Bag honors their strength, tradition, and craftsmanship.</p>
+      <div class="scroll-animate" style="text-align: center; margin-bottom: 50px;">
+        <span class="section-tag">❤️ OUR PRIDE</span>
+        <h2 class="section-title">Meet Our All-Women Team</h2>
+        <p style="max-width: 700px; margin: 16px auto 0;">Passionate baristas and coffee professionals bringing Ethiopian coffee culture to life at our Addis Ababa cafe.</p>
       </div>
-      <div class="gallery-grid">
-        <div class="gallery-card scroll-animate"><img src="https://images.pexels.com/photos/5819402/pexels-photo-5819402.jpeg?auto=compress&w=600" alt="Ethiopian woman farmer picking coffee cherries"><div class="gallery-caption"><h4>Harvesting with Heritage</h4><p>Women smallholders hand-pick ripest cherries</p></div></div>
-        <div class="gallery-card scroll-animate"><img src="https://images.pexels.com/photos/12969332/pexels-photo-12969332.jpeg?auto=compress&w=600" alt="Traditional coffee ceremony pouring jebena"><div class="gallery-caption"><h4>Ceremony Keepers</h4><p>Passing down rituals for generations</p></div></div>
-        <div class="gallery-card scroll-animate"><img src="https://images.pexels.com/photos/7600591/pexels-photo-7600591.jpeg?auto=compress&w=600" alt="Ethiopian woman roasting coffee beans"><div class="gallery-caption"><h4>The Art of Roasting</h4><p>Aromatic mastery over charcoal flame</p></div></div>
+      <div class="team-grid">
+        <div class="team-card scroll-animate">
+          <img src="17.JPG" alt="Professional barista at Bean to Bag">
+          <div class="team-info"><h3>Expert Baristas</h3><p>Skilled in traditional Jebena and modern espresso</p></div>
+        </div>
+        <div class="team-card scroll-animate">
+          <img src="16.JPG" alt="Coffee brewing at Bean to Bag cafe">
+          <div class="team-info"><h3>Craft Brewing</h3><p>Pour-over, French press, and espresso mastery</p></div>
+        </div>
+        <div class="team-card scroll-animate">
+          <img src="15.JPG" alt="Bean to Bag Cafe interior">
+          <div class="team-info"><h3>Warm Hospitality</h3><p>Experience Ethiopian coffee culture with us</p></div>
+        </div>
       </div>
     </div>
   </div>
 
-  <!-- Stats: Impact & Women Empowerment -->
-  <div class="stats-showcase">
+  <!-- Stats Section -->
+  <section>
     <div class="container">
       <div class="stats-grid">
-        <div class="stat-item scroll-animate"><div class="stat-number">60%+</div><div class="stat-label">of coffee labor done by women in Ethiopia</div></div>
-        <div class="stat-item scroll-animate"><div class="stat-number">15+</div><div class="stat-label">Women-led farming co-ops</div></div>
-        <div class="stat-item scroll-animate"><div class="stat-number">100%</div><div class="stat-label">Traceable Arabica</div></div>
-        <div class="stat-item scroll-animate"><div class="stat-number">1,900–2,200m</div><div class="stat-label">Highland altitude</div></div>
+        <div class="scroll-animate"><div class="stat-number">1,900–2,200m</div><div class="stat-label">Highland Altitude</div></div>
+        <div class="scroll-animate"><div class="stat-number">100%</div><div class="stat-label">Arabica Coffee</div></div>
+        <div class="scroll-animate"><div class="stat-number">Small Batch</div><div class="stat-label">Fresh Roasted Weekly</div></div>
+        <div class="scroll-animate"><div class="stat-number">All-Women</div><div class="stat-label">Barista Team</div></div>
       </div>
     </div>
-  </div>
+  </section>
 
-  <!-- Bean to Bag Journey - Mission & Vision -->
-  <div class="journey-section">
+  <!-- Our Values -->
+  <section style="background: rgba(0,0,0,0.15);">
     <div class="container">
-      <div class="section-header text-center" style="text-align: center;">
-        <span class="section-tag">FROM OUR HEARTS</span>
-        <h2 class="section-title">Our Path from Farm to Cup</h2>
+      <div class="scroll-animate" style="text-align: center; margin-bottom: 50px;">
+        <span class="section-tag">WHAT WE STAND FOR</span>
+        <h2 class="section-title">Our Core Values</h2>
       </div>
-      <div class="timeline">
-        <div class="timeline-item scroll-animate"><span style="font-size: 2.5rem;">🌱</span><h3 style="margin: 15px 0; color: var(--accent-light);">Ethical Sourcing</h3><p>Direct partnership with women-led farmer groups in Sidama, Yirgacheffe, and Guji.</p></div>
-        <div class="timeline-item scroll-animate"><span style="font-size: 2.5rem;">🔥</span><h3 style="margin: 15px 0; color: var(--accent-light);">Small Batch Roasting</h3><p>Medium-dark profile that honors floral & cocoa notes. Roasted weekly in Addis.</p></div>
-        <div class="timeline-item scroll-animate"><span style="font-size: 2.5rem;">📦</span><h3 style="margin: 15px 0; color: var(--accent-light);">Premium Packaging</h3><p>Valve-sealed, resealable bags with roast date & origin story.</p></div>
-        <div class="timeline-item scroll-animate"><span style="font-size: 2.5rem;">☕</span><h3 style="margin: 15px 0; color: var(--accent-light);">Ceremony Experience</h3><p>In our Addis cafe, we host traditional coffee rituals led by women baristas.</p></div>
+      <div class="values-grid">
+        <div class="value-card scroll-animate"><h3>✦ Quality</h3><p>Never compromise. From bean selection to roasting curves, every decision prioritizes the final cup experience.</p></div>
+        <div class="value-card scroll-animate"><h3>✦ Traceability</h3><p>Every bag includes roast date, batch number, and origin information. You know exactly where your coffee comes from.</p></div>
+        <div class="value-card scroll-animate"><h3>✦ Sustainability</h3><p>We support smallholder farmers and plan to invest in dry-processing land to control quality and reduce costs.</p></div>
       </div>
     </div>
-  </div>
+  </section>
 
-  <!-- Our Vision & Promise -->
-  <div style="background: rgba(0,0,0,0.2); padding: 90px 0;">
+  <!-- Roasting & Packaging -->
+  <section>
     <div class="container">
-      <div class="hero-grid" style="align-items: center;">
+      <div class="grid-2">
         <div class="scroll-animate">
-          <span class="section-tag">✨ FUTURE FORWARD</span>
-          <h2 class="section-title">Investing in the <span class="gold-text">Next Generation</span></h2>
-          <p style="margin: 20px 0; line-height: 1.8;">Year 1: Establish Bean to Bag as the premier specialty roaster. Year 2: Dry-processing facility to empower women farmers. Year 3: Exporting roasted Ethiopian coffee globally — while keeping the ceremony alive.</p>
-          <div class="ritual-steps" style="margin-top: 25px;"><div class="step"><span>✓</span> 200kg → 500kg monthly by Year 2</div><div class="step"><span>✓</span> Own processing land</div><div class="step"><span>✓</span> Retail cafe expansion</div></div>
+          <span class="section-tag">OUR CRAFT</span>
+          <h2 class="section-title">Small-Batch <span class="gold-text">Roasting</span> & Premium Packaging</h2>
+          <p style="line-height: 1.8; margin-bottom: 1rem;">Every batch is roasted to a precise medium-dark profile, balancing acidity and body while developing rich chocolate and cocoa notes. Our small-batch approach ensures freshness and allows us to highlight each coffee's unique character.</p>
+          <p style="line-height: 1.8;">Our stand-up bags feature one-way degassing valves and zip-lock resealable tops to preserve freshness. Each bag includes roast date, batch number, and brewing recommendations.</p>
         </div>
-        <div class="hero-image-frame scroll-animate">
-          <img src="https://images.pexels.com/photos/4114374/pexels-photo-4114374.jpeg?auto=compress&w=800" alt="Ethiopian coffee future processing">
+        <div class="image-card scroll-animate">
+          <img src="about-coffee.jpg" alt="Bean to Bag coffee packaging">
         </div>
       </div>
     </div>
-  </div>
+  </section>
 
-  <!-- Grand CTA -->
+  <!-- Vision Section -->
+  <section style="background: rgba(0,0,0,0.1);">
+    <div class="container">
+      <div class="grid-2">
+        <div class="image-card scroll-animate">
+          <img src="ceremony.jpg" alt="Ethiopian coffee tradition">
+        </div>
+        <div class="scroll-animate">
+          <span class="section-tag">✨ FUTURE VISION</span>
+          <h2 class="section-title">Growing <span class="gold-text">Together</span></h2>
+          <p style="line-height: 1.8; margin-bottom: 1rem;">After the first year of operation, Bean to Bag plans to invest in dry-processing coffee land. This strategy will allow us to reduce raw coffee costs, control coffee quality, improve traceability, and increase profit margins.</p>
+          <p style="line-height: 1.8;">Year 1: Establish brand, reach 200kg monthly sales. Year 2: Increase to 500kg/month, expand retail distribution. Year 3: Open a small retail shop, begin exporting roasted Ethiopian coffee.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Final CTA -->
   <div class="cta-gold">
     <div class="container">
-      <span class="section-tag">ጥሪ (The Call)</span>
-      <h2 class="section-title" style="max-width: 800px; margin: 0 auto;">Join the Ethiopian Coffee Renaissance</h2>
-      <p style="font-size: 1.1rem; margin: 25px auto; max-width: 550px;">Taste the story. Support women-led traditions. Sip with purpose.</p>
+      <span class="section-tag">EXPERIENCE THE JOURNEY</span>
+      <h2 class="section-title" style="max-width: 800px; margin: 0 auto;">Taste Ethiopia in Every Cup</h2>
+      <p style="font-size: 1.1rem; margin: 25px auto; max-width: 550px;">Visit our cafe in Addis Ababa or order our freshly roasted beans online.</p>
       <div style="display: flex; gap: 20px; justify-content: center; flex-wrap: wrap;">
         <a href="products.html" class="btn btn-primary">Shop Our Coffees</a>
         <a href="contact.html" class="btn btn-outline">Visit Our Cafe</a>
@@ -584,9 +601,13 @@
 
 <footer class="footer">
   <div class="footer-content">
-    <p>© 2025 Bean to Bag Coffee — Honoring Ethiopian women & ancient coffee rituals.</p>
-    <div style="margin: 20px 0; display: flex; gap: 28px; justify-content: center; flex-wrap: wrap;"><a href="#">📷 Instagram</a><a href="#">📘 Facebook</a><a href="#">✈️ Telegram</a></div>
-    <div><p>📍 Addis Ababa, Ethiopia | ✉️ hello@beantobag.coffee | ☕ Coffee Ceremony by appointment</p></div>
+    <p>© 2025 Bean to Bag Coffee — Ethiopian specialty Arabica, freshly roasted in small batches.</p>
+    <div style="margin: 20px 0; display: flex; gap: 28px; justify-content: center; flex-wrap: wrap;">
+      <a href="#">📷 Instagram</a>
+      <a href="#">📘 Facebook</a>
+      <a href="#">✈️ Telegram</a>
+    </div>
+    <div><p>📍 Addis Ababa, Ethiopia | ✉️ hello@beantobag.coffee | 📞 +251 911 234 567</p></div>
   </div>
 </footer>
 
