@@ -238,21 +238,16 @@
     }
     .gold-text { color: #FFD966; }
 
-    /* Hero Section */
+    /* Hero Section - NO IMAGE, only text */
     .hero-about {
-      min-height: 85vh;
+      min-height: 70vh;
       display: flex;
       align-items: center;
       position: relative;
       background: #0F3B1F;
       overflow: hidden;
-      padding: 120px 0 60px;
-    }
-    .hero-grid {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 60px;
-      align-items: center;
+      padding: 140px 0 60px;
+      text-align: center;
     }
     .hero-badge {
       background: rgba(255, 215, 0, 0.15);
@@ -265,15 +260,6 @@
       margin-bottom: 24px;
       border: 1px solid rgba(255, 215, 0, 0.3);
     }
-    .hero-image-frame {
-      border-radius: 40px;
-      overflow: hidden;
-      box-shadow: 0 30px 50px rgba(0,0,0,0.4);
-      transition: 0.5s;
-      background: #1a4a2a;
-    }
-    .hero-image-frame img { width: 100%; height: auto; display: block; object-fit: cover; }
-    .hero-image-frame:hover { transform: scale(1.02); }
 
     /* Section Styles */
     section { padding: 80px 0; }
@@ -416,7 +402,7 @@
 
     /* Responsive */
     @media (max-width: 992px) {
-      .hero-grid, .grid-2 { grid-template-columns: 1fr; gap: 40px; }
+      .grid-2 { grid-template-columns: 1fr; gap: 40px; }
       .team-grid, .values-grid { grid-template-columns: repeat(2, 1fr); }
       .stats-grid { grid-template-columns: repeat(2, 1fr); }
     }
@@ -482,41 +468,31 @@
 <a href="https://wa.me/251911234567" class="whatsapp-float" target="_blank">💬</a>
 
 <main>
-  <!-- Hero Section - Only ONE image (about-coffee.jpg) -->
+  <!-- Hero Section - NO IMAGE (removed the first image) -->
   <div class="hero-about">
     <div class="container">
-      <div class="hero-grid">
-        <div class="scroll-animate">
-          <div class="hero-badge">✦ BEAN TO BAG ✦</div>
-          <h1 class="section-title">From Ethiopian Highlands<br>to Your <span class="gold-text">Coffee Cup</span></h1>
-          <p style="font-size: 1.1rem; margin: 24px 0 32px; color: #F5E6C4; line-height: 1.7;">We are a premium Ethiopian specialty coffee brand — roasting, packaging, and sharing the rich heritage of Arabica from small-scale highland farms.</p>
-          <a href="#story" class="btn btn-primary">Discover Our Story →</a>
-        </div>
-        <div class="hero-image-frame scroll-animate">
-          <img src="about-coffee.jpg" alt="Bean to Bag premium Ethiopian coffee">
-        </div>
+      <div class="scroll-animate" style="text-align: center;">
+        <div class="hero-badge">✦ BEAN TO BAG ✦</div>
+        <h1 class="section-title">From Ethiopian Highlands<br>to Your <span class="gold-text">Coffee Cup</span></h1>
+        <p style="font-size: 1.1rem; margin: 24px auto 32px; color: #F5E6C4; line-height: 1.7; max-width: 700px;">We are a premium Ethiopian specialty coffee brand — roasting, packaging, and sharing the rich heritage of Arabica from small-scale highland farms.</p>
+        <a href="#story" class="btn btn-primary">Discover Our Story →</a>
       </div>
     </div>
   </div>
 
-  <!-- Our Story Section - No image duplication, only content -->
+  <!-- Our Story Section - NO IMAGE (removed the second image) -->
   <section id="story">
     <div class="container">
-      <div class="grid-2">
-        <div class="image-card scroll-animate">
-          <img src="about-coffee.jpg" alt="Ethiopian coffee farm highlands">
-        </div>
-        <div class="scroll-animate">
-          <span class="section-tag">OUR ORIGIN</span>
-          <h2 class="section-title">Rooted in <span class="gold-text">Ethiopian Soil</span></h2>
-          <p style="line-height: 1.8; margin-bottom: 1rem;">Bean to Bag is dedicated to delivering high-quality Ethiopian coffee from origin to cup. Our coffee is grown by smallholder farmers in traditional garden farms across Ethiopia's highlands at 1,900–2,200 meters above sea level.</p>
-          <p style="line-height: 1.8;">Every step — from sourcing green beans to small-batch roasting and premium packaging — is carefully handled to ensure freshness and quality. We honor the farmers, the land, and the ancient coffee traditions of Ethiopia.</p>
-        </div>
+      <div class="scroll-animate" style="text-align: center; max-width: 900px; margin: 0 auto;">
+        <span class="section-tag">OUR ORIGIN</span>
+        <h2 class="section-title">Rooted in <span class="gold-text">Ethiopian Soil</span></h2>
+        <p style="line-height: 1.8; margin-bottom: 1rem;">Bean to Bag is dedicated to delivering high-quality Ethiopian coffee from origin to cup. Our coffee is grown by smallholder farmers in traditional garden farms across Ethiopia's highlands at 1,900–2,200 meters above sea level.</p>
+        <p style="line-height: 1.8;">Every step — from sourcing green beans to small-batch roasting and premium packaging — is carefully handled to ensure freshness and quality. We honor the farmers, the land, and the ancient coffee traditions of Ethiopia.</p>
       </div>
     </div>
   </section>
 
-  <!-- Ethiopian Coffee Ceremony - Only ONE ceremony image -->
+  <!-- Ethiopian Coffee Ceremony - WITH ceremony image -->
   <div class="ceremony-section">
     <div class="container">
       <div class="grid-2">
@@ -596,13 +572,13 @@
           <p style="line-height: 1.8;">Our stand-up bags feature one-way degassing valves and zip-lock resealable tops to preserve freshness. Each bag includes roast date, batch number, and brewing recommendations.</p>
         </div>
         <div class="image-card scroll-animate">
-          <img src="about-coffee.jpg" alt="Bean to Bag coffee packaging">
+          <img src="ceremony.jpg" alt="Bean to Bag coffee packaging">
         </div>
       </div>
     </div>
   </section>
 
-  <!-- Vision Section - Removed duplicate ceremony image, now text only with elegant design -->
+  <!-- Vision Section - Beautiful text layout -->
   <section style="background: rgba(0,0,0,0.1);">
     <div class="container">
       <div class="scroll-animate" style="text-align: center; max-width: 900px; margin: 0 auto;">
