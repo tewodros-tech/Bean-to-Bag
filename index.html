@@ -16,13 +16,13 @@
     :root {
       --dark: #0f0f0f;
       --light: #fdfcfb;
-      --accent: #FFD700;      /* vibrant gold / yellow */
+      --accent: #FFD700;
       --accent-light: #FFDF66;
       --accent-dark: #D4AF37;
       --text-dark: #1a1a1a;
       --text-light: #3a3a2a;
-      --cream: #1E4D2E;        /* deep green background base */
-      --warm-gray: #2A5C3A;    /* rich green tone */
+      --cream: #1E4D2E;
+      --warm-gray: #2A5C3A;
       --shadow-sm: 0 8px 25px rgba(0, 0, 0, 0.12);
       --shadow-md: 0 15px 35px rgba(0, 0, 0, 0.18);
       --shadow-lg: 0 25px 50px rgba(0, 0, 0, 0.22);
@@ -39,7 +39,6 @@
       line-height: 1.6;
     }
 
-    /* all main text + headings default to warm yellow-ish */
     h1, h2, h3, h4, .section-title, .section-subtitle, p, .content p, .cafe-content p, .product-card p, .roast-card p, .stat-label, .contact-info p, .footer p {
       color: #FFF3C9;
     }
@@ -62,7 +61,6 @@
       transition: var(--transition-fast);
     }
 
-    /* Scrollbar Styling */
     ::-webkit-scrollbar {
       width: 10px;
     }
@@ -77,7 +75,6 @@
       background: #FFC107;
     }
 
-    /* Selection Styling */
     ::selection {
       background: #FFD700;
       color: #0F3B1F;
@@ -359,52 +356,95 @@
       box-shadow: 0 12px 30px rgba(0, 0, 0, 0.3);
     }
 
-    /* ==================== HERO VIDEO SECTION (FULLY MOBILE COMPATIBLE) ==================== */
+    /* ==================== HERO VIDEO SECTION - FIXED FOR MOBILE (NO CUTOFF) ==================== */
     .hero-video-section {
       position: relative;
       width: 100%;
       height: 100vh;
+      min-height: 500px;
       overflow: hidden;
+      background: #0F3B1F; /* fallback color */
     }
 
     .hero-video {
       position: absolute;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      width: auto;
+      height: auto;
+      min-width: 100%;
+      min-height: 100%;
+      object-fit: contain;
       z-index: 0;
     }
     
-    /* Mobile video fix: ensure video covers area without black bars and plays nicely */
-    @media (max-width: 768px) {
-      .hero-video-section {
-        height: 85vh; /* slightly shorter on mobile for better composition */
-        min-height: 500px;
-      }
+    /* Desktop: use cover for full bleed */
+    @media (min-width: 1024px) {
       .hero-video {
         object-fit: cover;
-        object-position: center center;
+        width: 100%;
+        height: 100%;
+        min-width: auto;
+        min-height: auto;
+        transform: none;
+        top: 0;
+        left: 0;
       }
     }
     
-    /* Fallback for older mobile browsers: make sure video container doesn't overflow */
+    /* Tablet and mobile: ensure full video is visible (no cropping) */
+    @media (max-width: 1023px) {
+      .hero-video-section {
+        height: auto;
+        min-height: 280px;
+        aspect-ratio: 16 / 9;
+      }
+      
+      .hero-video {
+        position: relative;
+        top: 0;
+        left: 0;
+        transform: none;
+        width: 100%;
+        height: auto;
+        min-width: 100%;
+        min-height: auto;
+        object-fit: contain;
+        background: #0F3B1F;
+      }
+    }
+    
+    /* Small mobile devices */
+    @media (max-width: 768px) {
+      .hero-video-section {
+        aspect-ratio: 16 / 10;
+        min-height: 220px;
+      }
+    }
+    
     .hero-overlay {
       position: absolute;
       top: 0;
       left: 0;
       width: 100%;
       height: 100%;
-      background: linear-gradient(135deg, rgba(0, 20, 5, 0.6) 0%, rgba(0, 10, 3, 0.45) 50%, rgba(0, 20, 5, 0.65) 100%);
+      background: linear-gradient(135deg, rgba(0, 20, 5, 0.55) 0%, rgba(0, 10, 3, 0.4) 50%, rgba(0, 20, 5, 0.6) 100%);
       z-index: 1;
       pointer-events: none;
+    }
+    
+    /* Make overlay only cover video area properly on mobile */
+    @media (max-width: 1023px) {
+      .hero-overlay {
+        position: absolute;
+      }
     }
 
     /* ==================== HERO CONTENT SECTION ==================== */
     .hero-content-section {
       background: linear-gradient(135deg, #1E4D2E, #2A5C3A);
-      padding: 120px 0;
+      padding: 100px 0;
       text-align: center;
       position: relative;
       overflow: hidden;
@@ -422,15 +462,15 @@
 
     .hero-content-section h1 {
       font-family: 'Playfair Display', serif;
-      font-size: clamp(2.8rem, 7vw, 5rem);
-      line-height: 1.15;
+      font-size: clamp(2.5rem, 7vw, 5rem);
+      line-height: 1.2;
       margin-bottom: 1.5rem;
       color: #FFECB3;
       font-weight: 700;
     }
 
     .hero-content-section p {
-      font-size: 1.15rem;
+      font-size: 1.1rem;
       line-height: 1.7;
       margin: 1.5rem auto;
       color: #FFF0C0;
@@ -440,19 +480,19 @@
 
     /* ==================== SECTION STYLES ==================== */
     section {
-      padding: 120px 0;
+      padding: 100px 0;
       position: relative;
     }
 
     .section-header {
       text-align: center;
-      margin-bottom: 80px;
+      margin-bottom: 70px;
     }
 
     .section-tag {
       color: #FFD966;
       letter-spacing: 0.25em;
-      font-size: 0.9rem;
+      font-size: 0.85rem;
       font-weight: 700;
       text-transform: uppercase;
       margin-bottom: 1rem;
@@ -461,15 +501,15 @@
 
     .section-title {
       font-family: 'Playfair Display', serif;
-      font-size: clamp(2.8rem, 7vw, 4.5rem);
-      line-height: 1.1;
+      font-size: clamp(2.5rem, 7vw, 4rem);
+      line-height: 1.15;
       margin-bottom: 1.2rem;
       color: #FFEFB5;
       font-weight: 700;
     }
 
     .section-subtitle {
-      font-size: 1.15rem;
+      font-size: 1.1rem;
       color: #FFECB3;
       max-width: 750px;
       margin: 0 auto;
@@ -481,13 +521,13 @@
     .alternating-grid {
       display: flex;
       flex-direction: column;
-      gap: 120px;
+      gap: 100px;
     }
 
     .alternating-item {
       display: grid;
       grid-template-columns: 1fr 1fr;
-      gap: 80px;
+      gap: 60px;
       align-items: center;
     }
 
@@ -500,7 +540,7 @@
     }
 
     .image-wrapper {
-      border-radius: 40px;
+      border-radius: 30px;
       overflow: hidden;
       position: relative;
       box-shadow: var(--shadow-md);
@@ -523,7 +563,7 @@
     }
 
     .image-wrapper:hover {
-      transform: scale(1.02) translateY(-8px);
+      transform: scale(1.02) translateY(-6px);
       box-shadow: var(--shadow-xl);
     }
 
@@ -540,8 +580,8 @@
 
     .content h3 {
       font-family: 'Playfair Display', serif;
-      font-size: 2.5rem;
-      margin-bottom: 1.2rem;
+      font-size: 2.2rem;
+      margin-bottom: 1rem;
       color: #FFDF66;
       position: relative;
       display: inline-block;
@@ -551,19 +591,19 @@
     .content h3::after {
       content: "";
       position: absolute;
-      bottom: -12px;
+      bottom: -10px;
       left: 0;
-      width: 70px;
-      height: 4px;
-      background: linear-gradient(90deg, #FFD700, #FFDF66, #FFC107);
-      border-radius: 4px;
+      width: 60px;
+      height: 3px;
+      background: linear-gradient(90deg, #FFD700, #FFDF66);
+      border-radius: 3px;
     }
 
     .content p {
-      line-height: 1.9;
+      line-height: 1.8;
       color: #FFF3D1;
-      margin: 25px 0;
-      font-size: 1.1rem;
+      margin: 20px 0;
+      font-size: 1rem;
       font-weight: 400;
     }
 
@@ -574,30 +614,30 @@
 
     .stats-grid {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-      gap: 50px;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 40px;
       text-align: center;
     }
 
     .stat-item {
-      padding: 30px 20px;
+      padding: 25px 15px;
       background: rgba(20, 55, 30, 0.7);
       backdrop-filter: blur(4px);
-      border-radius: 30px;
+      border-radius: 25px;
       box-shadow: var(--shadow-sm);
       transition: var(--transition);
       border: 1px solid rgba(255, 215, 0, 0.25);
     }
 
     .stat-item:hover {
-      transform: translateY(-10px);
+      transform: translateY(-8px);
       box-shadow: var(--shadow-md);
       border-color: #FFD700;
     }
 
     .stat-number {
       font-family: 'Playfair Display', serif;
-      font-size: 3.5rem;
+      font-size: 3rem;
       color: #FFDF66;
       font-weight: 800;
       line-height: 1;
@@ -605,9 +645,9 @@
 
     .stat-label {
       color: #FFEFC0;
-      font-size: 0.95rem;
+      font-size: 0.85rem;
       letter-spacing: 0.08em;
-      margin-top: 12px;
+      margin-top: 10px;
       text-transform: uppercase;
       font-weight: 500;
     }
@@ -619,30 +659,17 @@
       overflow: hidden;
     }
 
-    .cafe-section::before {
-      content: "☕";
-      position: absolute;
-      font-size: 500px;
-      opacity: 0.04;
-      bottom: -150px;
-      right: -150px;
-      pointer-events: none;
-      font-family: monospace;
-      color: #FFD966;
-      z-index: 0;
-    }
-
     .cafe-grid {
       display: grid;
       grid-template-columns: 1fr 1fr;
-      gap: 80px;
+      gap: 60px;
       align-items: center;
       position: relative;
       z-index: 1;
     }
 
     .cafe-image {
-      border-radius: 40px;
+      border-radius: 30px;
       overflow: hidden;
       box-shadow: var(--shadow-lg);
       transition: var(--transition);
@@ -650,63 +677,63 @@
     }
 
     .cafe-image:hover {
-      transform: scale(1.02) translateY(-10px);
+      transform: scale(1.02) translateY(-8px);
       box-shadow: var(--shadow-xl);
     }
 
     .badge {
       display: inline-block;
       background: rgba(255, 215, 0, 0.2);
-      padding: 10px 24px;
+      padding: 8px 20px;
       border-radius: 50px;
-      font-size: 0.8rem;
-      letter-spacing: 0.18em;
+      font-size: 0.75rem;
+      letter-spacing: 0.15em;
       text-transform: uppercase;
       color: #FFE484;
-      margin-bottom: 25px;
+      margin-bottom: 20px;
       font-weight: 700;
-      border: 2px solid rgba(255, 215, 0, 0.4);
+      border: 1px solid rgba(255, 215, 0, 0.4);
     }
 
     .cafe-content h2 {
       font-family: 'Playfair Display', serif;
-      font-size: clamp(2.8rem, 6vw, 4.2rem);
-      margin-bottom: 25px;
+      font-size: clamp(2.5rem, 6vw, 3.8rem);
+      margin-bottom: 20px;
       color: #FFEFB0;
       font-weight: 700;
-      line-height: 1.1;
+      line-height: 1.15;
     }
 
     .cafe-content p {
-      font-size: 1.15rem;
-      line-height: 1.9;
+      font-size: 1.05rem;
+      line-height: 1.8;
       color: #FFF3CC;
-      margin-bottom: 35px;
+      margin-bottom: 30px;
       font-weight: 400;
     }
 
     .team-highlight {
       display: flex;
-      gap: 30px;
-      margin-top: 35px;
-      padding-top: 30px;
+      gap: 25px;
+      margin-top: 30px;
+      padding-top: 25px;
       border-top: 2px solid rgba(255, 215, 0, 0.3);
       flex-wrap: wrap;
     }
 
     .team-highlight span {
-      font-size: 1rem;
+      font-size: 0.95rem;
       color: #FFE484;
       font-weight: 600;
       display: flex;
       align-items: center;
-      gap: 10px;
+      gap: 8px;
     }
 
     .team-highlight span::before {
       content: "✦";
       color: #FFD966;
-      font-size: 1.2rem;
+      font-size: 1.1rem;
     }
 
     /* gallery */
@@ -717,13 +744,13 @@
     .gallery-grid {
       display: grid;
       grid-template-columns: repeat(3, 1fr);
-      gap: 35px;
+      gap: 30px;
     }
 
     .gallery-item {
-      border-radius: 30px;
+      border-radius: 25px;
       overflow: hidden;
-      height: 320px;
+      height: 280px;
       transition: var(--transition);
       box-shadow: var(--shadow-sm);
       position: relative;
@@ -743,12 +770,19 @@
     }
 
     .gallery-item:hover {
-      transform: translateY(-12px) scale(1.01);
+      transform: translateY(-10px) scale(1.01);
       box-shadow: var(--shadow-lg);
     }
 
     .gallery-item:hover::before {
       opacity: 1;
+    }
+
+    .gallery-item img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: var(--transition);
     }
 
     .products-preview {
@@ -757,17 +791,17 @@
 
     .products-grid {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-      gap: 40px;
-      margin-top: 70px;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 35px;
+      margin-top: 60px;
     }
 
     .product-card {
       background: rgba(30, 77, 46, 0.8);
       backdrop-filter: blur(4px);
       border: 2px solid rgba(255, 215, 0, 0.3);
-      border-radius: 35px;
-      padding: 40px 30px;
+      border-radius: 30px;
+      padding: 35px 25px;
       transition: var(--transition);
       text-align: center;
       box-shadow: var(--shadow-sm);
@@ -781,14 +815,14 @@
       top: 0;
       left: 0;
       right: 0;
-      height: 5px;
-      background: linear-gradient(90deg, #FFDF66, #FFD700, #D4AF37);
+      height: 4px;
+      background: linear-gradient(90deg, #FFDF66, #FFD700);
       transform: scaleX(0);
       transition: var(--transition);
     }
 
     .product-card:hover {
-      transform: translateY(-15px);
+      transform: translateY(-12px);
       border-color: #FFD966;
       box-shadow: var(--shadow-lg);
     }
@@ -799,8 +833,8 @@
 
     .product-card h3 {
       font-family: 'Playfair Display', serif;
-      font-size: 2rem;
-      margin-bottom: 15px;
+      font-size: 1.8rem;
+      margin-bottom: 12px;
       color: #FFDF66;
       font-weight: 700;
     }
@@ -808,33 +842,21 @@
     .taste-badges {
       display: flex;
       flex-wrap: wrap;
-      gap: 10px;
+      gap: 8px;
       justify-content: center;
-      margin-bottom: 20px;
+      margin-bottom: 18px;
     }
 
     .taste-badge {
       display: inline-block;
       background: rgba(255, 215, 0, 0.18);
-      padding: 8px 18px;
+      padding: 6px 15px;
       border-radius: 50px;
-      font-size: 0.8rem;
-      margin: 4px;
+      font-size: 0.75rem;
+      margin: 3px;
       color: #FFEFB5;
       font-weight: 600;
       border: 1px solid rgba(255, 215, 0, 0.4);
-    }
-
-    .taste-badge:hover {
-      background: #FFD700;
-      color: #0F3B1F;
-      transform: translateY(-2px);
-    }
-
-    .product-card p {
-      margin-top: 20px;
-      line-height: 1.8;
-      color: #FFF0CA;
     }
 
     .roast-section {
@@ -843,11 +865,11 @@
 
     .roast-card {
       background: rgba(20, 65, 30, 0.8);
-      border-radius: 50px;
-      padding: 60px 50px;
+      border-radius: 40px;
+      padding: 50px 40px;
       text-align: center;
       box-shadow: var(--shadow-md);
-      max-width: 950px;
+      max-width: 900px;
       margin: 0 auto;
       border: 1px solid rgba(255, 215, 0, 0.3);
     }
@@ -855,10 +877,11 @@
     .cta-section {
       background: linear-gradient(135deg, #1E4D2E, #2A5C3A);
       text-align: center;
+      padding: 80px 0;
     }
 
     .footer {
-      padding: 70px 24px 50px;
+      padding: 60px 24px 40px;
       background: linear-gradient(135deg, #0A2A16, #0E351B);
       color: #EEDDAA;
       text-align: center;
@@ -875,36 +898,42 @@
 
     .whatsapp-float {
       position: fixed;
-      bottom: 30px;
-      right: 30px;
+      bottom: 25px;
+      right: 25px;
       background: linear-gradient(135deg, #25d366, #128c7e);
-      width: 65px;
-      height: 65px;
+      width: 60px;
+      height: 60px;
       border-radius: 50%;
       display: flex;
       align-items: center;
       justify-content: center;
       color: white;
       font-weight: bold;
-      font-size: 1.8rem;
+      font-size: 1.7rem;
       z-index: 100;
-      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4);
+      box-shadow: 0 8px 25px rgba(0, 0, 0, 0.4);
+      transition: transform 0.2s ease;
+    }
+    
+    .whatsapp-float:hover {
+      transform: scale(1.1);
     }
 
-    /* ==================== RESPONSIVE (FULLY MOBILE OPTIMIZED) ==================== */
+    /* ==================== RESPONSIVE ==================== */
     @media (max-width: 992px) {
       .alternating-item {
         grid-template-columns: 1fr;
-        gap: 50px;
+        gap: 40px;
       }
       .cafe-grid {
         grid-template-columns: 1fr;
+        gap: 40px;
       }
       .gallery-grid {
         grid-template-columns: repeat(2, 1fr);
       }
       section {
-        padding: 80px 0;
+        padding: 70px 0;
       }
     }
 
@@ -916,19 +945,19 @@
         display: flex;
       }
       .container {
-        padding: 0 20px;
+        padding: 0 18px;
       }
       .stats-grid {
-        gap: 30px;
+        gap: 20px;
       }
       .gallery-grid {
         grid-template-columns: 1fr;
       }
       .gallery-item {
-        height: 280px;
+        height: 250px;
       }
       .roast-card {
-        padding: 40px 30px;
+        padding: 35px 25px;
       }
       .hero-actions, .cta-actions {
         flex-direction: column;
@@ -936,43 +965,55 @@
       }
       .btn {
         width: 100%;
-        max-width: 280px;
+        max-width: 260px;
+        padding: 14px 30px;
       }
       .hero-content-section {
-        padding: 70px 0;
+        padding: 60px 0;
       }
       .alternating-grid {
-        gap: 70px;
+        gap: 60px;
       }
       .content h3 {
-        font-size: 2rem;
+        font-size: 1.8rem;
+      }
+      .section-header {
+        margin-bottom: 50px;
       }
     }
 
     @media (max-width: 480px) {
       .brand-name strong {
-        font-size: 1.2rem;
+        font-size: 1.1rem;
       }
       .whatsapp-float {
-        width: 58px;
-        height: 58px;
-        font-size: 1.5rem;
-        bottom: 20px;
-        right: 20px;
+        width: 52px;
+        height: 52px;
+        font-size: 1.4rem;
+        bottom: 18px;
+        right: 18px;
       }
       .site-header {
-        padding: 18px 20px;
+        padding: 14px 16px;
       }
-      .section-title {
-        font-size: clamp(2.2rem, 8vw, 3rem);
+      .brand-mark {
+        width: 38px;
+        height: 38px;
+      }
+      .site-header.scrolled .brand-mark {
+        width: 34px;
+        height: 34px;
+      }
+      .hero-video-section {
+        aspect-ratio: 16 / 11;
       }
     }
 
     /* Scroll animations */
     .scroll-animate {
       opacity: 0;
-      transform: translateY(30px);
-      transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+      transform: translateY(25px);
+      transition: opacity 0.7s ease-out, transform 0.7s ease-out;
     }
 
     .scroll-animate.animated {
@@ -981,14 +1022,14 @@
     }
 
     @keyframes fadeInUp {
-      from { opacity: 0; transform: translateY(30px);}
+      from { opacity: 0; transform: translateY(25px);}
       to { opacity: 1; transform: translateY(0);}
     }
     .animate-fade-in-up {
-      animation: fadeInUp 0.8s ease-out forwards;
+      animation: fadeInUp 0.7s ease-out forwards;
     }
     .animate-fade-in {
-      animation: fadeIn 0.8s ease-out forwards;
+      animation: fadeIn 0.7s ease-out forwards;
     }
     @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
   </style>
@@ -1008,9 +1049,9 @@
   </div>
 </header>
 <div class="mobile-menu" id="mobileMenu" aria-hidden="true"><button class="close-menu" id="closeMenu">✕</button><a href="index.html">Home</a><a href="about.html">About</a><a href="products.html">Products</a><a href="origin.html">Origin</a><a href="contact.html">Contact</a></div>
-<a href="https://wa.me/251911234567" class="whatsapp-float" target="_blank" rel="noopener noreferrer" aria-label="Contact us on WhatsApp"><span>W</span></a>
+<a href="https://wa.me/251911234567" class="whatsapp-float" target="_blank" rel="noopener noreferrer" aria-label="Contact us on WhatsApp"><span>📱</span></a>
 <main>
-  <!-- Hero Video Section - FULLY MOBILE COMPATIBLE with improved object-fit -->
+  <!-- Hero Video Section - FIXED: No cropping, full video visible on all devices -->
   <div class="hero-video-section">
     <video class="hero-video" autoplay muted loop playsinline webkit-playsinline="true" preload="auto" id="heroVideo" poster="10.JPG">
       <source src="Bean.mp4" type="video/mp4">
@@ -1020,46 +1061,45 @@
   </div>
   
   <div class="hero-content-section"><div class="container"><span class="tag animate-fade-in">Bean to Bag</span><h1 class="animate-fade-in-up">From Bean to Bag —<br>Premium Ethiopian Coffee</h1><p class="animate-fade-in-up">Carefully sourced Ethiopian Arabica coffee roasted to a balanced medium-dark profile for a rich and smooth cup.</p><div class="hero-actions animate-fade-in-up"><a href="products.html" class="btn btn-primary">Explore Coffee</a><a href="products.html" class="btn btn-outline">Shop Coffee</a></div></div></div>
+  
   <section><div class="container"><div class="section-header"><span class="section-tag scroll-animate">Our Journey</span><h2 class="section-title scroll-animate">From Farm to Cup</h2><p class="section-subtitle scroll-animate">Experience the craftsmanship behind every bag of Bean to Bag coffee.</p></div><div class="alternating-grid"><div class="alternating-item scroll-animate"><div class="image-wrapper"><img src="10.JPG" alt="Ethiopian coffee farm" loading="lazy"></div><div class="content"><h3>Highland Farms</h3><p>Our coffee is cultivated by small-scale farmers in traditional garden farms at 1,900–2,200 meters above sea level. The cool highland climate, natural shade trees, and fertile volcanic soil allow cherries to ripen slowly, developing refined and complex flavors.</p><a href="origin.html" class="btn btn-outline">Discover Origin →</a></div></div><div class="alternating-item reverse scroll-animate"><div class="image-wrapper"><img src="11.JPG" alt="Hand-picking cherries" loading="lazy"></div><div class="content"><h3>Selective Harvest</h3><p>Only perfectly ripe cherries are hand-picked by our partner farmers. This meticulous selection process ensures that every bean meets our quality standards, resulting in a cup with bright acidity, floral aroma, and exceptional sweetness.</p><a href="origin.html" class="btn btn-outline">Learn More →</a></div></div><div class="alternating-item scroll-animate"><div class="image-wrapper"><img src="12.JPG" alt="Traditional processing" loading="lazy"></div><div class="content"><h3>Traditional Processing</h3><p>Using both washed and natural processing methods, we preserve the unique characteristics of each lot. Our careful fermentation and drying on raised beds develop the coffee's signature clarity and fruit-forward notes.</p><a href="products.html" class="btn btn-outline">View Products →</a></div></div><div class="alternating-item reverse scroll-animate"><div class="image-wrapper"><img src="13.JPG" alt="Small-batch roasting" loading="lazy"></div><div class="content"><h3>Small-Batch Roasting</h3><p>Every batch is roasted to a precise medium-dark profile, balancing acidity and body while developing rich chocolate and cocoa notes. Our small-batch approach ensures freshness and allows us to highlight each coffee's unique character.</p><a href="about.html" class="btn btn-outline">Our Process →</a></div></div><div class="alternating-item scroll-animate"><div class="image-wrapper"><img src="14.JPG" alt="Premium packaging" loading="lazy"></div><div class="content"><h3>Premium Packaging</h3><p>Our stand-up bags feature one-way degassing valves and zip-lock resealable tops to preserve freshness. Each bag includes roast date, batch number, and brewing recommendations — because you deserve to know exactly what you're brewing.</p><a href="products.html" class="btn btn-outline">Shop Now →</a></div></div></div></div></section>
-  <section class="stats-section"><div class="container"><div class="stats-grid"><div class="stat-item scroll-animate"><div class="stat-number">1,900–2,200m</div><div class="stat-label">Altitude above sea level</div></div><div class="stat-item scroll-animate"><div class="stat-number">100%</div><div class="stat-label">Coffea Arabica</div></div><div class="stat-item scroll-animate"><div class="stat-number">Small Batch</div><div class="stat-label">Fresh roasted weekly</div></div><div class="stat-item scroll-animate"><div class="stat-number">12+</div><div class="stat-label">Partner co-ops</div></div></div></div></section>
-  <section class="cafe-section"><div class="container"><div class="cafe-grid"><div class="cafe-image scroll-animate"><img src="15.JPG" alt="Bean to Bag Cafe interior" loading="lazy"></div><div class="cafe-content scroll-animate"><span class="badge">✦ Visit Us ✦</span><h2>OUR CAFE</h2><p>We invite you to visit our cozy cafe in Addis Ababa, where you can enjoy a cup of our delicious coffee and meet our all-women team of baristas. Experience the warmth of Ethiopian hospitality while savoring freshly brewed Bean to Bag coffee.</p><div class="team-highlight"><span>All-Women Barista Team</span><span>Cozy Atmosphere</span><span>Fresh Brews Daily</span></div><div style="margin-top: 35px;"><a href="contact.html" class="btn btn-primary">Find Our Cafe →</a></div></div></div></div></section>
+  
+  <section class="stats-section"><div class="container"><div class="stats-grid"><div class="stat-item scroll-animate"><div class="stat-number">1,900–2,200m</div><div class="stat-label">Altitude</div></div><div class="stat-item scroll-animate"><div class="stat-number">100%</div><div class="stat-label">Arabica</div></div><div class="stat-item scroll-animate"><div class="stat-number">Small Batch</div><div class="stat-label">Fresh Roasted</div></div><div class="stat-item scroll-animate"><div class="stat-number">12+</div><div class="stat-label">Partner Co-ops</div></div></div></div></section>
+  
+  <section class="cafe-section"><div class="container"><div class="cafe-grid"><div class="cafe-image scroll-animate"><img src="15.JPG" alt="Bean to Bag Cafe interior" loading="lazy"></div><div class="cafe-content scroll-animate"><span class="badge">✦ Visit Us ✦</span><h2>OUR CAFE</h2><p>We invite you to visit our cozy cafe in Addis Ababa, where you can enjoy a cup of our delicious coffee and meet our all-women team of baristas. Experience the warmth of Ethiopian hospitality while savoring freshly brewed Bean to Bag coffee.</p><div class="team-highlight"><span>All-Women Barista Team</span><span>Cozy Atmosphere</span><span>Fresh Brews Daily</span></div><div style="margin-top: 30px;"><a href="contact.html" class="btn btn-primary">Find Our Cafe →</a></div></div></div></div></section>
+  
   <section class="gallery-section"><div class="container"><div class="section-header"><span class="section-tag scroll-animate">Moments</span><h2 class="section-title scroll-animate">From Our Cafe & Roastery</h2><p class="section-subtitle scroll-animate">Behind the scenes at Bean to Bag — where passion meets craft.</p></div><div class="gallery-grid"><div class="gallery-item scroll-animate"><img src="16.JPG" alt="Coffee brewing" loading="lazy"></div><div class="gallery-item scroll-animate"><img src="17.JPG" alt="Barista preparing coffee" loading="lazy"></div><div class="gallery-item scroll-animate"><img src="19.JPG" alt="Coffee tasting" loading="lazy"></div></div></div></section>
-  <section class="products-preview"><div class="container"><div class="section-header"><span class="section-tag scroll-animate">Our Collection</span><h2 class="section-title scroll-animate">Premium Ethiopian Coffee</h2><p class="section-subtitle scroll-animate">Discover our range of specialty coffees, from whole bean to ground, and dried coffee cherry.</p></div><div class="products-grid"><div class="product-card scroll-animate"><h3>Caskara</h3><div class="taste-badges"><span class="taste-badge">Fruity</span><span class="taste-badge">Sweet</span><span class="taste-badge">Floral</span></div><p>Dried coffee cherry — naturally sweet and fruity beverage. Made from the dried skin of coffee cherries, a traditional Ethiopian drink.</p><a href="products.html" class="product-link">Learn More</a></div><div class="product-card scroll-animate"><h3>Qalid's Choice</h3><div class="taste-badges"><span class="taste-badge">Balanced</span><span class="taste-badge">Smooth</span><span class="taste-badge">Chocolate</span></div><p>House Blend – Ground Coffee for everyday enjoyment. Our signature blend is perfect for traditional Jebena brewing, French press, or espresso.</p><a href="products.html" class="product-link">Learn More</a></div><div class="product-card scroll-animate"><h3>Chemina</h3><div class="taste-badges"><span class="taste-badge">Bold</span><span class="taste-badge">Cocoa</span><span class="taste-badge">Smooth</span></div><p>Whole Bean Coffee — ideal for espresso and milk drinks. A bold coffee experience with rich body and deep cocoa notes that stands up beautifully to milk.</p><a href="products.html" class="product-link">Learn More</a></div><div class="product-card scroll-animate"><h3>Origin Green</h3><div class="taste-badges"><span class="taste-badge">Unroasted</span><span class="taste-badge">Traceable</span></div><p>Raw green coffee beans for home roasters and cafés. Take control of your roast profile and experience coffee at its most authentic stage.</p><a href="products.html" class="product-link">Learn More</a></div></div><div style="text-align: center; margin-top: 55px;" class="scroll-animate"><a href="products.html" class="btn btn-primary">View All Products →</a></div></div></section>
-  <section class="roast-section"><div class="container"><div class="roast-card scroll-animate"><span class="section-tag">Roast Profile</span><h2 class="section-title" style="margin-top:15px;">Medium-Dark Roast</h2><p>All roasted coffees from Bean to Bag are roasted to a Medium-Dark roast level. This provides balanced acidity, full body, rich chocolate and cocoa notes, and a smooth finish. Perfect for Jebena brewing, espresso, macchiato, French press, and milk-based drinks.</p></div></div></section>
-  <section class="cta-section"><div class="container"><h2 class="section-title scroll-animate">Ready to experience Bean to Bag?</h2><p style="font-size:1.15rem; color:#FFEFC0; max-width:650px; margin:0 auto 35px; line-height:1.8;">Join our community of coffee lovers who appreciate quality, traceability, and the rich heritage of Ethiopian coffee.</p><div class="cta-actions scroll-animate"><a href="products.html" class="btn btn-primary">Shop Now</a><a href="contact.html" class="btn btn-outline">Contact Us</a></div></div></section>
+  
+  <section class="products-preview"><div class="container"><div class="section-header"><span class="section-tag scroll-animate">Our Collection</span><h2 class="section-title scroll-animate">Premium Ethiopian Coffee</h2><p class="section-subtitle scroll-animate">Discover our range of specialty coffees, from whole bean to ground, and dried coffee cherry.</p></div><div class="products-grid"><div class="product-card scroll-animate"><h3>Caskara</h3><div class="taste-badges"><span class="taste-badge">Fruity</span><span class="taste-badge">Sweet</span><span class="taste-badge">Floral</span></div><p>Dried coffee cherry — naturally sweet and fruity beverage. Made from the dried skin of coffee cherries, a traditional Ethiopian drink.</p><a href="products.html" class="product-link">Learn More →</a></div><div class="product-card scroll-animate"><h3>Qalid's Choice</h3><div class="taste-badges"><span class="taste-badge">Balanced</span><span class="taste-badge">Smooth</span><span class="taste-badge">Chocolate</span></div><p>House Blend – Ground Coffee for everyday enjoyment. Our signature blend is perfect for traditional Jebena brewing, French press, or espresso.</p><a href="products.html" class="product-link">Learn More →</a></div><div class="product-card scroll-animate"><h3>Chemina</h3><div class="taste-badges"><span class="taste-badge">Bold</span><span class="taste-badge">Cocoa</span><span class="taste-badge">Smooth</span></div><p>Whole Bean Coffee — ideal for espresso and milk drinks. A bold coffee experience with rich body and deep cocoa notes that stands up beautifully to milk.</p><a href="products.html" class="product-link">Learn More →</a></div><div class="product-card scroll-animate"><h3>Origin Green</h3><div class="taste-badges"><span class="taste-badge">Unroasted</span><span class="taste-badge">Traceable</span></div><p>Raw green coffee beans for home roasters and cafés. Take control of your roast profile and experience coffee at its most authentic stage.</p><a href="products.html" class="product-link">Learn More →</a></div></div><div style="text-align: center; margin-top: 50px;" class="scroll-animate"><a href="products.html" class="btn btn-primary">View All Products →</a></div></div></section>
+  
+  <section class="roast-section"><div class="container"><div class="roast-card scroll-animate"><span class="section-tag">Roast Profile</span><h2 class="section-title" style="margin-top:10px;">Medium-Dark Roast</h2><p>All roasted coffees from Bean to Bag are roasted to a Medium-Dark roast level. This provides balanced acidity, full body, rich chocolate and cocoa notes, and a smooth finish. Perfect for Jebena brewing, espresso, macchiato, French press, and milk-based drinks.</p></div></div></section>
+  
+  <section class="cta-section"><div class="container"><h2 class="section-title scroll-animate">Ready to experience Bean to Bag?</h2><p style="font-size:1.1rem; color:#FFEFC0; max-width:650px; margin:0 auto 30px; line-height:1.7;">Join our community of coffee lovers who appreciate quality, traceability, and the rich heritage of Ethiopian coffee.</p><div class="cta-actions scroll-animate"><a href="products.html" class="btn btn-primary">Shop Now</a><a href="contact.html" class="btn btn-outline">Contact Us</a></div></div></section>
 </main>
-<footer class="footer"><div class="footer-content"><p>© 2025 Bean to Bag Coffee. Ethiopian specialty Arabica, freshly roasted in small batches.</p><div class="social-links"><a href="#">📷 Instagram</a><a href="#">📘 Facebook</a><a href="#">✈️ Telegram</a></div><div class="contact-info"><p>📍 Addis Ababa, Ethiopia | ✉️ hello@beantobag.coffee | 📞 +251 911 234 567</p></div></div></footer>
+
+<footer class="footer"><div class="footer-content"><p>© 2025 Bean to Bag Coffee. Ethiopian specialty Arabica, freshly roasted in small batches.</p><div class="social-links" style="margin-top:20px; display:flex; gap:25px; justify-content:center; flex-wrap:wrap;"><a href="#">📷 Instagram</a><a href="#">📘 Facebook</a><a href="#">✈️ Telegram</a></div><div class="contact-info" style="margin-top:25px;"><p>📍 Addis Ababa, Ethiopia | ✉️ hello@beantobag.coffee | 📞 +251 911 234 567</p></div></div></footer>
+
 <script>
-  // Enhanced header scroll effect
   const header = document.getElementById('siteHeader');
   window.addEventListener('scroll', () => header.classList.toggle('scrolled', window.scrollY > 50));
   
-  // Mobile menu toggle
   const menuBtn = document.getElementById('menuToggle'), mobileMenu = document.getElementById('mobileMenu'), closeMenu = document.getElementById('closeMenu');
   const toggleMenu = (open) => { mobileMenu.classList.toggle('open', open); mobileMenu.setAttribute('aria-hidden', !open); document.body.style.overflow = open ? 'hidden' : ''; };
   menuBtn.addEventListener('click', () => toggleMenu(true));
   closeMenu.addEventListener('click', () => toggleMenu(false));
   document.querySelectorAll('.mobile-menu a').forEach(link => link.addEventListener('click', () => toggleMenu(false)));
   
-  // Video handling: ensure autoplay and mobile compatibility (playsinline attribute already present)
   const video = document.getElementById('heroVideo');
   if(video) {
-    // Force play and handle any autoplay restrictions gracefully
-    video.play().catch(e => console.log("Video autoplay blocked:", e));
-    // For iOS and mobile, ensure video doesn't go fullscreen automatically
-    video.setAttribute('playsinline', '');
-    video.setAttribute('webkit-playsinline', '');
+    video.play().catch(e => console.log("Autoplay prevented:", e));
+    video.setAttribute('playsinline', 'true');
+    video.setAttribute('webkit-playsinline', 'true');
   }
   
-  // Intersection Observer for scroll animations
-  const observer = new IntersectionObserver((entries) => entries.forEach(e => e.isIntersecting && e.target.classList.add('animated')), { threshold: 0.1, rootMargin: '0px 0px -50px 0px' });
+  const observer = new IntersectionObserver((entries) => entries.forEach(e => e.isIntersecting && e.target.classList.add('animated')), { threshold: 0.1, rootMargin: '0px 0px -30px 0px' });
   document.querySelectorAll('.scroll-animate').forEach(el => observer.observe(el));
   
-  // Smooth scrolling for anchor links
   document.querySelectorAll('a[href^="#"]').forEach(anchor => anchor.addEventListener('click', function(e) { e.preventDefault(); const target = document.querySelector(this.getAttribute('href')); if(target) target.scrollIntoView({ behavior: 'smooth', block: 'start' }); }));
-  
-  // Additional mobile fix: if any orientation change, reflow video container
-  window.addEventListener('resize', () => { if(video) video.style.objectFit = 'cover'; });
 </script>
 </body>
 </html>
