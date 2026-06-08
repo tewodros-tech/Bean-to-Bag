@@ -14,16 +14,21 @@
     }
 
     :root {
-      --dark: #1a1a1a;
-      --light: #ffffff;
-      --accent: #c47a3a;
-      --accent-light: #e8bc6a;
-      --accent-dark: #8b4e1f;
-      --text-dark: #2c2c2c;
-      --text-light: #6b6b6b;
-      --shadow-sm: 0 10px 30px rgba(0, 0, 0, 0.05);
-      --shadow-md: 0 20px 40px rgba(0, 0, 0, 0.08);
-      --shadow-lg: 0 30px 60px rgba(0, 0, 0, 0.1);
+      --dark: #0f0f0f;
+      --light: #fdfcfb;
+      --accent: #b8651b;
+      --accent-light: #d4a574;
+      --accent-dark: #7a3e08;
+      --text-dark: #1a1a1a;
+      --text-light: #5a5a5a;
+      --cream: #fefaf5;
+      --warm-gray: #e8e0d6;
+      --shadow-sm: 0 8px 25px rgba(184, 101, 27, 0.08);
+      --shadow-md: 0 15px 35px rgba(184, 101, 27, 0.12);
+      --shadow-lg: 0 25px 50px rgba(184, 101, 27, 0.15);
+      --shadow-xl: 0 40px 80px rgba(184, 101, 27, 0.18);
+      --transition: all 0.4s cubic-bezier(0.2, 0.8, 0.2, 1);
+      --transition-fast: all 0.25s cubic-bezier(0.2, 0.8, 0.2, 1);
     }
 
     body {
@@ -31,6 +36,7 @@
       background: var(--light);
       color: var(--text-dark);
       overflow-x: hidden;
+      line-height: 1.6;
     }
 
     .container {
@@ -48,25 +54,49 @@
     a {
       text-decoration: none;
       color: inherit;
+      transition: var(--transition-fast);
     }
 
-    /* Header */
+    /* Scrollbar Styling */
+    ::-webkit-scrollbar {
+      width: 10px;
+    }
+    ::-webkit-scrollbar-track {
+      background: var(--cream);
+    }
+    ::-webkit-scrollbar-thumb {
+      background: linear-gradient(180deg, var(--accent-light), var(--accent));
+      border-radius: 5px;
+    }
+    ::-webkit-scrollbar-thumb:hover {
+      background: var(--accent);
+    }
+
+    /* Selection Styling */
+    ::selection {
+      background: var(--accent);
+      color: white;
+    }
+
+    /* ==================== HEADER ==================== */
     .site-header {
       position: fixed;
       top: 0;
       left: 0;
       right: 0;
       z-index: 1000;
-      padding: 20px 24px;
-      background: rgba(0, 0, 0, 0.6);
-      backdrop-filter: blur(10px);
-      transition: all 0.3s ease;
-      border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+      padding: 24px 28px;
+      background: linear-gradient(180deg, rgba(0, 0, 0, 0.7) 0%, rgba(0, 0, 0, 0.4) 100%);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      transition: var(--transition);
+      border-bottom: 1px solid rgba(255, 255, 255, 0.08);
     }
 
     .site-header.scrolled {
-      background: rgba(0, 0, 0, 0.85);
-      padding: 12px 24px;
+      background: rgba(15, 15, 15, 0.92);
+      padding: 16px 28px;
+      box-shadow: 0 10px 40px rgba(0, 0, 0, 0.15);
     }
 
     .nav-wrap {
@@ -80,52 +110,102 @@
     .brand {
       display: flex;
       align-items: center;
-      gap: 12px;
+      gap: 14px;
     }
 
     .brand-mark {
-      width: 42px;
-      height: 42px;
-      background: linear-gradient(145deg, var(--accent-light), var(--accent));
+      width: 48px;
+      height: 48px;
+      background: linear-gradient(145deg, var(--accent-light), var(--accent), var(--accent-dark));
       border-radius: 50%;
       display: flex;
       align-items: center;
       justify-content: center;
+      position: relative;
+      box-shadow: 0 8px 20px rgba(184, 101, 27, 0.3);
+      transition: var(--transition);
+    }
+
+    .site-header.scrolled .brand-mark {
+      width: 42px;
+      height: 42px;
     }
 
     .brand-mark::before {
       content: "";
-      width: 14px;
-      height: 24px;
-      background: rgba(60, 30, 15, 0.9);
+      width: 18px;
+      height: 28px;
+      background: linear-gradient(180deg, rgba(40, 20, 10, 0.85), rgba(20, 10, 5, 0.9));
       border-radius: 50%;
-      transform: rotate(-24deg);
+      transform: rotate(-28deg);
+      position: relative;
+    }
+
+    .brand-mark::after {
+      content: "";
+      position: absolute;
+      width: 8px;
+      height: 8px;
+      background: var(--accent-light);
+      border-radius: 50%;
+      top: 12px;
+      right: 8px;
+      opacity: 0.8;
+    }
+
+    .brand-name {
+      display: flex;
+      flex-direction: column;
     }
 
     .brand-name strong {
       font-family: 'Playfair Display', serif;
-      font-size: 1.2rem;
+      font-size: 1.4rem;
       color: white;
+      letter-spacing: -0.02em;
+      line-height: 1.1;
     }
 
     .brand-name span {
-      font-size: 0.6rem;
-      letter-spacing: 0.2em;
+      font-size: 0.65rem;
+      letter-spacing: 0.25em;
       color: var(--accent-light);
+      text-transform: uppercase;
+      margin-top: -2px;
+    }
+
+    .site-header.scrolled .brand-name strong {
+      font-size: 1.25rem;
     }
 
     .desktop-nav {
       display: flex;
-      gap: 32px;
+      gap: 36px;
     }
 
     .desktop-nav a {
-      font-size: 0.8rem;
+      font-size: 0.85rem;
       font-weight: 600;
-      letter-spacing: 0.1em;
+      letter-spacing: 0.12em;
       text-transform: uppercase;
-      transition: color 0.2s;
-      color: rgba(255, 255, 255, 0.9);
+      color: rgba(255, 255, 255, 0.95);
+      position: relative;
+      padding: 8px 0;
+    }
+
+    .desktop-nav a::after {
+      content: "";
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 0;
+      height: 2px;
+      background: linear-gradient(90deg, var(--accent-light), var(--accent));
+      transition: var(--transition-fast);
+    }
+
+    .desktop-nav a:hover::after {
+      width: 100%;
     }
 
     .desktop-nav a:hover,
@@ -135,23 +215,33 @@
 
     .menu-button {
       display: none;
-      width: 44px;
-      height: 44px;
-      border: 1px solid rgba(255, 255, 255, 0.3);
+      width: 48px;
+      height: 48px;
+      border: 1px solid rgba(255, 255, 255, 0.25);
       border-radius: 50%;
-      background: transparent;
+      background: rgba(255, 255, 255, 0.05);
       flex-direction: column;
       align-items: center;
       justify-content: center;
-      gap: 5px;
+      gap: 6px;
       cursor: pointer;
+      transition: var(--transition);
+      backdrop-filter: blur(10px);
+    }
+
+    .menu-button:hover {
+      background: rgba(255, 255, 255, 0.1);
+      border-color: rgba(255, 255, 255, 0.4);
+      transform: scale(1.05);
     }
 
     .menu-button span {
-      width: 20px;
+      width: 22px;
       height: 2px;
       background: white;
       display: block;
+      border-radius: 1px;
+      transition: var(--transition-fast);
     }
 
     .mobile-menu {
@@ -160,16 +250,18 @@
       left: 0;
       right: 0;
       bottom: 0;
-      background: rgba(0, 0, 0, 0.95);
-      backdrop-filter: blur(20px);
+      background: linear-gradient(135deg, rgba(15, 15, 15, 0.98), rgba(40, 20, 10, 0.98));
+      backdrop-filter: blur(25px);
+      -webkit-backdrop-filter: blur(25px);
       z-index: 999;
       display: flex;
       flex-direction: column;
       justify-content: center;
       align-items: center;
-      gap: 30px;
+      gap: 40px;
       transform: translateX(100%);
-      transition: transform 0.3s ease;
+      transition: var(--transition);
+      overflow-y: auto;
     }
 
     .mobile-menu.open {
@@ -178,47 +270,83 @@
 
     .mobile-menu a {
       font-family: 'Playfair Display', serif;
-      font-size: 2rem;
+      font-size: 2.4rem;
       color: white;
+      letter-spacing: 0.05em;
+      transition: var(--transition-fast);
+    }
+
+    .mobile-menu a:hover {
+      color: var(--accent-light);
+      transform: scale(1.05);
     }
 
     .close-menu {
       position: absolute;
-      top: 24px;
-      right: 24px;
-      font-size: 2rem;
+      top: 28px;
+      right: 28px;
+      font-size: 2.2rem;
       background: none;
       border: none;
       color: white;
       cursor: pointer;
+      transition: var(--transition-fast);
+      width: 48px;
+      height: 48px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border-radius: 50%;
     }
 
-    /* Buttons */
+    .close-menu:hover {
+      background: rgba(255, 255, 255, 0.1);
+      transform: rotate(90deg);
+    }
+
+    /* ==================== BUTTONS ==================== */
     .btn {
       display: inline-flex;
       align-items: center;
       justify-content: center;
       gap: 12px;
-      padding: 14px 36px;
+      padding: 16px 40px;
       border-radius: 50px;
       font-weight: 700;
-      font-size: 0.85rem;
-      letter-spacing: 0.1em;
+      font-size: 0.9rem;
+      letter-spacing: 0.12em;
       text-transform: uppercase;
-      transition: all 0.3s;
+      transition: var(--transition);
       cursor: pointer;
       border: 2px solid transparent;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .btn::before {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: -100%;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+      transition: var(--transition);
+    }
+
+    .btn:hover::before {
+      left: 100%;
     }
 
     .btn-primary {
-      background: linear-gradient(135deg, var(--accent-light), var(--accent));
+      background: linear-gradient(145deg, var(--accent-light), var(--accent), var(--accent-dark));
       color: white;
-      box-shadow: 0 10px 25px rgba(196, 122, 58, 0.3);
+      box-shadow: 0 12px 30px rgba(184, 101, 27, 0.35);
     }
 
     .btn-primary:hover {
-      transform: translateY(-3px);
-      box-shadow: 0 15px 35px rgba(196, 122, 58, 0.4);
+      transform: translateY(-4px);
+      box-shadow: 0 18px 40px rgba(184, 101, 27, 0.45);
     }
 
     .btn-outline {
@@ -228,12 +356,13 @@
     }
 
     .btn-outline:hover {
-      background: var(--accent);
+      background: linear-gradient(145deg, var(--accent-light), var(--accent));
       color: white;
-      transform: translateY(-3px);
+      transform: translateY(-4px);
+      box-shadow: 0 12px 30px rgba(184, 101, 27, 0.25);
     }
 
-    /* Hero Video Section */
+    /* ==================== HERO VIDEO SECTION ==================== */
     .hero-video-section {
       position: relative;
       width: 100%;
@@ -257,80 +386,116 @@
       left: 0;
       width: 100%;
       height: 100%;
-      background: linear-gradient(135deg, rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.4));
+      background: linear-gradient(135deg, rgba(0, 0, 0, 0.6) 0%, rgba(0, 0, 0, 0.3) 50%, rgba(0, 0, 0, 0.5) 100%);
       z-index: 1;
     }
 
-    /* Hero Content Below Video */
+    /* ==================== HERO CONTENT SECTION ==================== */
     .hero-content-section {
-      background: linear-gradient(135deg, #faf8f5, #f5f0ea);
-      padding: 100px 0;
+      background: linear-gradient(135deg, var(--cream), var(--warm-gray));
+      padding: 120px 0;
       text-align: center;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .hero-content-section::before {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 100px;
+      background: linear-gradient(180deg, rgba(0, 0, 0, 0.05), transparent);
+      pointer-events: none;
     }
 
     .hero-content-section .tag {
       color: var(--accent);
-      letter-spacing: 0.2em;
-      font-size: 0.8rem;
-      font-weight: 600;
-      margin-bottom: 1rem;
+      letter-spacing: 0.25em;
+      font-size: 0.9rem;
+      font-weight: 700;
+      margin-bottom: 1.2rem;
       display: inline-block;
+      text-transform: uppercase;
     }
 
     .hero-content-section h1 {
       font-family: 'Playfair Display', serif;
-      font-size: clamp(2.5rem, 6vw, 4.5rem);
-      line-height: 1.2;
+      font-size: clamp(2.8rem, 7vw, 5rem);
+      line-height: 1.15;
       margin-bottom: 1.5rem;
       color: var(--dark);
+      font-weight: 700;
     }
 
     .hero-content-section p {
-      font-size: 1.1rem;
-      line-height: 1.6;
+      font-size: 1.15rem;
+      line-height: 1.7;
       margin: 1.5rem auto;
       color: var(--text-light);
-      max-width: 600px;
+      max-width: 650px;
+      font-weight: 400;
     }
 
     .hero-actions {
       display: flex;
       flex-wrap: wrap;
-      gap: 18px;
+      gap: 20px;
       justify-content: center;
+      margin-top: 10px;
     }
 
-    /* Section Styles */
+    /* ==================== SECTION STYLES ==================== */
     section {
-      padding: 100px 0;
+      padding: 120px 0;
+      position: relative;
+    }
+
+    .section-header {
+      text-align: center;
+      margin-bottom: 80px;
+    }
+
+    .section-tag {
+      color: var(--accent);
+      letter-spacing: 0.25em;
+      font-size: 0.9rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      margin-bottom: 1rem;
+      display: inline-block;
     }
 
     .section-title {
       font-family: 'Playfair Display', serif;
-      font-size: clamp(2.5rem, 6vw, 4rem);
+      font-size: clamp(2.8rem, 7vw, 4.5rem);
       line-height: 1.1;
-      margin-bottom: 1rem;
+      margin-bottom: 1.2rem;
       color: var(--dark);
+      font-weight: 700;
     }
 
     .section-subtitle {
-      font-size: 1.1rem;
+      font-size: 1.15rem;
       color: var(--text-light);
-      max-width: 700px;
-      margin-bottom: 2rem;
+      max-width: 750px;
+      margin: 0 auto;
+      line-height: 1.7;
+      font-weight: 400;
     }
 
-    /* Alternating Image Layout */
+    /* ==================== ALTERNATING GRID ==================== */
     .alternating-grid {
       display: flex;
       flex-direction: column;
-      gap: 100px;
+      gap: 120px;
     }
 
     .alternating-item {
       display: grid;
       grid-template-columns: 1fr 1fr;
-      gap: 70px;
+      gap: 80px;
       align-items: center;
     }
 
@@ -343,81 +508,128 @@
     }
 
     .image-wrapper {
-      border-radius: 30px;
+      border-radius: 40px;
       overflow: hidden;
       position: relative;
-      box-shadow: var(--shadow-lg);
-      transition: all 0.5s cubic-bezier(0.2, 0.8, 0.2, 1);
+      box-shadow: var(--shadow-md);
+      transition: var(--transition);
+      aspect-ratio: 4/3;
+    }
+
+    .image-wrapper::before {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: linear-gradient(135deg, rgba(184, 101, 27, 0.1), rgba(212, 165, 116, 0.05));
+      z-index: 1;
+      opacity: 0;
+      transition: var(--transition);
+      pointer-events: none;
     }
 
     .image-wrapper:hover {
-      transform: scale(1.02);
-      box-shadow: 0 40px 70px rgba(0, 0, 0, 0.15);
+      transform: scale(1.02) translateY(-8px);
+      box-shadow: var(--shadow-xl);
+    }
+
+    .image-wrapper:hover::before {
+      opacity: 1;
     }
 
     .image-wrapper img {
       width: 100%;
-      height: 450px;
+      height: 100%;
       object-fit: cover;
-      transition: transform 0.7s ease;
+      transition: var(--transition);
     }
 
     .image-wrapper:hover img {
-      transform: scale(1.06);
+      transform: scale(1.08);
+    }
+
+    .content {
+      padding: 20px;
     }
 
     .content h3 {
       font-family: 'Playfair Display', serif;
-      font-size: 2.2rem;
-      margin-bottom: 1rem;
+      font-size: 2.5rem;
+      margin-bottom: 1.2rem;
       color: var(--accent);
       position: relative;
       display: inline-block;
+      font-weight: 700;
     }
 
     .content h3::after {
       content: "";
       position: absolute;
-      bottom: -10px;
+      bottom: -12px;
       left: 0;
-      width: 60px;
-      height: 3px;
-      background: linear-gradient(90deg, var(--accent), var(--accent-light));
-      border-radius: 3px;
+      width: 70px;
+      height: 4px;
+      background: linear-gradient(90deg, var(--accent), var(--accent-light), var(--accent));
+      border-radius: 4px;
     }
 
     .content p {
-      line-height: 1.8;
+      line-height: 1.9;
       color: var(--text-light);
       margin: 25px 0;
-      font-size: 1.05rem;
+      font-size: 1.1rem;
+      font-weight: 400;
     }
 
-    /* Stats Section */
+    /* ==================== STATS SECTION ==================== */
+    .stats-section {
+      background: linear-gradient(135deg, var(--cream), var(--warm-gray));
+    }
+
     .stats-grid {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-      gap: 48px;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 50px;
       text-align: center;
+    }
+
+    .stat-item {
+      padding: 30px 20px;
+      background: white;
+      border-radius: 30px;
+      box-shadow: var(--shadow-sm);
+      transition: var(--transition);
+      border: 1px solid rgba(184, 101, 27, 0.1);
+    }
+
+    .stat-item:hover {
+      transform: translateY(-10px);
+      box-shadow: var(--shadow-md);
+      border-color: var(--accent-light);
     }
 
     .stat-number {
       font-family: 'Playfair Display', serif;
-      font-size: 3.2rem;
+      font-size: 3.5rem;
       color: var(--accent);
-      font-weight: 700;
+      font-weight: 800;
+      line-height: 1;
     }
 
     .stat-label {
       color: var(--text-light);
-      font-size: 0.9rem;
-      letter-spacing: 0.05em;
-      margin-top: 8px;
+      font-size: 0.95rem;
+      letter-spacing: 0.08em;
+      margin-top: 12px;
+      text-transform: uppercase;
+      font-weight: 500;
     }
 
-    /* Cafe Section */
+    /* ==================== CAFE SECTION ==================== */
     .cafe-section {
-      background: linear-gradient(135deg, #faf8f5, #f5f0ea);
+      background: linear-gradient(135deg, var(--cream), var(--warm-gray));
       position: relative;
       overflow: hidden;
     }
@@ -425,232 +637,484 @@
     .cafe-section::before {
       content: "☕";
       position: absolute;
-      font-size: 400px;
-      opacity: 0.03;
-      bottom: -100px;
-      right: -100px;
+      font-size: 500px;
+      opacity: 0.04;
+      bottom: -150px;
+      right: -150px;
       pointer-events: none;
       font-family: monospace;
+      color: var(--accent);
+      z-index: 0;
+    }
+
+    .cafe-section::after {
+      content: "☕";
+      position: absolute;
+      font-size: 300px;
+      opacity: 0.02;
+      top: 50px;
+      left: -100px;
+      pointer-events: none;
+      font-family: monospace;
+      color: var(--accent);
+      z-index: 0;
     }
 
     .cafe-grid {
       display: grid;
       grid-template-columns: 1fr 1fr;
-      gap: 70px;
+      gap: 80px;
       align-items: center;
+      position: relative;
+      z-index: 1;
     }
 
     .cafe-image {
-      border-radius: 30px;
+      border-radius: 40px;
       overflow: hidden;
       box-shadow: var(--shadow-lg);
-      transition: transform 0.4s;
+      transition: var(--transition);
+      aspect-ratio: 3/4;
     }
 
     .cafe-image:hover {
-      transform: scale(1.02);
+      transform: scale(1.02) translateY(-10px);
+      box-shadow: var(--shadow-xl);
     }
 
     .cafe-image img {
       width: 100%;
-      height: 520px;
+      height: 100%;
       object-fit: cover;
-      transition: transform 0.5s;
+      transition: var(--transition);
     }
 
     .cafe-image:hover img {
-      transform: scale(1.03);
+      transform: scale(1.05);
     }
 
     .cafe-content {
       padding: 20px;
     }
 
-    .cafe-content .badge {
+    .badge {
       display: inline-block;
-      background: rgba(196, 122, 58, 0.1);
-      padding: 8px 20px;
-      border-radius: 40px;
-      font-size: 0.7rem;
-      letter-spacing: 0.15em;
+      background: linear-gradient(135deg, rgba(184, 101, 27, 0.15), rgba(212, 165, 116, 0.1));
+      padding: 10px 24px;
+      border-radius: 50px;
+      font-size: 0.8rem;
+      letter-spacing: 0.18em;
       text-transform: uppercase;
       color: var(--accent);
-      margin-bottom: 20px;
-      font-weight: 600;
+      margin-bottom: 25px;
+      font-weight: 700;
+      border: 2px solid rgba(184, 101, 27, 0.2);
     }
 
     .cafe-content h2 {
       font-family: 'Playfair Display', serif;
-      font-size: clamp(2.5rem, 5vw, 4rem);
-      margin-bottom: 20px;
+      font-size: clamp(2.8rem, 6vw, 4.2rem);
+      margin-bottom: 25px;
       color: var(--dark);
+      font-weight: 700;
+      line-height: 1.1;
     }
 
     .cafe-content p {
-      font-size: 1.1rem;
-      line-height: 1.8;
+      font-size: 1.15rem;
+      line-height: 1.9;
       color: var(--text-light);
-      margin-bottom: 30px;
+      margin-bottom: 35px;
+      font-weight: 400;
     }
 
     .team-highlight {
       display: flex;
-      gap: 25px;
-      margin-top: 30px;
-      padding-top: 25px;
-      border-top: 2px solid rgba(196, 122, 58, 0.15);
+      gap: 30px;
+      margin-top: 35px;
+      padding-top: 30px;
+      border-top: 2px solid rgba(184, 101, 27, 0.2);
       flex-wrap: wrap;
     }
 
     .team-highlight span {
-      font-size: 0.95rem;
+      font-size: 1rem;
       color: var(--accent);
-      font-weight: 500;
+      font-weight: 600;
       display: flex;
       align-items: center;
-      gap: 8px;
+      gap: 10px;
     }
 
     .team-highlight span::before {
       content: "✦";
       color: var(--accent-light);
+      font-size: 1.2rem;
     }
 
-    /* Gallery Grid */
+    /* ==================== GALLERY SECTION ==================== */
+    .gallery-section {
+      background: white;
+    }
+
     .gallery-grid {
       display: grid;
       grid-template-columns: repeat(3, 1fr);
-      gap: 30px;
+      gap: 35px;
     }
 
     .gallery-item {
-      border-radius: 24px;
+      border-radius: 30px;
       overflow: hidden;
-      height: 300px;
-      transition: all 0.4s;
+      height: 320px;
+      transition: var(--transition);
       box-shadow: var(--shadow-sm);
+      position: relative;
+    }
+
+    .gallery-item::before {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: linear-gradient(135deg, rgba(184, 101, 27, 0.15), rgba(212, 165, 116, 0.08));
+      z-index: 1;
+      opacity: 0;
+      transition: var(--transition);
+      pointer-events: none;
     }
 
     .gallery-item:hover {
-      transform: translateY(-10px);
-      box-shadow: var(--shadow-md);
+      transform: translateY(-12px) scale(1.01);
+      box-shadow: var(--shadow-lg);
+    }
+
+    .gallery-item:hover::before {
+      opacity: 1;
     }
 
     .gallery-item img {
       width: 100%;
       height: 100%;
       object-fit: cover;
-      transition: transform 0.5s;
+      transition: var(--transition);
     }
 
     .gallery-item:hover img {
-      transform: scale(1.05);
+      transform: scale(1.08);
     }
 
-    /* Products Preview */
+    /* ==================== PRODUCTS SECTION ==================== */
     .products-preview {
-      background: linear-gradient(135deg, #faf8f5, #f5f0ea);
+      background: linear-gradient(135deg, var(--cream), var(--warm-gray));
     }
 
     .products-grid {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-      gap: 35px;
-      margin-top: 60px;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 40px;
+      margin-top: 70px;
     }
 
     .product-card {
       background: white;
-      border: 1px solid rgba(196, 122, 58, 0.15);
-      border-radius: 28px;
-      padding: 35px 25px;
-      transition: all 0.4s;
+      border: 2px solid rgba(184, 101, 27, 0.15);
+      border-radius: 35px;
+      padding: 40px 30px;
+      transition: var(--transition);
       text-align: center;
       box-shadow: var(--shadow-sm);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .product-card::before {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 5px;
+      background: linear-gradient(90deg, var(--accent-light), var(--accent), var(--accent-dark));
+      transform: scaleX(0);
+      transition: var(--transition);
     }
 
     .product-card:hover {
-      transform: translateY(-12px);
+      transform: translateY(-15px);
       border-color: var(--accent);
       box-shadow: var(--shadow-lg);
     }
 
+    .product-card:hover::before {
+      transform: scaleX(1);
+    }
+
     .product-card h3 {
       font-family: 'Playfair Display', serif;
-      font-size: 1.7rem;
-      margin-bottom: 12px;
+      font-size: 2rem;
+      margin-bottom: 15px;
       color: var(--accent);
+      font-weight: 700;
+    }
+
+    .taste-badges {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      justify-content: center;
+      margin-bottom: 20px;
     }
 
     .taste-badge {
       display: inline-block;
-      background: rgba(196, 122, 58, 0.08);
-      padding: 6px 14px;
-      border-radius: 40px;
-      font-size: 0.7rem;
+      background: linear-gradient(135deg, rgba(184, 101, 27, 0.1), rgba(212, 165, 116, 0.08));
+      padding: 8px 18px;
+      border-radius: 50px;
+      font-size: 0.8rem;
       margin: 4px;
       color: var(--accent);
-      font-weight: 500;
+      font-weight: 600;
+      border: 1px solid rgba(184, 101, 27, 0.2);
+      transition: var(--transition-fast);
     }
 
-    /* Roast Profile */
+    .taste-badge:hover {
+      background: var(--accent);
+      color: white;
+      transform: translateY(-2px);
+    }
+
+    .product-card p {
+      margin-top: 20px;
+      line-height: 1.8;
+      color: var(--text-light);
+      font-size: 1rem;
+      font-weight: 400;
+    }
+
+    .product-link {
+      display: inline-block;
+      margin-top: 25px;
+      color: var(--accent);
+      font-weight: 700;
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+      font-size: 0.9rem;
+      position: relative;
+      padding-bottom: 5px;
+    }
+
+    .product-link::after {
+      content: "→";
+      margin-left: 8px;
+      transition: var(--transition-fast);
+    }
+
+    .product-link:hover {
+      color: var(--accent-dark);
+    }
+
+    .product-link:hover::after {
+      transform: translateX(5px);
+    }
+
+    /* ==================== ROAST PROFILE SECTION ==================== */
+    .roast-section {
+      background: white;
+    }
+
     .roast-card {
-      background: linear-gradient(135deg, white, #fefaf5);
-      border-radius: 40px;
-      padding: 50px;
+      background: linear-gradient(135deg, white, var(--cream));
+      border-radius: 50px;
+      padding: 60px 50px;
       text-align: center;
       box-shadow: var(--shadow-md);
-      max-width: 900px;
+      max-width: 950px;
       margin: 0 auto;
+      border: 1px solid rgba(184, 101, 27, 0.1);
+      transition: var(--transition);
     }
 
-    /* Footer */
+    .roast-card:hover {
+      box-shadow: var(--shadow-lg);
+      transform: translateY(-5px);
+    }
+
+    .roast-card .section-tag {
+      margin-bottom: 15px;
+    }
+
+    .roast-card .section-title {
+      margin-top: 0;
+      font-size: clamp(2.5rem, 5vw, 3.5rem);
+    }
+
+    .roast-card p {
+      max-width: 750px;
+      margin: 25px auto 0;
+      line-height: 1.8;
+      color: var(--text-light);
+      font-size: 1.1rem;
+      font-weight: 400;
+    }
+
+    /* ==================== CTA SECTION ==================== */
+    .cta-section {
+      background: linear-gradient(135deg, var(--cream), var(--warm-gray));
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .cta-section::before {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23b8651b' fill-opacity='0.03'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+      opacity: 0.5;
+      pointer-events: none;
+    }
+
+    .cta-section .section-title {
+      margin-bottom: 20px;
+    }
+
+    .cta-actions {
+      display: flex;
+      gap: 25px;
+      justify-content: center;
+      flex-wrap: wrap;
+      margin-top: 35px;
+    }
+
+    /* ==================== FOOTER ==================== */
     .footer {
-      padding: 60px 24px 40px;
-      background: var(--dark);
+      padding: 70px 24px 50px;
+      background: linear-gradient(135deg, var(--dark), #1a1a1a);
       color: #aaa;
       text-align: center;
       border-top: 1px solid rgba(255, 255, 255, 0.05);
     }
 
+    .footer-content {
+      max-width: 1400px;
+      margin: 0 auto;
+    }
+
     .footer a {
       color: #aaa;
-      transition: color 0.2s;
+      transition: var(--transition-fast);
+      font-weight: 500;
     }
 
     .footer a:hover {
       color: var(--accent-light);
     }
 
-    /* WhatsApp Float */
+    .footer p {
+      font-size: 1rem;
+      line-height: 1.7;
+      margin-bottom: 25px;
+    }
+
+    .social-links {
+      display: flex;
+      gap: 35px;
+      justify-content: center;
+      margin-top: 25px;
+      flex-wrap: wrap;
+    }
+
+    .social-links a {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      padding: 10px 20px;
+      border-radius: 50px;
+      transition: var(--transition-fast);
+    }
+
+    .social-links a:hover {
+      background: rgba(184, 101, 27, 0.15);
+      color: var(--accent-light);
+    }
+
+    .contact-info {
+      margin-top: 25px;
+      padding-top: 25px;
+      border-top: 1px solid rgba(255, 255, 255, 0.1);
+    }
+
+    .contact-info p {
+      font-size: 0.95rem;
+      color: #888;
+      margin: 0;
+    }
+
+    /* ==================== WHATSAPP FLOAT ==================== */
     .whatsapp-float {
       position: fixed;
-      bottom: 24px;
-      right: 24px;
-      background: #25d366;
-      width: 58px;
-      height: 58px;
+      bottom: 30px;
+      right: 30px;
+      background: linear-gradient(135deg, #25d366, #128c7e);
+      width: 65px;
+      height: 65px;
       border-radius: 50%;
       display: flex;
       align-items: center;
       justify-content: center;
       color: white;
       font-weight: bold;
-      font-size: 1.6rem;
+      font-size: 1.8rem;
       z-index: 100;
-      box-shadow: 0 6px 20px rgba(37, 211, 102, 0.4);
-      transition: all 0.3s;
+      box-shadow: 0 10px 30px rgba(37, 211, 102, 0.4);
+      transition: var(--transition);
+      cursor: pointer;
     }
 
     .whatsapp-float:hover {
-      transform: scale(1.1);
+      transform: scale(1.15) rotate(-5deg);
+      box-shadow: 0 15px 40px rgba(37, 211, 102, 0.5);
     }
 
-    /* Responsive */
+    .whatsapp-float::before {
+      content: "";
+      position: absolute;
+      top: -8px;
+      left: -8px;
+      right: -8px;
+      bottom: -8px;
+      background: linear-gradient(135deg, rgba(37, 211, 102, 0.2), rgba(18, 140, 126, 0.1));
+      border-radius: 50%;
+      z-index: -1;
+      animation: pulse 2s infinite;
+    }
+
+    @keyframes pulse {
+      0%, 100% { transform: scale(1); opacity: 0.7; }
+      50% { transform: scale(1.1); opacity: 0.4; }
+    }
+
+    /* ==================== RESPONSIVE ==================== */
+    @media (max-width: 1200px) {
+      .alternating-item {
+        gap: 50px;
+      }
+      .cafe-grid {
+        gap: 60px;
+      }
+    }
+
     @media (max-width: 992px) {
       .alternating-item {
         grid-template-columns: 1fr;
-        gap: 40px;
+        gap: 50px;
       }
       .alternating-item.reverse {
         direction: ltr;
@@ -659,17 +1123,20 @@
         grid-template-columns: 1fr;
         gap: 50px;
       }
-      .cafe-image img {
-        height: 400px;
+      .cafe-image {
+        aspect-ratio: 16/9;
       }
       section {
-        padding: 70px 0;
+        padding: 90px 0;
       }
       .gallery-grid {
         grid-template-columns: repeat(2, 1fr);
       }
-      .image-wrapper img {
-        height: 380px;
+      .image-wrapper {
+        aspect-ratio: 16/9;
+      }
+      .stats-grid {
+        gap: 40px;
       }
     }
 
@@ -684,46 +1151,132 @@
         padding: 0 20px;
       }
       .hero-content-section {
-        padding: 50px 0;
+        padding: 70px 0;
       }
-      .image-wrapper img {
-        height: 280px;
+      .image-wrapper {
+        aspect-ratio: 16/10;
       }
-      .cafe-image img {
-        height: 320px;
+      .cafe-image {
+        aspect-ratio: 16/10;
       }
       .stats-grid {
-        gap: 35px;
+        gap: 30px;
       }
       .stat-number {
-        font-size: 2.2rem;
+        font-size: 2.8rem;
       }
       .gallery-grid {
         grid-template-columns: 1fr;
       }
+      .gallery-item {
+        height: 280px;
+      }
       .roast-card {
-        padding: 30px 20px;
+        padding: 40px 30px;
       }
       .products-grid {
-        gap: 20px;
+        gap: 30px;
       }
-    }
-
-    @media (max-width: 480px) {
-      .btn {
-        width: 100%;
-        justify-content: center;
+      .product-card {
+        padding: 35px 25px;
       }
       .hero-actions {
         flex-direction: column;
         align-items: center;
       }
+      .btn {
+        width: 100%;
+        max-width: 300px;
+      }
+      .cta-actions {
+        flex-direction: column;
+        align-items: center;
+      }
+    }
+
+    @media (max-width: 480px) {
+      .btn {
+        padding: 14px 30px;
+        font-size: 0.85rem;
+      }
       .team-highlight {
-        gap: 15px;
+        gap: 20px;
+        flex-direction: column;
+        align-items: center;
+      }
+      .team-highlight span {
+        font-size: 0.95rem;
       }
       .product-card {
-        padding: 25px 20px;
+        padding: 30px 20px;
       }
+      .product-card h3 {
+        font-size: 1.7rem;
+      }
+      .taste-badges {
+        gap: 8px;
+      }
+      .taste-badge {
+        padding: 6px 14px;
+        font-size: 0.7rem;
+      }
+      .whatsapp-float {
+        width: 58px;
+        height: 58px;
+        font-size: 1.5rem;
+        bottom: 20px;
+        right: 20px;
+      }
+      .site-header {
+        padding: 20px 20px;
+      }
+      .brand-name strong {
+        font-size: 1.2rem;
+      }
+      .section-title {
+        font-size: clamp(2.2rem, 8vw, 3.5rem);
+      }
+    }
+
+    /* ==================== ANIMATIONS ==================== */
+    @keyframes fadeInUp {
+      from {
+        opacity: 0;
+        transform: translateY(30px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    @keyframes fadeIn {
+      from {
+        opacity: 0;
+      }
+      to {
+        opacity: 1;
+      }
+    }
+
+    .animate-fade-in-up {
+      animation: fadeInUp 0.8s ease-out forwards;
+    }
+
+    .animate-fade-in {
+      animation: fadeIn 0.8s ease-out forwards;
+    }
+
+    /* Scroll Animations */
+    .scroll-animate {
+      opacity: 0;
+      transform: translateY(30px);
+      transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+    }
+
+    .scroll-animate.animated {
+      opacity: 1;
+      transform: translateY(0);
     }
   </style>
 </head>
@@ -745,14 +1298,14 @@
       <a href="origin.html">Origin</a>
       <a href="contact.html">Contact</a>
     </nav>
-    <button class="menu-button" id="menuToggle">
+    <button class="menu-button" id="menuToggle" aria-label="Toggle menu">
       <span></span><span></span><span></span>
     </button>
   </div>
 </header>
 
-<div class="mobile-menu" id="mobileMenu">
-  <button class="close-menu" id="closeMenu">✕</button>
+<div class="mobile-menu" id="mobileMenu" aria-hidden="true">
+  <button class="close-menu" id="closeMenu" aria-label="Close menu">✕</button>
   <a href="index.html">Home</a>
   <a href="about.html">About</a>
   <a href="products.html">Products</a>
@@ -760,12 +1313,14 @@
   <a href="contact.html">Contact</a>
 </div>
 
-<a href="https://wa.me/251911234567" class="whatsapp-float" target="_blank">W</a>
+<a href="https://wa.me/251911234567" class="whatsapp-float" target="_blank" rel="noopener noreferrer" aria-label="Contact us on WhatsApp">
+  <span style="font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; font-style: italic;">W</span>
+</a>
 
 <main>
   <!-- Full Width Video Section -->
   <div class="hero-video-section">
-    <video class="hero-video" autoplay muted loop playsinline id="heroVideo">
+    <video class="hero-video" autoplay muted loop playsinline id="heroVideo" poster="10.JPG">
       <source src="Bean.mp4" type="video/mp4">
       Your browser does not support the video tag.
     </video>
@@ -775,10 +1330,10 @@
   <!-- Hero Content Section Below Video -->
   <div class="hero-content-section">
     <div class="container">
-      <span class="tag">Bean to Bag</span>
-      <h1>From Bean to Bag —<br>Premium Ethiopian Coffee</h1>
-      <p>Carefully sourced Ethiopian Arabica coffee roasted to a balanced medium-dark profile for a rich and smooth cup.</p>
-      <div class="hero-actions">
+      <span class="tag animate-fade-in">Bean to Bag</span>
+      <h1 class="animate-fade-in-up">From Bean to Bag —<br>Premium Ethiopian Coffee</h1>
+      <p class="animate-fade-in-up" style="animation-delay: 0.2s;">Carefully sourced Ethiopian Arabica coffee roasted to a balanced medium-dark profile for a rich and smooth cup.</p>
+      <div class="hero-actions animate-fade-in-up" style="animation-delay: 0.4s;">
         <a href="products.html" class="btn btn-primary">Explore Coffee</a>
         <a href="products.html" class="btn btn-outline">Shop Coffee</a>
       </div>
@@ -788,17 +1343,17 @@
   <!-- Our Journey Section - Alternating Images -->
   <section>
     <div class="container">
-      <div style="text-align: center; margin-bottom: 70px;">
-        <span style="color: var(--accent); letter-spacing: 0.2em; font-weight: 600;">Our Journey</span>
-        <h2 class="section-title">From Farm to Cup</h2>
-        <p class="section-subtitle" style="margin: 0 auto;">Experience the craftsmanship behind every bag of Bean to Bag coffee.</p>
+      <div class="section-header">
+        <span class="section-tag scroll-animate">Our Journey</span>
+        <h2 class="section-title scroll-animate">From Farm to Cup</h2>
+        <p class="section-subtitle scroll-animate">Experience the craftsmanship behind every bag of Bean to Bag coffee.</p>
       </div>
 
       <div class="alternating-grid">
         <!-- Item 1 - Image Left -->
-        <div class="alternating-item">
+        <div class="alternating-item scroll-animate">
           <div class="image-wrapper">
-            <img src="10.JPG" alt="Ethiopian coffee farm">
+            <img src="10.JPG" alt="Ethiopian coffee farm at high altitude" loading="lazy">
           </div>
           <div class="content">
             <h3>Highland Farms</h3>
@@ -808,9 +1363,9 @@
         </div>
 
         <!-- Item 2 - Image Right -->
-        <div class="alternating-item reverse">
+        <div class="alternating-item reverse scroll-animate">
           <div class="image-wrapper">
-            <img src="11.JPG" alt="Coffee cherry harvest">
+            <img src="11.JPG" alt="Hand-picking ripe coffee cherries" loading="lazy">
           </div>
           <div class="content">
             <h3>Selective Harvest</h3>
@@ -820,9 +1375,9 @@
         </div>
 
         <!-- Item 3 - Image Left -->
-        <div class="alternating-item">
+        <div class="alternating-item scroll-animate">
           <div class="image-wrapper">
-            <img src="12.JPG" alt="Coffee processing">
+            <img src="12.JPG" alt="Traditional coffee processing on raised beds" loading="lazy">
           </div>
           <div class="content">
             <h3>Traditional Processing</h3>
@@ -832,9 +1387,9 @@
         </div>
 
         <!-- Item 4 - Image Right -->
-        <div class="alternating-item reverse">
+        <div class="alternating-item reverse scroll-animate">
           <div class="image-wrapper">
-            <img src="13.JPG" alt="Small batch roasting">
+            <img src="13.JPG" alt="Small batch coffee roasting" loading="lazy">
           </div>
           <div class="content">
             <h3>Small-Batch Roasting</h3>
@@ -844,9 +1399,9 @@
         </div>
 
         <!-- Item 5 - Image Left -->
-        <div class="alternating-item">
+        <div class="alternating-item scroll-animate">
           <div class="image-wrapper">
-            <img src="14.JPG" alt="Premium packaging">
+            <img src="14.JPG" alt="Premium coffee packaging with degassing valve" loading="lazy">
           </div>
           <div class="content">
             <h3>Premium Packaging</h3>
@@ -859,22 +1414,22 @@
   </section>
 
   <!-- Stats Section -->
-  <section style="background: #f5f0ea;">
+  <section class="stats-section">
     <div class="container">
       <div class="stats-grid">
-        <div>
+        <div class="stat-item scroll-animate">
           <div class="stat-number">1,900–2,200m</div>
           <div class="stat-label">Altitude above sea level</div>
         </div>
-        <div>
+        <div class="stat-item scroll-animate" style="animation-delay: 0.1s;">
           <div class="stat-number">100%</div>
           <div class="stat-label">Coffea Arabica</div>
         </div>
-        <div>
+        <div class="stat-item scroll-animate" style="animation-delay: 0.2s;">
           <div class="stat-number">Small Batch</div>
           <div class="stat-label">Fresh roasted weekly</div>
         </div>
-        <div>
+        <div class="stat-item scroll-animate" style="animation-delay: 0.3s;">
           <div class="stat-number">12+</div>
           <div class="stat-label">Partner co-ops</div>
         </div>
@@ -886,10 +1441,10 @@
   <section class="cafe-section">
     <div class="container">
       <div class="cafe-grid">
-        <div class="cafe-image">
-          <img src="15.JPG" alt="Bean to Bag Cafe in Addis Ababa">
+        <div class="cafe-image scroll-animate">
+          <img src="15.JPG" alt="Bean to Bag Cafe interior in Addis Ababa" loading="lazy">
         </div>
-        <div class="cafe-content">
+        <div class="cafe-content scroll-animate">
           <span class="badge">✦ Visit Us ✦</span>
           <h2>OUR CAFE</h2>
           <p>We invite you to visit our cozy cafe in Addis Ababa, where you can enjoy a cup of our delicious coffee and meet our all-women team of baristas. Experience the warmth of Ethiopian hospitality while savoring freshly brewed Bean to Bag coffee. Our cafe is designed to be a welcoming space where coffee lovers can gather, learn about Ethiopian coffee culture, and enjoy specialty brews prepared by our expert team.</p>
@@ -907,22 +1462,22 @@
   </section>
 
   <!-- Gallery Section -->
-  <section>
+  <section class="gallery-section">
     <div class="container">
-      <div style="text-align: center; margin-bottom: 60px;">
-        <span style="color: var(--accent); letter-spacing: 0.2em; font-weight: 600;">Moments</span>
-        <h2 class="section-title">From Our Cafe & Roastery</h2>
-        <p class="section-subtitle" style="margin: 0 auto;">Behind the scenes at Bean to Bag — where passion meets craft.</p>
+      <div class="section-header">
+        <span class="section-tag scroll-animate">Moments</span>
+        <h2 class="section-title scroll-animate">From Our Cafe & Roastery</h2>
+        <p class="section-subtitle scroll-animate">Behind the scenes at Bean to Bag — where passion meets craft.</p>
       </div>
       <div class="gallery-grid">
-        <div class="gallery-item">
-          <img src="16.JPG" alt="Coffee brewing at Bean to Bag">
+        <div class="gallery-item scroll-animate">
+          <img src="16.JPG" alt="Coffee brewing at Bean to Bag cafe" loading="lazy">
         </div>
-        <div class="gallery-item">
-          <img src="17.JPG" alt="Barista at work">
+        <div class="gallery-item scroll-animate" style="animation-delay: 0.1s;">
+          <img src="17.JPG" alt="Professional barista preparing coffee" loading="lazy">
         </div>
-        <div class="gallery-item">
-          <img src="19.JPG" alt="Coffee tasting experience">
+        <div class="gallery-item scroll-animate" style="animation-delay: 0.2s;">
+          <img src="19.JPG" alt="Coffee tasting experience at the cafe" loading="lazy">
         </div>
       </div>
     </div>
@@ -931,75 +1486,75 @@
   <!-- Products Preview Section -->
   <section class="products-preview">
     <div class="container">
-      <div style="text-align: center; margin-bottom: 50px;">
-        <span style="color: var(--accent); letter-spacing: 0.2em; font-weight: 600;">Our Collection</span>
-        <h2 class="section-title">Premium Ethiopian Coffee</h2>
-        <p style="color: var(--text-light); max-width: 700px; margin: 0 auto;">Discover our range of specialty coffees, from whole bean to ground, and dried coffee cherry. Each product is carefully crafted to showcase the best of Ethiopian Arabica.</p>
+      <div class="section-header">
+        <span class="section-tag scroll-animate">Our Collection</span>
+        <h2 class="section-title scroll-animate">Premium Ethiopian Coffee</h2>
+        <p class="section-subtitle scroll-animate">Discover our range of specialty coffees, from whole bean to ground, and dried coffee cherry. Each product is carefully crafted to showcase the best of Ethiopian Arabica.</p>
       </div>
       <div class="products-grid">
-        <div class="product-card">
+        <div class="product-card scroll-animate">
           <h3>Caskara</h3>
-          <div>
+          <div class="taste-badges">
             <span class="taste-badge">Fruity</span>
             <span class="taste-badge">Sweet</span>
             <span class="taste-badge">Floral</span>
           </div>
-          <p style="margin-top: 16px;">Dried coffee cherry — naturally sweet and fruity beverage. Made from the dried skin of coffee cherries, Caskara is a traditional Ethiopian drink that's gaining worldwide popularity.</p>
-          <a href="products.html" style="display: inline-block; margin-top: 18px; color: var(--accent); font-weight: 600;">Learn More →</a>
+          <p>Dried coffee cherry — naturally sweet and fruity beverage. Made from the dried skin of coffee cherries, Caskara is a traditional Ethiopian drink that's gaining worldwide popularity.</p>
+          <a href="products.html" class="product-link">Learn More</a>
         </div>
-        <div class="product-card">
+        <div class="product-card scroll-animate" style="animation-delay: 0.1s;">
           <h3>Qalid's Choice</h3>
-          <div>
+          <div class="taste-badges">
             <span class="taste-badge">Balanced</span>
             <span class="taste-badge">Smooth</span>
             <span class="taste-badge">Chocolate</span>
           </div>
-          <p style="margin-top: 16px;">House Blend – Ground Coffee for everyday enjoyment. Our signature blend is perfect for traditional Jebena brewing, French press, or espresso.</p>
-          <a href="products.html" style="display: inline-block; margin-top: 18px; color: var(--accent); font-weight: 600;">Learn More →</a>
+          <p>House Blend – Ground Coffee for everyday enjoyment. Our signature blend is perfect for traditional Jebena brewing, French press, or espresso.</p>
+          <a href="products.html" class="product-link">Learn More</a>
         </div>
-        <div class="product-card">
+        <div class="product-card scroll-animate" style="animation-delay: 0.2s;">
           <h3>Chemina</h3>
-          <div>
+          <div class="taste-badges">
             <span class="taste-badge">Bold</span>
             <span class="taste-badge">Cocoa</span>
             <span class="taste-badge">Smooth</span>
           </div>
-          <p style="margin-top: 16px;">Whole Bean Coffee — ideal for espresso and milk drinks. A bold coffee experience with rich body and deep cocoa notes that stands up beautifully to milk.</p>
-          <a href="products.html" style="display: inline-block; margin-top: 18px; color: var(--accent); font-weight: 600;">Learn More →</a>
+          <p>Whole Bean Coffee — ideal for espresso and milk drinks. A bold coffee experience with rich body and deep cocoa notes that stands up beautifully to milk.</p>
+          <a href="products.html" class="product-link">Learn More</a>
         </div>
-        <div class="product-card">
+        <div class="product-card scroll-animate" style="animation-delay: 0.3s;">
           <h3>Origin Green</h3>
-          <div>
+          <div class="taste-badges">
             <span class="taste-badge">Unroasted</span>
             <span class="taste-badge">Traceable</span>
           </div>
-          <p style="margin-top: 16px;">Raw green coffee beans for home roasters and cafés. Take control of your roast profile and experience coffee at its most authentic stage.</p>
-          <a href="products.html" style="display: inline-block; margin-top: 18px; color: var(--accent); font-weight: 600;">Learn More →</a>
+          <p>Raw green coffee beans for home roasters and cafés. Take control of your roast profile and experience coffee at its most authentic stage.</p>
+          <a href="products.html" class="product-link">Learn More</a>
         </div>
       </div>
-      <div style="text-align: center; margin-top: 55px;">
+      <div style="text-align: center; margin-top: 55px;" class="scroll-animate">
         <a href="products.html" class="btn btn-primary">View All Products →</a>
       </div>
     </div>
   </section>
 
   <!-- Roast Profile Section -->
-  <section>
+  <section class="roast-section">
     <div class="container">
-      <div class="roast-card">
-        <span style="color: var(--accent); letter-spacing: 0.2em; font-weight: 600;">Roast Profile</span>
+      <div class="roast-card scroll-animate">
+        <span class="section-tag">Roast Profile</span>
         <h2 class="section-title" style="margin-top: 15px;">Medium-Dark Roast</h2>
-        <p style="max-width: 700px; margin: 0 auto; line-height: 1.7; color: var(--text-light);">All roasted coffees from Bean to Bag are roasted to a Medium-Dark roast level. This provides balanced acidity, full body, rich chocolate and cocoa notes, and a smooth finish. Perfect for Jebena brewing, espresso, macchiato, French press, and milk-based drinks. Our roasting profile is designed to honor Ethiopian coffee heritage while appealing to modern palates.</p>
+        <p>All roasted coffees from Bean to Bag are roasted to a Medium-Dark roast level. This provides balanced acidity, full body, rich chocolate and cocoa notes, and a smooth finish. Perfect for Jebena brewing, espresso, macchiato, French press, and milk-based drinks. Our roasting profile is designed to honor Ethiopian coffee heritage while appealing to modern palates.</p>
       </div>
     </div>
   </section>
 
   <!-- Call to Action Section -->
-  <section style="background: linear-gradient(135deg, #faf8f5, #f5f0ea); text-align: center;">
+  <section class="cta-section">
     <div class="container">
-      <h2 class="section-title">Ready to experience Bean to Bag?</h2>
-      <p style="font-size: 1.1rem; color: var(--text-light); max-width: 600px; margin: 0 auto 30px;">Join our community of coffee lovers who appreciate quality, traceability, and the rich heritage of Ethiopian coffee.</p>
-      <div style="display: flex; gap: 20px; justify-content: center; flex-wrap: wrap;">
+      <h2 class="section-title scroll-animate">Ready to experience Bean to Bag?</h2>
+      <p style="font-size: 1.15rem; color: var(--text-light); max-width: 650px; margin: 0 auto 35px; line-height: 1.8; font-weight: 400;" class="scroll-animate">Join our community of coffee lovers who appreciate quality, traceability, and the rich heritage of Ethiopian coffee.</p>
+      <div class="cta-actions scroll-animate">
         <a href="products.html" class="btn btn-primary">Shop Now</a>
         <a href="contact.html" class="btn btn-outline">Contact Us</a>
       </div>
@@ -1008,37 +1563,141 @@
 </main>
 
 <footer class="footer">
-  <p>© 2025 Bean to Bag Coffee. Ethiopian specialty Arabica, freshly roasted in small batches.</p>
-  <div style="margin-top: 20px; display: flex; gap: 28px; justify-content: center;">
-    <a href="#">Instagram</a>
-    <a href="#">Facebook</a>
-    <a href="#">Telegram</a>
-  </div>
-  <div style="margin-top: 18px;">
-    <p style="font-size: 0.8rem;">📍 Addis Ababa, Ethiopia | ✉️ hello@beantobag.coffee | 📞 +251 911 234 567</p>
+  <div class="footer-content">
+    <p>© 2025 Bean to Bag Coffee. Ethiopian specialty Arabica, freshly roasted in small batches.</p>
+    <div class="social-links">
+      <a href="#">📷 Instagram</a>
+      <a href="#">📘 Facebook</a>
+      <a href="#">✈️ Telegram</a>
+    </div>
+    <div class="contact-info">
+      <p>📍 Addis Ababa, Ethiopia | ✉️ hello@beantobag.coffee | 📞 +251 911 234 567</p>
+    </div>
   </div>
 </footer>
 
 <script>
+  // Header scroll effect
   const header = document.getElementById('siteHeader');
   window.addEventListener('scroll', () => {
-    if (window.scrollY > 50) header.classList.add('scrolled');
-    else header.classList.remove('scrolled');
+    if (window.scrollY > 50) {
+      header.classList.add('scrolled');
+    } else {
+      header.classList.remove('scrolled');
+    }
   });
 
+  // Mobile menu toggle
   const menuBtn = document.getElementById('menuToggle');
   const mobileMenu = document.getElementById('mobileMenu');
   const closeMenu = document.getElementById('closeMenu');
 
-  menuBtn.addEventListener('click', () => mobileMenu.classList.add('open'));
-  closeMenu.addEventListener('click', () => mobileMenu.classList.remove('open'));
-  document.querySelectorAll('.mobile-menu a').forEach(link => link.addEventListener('click', () => mobileMenu.classList.remove('open')));
+  menuBtn.addEventListener('click', () => {
+    mobileMenu.classList.add('open');
+    mobileMenu.setAttribute('aria-hidden', 'false');
+    document.body.style.overflow = 'hidden';
+  });
 
+  closeMenu.addEventListener('click', () => {
+    mobileMenu.classList.remove('open');
+    mobileMenu.setAttribute('aria-hidden', 'true');
+    document.body.style.overflow = '';
+  });
+
+  document.querySelectorAll('.mobile-menu a').forEach(link => {
+    link.addEventListener('click', () => {
+      mobileMenu.classList.remove('open');
+      mobileMenu.setAttribute('aria-hidden', 'true');
+      document.body.style.overflow = '';
+    });
+  });
+
+  // Video autoplay
   const video = document.getElementById('heroVideo');
   if (video) {
-    video.play().catch(e => console.log('Video autoplay failed:', e));
+    video.play().catch(e => {
+      console.log('Video autoplay failed:', e);
+      // Fallback: show first frame as image
+      video.style.display = 'none';
+    });
+  }
+
+  // Scroll animations
+  const observerOptions = {
+    threshold: 0.1,
+    rootMargin: '0px 0px -50px 0px'
+  };
+
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('animated');
+      }
+    });
+  }, observerOptions);
+
+  document.querySelectorAll('.scroll-animate').forEach(el => {
+    observer.observe(el);
+  });
+
+  // Smooth scrolling for anchor links
+  document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+    anchor.addEventListener('click', function(e) {
+      e.preventDefault();
+      const target = document.querySelector(this.getAttribute('href'));
+      if (target) {
+        target.scrollIntoView({
+          behavior: 'smooth',
+          block: 'start'
+        });
+      }
+    });
+  });
+
+  // Add loaded class to body for initial animations
+  window.addEventListener('load', () => {
+    document.body.classList.add('loaded');
+  });
+
+  // Parallax effect for hero video overlay
+  window.addEventListener('scroll', () => {
+    const scrolled = window.pageYOffset;
+    const overlay = document.querySelector('.hero-overlay');
+    if (overlay && scrolled < window.innerHeight) {
+      overlay.style.transform = `translateY(${scrolled * 0.3}px)`;
+    }
+  });
+
+  // Add hover sound effect (optional - commented out)
+  // function playHoverSound() {
+  //   const audio = new Audio('hover-sound.mp3');
+  //   audio.volume = 0.3;
+  //   audio.play().catch(e => console.log('Audio play failed:', e));
+  // }
+
+  // WhatsApp float animation enhancement
+  const whatsappFloat = document.querySelector('.whatsapp-float');
+  if (whatsappFloat) {
+    let isAnimating = false;
+    whatsappFloat.addEventListener('mouseenter', () => {
+      if (!isAnimating) {
+        isAnimating = true;
+        whatsappFloat.style.transform = 'scale(1.15) rotate(-5deg)';
+        setTimeout(() => {
+          whatsappFloat.style.transform = 'scale(1.15) rotate(5deg)';
+          setTimeout(() => {
+            whatsappFloat.style.transform = 'scale(1.15) rotate(-5deg)';
+            isAnimating = false;
+          }, 100);
+        }, 100);
+      }
+    });
+    whatsappFloat.addEventListener('mouseleave', () => {
+      whatsappFloat.style.transform = 'scale(1) rotate(0deg)';
+      isAnimating = false;
+    });
   }
 </script>
 
 </body>
-</html> 
+</html>
