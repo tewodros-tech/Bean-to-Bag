@@ -40,7 +40,7 @@
       -webkit-font-smoothing: antialiased;
     }
 
-    /* LOADING SCREEN OVERLAY - Premium cinematic entry */
+    /* LOADING SCREEN OVERLAY - Precision asset framing */
     .loading-screen {
       position: fixed;
       top: 0;
@@ -60,33 +60,35 @@
       position: absolute;
       width: 100%;
       height: 100%;
-      background: radial-gradient(circle at 50% 50%, rgba(255, 215, 0, 0.15) 0%, transparent 70%);
+      background: radial-gradient(circle at 50% 50%, rgba(255, 215, 0, 0.12) 0%, transparent 70%);
       pointer-events: none;
     }
     .loading-screen.fade-out {
       opacity: 0;
       visibility: hidden;
     }
-    .loading-logo {
-      width: 220px;
-      height: 220px;
-      animation: pulse 1.5s ease-in-out infinite;
-      filter: drop-shadow(0 0 40px rgba(255, 215, 0, 0.4));
-      transition: var(--transition);
-      background: rgba(255, 215, 0, 0.05);
+    .loading-logo-container {
+      width: 200px;
+      height: 200px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      background: rgba(255, 215, 0, 0.04);
       border-radius: 50%;
-      padding: 20px;
+      padding: 30px;
       border: 1px solid rgba(255, 215, 0, 0.15);
-      backdrop-filter: blur(10px);
+      backdrop-filter: blur(15px);
+      box-shadow: 0 20px 50px rgba(0, 0, 0, 0.3), inset 0 0 20px rgba(255, 215, 0, 0.05);
+      animation: pulse 2s ease-in-out infinite;
     }
-    .loading-logo img {
+    .loading-logo-container img {
       width: 100%;
       height: 100%;
       object-fit: contain;
     }
     @keyframes pulse {
-      0%, 100% { transform: scale(1); opacity: 0.9; }
-      50% { transform: scale(1.05); opacity: 1; filter: drop-shadow(0 0 50px rgba(255, 215, 0, 0.6)); }
+      0%, 100% { transform: scale(1); filter: drop-shadow(0 0 30px rgba(255, 215, 0, 0.3)); }
+      50% { transform: scale(1.04); filter: drop-shadow(0 0 45px rgba(255, 215, 0, 0.5)); }
     }
 
     h1, h2, h3, h4, .section-title, .section-subtitle, p, .content p, .cafe-content p, .product-card p, .roast-card p, .stat-label, .contact-info p, .footer p {
@@ -123,7 +125,7 @@
       left: 0;
       right: 0;
       z-index: 1000;
-      padding: 24px 40px;
+      padding: 20px 40px;
       background: linear-gradient(180deg, rgba(15, 59, 31, 0.95) 0%, rgba(15, 59, 31, 0.8) 100%);
       backdrop-filter: blur(16px);
       transition: var(--transition);
@@ -132,7 +134,7 @@
 
     .site-header.scrolled {
       background: rgba(10, 42, 22, 0.98);
-      padding: 14px 40px;
+      padding: 12px 40px;
       box-shadow: var(--shadow-md);
     }
 
@@ -147,36 +149,45 @@
     .brand {
       display: flex;
       align-items: center;
-      gap: 16px;
       transition: var(--transition);
     }
 
-    .brand-logo-img {
-      width: 70px;
-      height: 70px;
-      object-fit: contain;
-      filter: drop-shadow(0 4px 15px rgba(255, 215, 0, 0.3));
-      transition: var(--transition);
+    .brand-logo-frame {
+      width: 64px;
+      height: 64px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
       border-radius: 50%;
-      background: linear-gradient(145deg, rgba(255, 215, 0, 0.12), rgba(255, 215, 0, 0.02));
+      background: linear-gradient(145deg, rgba(255, 215, 0, 0.1), rgba(255, 215, 0, 0.02));
+      padding: 10px;
+      border: 1px solid rgba(255, 215, 0, 0.15);
+      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+      transition: var(--transition);
+    }
+
+    .brand-logo-frame img {
+      width: 100%;
+      height: 100%;
+      object-fit: contain;
+      transition: var(--transition);
+    }
+
+    .site-header.scrolled .brand-logo-frame {
+      width: 52px;
+      height: 52px;
       padding: 8px;
-      border: 1px solid rgba(255, 215, 0, 0.1);
     }
 
-    .site-header.scrolled .brand-logo-img {
-      width: 56px;
-      height: 56px;
-      filter: drop-shadow(0 4px 10px rgba(255, 215, 0, 0.4));
-    }
-
-    .brand-logo-img:hover {
-      transform: scale(1.05) rotate(5deg);
-      filter: drop-shadow(0 8px 25px rgba(255, 215, 0, 0.5));
+    .brand:hover .brand-logo-frame {
+      transform: scale(1.05) rotate(4deg);
+      border-color: var(--accent);
+      box-shadow: 0 8px 25px rgba(255, 215, 0, 0.25);
     }
 
     .desktop-nav { display: flex; gap: 40px; align-items: center; }
     .desktop-nav a {
-      font-size: 0.82.5rem;
+      font-size: 0.825rem;
       font-weight: 600;
       letter-spacing: 0.15em;
       text-transform: uppercase;
@@ -577,14 +588,14 @@
       .hero-actions, .cta-actions { flex-direction: column; align-items: center; width: 100%; }
       .btn { width: 100%; max-width: 320px; }
       .hero-content-section { padding: 80px 0; }
-      .brand-logo-img { width: 60px; height: 60px; }
-      .loading-logo { width: 180px; height: 180px; }
+      .brand-logo-frame { width: 54px; height: 54px; padding: 8px; }
+      .loading-logo-container { width: 160px; height: 160px; padding: 24px; }
     }
     @media (max-width: 480px) {
-      .brand-logo-img { width: 54px; height: 54px; }
+      .brand-logo-frame { width: 48px; height: 48px; padding: 6px; }
       .whatsapp-float { width: 52px; height: 52px; font-size: 1.5rem; bottom: 20px; right: 20px; }
-      .site-header { padding: 16px 20px; }
-      .loading-logo { width: 150px; height: 150px; }
+      .site-header { padding: 14px 20px; }
+      .loading-logo-container { width: 130px; height: 130px; padding: 20px; }
     }
 
     /* Precision Motion Triggers */
@@ -601,18 +612,19 @@
 </head>
 <body>
 
-<!-- LOADING SCREEN WITH Beans.png -->
+<!-- PREMIUM BALANCED LOADING SCREEN USING Beans.png -->
 <div class="loading-screen" id="loadingScreen">
-  <div class="loading-logo">
-    <img src="Beans.png" alt="Bean to Bag Coffee Logo Engine">
+  <div class="loading-logo-container">
+    <img src="Beans.png" alt="Bean to Bag Logo Premium Preloader Image">
   </div>
 </div>
 
 <header class="site-header" id="siteHeader">
   <div class="nav-wrap">
-    <a href="index.html" class="brand">
-      <img src="Beans.png" alt="Bean to Bag Logo Banner" class="brand-logo-img">
-      <div class="brand-name"></div>
+    <a href="index.html" class="brand" aria-label="Bean to Bag Home Page Anchor">
+      <div class="brand-logo-frame">
+        <img src="Beans.png" alt="Bean to Bag Luxury Brand Identity Logo">
+      </div>
     </a>
     <nav class="desktop-nav">
       <a href="index.html" class="active">Home</a>
@@ -621,7 +633,7 @@
       <a href="origin.html">Origin</a>
       <a href="contact.html">Contact</a>
     </nav>
-    <button class="menu-button" id="menuToggle" aria-label="Toggle Menu System"><span></span><span></span><span></span></button>
+    <button class="menu-button" id="menuToggle" aria-label="Toggle Navigation Interface Overlay"><span></span><span></span><span></span></button>
   </div>
 </header>
 
@@ -634,10 +646,10 @@
   <a href="contact.html">Contact</a>
 </div>
 
-<a href="https://wa.me/251911234567" class="whatsapp-float" target="_blank" rel="noopener noreferrer" aria-label="WhatsApp Network Link">💬</a>
+<a href="https://wa.me/251911234567" class="whatsapp-float" target="_blank" rel="noopener noreferrer" aria-label="Direct WhatsApp Message Connection Routing">💬</a>
 
 <main>
-  <!-- VIDEO HERO DISPLAY LAYER -->
+  <!-- VIDEO HERO OVERLAY BLOCK -->
   <div class="hero-video-section">
     <video class="hero-video" autoplay muted loop playsinline webkit-playsinline="true" preload="auto" id="heroVideo">
       <source src="Bean.mp4" type="video/mp4">
