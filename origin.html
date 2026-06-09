@@ -1,11 +1,12 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover, user-scalable=yes">
   <meta name="description" content="Bean to Bag - Premium Ethiopian specialty coffee, freshly roasted and professionally packaged. Visit our cozy cafe in Addis Ababa.">
-  <title>Bean to Bag | Ethiopian Coffee Artistry</title>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,400;1,600&family=Playfair+Display:ital,wght@0,500;0,600;0,700;0,800;0,900;1,600;1,700&display=swap" rel="stylesheet">
+  <title>Bean to Bag | Premium Ethiopian Coffee</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Playfair+Display:ital,wght@0,500;0,600;0,700;0,800;0,900;1,600;1,700&display=swap" rel="stylesheet">
   <style>
     * {
       margin: 0;
@@ -15,464 +16,710 @@
 
     :root {
       --accent: #FFD700;
-      --accent-light: #FFE484;
-      --accent-glow: rgba(255, 215, 0, 0.3);
+      --accent-light: #FFDF66;
+      --accent-dark: #D4AF37;
       --deep-green: #0F3B1F;
       --forest: #1C4D2A;
-      --shadow-sm: 0 12px 30px rgba(0, 0, 0, 0.2);
-      --shadow-md: 0 20px 40px rgba(0, 0, 0, 0.25);
-      --shadow-lg: 0 35px 60px rgba(0, 0, 0, 0.3);
-      --transition: all 0.5s cubic-bezier(0.2, 0.9, 0.4, 1.1);
+      --shadow-sm: 0 8px 25px rgba(0, 0, 0, 0.12);
+      --shadow-md: 0 15px 35px rgba(0, 0, 0, 0.18);
+      --shadow-lg: 0 25px 50px rgba(0, 0, 0, 0.22);
+      --shadow-xl: 0 40px 80px rgba(0, 0, 0, 0.25);
+      --transition: all 0.4s cubic-bezier(0.2, 0.8, 0.2, 1);
+      --transition-fast: all 0.25s cubic-bezier(0.2, 0.8, 0.2, 1);
     }
 
     body {
       font-family: 'Inter', system-ui, sans-serif;
-      background: #0A2A16;
-      color: #FFF5E0;
+      background: #0F3B1F;
+      color: #FFF3C9;
       overflow-x: hidden;
       line-height: 1.6;
-      scroll-behavior: smooth;
     }
 
-    /* Premium Loading Animation */
+    /* LOADING SCREEN OVERLAY */
     .loading-screen {
       position: fixed;
       top: 0;
       left: 0;
       width: 100%;
       height: 100%;
-      background: radial-gradient(circle at center, #0F3B1F 0%, #07190D 100%);
+      background: #0F3B1F;
       z-index: 9999;
       display: flex;
       justify-content: center;
       align-items: center;
-      flex-direction: column;
-      gap: 2rem;
-      transition: opacity 0.8s ease-out, visibility 0.8s ease-out;
+      transition: opacity 0.6s ease-out, visibility 0.6s ease-out;
     }
     .loading-screen.fade-out {
       opacity: 0;
       visibility: hidden;
     }
     .loading-logo {
-      width: 160px;
-      height: 160px;
-      animation: floatingPulse 1.4s ease-in-out infinite;
+      width: 140px;
+      height: 140px;
+      animation: pulse 1.2s ease-in-out infinite;
     }
     .loading-logo img {
       width: 100%;
       height: 100%;
       object-fit: contain;
-      filter: drop-shadow(0 0 30px rgba(255, 215, 0, 0.5));
+      filter: drop-shadow(0 0 20px rgba(255, 215, 0, 0.6));
     }
-    .loading-text {
-      font-family: 'Playfair Display', serif;
-      letter-spacing: 4px;
-      font-size: 1rem;
-      color: #FFE484;
-      background: rgba(0,0,0,0.4);
-      padding: 8px 24px;
-      border-radius: 40px;
-      backdrop-filter: blur(5px);
-    }
-    @keyframes floatingPulse {
-      0%, 100% { transform: scale(1) translateY(0px); opacity: 0.9; }
-      50% { transform: scale(1.05) translateY(-8px); opacity: 1; }
+    @keyframes pulse {
+      0%, 100% { transform: scale(1); opacity: 0.9; }
+      50% { transform: scale(1.08); opacity: 1; }
     }
 
-    h1, h2, h3, .section-title, .product-card h3, .stat-number {
-      color: #FFEFC0;
+    h1, h2, h3, h4, .section-title, .section-subtitle, p, .content p, .cafe-content p, .product-card p, .roast-card p, .stat-label, .contact-info p, .footer p {
+      color: #FFF3C9;
     }
+
     .container {
       max-width: 1400px;
       margin: 0 auto;
-      padding: 0 28px;
+      padding: 0 24px;
     }
 
-    /* custom scrollbar */
-    ::-webkit-scrollbar { width: 6px; }
-    ::-webkit-scrollbar-track { background: #071A0E; }
-    ::-webkit-scrollbar-thumb { background: linear-gradient(135deg, #FFDF66, #FFB347); border-radius: 10px; }
+    img {
+      max-width: 100%;
+      height: auto;
+      display: block;
+    }
+
+    a {
+      text-decoration: none;
+      color: inherit;
+      transition: var(--transition-fast);
+    }
+
+    ::-webkit-scrollbar { width: 8px; }
+    ::-webkit-scrollbar-track { background: #1C4D2A; }
+    ::-webkit-scrollbar-thumb { background: linear-gradient(180deg, #FFDF66, #FFD700); border-radius: 10px; }
     ::selection { background: #FFD700; color: #0F3B1F; }
 
-    /* HEADER with glassmorphism evolution */
+    /* ==================== HEADER ==================== */
     .site-header {
       position: fixed;
       top: 0;
       left: 0;
       right: 0;
       z-index: 1000;
-      padding: 20px 32px;
-      background: rgba(10, 42, 22, 0.75);
-      backdrop-filter: blur(18px);
-      transition: all 0.4s ease;
-      border-bottom: 1px solid rgba(255, 215, 0, 0.25);
+      padding: 18px 28px;
+      background: linear-gradient(180deg, rgba(15, 59, 31, 0.95) 0%, rgba(15, 59, 31, 0.85) 100%);
+      backdrop-filter: blur(12px);
+      transition: var(--transition);
+      border-bottom: 1px solid rgba(255, 215, 0, 0.2);
     }
+
     .site-header.scrolled {
-      background: rgba(5, 20, 10, 0.92);
-      padding: 12px 32px;
-      box-shadow: 0 4px 30px rgba(0,0,0,0.3);
+      background: rgba(15, 59, 31, 0.98);
+      padding: 12px 28px;
     }
+
     .nav-wrap {
       display: flex;
       justify-content: space-between;
       align-items: center;
+      max-width: 1400px;
+      margin: 0 auto;
     }
+
+    .brand {
+      display: flex;
+      align-items: center;
+    }
+
     .brand-logo-img {
-      width: 58px;
-      height: 58px;
-      filter: drop-shadow(0 0 12px rgba(255,215,0,0.6));
-      transition: transform 0.3s;
+      width: 55px;
+      height: 55px;
+      object-fit: contain;
+      filter: drop-shadow(0 4px 12px rgba(255, 215, 0, 0.3));
+      transition: var(--transition);
     }
-    .brand-logo-img:hover { transform: scale(1.05); }
-    .desktop-nav { display: flex; gap: 42px; }
+
+    .site-header.scrolled .brand-logo-img {
+      width: 48px;
+      height: 48px;
+    }
+
+    .brand-name {
+      display: none;
+    }
+
+    .desktop-nav { display: flex; gap: 32px; }
     .desktop-nav a {
-      font-size: 0.75rem;
-      font-weight: 700;
-      letter-spacing: 0.2em;
+      font-size: 0.8rem;
+      font-weight: 600;
+      letter-spacing: 0.12em;
       text-transform: uppercase;
-      color: rgba(255, 245, 200, 0.9);
+      color: rgba(255, 245, 190, 0.95);
       position: relative;
-      padding-bottom: 6px;
+      padding: 6px 0;
     }
     .desktop-nav a::after {
-      content: '';
+      content: "";
       position: absolute;
-      bottom: -2px;
+      bottom: 0;
       left: 0;
       width: 0;
       height: 2px;
-      background: linear-gradient(90deg, #FFE484, #FFB347);
-      transition: width 0.3s;
+      background: linear-gradient(90deg, #FFDF66, #FFD700);
+      transition: var(--transition-fast);
     }
     .desktop-nav a:hover::after, .desktop-nav a.active::after { width: 100%; }
-    .desktop-nav a:hover, .desktop-nav a.active { color: #FFE67A; text-shadow: 0 0 2px rgba(255,215,0,0.5); }
+    .desktop-nav a:hover, .desktop-nav a.active { color: #FFE484; }
 
-    /* Mobile */
-    .menu-button { display: none; flex-direction: column; gap: 5px; background: rgba(0,0,0,0.5); border: 1px solid #FFD966; border-radius: 50%; width: 44px; height: 44px; align-items: center; justify-content: center; cursor: pointer; }
-    .menu-button span { width: 22px; height: 2px; background: #FFE484; border-radius: 2px; }
+    .menu-button {
+      display: none;
+      width: 44px;
+      height: 44px;
+      border: 1px solid rgba(255, 215, 0, 0.5);
+      border-radius: 50%;
+      background: rgba(15, 59, 31, 0.8);
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 5px;
+      cursor: pointer;
+    }
+    .menu-button span { width: 20px; height: 2px; background: #FFE484; border-radius: 2px; }
+
     .mobile-menu {
-      position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(5, 20, 10, 0.98); backdrop-filter: blur(30px); z-index: 2000;
-      display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 2rem; transform: translateX(100%); transition: transform 0.4s cubic-bezier(0.2, 0.9, 0.4, 1);
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: #0F3B1F;
+      backdrop-filter: blur(25px);
+      z-index: 999;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      gap: 35px;
+      transform: translateX(100%);
+      transition: 0.4s;
     }
     .mobile-menu.open { transform: translateX(0); }
-    .mobile-menu a { font-family: 'Playfair Display', serif; font-size: 2rem; color: #FFEFB0; letter-spacing: 2px; }
-    .close-menu { position: absolute; top: 30px; right: 30px; font-size: 2rem; background: none; border: none; color: #FFE484; cursor: pointer; }
+    .mobile-menu a { font-family: 'Playfair Display', serif; font-size: 2rem; color: #FFEEAA; }
+    .close-menu {
+      position: absolute;
+      top: 25px;
+      right: 25px;
+      font-size: 2rem;
+      background: none;
+      border: none;
+      color: #FFEEAA;
+      cursor: pointer;
+    }
 
-    /* Buttons */
+    /* ==================== BUTTONS ==================== */
     .btn {
-      display: inline-flex; align-items: center; gap: 10px; padding: 14px 38px; border-radius: 60px; font-weight: 800; font-size: 0.8rem; letter-spacing: 0.12em;
-      text-transform: uppercase; transition: all 0.3s ease; cursor: pointer; border: none;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      padding: 14px 35px;
+      border-radius: 50px;
+      font-weight: 700;
+      font-size: 0.85rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      transition: var(--transition);
+      cursor: pointer;
+      border: 2px solid transparent;
     }
     .btn-primary {
-      background: linear-gradient(115deg, #FFE68F, #FFB347, #FFD700);
-      color: #1C3A21; box-shadow: 0 12px 25px rgba(0,0,0,0.3);
+      background: linear-gradient(145deg, #FFDF66, #FFC107, #D4AF37);
+      color: #1C4D2A;
+      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
     }
-    .btn-primary:hover { transform: translateY(-4px) scale(1.02); box-shadow: 0 20px 30px rgba(0,0,0,0.4); filter: brightness(1.02); }
-    .btn-outline { background: transparent; border: 1.5px solid #FFD966; color: #FFEFC0; backdrop-filter: blur(2px); }
-    .btn-outline:hover { background: #FFD96620; border-color: #FFEAA0; transform: translateY(-2px); color: #FFFAE6; }
+    .btn-primary:hover { transform: translateY(-3px); }
+    .btn-outline { border-color: #FFD700; color: #FFEEAA; background: transparent; }
+    .btn-outline:hover { background: linear-gradient(145deg, #FFDF66, #FFC107); color: #0F3B1F; }
 
-    /* HERO VIDEO - WOW */
+    /* ==================== HERO VIDEO SECTION - FIXED (NO TEXT CROPPING) ==================== */
     .hero-video-section {
       position: relative;
       width: 100%;
-      background: #020F07;
-      overflow: hidden;
-      margin-top: 0;
+      background: #0F3B1F;
+      display: flex;
+      justify-content: center;
+      align-items: center;
     }
+
     .hero-video {
       width: 100%;
       height: auto;
-      max-height: 92vh;
+      max-height: 100vh;
       object-fit: contain;
       display: block;
-      filter: contrast(1.05) brightness(1.02);
+      z-index: 0;
     }
+    
+    /* Desktop: wider display */
+    @media (min-width: 1024px) {
+      .hero-video-section {
+        height: auto;
+        max-height: 90vh;
+      }
+      .hero-video {
+        width: 100%;
+        height: auto;
+        object-fit: contain;
+      }
+    }
+    
+    /* Mobile: ensure full video visible with ALL text */
     @media (max-width: 768px) {
-      .hero-video { max-height: 70vh; object-fit: contain; width: 100%; }
+      .hero-video-section {
+        background: #0F3B1F;
+      }
+      .hero-video {
+        width: 100%;
+        height: auto;
+        object-fit: contain;
+      }
     }
 
+    .hero-overlay {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(135deg, rgba(15, 59, 31, 0.4), rgba(15, 59, 31, 0.2));
+      z-index: 1;
+      pointer-events: none;
+    }
+
+    /* ==================== HERO CONTENT SECTION ==================== */
     .hero-content-section {
-      background: linear-gradient(145deg, #0C2D19, #07180E);
-      padding: 80px 0 90px;
+      background: #0F3B1F;
+      padding: 80px 0;
       text-align: center;
-      position: relative;
-      z-index: 2;
     }
-    .hero-content-section .tag {
-      background: rgba(255,215,0,0.12);
-      display: inline-block;
-      padding: 5px 20px;
-      border-radius: 100px;
-      font-size: 0.7rem;
-      letter-spacing: 0.25em;
-      margin-bottom: 1.5rem;
-    }
-    .hero-content-section h1 {
-      font-size: clamp(2.6rem, 8vw, 5rem);
-      font-family: 'Playfair Display', serif;
-      line-height: 1.2;
-      text-shadow: 0 2px 15px rgba(0,0,0,0.4);
-    }
-    .hero-actions { display: flex; gap: 20px; justify-content: center; flex-wrap: wrap; margin-top: 2rem; }
 
-    /* Section headers with elegance */
-    .section-header { text-align: center; margin-bottom: 70px; }
-    .section-tag {
-      background: rgba(255,215,0,0.1);
-      padding: 5px 18px;
-      border-radius: 40px;
-      display: inline-block;
-      font-size: 0.7rem;
-      letter-spacing: 0.2em;
+    .hero-content-section .tag {
+      color: #FFD966;
+      letter-spacing: 0.25em;
+      font-size: 0.85rem;
+      font-weight: 700;
       margin-bottom: 1rem;
-      backdrop-filter: blur(2px);
+      display: inline-block;
+    }
+
+    .hero-content-section h1 {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(2.2rem, 7vw, 4.5rem);
+      line-height: 1.2;
+      margin-bottom: 1.2rem;
+      color: #FFECB3;
+    }
+
+    .hero-content-section p {
+      font-size: 1rem;
+      line-height: 1.6;
+      margin: 1.2rem auto;
+      color: #FFF0C0;
+      max-width: 600px;
+    }
+
+    .hero-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 15px;
+      justify-content: center;
+      margin-top: 10px;
+    }
+
+    /* ==================== SECTION STYLES ==================== */
+    section { padding: 80px 0; }
+    .section-header { text-align: center; margin-bottom: 60px; }
+    .section-tag {
+      color: #FFD966;
+      letter-spacing: 0.25em;
+      font-size: 0.8rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      margin-bottom: 0.8rem;
+      display: inline-block;
     }
     .section-title {
       font-family: 'Playfair Display', serif;
-      font-size: clamp(2.2rem, 6vw, 3.8rem);
+      font-size: clamp(2.2rem, 6vw, 3.5rem);
+      line-height: 1.15;
       margin-bottom: 1rem;
-      background: linear-gradient(135deg, #FFF0C0, #FFE484);
-      background-clip: text;
-      -webkit-background-clip: text;
-      color: transparent;
-      text-shadow: 0 2px 5px rgba(0,0,0,0.1);
+      color: #FFEFB5;
+    }
+    .section-subtitle {
+      font-size: 1rem;
+      color: #FFECB3;
+      max-width: 700px;
+      margin: 0 auto;
+      line-height: 1.6;
     }
 
-    /* Alternating grid with 3D hover */
-    .alternating-grid { display: flex; flex-direction: column; gap: 90px; }
+    /* ==================== ALTERNATING GRID ==================== */
+    .alternating-grid { display: flex; flex-direction: column; gap: 80px; }
     .alternating-item {
       display: grid;
       grid-template-columns: 1fr 1fr;
-      gap: 65px;
+      gap: 50px;
       align-items: center;
     }
     .alternating-item.reverse { direction: rtl; }
     .alternating-item.reverse .content { direction: ltr; }
+
     .image-wrapper {
-      border-radius: 32px;
+      border-radius: 25px;
       overflow: hidden;
-      box-shadow: 0 20px 35px rgba(0,0,0,0.4);
-      transition: all 0.5s;
-      transform-style: preserve-3d;
+      box-shadow: var(--shadow-md);
+      transition: var(--transition);
+      background: #1a4a2a;
     }
-    .image-wrapper img { width: 100%; height: auto; transition: transform 0.7s; display: block; }
-    .image-wrapper:hover img { transform: scale(1.03); }
-    .image-wrapper:hover { transform: translateY(-8px) rotate(1deg); box-shadow: 0 30px 45px rgba(0,0,0,0.5); }
+    .image-wrapper img { width: 100%; height: auto; display: block; transition: var(--transition); }
+    .image-wrapper:hover { transform: scale(1.02) translateY(-5px); }
+
     .content h3 {
       font-family: 'Playfair Display', serif;
-      font-size: 2.2rem;
+      font-size: 2rem;
       margin-bottom: 1rem;
-      color: #FFE0A3;
+      color: #FFDF66;
       position: relative;
+      display: inline-block;
     }
-    .content h3:after {
-      content: '';
-      width: 70px;
-      height: 3px;
-      background: linear-gradient(90deg, #FFD966, #FFB347);
+    .content h3::after {
+      content: "";
       position: absolute;
-      bottom: -12px;
+      bottom: -8px;
       left: 0;
+      width: 55px;
+      height: 3px;
+      background: linear-gradient(90deg, #FFD700, #FFDF66);
       border-radius: 3px;
     }
-    .content p { font-size: 1rem; margin: 20px 0; opacity: 0.9; }
+    .content p { line-height: 1.7; color: #FFF3D1; margin: 18px 0; font-size: 0.95rem; }
 
-    /* stats cinematic */
-    .stats-section { background: radial-gradient(circle at 20% 30%, #0B2E17, #051609); }
-    .stats-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 35px; text-align: center; }
+    /* Stats */
+    .stats-section { background: #0F3B1F; }
+    .stats-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+      gap: 30px;
+      text-align: center;
+    }
     .stat-item {
-      background: rgba(0,0,0,0.3); backdrop-filter: blur(8px); border-radius: 48px; padding: 30px 15px;
-      border: 1px solid rgba(255,215,0,0.2); transition: all 0.3s;
+      padding: 25px 15px;
+      background: rgba(255, 215, 0, 0.08);
+      backdrop-filter: blur(4px);
+      border-radius: 25px;
+      border: 1px solid rgba(255, 215, 0, 0.25);
     }
-    .stat-item:hover { transform: scale(1.02); border-color: #FFD966; background: rgba(255,215,0,0.05); }
-    .stat-number { font-size: 2.6rem; font-weight: 800; font-family: 'Playfair Display', serif; color: #FFE484; }
+    .stat-number { font-size: 2.5rem; color: #FFDF66; font-weight: 800; font-family: 'Playfair Display', serif; }
+    .stat-label { color: #FFEFC0; font-size: 0.8rem; letter-spacing: 0.08em; margin-top: 8px; text-transform: uppercase; }
 
-    /* Cafe section bold */
-    .cafe-grid {
-      display: grid; grid-template-columns: 1fr 1fr; gap: 60px; align-items: center;
+    /* Cafe */
+    .cafe-section { background: #0F3B1F; }
+    .cafe-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 50px; align-items: center; }
+    .cafe-image { border-radius: 25px; overflow: hidden; box-shadow: var(--shadow-lg); background: #1a4a2a; }
+    .cafe-image img { width: 100%; height: auto; display: block; }
+    .badge {
+      display: inline-block;
+      background: rgba(255, 215, 0, 0.15);
+      padding: 8px 20px;
+      border-radius: 50px;
+      font-size: 0.7rem;
+      letter-spacing: 0.15em;
+      color: #FFE484;
+      margin-bottom: 18px;
     }
-    .cafe-image { border-radius: 40px; overflow: hidden; box-shadow: 0 25px 40px black; transition: 0.4s; }
-    .cafe-image:hover { transform: scale(1.01); }
-    .badge { background: #FFD96620; border-radius: 60px; padding: 6px 24px; display: inline-block; font-size: 0.7rem; letter-spacing: 0.1em; }
-    .cafe-content h2 { font-size: 3rem; margin: 1rem 0; color: #FFEFC0; }
-    .team-highlight { display: flex; gap: 25px; margin-top: 30px; flex-wrap: wrap; }
-    .team-highlight span { display: flex; align-items: center; gap: 6px; font-weight: 500; }
+    .cafe-content h2 { font-size: clamp(2.2rem, 5vw, 3.5rem); margin-bottom: 18px; color: #FFEFB0; }
+    .team-highlight { display: flex; gap: 20px; margin-top: 25px; padding-top: 20px; border-top: 2px solid rgba(255, 215, 0, 0.3); flex-wrap: wrap; }
+    .team-highlight span { font-size: 0.85rem; color: #FFE484; display: flex; align-items: center; gap: 6px; }
+    .team-highlight span::before { content: "✦"; color: #FFD966; }
 
-    /* gallery modern */
-    .gallery-grid {
-      display: grid; grid-template-columns: repeat(3, 1fr); gap: 28px;
-    }
-    .gallery-item {
-      border-radius: 28px; overflow: hidden; transition: all 0.45s; cursor: pointer;
-      box-shadow: 0 12px 28px rgba(0,0,0,0.3);
-    }
-    .gallery-item img { width: 100%; height: auto; transition: transform 0.5s; }
-    .gallery-item:hover { transform: translateY(-10px) scale(1.01); }
-    .gallery-item:hover img { transform: scale(1.05); }
+    /* Gallery */
+    .gallery-section { background: #0F3B1F; }
+    .gallery-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 25px; }
+    .gallery-item { border-radius: 20px; overflow: hidden; background: #1a4a2a; }
+    .gallery-item img { width: 100%; height: auto; display: block; }
+    .gallery-item:hover { transform: translateY(-8px); }
 
-    /* product cards glassmorph */
-    .products-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(270px, 1fr)); gap: 40px; margin-top: 50px; }
+    /* Products */
+    .products-preview { background: #0F3B1F; }
+    .products-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 30px; margin-top: 50px; }
     .product-card {
-      background: rgba(30, 55, 35, 0.5); backdrop-filter: blur(12px); border-radius: 48px; padding: 40px 25px; text-align: center;
-      border: 1px solid rgba(255,200,100,0.25); transition: all 0.4s;
+      background: rgba(255, 215, 0, 0.05);
+      backdrop-filter: blur(4px);
+      border: 2px solid rgba(255, 215, 0, 0.3);
+      border-radius: 25px;
+      padding: 30px 20px;
+      text-align: center;
     }
-    .product-card:hover { transform: translateY(-12px); border-color: #FFD966; background: rgba(30, 55, 35, 0.7); box-shadow: 0 28px 38px rgba(0,0,0,0.3); }
-    .product-card h3 { font-size: 1.9rem; margin-bottom: 12px; }
-    .taste-badges { display: flex; gap: 12px; justify-content: center; margin: 18px 0; }
-    .taste-badge { background: rgba(255,215,0,0.2); padding: 4px 15px; border-radius: 40px; font-size: 0.7rem; font-weight: 600; letter-spacing: 0.5px; }
+    .product-card h3 { font-size: 1.6rem; margin-bottom: 10px; color: #FFDF66; }
+    .taste-badges { display: flex; flex-wrap: wrap; gap: 8px; justify-content: center; margin-bottom: 15px; }
+    .taste-badge { background: rgba(255, 215, 0, 0.15); padding: 5px 14px; border-radius: 50px; font-size: 0.7rem; color: #FFEFB5; }
 
-    /* roast card ceremony */
+    /* Roast */
+    .roast-section { background: #0F3B1F; }
     .roast-card {
-      background: linear-gradient(125deg, rgba(0,0,0,0.5), rgba(0,0,0,0.2)); backdrop-filter: blur(14px);
-      border-radius: 70px; padding: 65px 40px; text-align: center; border: 1px solid rgba(255,220,100,0.4);
+      background: rgba(255, 215, 0, 0.05);
+      border-radius: 35px;
+      padding: 45px 35px;
+      text-align: center;
+      max-width: 850px;
+      margin: 0 auto;
+      border: 1px solid rgba(255, 215, 0, 0.3);
     }
 
+    /* CTA */
+    .cta-section { background: #0F3B1F; text-align: center; padding: 70px 0; }
+
+    /* Footer */
+    .footer {
+      padding: 50px 24px 35px;
+      background: #0A2A16;
+      text-align: center;
+      border-top: 1px solid rgba(255, 215, 0, 0.1);
+    }
     .whatsapp-float {
-      position: fixed; bottom: 25px; right: 25px; background: linear-gradient(135deg, #25D366, #128C7E); width: 58px; height: 58px;
-      border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 1.9rem; color: white; z-index: 200;
-      box-shadow: 0 8px 20px rgba(0,0,0,0.4); transition: 0.2s;
+      position: fixed;
+      bottom: 20px;
+      right: 20px;
+      background: #25D366;
+      width: 55px;
+      height: 55px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.5rem;
+      color: white;
+      z-index: 100;
+      box-shadow: 0 6px 20px rgba(0, 0, 0, 0.4);
     }
-    .whatsapp-float:hover { transform: scale(1.1); background: #128C7E; }
 
-    /* responsiveness */
-    @media (max-width: 1024px) {
-      .alternating-item, .cafe-grid { grid-template-columns: 1fr; gap: 40px; }
-      .gallery-grid { grid-template-columns: repeat(2,1fr); }
+    /* Responsive */
+    @media (max-width: 992px) {
+      .alternating-item, .cafe-grid { grid-template-columns: 1fr; gap: 35px; }
+      .gallery-grid { grid-template-columns: repeat(2, 1fr); }
+      section { padding: 60px 0; }
     }
     @media (max-width: 768px) {
       .desktop-nav { display: none; }
       .menu-button { display: flex; }
+      .container { padding: 0 18px; }
       .gallery-grid { grid-template-columns: 1fr; }
-      .container { padding: 0 20px; }
-      .section-header { margin-bottom: 45px; }
-      .hero-content-section { padding: 60px 0; }
+      .roast-card { padding: 35px 25px; }
+      .hero-actions, .cta-actions { flex-direction: column; align-items: center; }
+      .btn { width: 100%; max-width: 240px; padding: 12px 25px; }
+      .hero-content-section { padding: 50px 0; }
+      .brand-logo-img { width: 45px; height: 45px; }
     }
-    @media (max-width: 550px) {
-      .brand-logo-img { width: 48px; height: 48px; }
-      .btn { padding: 12px 25px; font-size: 0.7rem; width: 100%; max-width: 240px; }
-      .hero-actions { flex-direction: column; align-items: center; }
+    @media (max-width: 480px) {
+      .brand-logo-img { width: 40px; height: 40px; }
+      .whatsapp-float { width: 48px; height: 48px; font-size: 1.3rem; }
+      .site-header { padding: 12px 16px; }
     }
 
-    /* scroll animations advanced */
-    .scroll-animate { opacity: 0; transform: translateY(35px); transition: opacity 0.7s cubic-bezier(0.2, 0.9, 0.4, 1.1), transform 0.7s ease; }
+    /* Animations */
+    .scroll-animate { opacity: 0; transform: translateY(20px); transition: opacity 0.6s ease, transform 0.6s ease; }
     .scroll-animate.animated { opacity: 1; transform: translateY(0); }
-
-    .footer {
-      background: #051108; padding: 50px 24px 40px; text-align: center; border-top: 1px solid rgba(255,215,0,0.15);
-    }
-    .social-links { display: flex; gap: 30px; justify-content: center; margin-top: 20px; }
-    .social-links a { font-size: 0.8rem; letter-spacing: 1px; border-bottom: 1px dotted #FFD966; }
+    @keyframes fadeInUp { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
+    .animate-fade-in-up { animation: fadeInUp 0.6s ease-out forwards; }
+    .animate-fade-in { animation: fadeIn 0.6s ease-out forwards; }
+    @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+    .social-links { display: flex; gap: 20px; justify-content: center; flex-wrap: wrap; margin-top: 20px; }
   </style>
 </head>
 <body>
 
+<!-- LOADING SCREEN WITH YOUR CUSTOM LOGO -->
 <div class="loading-screen" id="loadingScreen">
   <div class="loading-logo">
-    <img src="file_000000007ea4722f8a8ec553e737ed04.png" alt="Bean to Bag">
+    <img src="file_000000007ea4722f8a8ec553e737ed04.png" alt="Bean to Bag Logo">
   </div>
-  <div class="loading-text">ETHIOPIAN SOUL • ARTISAN ROAST</div>
 </div>
 
 <header class="site-header" id="siteHeader">
   <div class="nav-wrap">
-    <a href="#" class="brand">
-      <img src="file_000000007ea4722f8a8ec553e737ed04.png" alt="Bean to Bag" class="brand-logo-img">
+    <a href="index.html" class="brand">
+      <img src="file_000000007ea4722f8a8ec553e737ed04.png" alt="Bean to Bag Logo" class="brand-logo-img">
+      <div class="brand-name"></div>
     </a>
     <nav class="desktop-nav">
-      <a href="#" class="active">Home</a>
-      <a href="#">About</a>
-      <a href="#">Products</a>
-      <a href="#">Origin</a>
-      <a href="#">Contact</a>
+      <a href="index.html" class="active">Home</a>
+      <a href="about.html">About</a>
+      <a href="products.html">Products</a>
+      <a href="origin.html">Origin</a>
+      <a href="contact.html">Contact</a>
     </nav>
     <button class="menu-button" id="menuToggle"><span></span><span></span><span></span></button>
   </div>
 </header>
+
 <div class="mobile-menu" id="mobileMenu">
   <button class="close-menu" id="closeMenu">✕</button>
-  <a href="#">Home</a><a href="#">About</a><a href="#">Products</a><a href="#">Origin</a><a href="#">Contact</a>
+  <a href="index.html">Home</a>
+  <a href="about.html">About</a>
+  <a href="products.html">Products</a>
+  <a href="origin.html">Origin</a>
+  <a href="contact.html">Contact</a>
 </div>
+
 <a href="https://wa.me/251911234567" class="whatsapp-float" target="_blank">💬</a>
 
 <main>
+  <!-- VIDEO SECTION - FIXED: FULL VIDEO VISIBLE WITH ALL TEXT (NO CROPPING) -->
   <div class="hero-video-section">
     <video class="hero-video" autoplay muted loop playsinline webkit-playsinline="true" preload="auto" id="heroVideo">
       <source src="Bean.mp4" type="video/mp4">
+      Your browser does not support the video tag.
     </video>
+    <div class="hero-overlay"></div>
   </div>
+
   <div class="hero-content-section">
     <div class="container">
-      <span class="tag animate-fade-in">✦ ETHIOPIAN HERITAGE ✦</span>
-      <h1 class="animate-fade-in-up">From Bean to Bag —<br>Artisanal Ethiopian Coffee</h1>
-      <p class="animate-fade-in-up" style="max-width:700px; margin:0 auto">Sourced from highland forests, roasted to medium-dark perfection — every bag tells a story of soil, soul, and craftsmanship.</p>
+      <span class="tag animate-fade-in">Bean to Bag</span>
+      <h1 class="animate-fade-in-up">From Bean to Bag —<br>Premium Ethiopian Coffee</h1>
+      <p class="animate-fade-in-up">Carefully sourced Ethiopian Arabica coffee roasted to a balanced medium-dark profile for a rich and smooth cup.</p>
       <div class="hero-actions animate-fade-in-up">
-        <a href="#" class="btn btn-primary">✦ DISCOVER COFFEE ✦</a>
-        <a href="#" class="btn btn-outline">✦ SHOP NOW ✦</a>
+        <a href="products.html" class="btn btn-primary">Explore Coffee</a>
+        <a href="products.html" class="btn btn-outline">Shop Coffee</a>
       </div>
     </div>
   </div>
 
   <section>
     <div class="container">
-      <div class="section-header"><span class="section-tag scroll-animate">Our Odyssey</span><h2 class="section-title scroll-animate">The Path of Excellence</h2><p class="section-subtitle scroll-animate">From misty highlands to your cup — traceability, integrity and passion in every step.</p></div>
+      <div class="section-header">
+        <span class="section-tag scroll-animate">Our Journey</span>
+        <h2 class="section-title scroll-animate">From Farm to Cup</h2>
+        <p class="section-subtitle scroll-animate">Experience the craftsmanship behind every bag of Bean to Bag coffee.</p>
+      </div>
       <div class="alternating-grid">
-        <div class="alternating-item scroll-animate"><div class="image-wrapper"><img src="10.JPG" alt="Highland farms"></div><div class="content"><h3>Sacred Highlands</h3><p>At 1,900–2,200m, farmers nurture heirloom varieties with generational wisdom. Volcanic soil imparts vibrant acidity and floral complexity.</p><a href="#" class="btn-outline btn">Explore Origin →</a></div></div>
-        <div class="alternating-item reverse scroll-animate"><div class="image-wrapper"><img src="11.JPG" alt="Harvest"></div><div class="content"><h3>Selective Harvest</h3><p>Hand-picking only deep-red cherries ensures sweetness. Our cooperatives follow strict ripeness protocols to preserve pristine flavors.</p><a href="#" class="btn-outline btn">Learn More →</a></div></div>
-        <div class="alternating-item scroll-animate"><div class="image-wrapper"><img src="12.JPG" alt="Processing"></div><div class="content"><h3>Time-Honored Processing</h3><p>Natural sundried or washed — each method amplifies distinct notes: berries, jasmine, and dark chocolate. Traditional African beds.</p><a href="#" class="btn-outline btn">View Products →</a></div></div>
-        <div class="alternating-item reverse scroll-animate"><div class="image-wrapper"><img src="13.JPG" alt="Roastery"></div><div class="content"><h3>Small-Batch Alchemy</h3><p>Every batch roasted to precise medium-dark curve, enhancing body and sweet cocoa nuances. Roasted weekly, delivered fresh.</p><a href="#" class="btn-outline btn">Our Process →</a></div></div>
-        <div class="alternating-item scroll-animate"><div class="image-wrapper"><img src="14.JPG" alt="Packaging"></div><div class="content"><h3>Eco-Premium Packaging</h3><p>Resealable kraft bags with one-way valve preserve peak aroma. Designed for zero waste and maximum freshness.</p><a href="#" class="btn-outline btn">Shop Now →</a></div></div>
+        <div class="alternating-item scroll-animate">
+          <div class="image-wrapper"><img src="10.JPG" alt="Ethiopian coffee farm" loading="lazy"></div>
+          <div class="content"><h3>Highland Farms</h3><p>Our coffee is cultivated by small-scale farmers in traditional garden farms at 1,900–2,200 meters above sea level.</p><a href="origin.html" class="btn btn-outline">Discover Origin →</a></div>
+        </div>
+        <div class="alternating-item reverse scroll-animate">
+          <div class="image-wrapper"><img src="11.JPG" alt="Hand-picking cherries" loading="lazy"></div>
+          <div class="content"><h3>Selective Harvest</h3><p>Only perfectly ripe cherries are hand-picked by our partner farmers, ensuring exceptional quality.</p><a href="origin.html" class="btn btn-outline">Learn More →</a></div>
+        </div>
+        <div class="alternating-item scroll-animate">
+          <div class="image-wrapper"><img src="12.JPG" alt="Traditional processing" loading="lazy"></div>
+          <div class="content"><h3>Traditional Processing</h3><p>Using both washed and natural processing methods to preserve unique characteristics.</p><a href="products.html" class="btn btn-outline">View Products →</a></div>
+        </div>
+        <div class="alternating-item reverse scroll-animate">
+          <div class="image-wrapper"><img src="13.JPG" alt="Small-batch roasting" loading="lazy"></div>
+          <div class="content"><h3>Small-Batch Roasting</h3><p>Every batch is roasted to a precise medium-dark profile, roasted weekly for peak freshness.</p><a href="about.html" class="btn btn-outline">Our Process →</a></div>
+        </div>
+        <div class="alternating-item scroll-animate">
+          <div class="image-wrapper"><img src="14.JPG" alt="Premium packaging" loading="lazy"></div>
+          <div class="content"><h3>Premium Packaging</h3><p>Our bags feature one-way degassing valves and zip-lock resealable tops to preserve freshness.</p><a href="products.html" class="btn btn-outline">Shop Now →</a></div>
+        </div>
       </div>
     </div>
   </section>
 
-  <section class="stats-section"><div class="container"><div class="stats-grid">
-    <div class="stat-item scroll-animate"><div class="stat-number">1,900–2,200m</div><div class="stat-label">ALTITUDE</div></div>
-    <div class="stat-item scroll-animate"><div class="stat-number">100% Arabica</div><div class="stat-label">HEIRLOOM</div></div>
-    <div class="stat-item scroll-animate"><div class="stat-number">Roasted Weekly</div><div class="stat-label">FRESH RELEASE</div></div>
-    <div class="stat-item scroll-animate"><div class="stat-number">12+ Co-ops</div><div class="stat-label">ETHICAL PARTNERS</div></div>
-  </div></div></section>
+  <section class="stats-section">
+    <div class="container">
+      <div class="stats-grid">
+        <div class="stat-item scroll-animate"><div class="stat-number">1,900–2,200m</div><div class="stat-label">Altitude</div></div>
+        <div class="stat-item scroll-animate"><div class="stat-number">100%</div><div class="stat-label">Arabica</div></div>
+        <div class="stat-item scroll-animate"><div class="stat-number">Small Batch</div><div class="stat-label">Fresh Roasted</div></div>
+        <div class="stat-item scroll-animate"><div class="stat-number">12+</div><div class="stat-label">Partner Co-ops</div></div>
+      </div>
+    </div>
+  </section>
 
-  <section class="cafe-section"><div class="container"><div class="cafe-grid">
-    <div class="cafe-image scroll-animate"><img src="15.JPG" alt="Cafe interior"></div>
-    <div class="cafe-content scroll-animate"><span class="badge">☕ WELCOME TO OUR SANCTUARY</span><h2>THE BEAN TO BAG CAFE</h2><p>Addis Ababa's hidden gem: A cozy retreat where our all-women barista team crafts exquisite espresso and traditional coffee ceremonies. Sustainable, inclusive, and unforgettable.</p><div class="team-highlight"><span>👩‍🍳 All-Women Barista Team</span><span>🌿 Ethical Sourcing Hub</span><span>🍃 Daily Brew Tastings</span></div><div style="margin-top:30px"><a href="#" class="btn btn-primary">Visit Us →</a></div></div>
-  </div></div></section>
+  <section class="cafe-section">
+    <div class="container">
+      <div class="cafe-grid">
+        <div class="cafe-image scroll-animate"><img src="15.JPG" alt="Bean to Bag Cafe interior"></div>
+        <div class="cafe-content scroll-animate">
+          <span class="badge">✦ Visit Us ✦</span>
+          <h2>OUR CAFE</h2>
+          <p>Visit our cozy cafe in Addis Ababa, where you can enjoy delicious coffee and meet our all-women team of baristas.</p>
+          <div class="team-highlight"><span>All-Women Barista Team</span><span>Cozy Atmosphere</span><span>Fresh Brews Daily</span></div>
+          <div style="margin-top: 25px;"><a href="contact.html" class="btn btn-primary">Find Our Cafe →</a></div>
+        </div>
+      </div>
+    </div>
+  </section>
 
-  <section class="gallery-section"><div class="container"><div class="section-header"><span class="section-tag scroll-animate">Visual Poetry</span><h2 class="section-title scroll-animate">Moments of Craft</h2></div><div class="gallery-grid">
-    <div class="gallery-item scroll-animate"><img src="16.JPG" alt="Brewing"></div>
-    <div class="gallery-item scroll-animate"><img src="17.JPG" alt="Barista"></div>
-    <div class="gallery-item scroll-animate"><img src="19.JPG" alt="Tasting"></div>
-  </div></div></section>
+  <section class="gallery-section">
+    <div class="container">
+      <div class="section-header"><span class="section-tag scroll-animate">Moments</span><h2 class="section-title scroll-animate">From Our Cafe & Roastery</h2></div>
+      <div class="gallery-grid">
+        <div class="gallery-item scroll-animate"><img src="16.JPG" alt="Coffee brewing"></div>
+        <div class="gallery-item scroll-animate"><img src="17.JPG" alt="Barista preparing coffee"></div>
+        <div class="gallery-item scroll-animate"><img src="19.JPG" alt="Coffee tasting"></div>
+      </div>
+    </div>
+  </section>
 
-  <section class="products-preview"><div class="container"><div class="section-header"><span class="section-tag scroll-animate">Iconic Selection</span><h2 class="section-title scroll-animate">Our Signature Coffees</h2></div><div class="products-grid">
-    <div class="product-card scroll-animate"><h3>Caskara</h3><div class="taste-badges"><span class="taste-badge">Fruity</span><span class="taste-badge">Effervescent</span></div><p>Dried cherry infusion — naturally sweet, vibrant. A taste of tradition.</p><a href="#" style="color:#FFD966; font-weight:600;">Discover →</a></div>
-    <div class="product-card scroll-animate"><h3>Qalid's Choice</h3><div class="taste-badges"><span class="taste-badge">Balanced</span><span class="taste-badge">Honey & Almond</span></div><p>The house blend: perfect for jebena, pour-over or espresso. Velvety body.</p><a href="#" style="color:#FFD966;">Explore →</a></div>
-    <div class="product-card scroll-animate"><h3>Chemina</h3><div class="taste-badges"><span class="taste-badge">Bold Cocoa</span><span class="taste-badge">Dark Cherry</span></div><p>Whole bean espresso roast, decadent crema and lingering sweetness.</p><a href="#" style="color:#FFD966;">Explore →</a></div>
-    <div class="product-card scroll-animate"><h3>Origin Green</h3><div class="taste-badges"><span class="taste-badge">Unroasted</span><span class="taste-badge">Traceable</span></div><p>Raw green beans for home roasters — direct from the source.</p><a href="#" style="color:#FFD966;">Learn More →</a></div>
-  </div><div style="text-align:center; margin-top:55px"><a href="#" class="btn btn-primary">Full Collection →</a></div></div></section>
+  <section class="products-preview">
+    <div class="container">
+      <div class="section-header"><span class="section-tag scroll-animate">Our Collection</span><h2 class="section-title scroll-animate">Premium Ethiopian Coffee</h2></div>
+      <div class="products-grid">
+        <div class="product-card scroll-animate"><h3>Caskara</h3><div class="taste-badges"><span class="taste-badge">Fruity</span><span class="taste-badge">Sweet</span></div><p>Dried coffee cherry — naturally sweet and fruity beverage.</p><a href="products.html" class="product-link">Learn More →</a></div>
+        <div class="product-card scroll-animate"><h3>Qalid's Choice</h3><div class="taste-badges"><span class="taste-badge">Balanced</span><span class="taste-badge">Smooth</span></div><p>House Blend – Perfect for Jebena brewing, French press, or espresso.</p><a href="products.html" class="product-link">Learn More →</a></div>
+        <div class="product-card scroll-animate"><h3>Chemina</h3><div class="taste-badges"><span class="taste-badge">Bold</span><span class="taste-badge">Cocoa</span></div><p>Whole Bean Coffee — ideal for espresso and milk drinks.</p><a href="products.html" class="product-link">Learn More →</a></div>
+        <div class="product-card scroll-animate"><h3>Origin Green</h3><div class="taste-badges"><span class="taste-badge">Unroasted</span><span class="taste-badge">Traceable</span></div><p>Raw green coffee beans for home roasters.</p><a href="products.html" class="product-link">Learn More →</a></div>
+      </div>
+      <div style="text-align: center; margin-top: 45px;"><a href="products.html" class="btn btn-primary">View All Products →</a></div>
+    </div>
+  </section>
 
-  <section class="roast-section"><div class="container"><div class="roast-card scroll-animate"><span class="section-tag">✦ THE ART OF ROAST ✦</span><h2 class="section-title">Medium-Dark Signature</h2><p style="max-width:650px; margin:0 auto">Balanced acidity meets full body — notes of dark chocolate, toasted almond, and dried fruit. Every roast unlocks the soul of Ethiopian highlands.</p></div></div></section>
+  <section class="roast-section">
+    <div class="container"><div class="roast-card scroll-animate"><span class="section-tag">Roast Profile</span><h2 class="section-title">Medium-Dark Roast</h2><p>All roasted coffees from Bean to Bag are roasted to a Medium-Dark roast level — balanced acidity, full body, rich chocolate and cocoa notes.</p></div></div>
+  </section>
 
-  <section class="cta-section" style="padding:70px 0; text-align:center"><div class="container"><h2 class="section-title scroll-animate">Awaken Your Senses</h2><p style="margin-bottom:30px; font-size:1.05rem">Join a community that cherishes authentic Ethiopian coffee culture. Order fresh roast, visit our cafe, or explore our story.</p><div class="hero-actions"><a href="#" class="btn btn-primary">Shop Coffee</a><a href="#" class="btn btn-outline">Contact Team</a></div></div></section>
+  <section class="cta-section">
+    <div class="container"><h2 class="section-title scroll-animate">Ready to experience Bean to Bag?</h2><p style="font-size:1rem; color:#FFEFC0; max-width:600px; margin:0 auto 25px;">Join our community of coffee lovers who appreciate quality, traceability, and Ethiopian coffee heritage.</p><div class="cta-actions scroll-animate"><a href="products.html" class="btn btn-primary">Shop Now</a><a href="contact.html" class="btn btn-outline">Contact Us</a></div></div>
+  </section>
 </main>
 
-<footer class="footer"><div class="footer-content"><p>© 2025 Bean to Bag — Ethiopian Specialty Coffee. Fresh from farm to cup.</p><div class="social-links"><a>📷 Instagram</a><a>📘 Facebook</a><a>✈️ Telegram</a></div><div class="contact-info" style="margin-top:20px"><p>📍 Addis Ababa, Bole Rd | ✉️ hello@beantobag.coffee | 📞 +251 911 234 567</p></div></div></footer>
+<footer class="footer">
+  <div class="footer-content">
+    <p>© 2025 Bean to Bag Coffee. Ethiopian specialty Arabica, freshly roasted in small batches.</p>
+    <div class="social-links"><a href="#">📷 Instagram</a><a href="#">📘 Facebook</a><a href="#">✈️ Telegram</a></div>
+    <div class="contact-info" style="margin-top:18px;"><p>📍 Addis Ababa, Ethiopia | ✉️ hello@beantobag.coffee | 📞 +251 911 234 567</p></div>
+  </div>
+</footer>
 
 <script>
+  // LOADING SCREEN
   const loadingScreen = document.getElementById('loadingScreen');
-  window.addEventListener('load', () => {
-    setTimeout(() => { loadingScreen.classList.add('fade-out'); setTimeout(() => { loadingScreen.style.display = 'none'; }, 800); }, 1000);
+  window.addEventListener('load', function() {
+    setTimeout(function() {
+      loadingScreen.classList.add('fade-out');
+      setTimeout(function() { loadingScreen.style.display = 'none'; }, 600);
+    }, 800);
   });
+
+  // Header scroll
   const header = document.getElementById('siteHeader');
-  window.addEventListener('scroll', () => header.classList.toggle('scrolled', window.scrollY > 40));
+  window.addEventListener('scroll', () => header.classList.toggle('scrolled', window.scrollY > 50));
+
+  // Mobile menu
   const menuBtn = document.getElementById('menuToggle'), mobileMenu = document.getElementById('mobileMenu'), closeMenu = document.getElementById('closeMenu');
-  menuBtn?.addEventListener('click', () => { mobileMenu.classList.add('open'); document.body.style.overflow = 'hidden'; });
-  closeMenu?.addEventListener('click', () => { mobileMenu.classList.remove('open'); document.body.style.overflow = ''; });
-  document.querySelectorAll('.mobile-menu a').forEach(link => link.addEventListener('click', () => { mobileMenu.classList.remove('open'); document.body.style.overflow = ''; }));
-  const vid = document.getElementById('heroVideo'); if(vid) vid.play().catch(e => console.log("autoplay"));
-  const observer = new IntersectionObserver((entries) => entries.forEach(e => e.isIntersecting && e.target.classList.add('animated')), { threshold: 0.1, rootMargin: '0px 0px -20px 0px' });
+  const toggleMenu = (open) => { mobileMenu.classList.toggle('open', open); document.body.style.overflow = open ? 'hidden' : ''; };
+  menuBtn.addEventListener('click', () => toggleMenu(true));
+  closeMenu.addEventListener('click', () => toggleMenu(false));
+  document.querySelectorAll('.mobile-menu a').forEach(link => link.addEventListener('click', () => toggleMenu(false)));
+
+  // Video
+  const video = document.getElementById('heroVideo');
+  if(video) video.play().catch(e => console.log("Autoplay blocked"));
+
+  // Scroll animations
+  const observer = new IntersectionObserver((entries) => entries.forEach(e => e.isIntersecting && e.target.classList.add('animated')), { threshold: 0.1, rootMargin: '0px 0px -30px 0px' });
   document.querySelectorAll('.scroll-animate').forEach(el => observer.observe(el));
-  document.querySelectorAll('.animate-fade-in-up, .animate-fade-in').forEach(el => el.style.opacity = '1');
 </script>
 </body>
 </html>
