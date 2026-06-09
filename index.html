@@ -272,7 +272,7 @@
     .btn-outline { border-color: #FFD700; color: #FFEEAA; background: transparent; }
     .btn-outline:hover { background: linear-gradient(145deg, #FFDF66, #FFC107); color: #0F3B1F; }
 
-    /* ==================== HERO VIDEO SECTION - FIXED ==================== */
+    /* ==================== HERO VIDEO SECTION ==================== */
     .hero-video-section {
       position: relative;
       width: 100%;
@@ -569,7 +569,7 @@
 </head>
 <body>
 
-<!-- LOADING SCREEN WITH Beans.png - prominently displayed -->
+<!-- LOADING SCREEN WITH Beans.png -->
 <div class="loading-screen" id="loadingScreen">
   <div class="loading-logo">
     <img src="Beans.png" alt="Bean to Bag Coffee Logo">
@@ -579,6 +579,7 @@
 <header class="site-header" id="siteHeader">
   <div class="nav-wrap">
     <a href="index.html" class="brand">
+      <!-- Beans.png logo in header -->
       <img src="Beans.png" alt="Bean to Bag Logo" class="brand-logo-img">
       <div class="brand-name"></div>
     </a>
@@ -605,7 +606,7 @@
 <a href="https://wa.me/251911234567" class="whatsapp-float" target="_blank">💬</a>
 
 <main>
-  <!-- VIDEO SECTION - FULL VIDEO VISIBLE -->
+  <!-- VIDEO SECTION -->
   <div class="hero-video-section">
     <video class="hero-video" autoplay muted loop playsinline webkit-playsinline="true" preload="auto" id="heroVideo">
       <source src="Bean.mp4" type="video/mp4">
@@ -726,7 +727,7 @@
 </footer>
 
 <script>
-  // LOADING SCREEN with Beans.png - smooth transition
+  // LOADING SCREEN with Beans.png
   const loadingScreen = document.getElementById('loadingScreen');
   window.addEventListener('load', function() {
     setTimeout(function() {
@@ -748,7 +749,7 @@
 
   // Video autoplay
   const video = document.getElementById('heroVideo');
-  if(video) video.play().catch(e => console.log("Autoplay blocked - user interaction may be needed"));
+  if(video) video.play().catch(e => console.log("Autoplay blocked"));
 
   // Scroll animations
   const observer = new IntersectionObserver((entries) => entries.forEach(e => e.isIntersecting && e.target.classList.add('animated')), { threshold: 0.1, rootMargin: '0px 0px -30px 0px' });
