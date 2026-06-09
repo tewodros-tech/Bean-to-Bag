@@ -80,6 +80,7 @@
       color: #FFEFC0;
       position: relative;
       padding-bottom: 5px;
+      text-decoration: none;
     }
     .desktop-nav a::after {
       content: '';
@@ -100,7 +101,7 @@
       display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 2rem; transform: translateX(100%); transition: transform 0.4s;
     }
     .mobile-menu.open { transform: translateX(0); }
-    .mobile-menu a { font-family: 'Playfair Display', serif; font-size: 2rem; color: #FFEFB0; }
+    .mobile-menu a { font-family: 'Playfair Display', serif; font-size: 2rem; color: #FFEFB0; text-decoration: none; }
     .close-menu { position: absolute; top: 30px; right: 30px; font-size: 2rem; background: none; border: none; color: #FFE484; cursor: pointer; }
 
     /* hero origin */
@@ -328,6 +329,7 @@
       transition: all 0.3s;
       cursor: pointer;
       border: none;
+      text-decoration: none;
     }
     .btn-primary {
       background: linear-gradient(135deg, #FFE68F, #FFC107);
@@ -353,6 +355,7 @@
       position: fixed; bottom: 22px; right: 22px; background: #25D366; width: 54px; height: 54px;
       border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 1.8rem;
       color: white; z-index: 200; box-shadow: 0 6px 16px rgba(0,0,0,0.4);
+      text-decoration: none;
     }
     @media (max-width: 992px) {
       .climate-grid, .two-column { grid-template-columns: 1fr; gap: 40px; }
@@ -384,20 +387,24 @@
 
 <header class="site-header" id="siteHeader">
   <div class="nav-wrap">
-    <a href="#" class="brand"><img src="file_000000007ea4722f8a8ec553e737ed04.png" class="brand-logo-img" alt="logo"></a>
+    <a href="index.html" class="brand"><img src="file_000000007ea4722f8a8ec553e737ed04.png" class="brand-logo-img" alt="logo"></a>
     <nav class="desktop-nav">
-      <a href="#">Home</a>
-      <a href="#">About</a>
-      <a href="#">Products</a>
-      <a href="#" class="active">Origin</a>
-      <a href="#">Contact</a>
+      <a href="index.html">Home</a>
+      <a href="about.html">About</a>
+      <a href="products.html">Products</a>
+      <a href="origin.html" class="active">Origin</a>
+      <a href="contact.html">Contact</a>
     </nav>
     <button class="menu-button" id="menuToggle"><span></span><span></span><span></span></button>
   </div>
 </header>
 <div class="mobile-menu" id="mobileMenu">
   <button class="close-menu" id="closeMenu">✕</button>
-  <a href="#">Home</a><a href="#">About</a><a href="#">Products</a><a href="#">Origin</a><a href="#">Contact</a>
+  <a href="index.html">Home</a>
+  <a href="about.html">About</a>
+  <a href="products.html">Products</a>
+  <a href="origin.html">Origin</a>
+  <a href="contact.html">Contact</a>
 </div>
 <a href="https://wa.me/251911234567" class="whatsapp-float" target="_blank">💬</a>
 
@@ -464,7 +471,7 @@
         <div class="small-farmers scroll-animate">
           <h3>Guardians of Tradition</h3>
           <p>More than 12 partner cooperatives, each family-owned farm averaging 1–2 hectares. The farmers practice intercropping with enset, maize, and fruit trees, creating a biodiverse ecosystem. Harvest is done meticulously, selecting only deep-red cherries, which are delivered to drying beds within hours.</p>
-          <div class="farmer-quote">“Our coffee is not just a crop — it’s our heritage, passed down through generations. The altitude, the shade, the love — you taste it in the cup.” — Mulugeta, cooperative lead</div>
+          <div class="farmer-quote">"Our coffee is not just a crop — it's our heritage, passed down through generations. The altitude, the shade, the love — you taste it in the cup." — Mulugeta, cooperative lead</div>
         </div>
       </div>
     </div>
@@ -489,8 +496,8 @@
       <h2 class="scroll-animate" style="font-size: clamp(1.8rem,4vw,2.8rem);">Taste the Ethiopian Terroir</h2>
       <p class="scroll-animate" style="margin: 20px auto; max-width: 550px;">Explore our single-origin offerings and experience the pure expression of 1,900-2,200m altitude.</p>
       <div class="scroll-animate">
-        <a href="#" class="btn btn-primary">Shop Origin Coffees →</a>
-        <a href="#" class="btn btn-outline">Learn Farming Ethos</a>
+        <a href="products.html" class="btn btn-primary">Shop Origin Coffees →</a>
+        <a href="about.html" class="btn btn-outline">Learn Farming Ethos</a>
       </div>
     </div>
   </section>
@@ -499,7 +506,11 @@
 <footer class="footer">
   <div class="footer-content">
     <p>© 2025 Bean to Bag — Ethiopian Specialty Coffee. 100% Arabica, highland grown, sustainably sourced.</p>
-    <div class="social-links" style="margin-top: 18px; display: flex; gap: 25px; justify-content: center;"><span>📷 Instagram</span><span>📘 Facebook</span><span>✈️ Telegram</span></div>
+    <div class="social-links" style="margin-top: 18px; display: flex; gap: 25px; justify-content: center;">
+      <a href="#" style="color: #FFEFC0; text-decoration: none;">📷 Instagram</a>
+      <a href="#" style="color: #FFEFC0; text-decoration: none;">📘 Facebook</a>
+      <a href="#" style="color: #FFEFC0; text-decoration: none;">✈️ Telegram</a>
+    </div>
     <div style="margin-top: 20px;"><p>📍 Addis Ababa, Ethiopia | ✉️ hello@beantobag.coffee | 🌱 Farm-to-cup traceability</p></div>
   </div>
 </footer>
