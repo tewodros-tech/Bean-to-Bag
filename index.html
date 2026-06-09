@@ -35,38 +35,49 @@
       line-height: 1.6;
     }
 
-    /* LOADING SCREEN OVERLAY - enhanced with Beans.png background */
+    /* LOADING SCREEN OVERLAY - with Beans.png prominently displayed */
     .loading-screen {
       position: fixed;
       top: 0;
       left: 0;
       width: 100%;
       height: 100%;
-      background: #0F3B1F;
+      background: linear-gradient(135deg, #0a2a16 0%, #0F3B1F 50%, #1a4a2a 100%);
       z-index: 9999;
       display: flex;
       justify-content: center;
       align-items: center;
       transition: opacity 0.6s ease-out, visibility 0.6s ease-out;
-      background-image: radial-gradient(circle at 20% 40%, rgba(255,215,0,0.08) 0%, rgba(15,59,31,0.95) 90%);
       backdrop-filter: blur(2px);
+    }
+    .loading-screen::before {
+      content: "";
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      background: radial-gradient(circle at 50% 50%, rgba(255, 215, 0, 0.12) 0%, transparent 70%);
+      pointer-events: none;
     }
     .loading-screen.fade-out {
       opacity: 0;
       visibility: hidden;
     }
     .loading-logo {
-      width: 180px;
-      height: 180px;
+      width: 200px;
+      height: 200px;
       animation: pulse 1.2s ease-in-out infinite;
-      filter: drop-shadow(0 0 25px rgba(255, 215, 0, 0.5));
+      filter: drop-shadow(0 0 30px rgba(255, 215, 0, 0.7));
       transition: all 0.3s ease;
+      background: rgba(255, 215, 0, 0.08);
+      border-radius: 50%;
+      padding: 12px;
+      backdrop-filter: blur(4px);
     }
     .loading-logo img {
       width: 100%;
       height: 100%;
       object-fit: contain;
-      filter: drop-shadow(0 0 12px rgba(255, 215, 0, 0.6));
+      filter: drop-shadow(0 0 15px rgba(255, 215, 0, 0.5));
     }
     @keyframes pulse {
       0%, 100% { transform: scale(1); opacity: 0.95; }
@@ -130,27 +141,32 @@
     .brand {
       display: flex;
       align-items: center;
-      gap: 10px;
+      gap: 12px;
       transition: var(--transition);
     }
 
-    /* Logo styling - perfectly visible and attractive */
+    /* Beans.png logo - perfectly visible and attractive */
     .brand-logo-img {
-      width: 60px;
-      height: 60px;
+      width: 65px;
+      height: 65px;
       object-fit: contain;
-      filter: drop-shadow(0 6px 14px rgba(255, 215, 0, 0.4));
+      filter: drop-shadow(0 8px 20px rgba(255, 215, 0, 0.5));
       transition: var(--transition);
       border-radius: 50%;
-      background: rgba(255, 215, 0, 0.1);
-      padding: 4px;
+      background: linear-gradient(145deg, rgba(255, 215, 0, 0.15), rgba(255, 215, 0, 0.05));
+      padding: 6px;
       backdrop-filter: blur(2px);
     }
 
     .site-header.scrolled .brand-logo-img {
-      width: 52px;
-      height: 52px;
-      filter: drop-shadow(0 3px 8px rgba(255, 215, 0, 0.5));
+      width: 55px;
+      height: 55px;
+      filter: drop-shadow(0 4px 12px rgba(255, 215, 0, 0.6));
+    }
+
+    .brand-logo-img:hover {
+      transform: scale(1.05);
+      filter: drop-shadow(0 10px 25px rgba(255, 215, 0, 0.7));
     }
 
     .brand-name {
@@ -160,7 +176,7 @@
       letter-spacing: 0.02em;
       color: #FFEFB5;
       text-shadow: 0 1px 2px rgba(0,0,0,0.2);
-      display: none; /* hidden as per original, but ready */
+      display: none;
     }
 
     .desktop-nav { display: flex; gap: 32px; }
@@ -256,7 +272,7 @@
     .btn-outline { border-color: #FFD700; color: #FFEEAA; background: transparent; }
     .btn-outline:hover { background: linear-gradient(145deg, #FFDF66, #FFC107); color: #0F3B1F; }
 
-    /* ==================== HERO VIDEO SECTION - FIXED (NO TEXT CROPPING) ==================== */
+    /* ==================== HERO VIDEO SECTION - FIXED ==================== */
     .hero-video-section {
       position: relative;
       width: 100%;
@@ -275,7 +291,6 @@
       z-index: 0;
     }
     
-    /* Desktop: wider display */
     @media (min-width: 1024px) {
       .hero-video-section {
         height: auto;
@@ -288,7 +303,6 @@
       }
     }
     
-    /* Mobile: ensure full video visible with ALL text */
     @media (max-width: 768px) {
       .hero-video-section {
         background: #0F3B1F;
@@ -533,13 +547,14 @@
       .hero-actions, .cta-actions { flex-direction: column; align-items: center; }
       .btn { width: 100%; max-width: 240px; padding: 12px 25px; }
       .hero-content-section { padding: 50px 0; }
-      .brand-logo-img { width: 50px; height: 50px; }
+      .brand-logo-img { width: 52px; height: 52px; }
+      .loading-logo { width: 150px; height: 150px; }
     }
     @media (max-width: 480px) {
-      .brand-logo-img { width: 45px; height: 45px; }
+      .brand-logo-img { width: 48px; height: 48px; }
       .whatsapp-float { width: 48px; height: 48px; font-size: 1.3rem; }
       .site-header { padding: 12px 16px; }
-      .loading-logo { width: 140px; height: 140px; }
+      .loading-logo { width: 130px; height: 130px; }
     }
 
     /* Animations */
@@ -554,19 +569,17 @@
 </head>
 <body>
 
-<!-- LOADING SCREEN WITH Beans.png LOGO (improved visibility and background) -->
+<!-- LOADING SCREEN WITH Beans.png - prominently displayed -->
 <div class="loading-screen" id="loadingScreen">
   <div class="loading-logo">
-    <!-- Using Beans.png as requested: perfectly visible & attractive during load, background matches the rich coffee aesthetic -->
-    <img src="Beans.png" alt="Bean to Bag Logo" onerror="this.src='file_000000007ea4722f8a8ec553e737ed04.png';">
+    <img src="Beans.png" alt="Bean to Bag Coffee Logo">
   </div>
 </div>
 
 <header class="site-header" id="siteHeader">
   <div class="nav-wrap">
     <a href="index.html" class="brand">
-      <!-- MAIN LOGO: Beans.png with enhanced visibility and attractive styling -->
-      <img src="Beans.png" alt="Bean to Bag Logo" class="brand-logo-img" onerror="this.src='file_000000007ea4722f8a8ec553e737ed04.png';">
+      <img src="Beans.png" alt="Bean to Bag Logo" class="brand-logo-img">
       <div class="brand-name"></div>
     </a>
     <nav class="desktop-nav">
@@ -592,7 +605,7 @@
 <a href="https://wa.me/251911234567" class="whatsapp-float" target="_blank">💬</a>
 
 <main>
-  <!-- VIDEO SECTION - FIXED: FULL VIDEO VISIBLE WITH ALL TEXT (NO CROPPING) -->
+  <!-- VIDEO SECTION - FULL VIDEO VISIBLE -->
   <div class="hero-video-section">
     <video class="hero-video" autoplay muted loop playsinline webkit-playsinline="true" preload="auto" id="heroVideo">
       <source src="Bean.mp4" type="video/mp4">
@@ -713,21 +726,20 @@
 </footer>
 
 <script>
-  // LOADING SCREEN: using Beans.png - improved visibility
+  // LOADING SCREEN with Beans.png - smooth transition
   const loadingScreen = document.getElementById('loadingScreen');
   window.addEventListener('load', function() {
-    // Ensure the logo appears gracefully even if image loads slower
     setTimeout(function() {
       loadingScreen.classList.add('fade-out');
       setTimeout(function() { loadingScreen.style.display = 'none'; }, 600);
-    }, 1000); // slightly longer for smooth perception, logo appears rich
+    }, 1000);
   });
 
-  // Header scroll
+  // Header scroll effect
   const header = document.getElementById('siteHeader');
   window.addEventListener('scroll', () => header.classList.toggle('scrolled', window.scrollY > 50));
 
-  // Mobile menu
+  // Mobile menu toggle
   const menuBtn = document.getElementById('menuToggle'), mobileMenu = document.getElementById('mobileMenu'), closeMenu = document.getElementById('closeMenu');
   const toggleMenu = (open) => { mobileMenu.classList.toggle('open', open); document.body.style.overflow = open ? 'hidden' : ''; };
   menuBtn.addEventListener('click', () => toggleMenu(true));
@@ -736,14 +748,11 @@
 
   // Video autoplay
   const video = document.getElementById('heroVideo');
-  if(video) video.play().catch(e => console.log("Autoplay handled"));
+  if(video) video.play().catch(e => console.log("Autoplay blocked - user interaction may be needed"));
 
   // Scroll animations
   const observer = new IntersectionObserver((entries) => entries.forEach(e => e.isIntersecting && e.target.classList.add('animated')), { threshold: 0.1, rootMargin: '0px 0px -30px 0px' });
   document.querySelectorAll('.scroll-animate').forEach(el => observer.observe(el));
-  
-  // Extra: Ensure Beans.png has fallback but it will be perfect
-  console.log("Bean to Bag — Premium Coffee, Beans.png logo displayed with elegance");
 </script>
 </body>
 </html>
