@@ -324,7 +324,7 @@
     }
     .btn-gold:hover { transform: scale(0.97); background: #F3C26B; color: #031F10; }
 
-    /* packaging showcase with mock images */
+    /* packaging showcase with YOUR images */
     .packaging-showcase {
       background: linear-gradient(110deg, #0F3C23, #082616);
       padding: 5rem 1.5rem;
@@ -342,33 +342,35 @@
       margin-top: 3rem;
     }
     .pack-item {
-      background: rgba(0,0,0,0.3);
+      background: rgba(0,0,0,0.4);
       border-radius: 2rem;
-      padding: 1.5rem;
+      padding: 1.8rem;
       text-align: center;
       flex: 1;
-      min-width: 210px;
+      min-width: 250px;
       backdrop-filter: blur(4px);
       border: 1px solid rgba(232,184,107,0.3);
       transition: 0.3s;
     }
-    .pack-item:hover { border-color: var(--gold); transform: translateY(-5px); }
-    .pack-img {
-      width: 120px;
-      height: 120px;
-      background: radial-gradient(circle, #D7A04E, #7A4316);
+    .pack-item:hover { border-color: var(--gold); transform: translateY(-8px); background: rgba(0,0,0,0.5); }
+    .pack-img-real {
+      width: 100%;
+      max-width: 200px;
+      height: auto;
       margin: 0 auto 1.2rem;
-      border-radius: 30% 70% 70% 30% / 30% 30% 70% 70%;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 3rem;
-      font-weight: bold;
-      box-shadow: 0 10px 18px black;
+      border-radius: 20px;
+      box-shadow: 0 15px 25px rgba(0,0,0,0.4);
+      transition: 0.3s;
+      object-fit: cover;
+    }
+    .pack-item:hover .pack-img-real {
+      transform: scale(1.03);
+      box-shadow: 0 20px 30px rgba(0,0,0,0.5);
     }
     .pack-item h4 { font-size: 1.6rem; font-family: 'Playfair Display'; margin-bottom: 0.5rem; color: #FFE1A0; }
+    .pack-item p { font-size: 0.9rem; opacity: 0.9; }
     
-    /* Origin story quote */
+    /* Origin quote */
     .origin-spotlight {
       background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" fill="%23E8B86B10"><path d="M20,30 L80,30 L75,70 L25,70 Z" opacity="0.2"/></svg>'), radial-gradient(circle at 20% 40%, #154B2C, #021809);
       padding: 4rem 2rem;
@@ -411,6 +413,7 @@
       .menu-btn { display: flex; }
       .product-cards { gap: 1.3rem; }
       .hero-section { padding-top: 7rem; }
+      .pack-img-real { max-width: 150px; }
     }
     .scroll-reveal {
       opacity: 0;
@@ -522,26 +525,26 @@
     </div>
   </div>
   
-  <!-- Packaging with artistic mock representations (using css art + icons) -->
+  <!-- PACKAGING SECTION WITH YOUR ACTUAL IMAGES -->
   <div class="packaging-showcase">
     <div class="pack-wrap">
-      <h2 class="section-title scroll-reveal" style="color: #FFE5B4;">Sustainable Packaging</h2>
+      <h2 class="section-title scroll-reveal" style="color: #FFE5B4;">Premium Packaging Options</h2>
       <div class="section-underline scroll-reveal"></div>
       <div class="pack-grid">
         <div class="pack-item scroll-reveal">
-          <div class="pack-img">📦</div>
-          <h4>Roasted Line</h4>
-          <p>250g · 500g · 1kg<br>Resealable valve bags + roast date & QR traceability. Eco-friendly kraft & premium matte.</p>
+          <img src="packaging.jpg" alt="Bean to Bag Coffee Packaging - Stand-up valve bag" class="pack-img-real" onerror="this.src='https://placehold.co/400x400/1C4D2A/FFD700?text=Coffee+Bag'">
+          <h4>Classic Roasted Line</h4>
+          <p>250g · 500g · 1kg<br>Resealable one-way valve bags with roast date & QR traceability. Premium eco-friendly kraft material.</p>
         </div>
         <div class="pack-item scroll-reveal">
-          <div class="pack-img">🌿</div>
-          <h4>Green Coffee</h4>
-          <p>500g · 1kg · 5kg<br>Flavor-locked vacuum packaging, grain-pro bags for long-term ageing. Ideal for roasteries.</p>
+          <img src="packaging2.jpg" alt="Bean to Bag Green Coffee Packaging" class="pack-img-real" onerror="this.src='https://placehold.co/400x400/1C4D2A/FFD700?text=Green+Coffee'">
+          <h4>Origin Green Series</h4>
+          <p>500g · 1kg · 5kg<br>Flavor-locked vacuum packaging, grain-pro bags for long-term storage. Perfect for roasteries.</p>
         </div>
         <div class="pack-item scroll-reveal">
-          <div class="pack-img">🏷️</div>
+          <img src="packaging3.jpg" alt="Bean to Bag Wholesale & Custom Packaging" class="pack-img-real" onerror="this.src='https://placehold.co/400x400/1C4D2A/FFD700?text=Wholesale'">
           <h4>Wholesale & Custom</h4>
-          <p>Tailored bulk options, private labeling, custom grind size. Partner with Bean to Bag for your café.</p>
+          <p>Tailored bulk options, private labeling, custom grind size. Partner with Bean to Bag for your café or event.</p>
         </div>
       </div>
     </div>
@@ -609,10 +612,10 @@
   }, { threshold: 0.15, rootMargin: '0px 0px -40px 0px' });
   revealElements.forEach(el => observer.observe(el));
   
-  // active nav highlight simulation
+  // active nav highlight
   const navLinks = document.querySelectorAll('.desktop-nav a');
   navLinks.forEach(link => {
-    if(link.getAttribute('href') === '#' && link.innerText === 'Products') link.classList.add('active');
+    if(link.innerText === 'Products') link.classList.add('active');
     else if(link.innerText !== 'Products') link.classList.remove('active');
   });
 </script>
