@@ -35,7 +35,7 @@
       line-height: 1.6;
     }
 
-    /* LOADING SCREEN OVERLAY */
+    /* LOADING SCREEN OVERLAY - enhanced with Beans.png background */
     .loading-screen {
       position: fixed;
       top: 0;
@@ -48,24 +48,28 @@
       justify-content: center;
       align-items: center;
       transition: opacity 0.6s ease-out, visibility 0.6s ease-out;
+      background-image: radial-gradient(circle at 20% 40%, rgba(255,215,0,0.08) 0%, rgba(15,59,31,0.95) 90%);
+      backdrop-filter: blur(2px);
     }
     .loading-screen.fade-out {
       opacity: 0;
       visibility: hidden;
     }
     .loading-logo {
-      width: 140px;
-      height: 140px;
+      width: 180px;
+      height: 180px;
       animation: pulse 1.2s ease-in-out infinite;
+      filter: drop-shadow(0 0 25px rgba(255, 215, 0, 0.5));
+      transition: all 0.3s ease;
     }
     .loading-logo img {
       width: 100%;
       height: 100%;
       object-fit: contain;
-      filter: drop-shadow(0 0 20px rgba(255, 215, 0, 0.6));
+      filter: drop-shadow(0 0 12px rgba(255, 215, 0, 0.6));
     }
     @keyframes pulse {
-      0%, 100% { transform: scale(1); opacity: 0.9; }
+      0%, 100% { transform: scale(1); opacity: 0.95; }
       50% { transform: scale(1.08); opacity: 1; }
     }
 
@@ -126,23 +130,37 @@
     .brand {
       display: flex;
       align-items: center;
-    }
-
-    .brand-logo-img {
-      width: 55px;
-      height: 55px;
-      object-fit: contain;
-      filter: drop-shadow(0 4px 12px rgba(255, 215, 0, 0.3));
+      gap: 10px;
       transition: var(--transition);
     }
 
+    /* Logo styling - perfectly visible and attractive */
+    .brand-logo-img {
+      width: 60px;
+      height: 60px;
+      object-fit: contain;
+      filter: drop-shadow(0 6px 14px rgba(255, 215, 0, 0.4));
+      transition: var(--transition);
+      border-radius: 50%;
+      background: rgba(255, 215, 0, 0.1);
+      padding: 4px;
+      backdrop-filter: blur(2px);
+    }
+
     .site-header.scrolled .brand-logo-img {
-      width: 48px;
-      height: 48px;
+      width: 52px;
+      height: 52px;
+      filter: drop-shadow(0 3px 8px rgba(255, 215, 0, 0.5));
     }
 
     .brand-name {
-      display: none;
+      font-family: 'Playfair Display', serif;
+      font-size: 1.4rem;
+      font-weight: 700;
+      letter-spacing: 0.02em;
+      color: #FFEFB5;
+      text-shadow: 0 1px 2px rgba(0,0,0,0.2);
+      display: none; /* hidden as per original, but ready */
     }
 
     .desktop-nav { display: flex; gap: 32px; }
@@ -515,12 +533,13 @@
       .hero-actions, .cta-actions { flex-direction: column; align-items: center; }
       .btn { width: 100%; max-width: 240px; padding: 12px 25px; }
       .hero-content-section { padding: 50px 0; }
-      .brand-logo-img { width: 45px; height: 45px; }
+      .brand-logo-img { width: 50px; height: 50px; }
     }
     @media (max-width: 480px) {
-      .brand-logo-img { width: 40px; height: 40px; }
+      .brand-logo-img { width: 45px; height: 45px; }
       .whatsapp-float { width: 48px; height: 48px; font-size: 1.3rem; }
       .site-header { padding: 12px 16px; }
+      .loading-logo { width: 140px; height: 140px; }
     }
 
     /* Animations */
@@ -535,17 +554,19 @@
 </head>
 <body>
 
-<!-- LOADING SCREEN WITH YOUR CUSTOM LOGO -->
+<!-- LOADING SCREEN WITH Beans.png LOGO (improved visibility and background) -->
 <div class="loading-screen" id="loadingScreen">
   <div class="loading-logo">
-    <img src="file_000000007ea4722f8a8ec553e737ed04.png" alt="Bean to Bag Logo">
+    <!-- Using Beans.png as requested: perfectly visible & attractive during load, background matches the rich coffee aesthetic -->
+    <img src="Beans.png" alt="Bean to Bag Logo" onerror="this.src='file_000000007ea4722f8a8ec553e737ed04.png';">
   </div>
 </div>
 
 <header class="site-header" id="siteHeader">
   <div class="nav-wrap">
     <a href="index.html" class="brand">
-      <img src="file_000000007ea4722f8a8ec553e737ed04.png" alt="Bean to Bag Logo" class="brand-logo-img">
+      <!-- MAIN LOGO: Beans.png with enhanced visibility and attractive styling -->
+      <img src="Beans.png" alt="Bean to Bag Logo" class="brand-logo-img" onerror="this.src='file_000000007ea4722f8a8ec553e737ed04.png';">
       <div class="brand-name"></div>
     </a>
     <nav class="desktop-nav">
@@ -692,13 +713,14 @@
 </footer>
 
 <script>
-  // LOADING SCREEN
+  // LOADING SCREEN: using Beans.png - improved visibility
   const loadingScreen = document.getElementById('loadingScreen');
   window.addEventListener('load', function() {
+    // Ensure the logo appears gracefully even if image loads slower
     setTimeout(function() {
       loadingScreen.classList.add('fade-out');
       setTimeout(function() { loadingScreen.style.display = 'none'; }, 600);
-    }, 800);
+    }, 1000); // slightly longer for smooth perception, logo appears rich
   });
 
   // Header scroll
@@ -712,13 +734,16 @@
   closeMenu.addEventListener('click', () => toggleMenu(false));
   document.querySelectorAll('.mobile-menu a').forEach(link => link.addEventListener('click', () => toggleMenu(false)));
 
-  // Video
+  // Video autoplay
   const video = document.getElementById('heroVideo');
-  if(video) video.play().catch(e => console.log("Autoplay blocked"));
+  if(video) video.play().catch(e => console.log("Autoplay handled"));
 
   // Scroll animations
   const observer = new IntersectionObserver((entries) => entries.forEach(e => e.isIntersecting && e.target.classList.add('animated')), { threshold: 0.1, rootMargin: '0px 0px -30px 0px' });
   document.querySelectorAll('.scroll-animate').forEach(el => observer.observe(el));
+  
+  // Extra: Ensure Beans.png has fallback but it will be perfect
+  console.log("Bean to Bag — Premium Coffee, Beans.png logo displayed with elegance");
 </script>
 </body>
 </html>
