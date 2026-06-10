@@ -113,7 +113,7 @@
     .brand {
       display: flex;
       align-items: center;
-      text-decoration: none; /* Reset link text format */
+      text-decoration: none;
     }
 
     .brand-logo-img {
@@ -247,15 +247,18 @@
     }
     .gold-text { color: #FFD966; }
 
-    /* Hero Section */
+    /* Hero Section with Coffee Beans Background Overlay */
     .hero-about {
-      min-height: 70vh;
+      min-height: 75vh;
       display: flex;
       align-items: center;
       position: relative;
-      background: #0F3B1F;
+      background: linear-gradient(180deg, rgba(15, 59, 31, 0.88) 0%, rgba(15, 59, 31, 0.95) 100%), 
+                  url('coffee-beans-top-view-background.jpg') no-repeat center center;
+      background-size: cover;
+      background-attachment: fixed;
       overflow: hidden;
-      padding: 140px 0 60px;
+      padding: 160px 0 80px;
       text-align: center;
     }
     .hero-badge {
@@ -290,7 +293,7 @@
 
     /* Ceremony Section */
     .ceremony-section {
-      background: #0F3B1F;
+      background: #0A2A16;
       padding: 80px 0;
     }
     .ceremony-card {
@@ -365,10 +368,12 @@
     .value-card h3 { color: #FFD966; margin-bottom: 15px; font-size: 1.5rem; }
     .value-card p { color: #FFF3D1; line-height: 1.6; }
 
-    /* CTA */
+    /* Final CTA with Visual Bowl Background Imagery */
     .cta-gold {
-      background: #0A2A16;
-      padding: 80px 0;
+      background: linear-gradient(180deg, rgba(10, 42, 22, 0.85) 0%, rgba(10, 42, 22, 0.95) 100%), 
+                  url('dark-coffee-beans-bowl-brown-table.jpg') no-repeat center center;
+      background-size: cover;
+      padding: 100px 0;
       text-align: center;
       border-top: 1px solid rgba(255, 215, 0, 0.1);
       border-bottom: 1px solid rgba(255, 215, 0, 0.1);
@@ -422,7 +427,7 @@
       .container { padding: 0 20px; }
       .team-grid, .values-grid { grid-template-columns: 1fr; }
       .stats-grid { grid-template-columns: 1fr; }
-      .hero-about { min-height: auto; padding: 130px 0 50px; }
+      .hero-about { min-height: auto; padding: 130px 0 50px; background-attachment: scroll; }
       .brand-logo-img { width: 45px; height: 45px; }
     }
     @media (max-width: 480px) {
@@ -478,7 +483,7 @@
 <a href="https://wa.me/251911234567" class="whatsapp-float" target="_blank" rel="noopener">💬</a>
 
 <main>
-  <!-- Hero Section -->
+  <!-- Hero Section (Atmospheric Parallax Coffee Beans Background) -->
   <div class="hero-about">
     <div class="container">
       <div class="scroll-animate" style="text-align: center;">
@@ -490,14 +495,19 @@
     </div>
   </div>
 
-  <!-- Our Story Section -->
+  <!-- Our Story Section featuring about-coffee.jpg -->
   <section id="story">
     <div class="container">
-      <div class="scroll-animate" style="text-align: center; max-width: 900px; margin: 0 auto;">
-        <span class="section-tag">OUR ORIGIN</span>
-        <h2 class="section-title">Rooted in <span class="gold-text">Ethiopian Soil</span></h2>
-        <p style="line-height: 1.8; margin-bottom: 1rem;">Bean to Bag is dedicated to delivering high-quality Ethiopian coffee from origin to cup. Our coffee is grown by smallholder farmers in traditional garden farms across Ethiopia's highlands at 1,900–2,200 meters above sea level.</p>
-        <p style="line-height: 1.8;">Every step — from sourcing green beans to small-batch roasting and premium packaging — is carefully handled to ensure freshness and quality. We honor the farmers, the land, and the ancient coffee traditions of Ethiopia.</p>
+      <div class="grid-2">
+        <div class="scroll-animate">
+          <span class="section-tag">OUR ORIGIN</span>
+          <h2 class="section-title" style="margin-bottom: 24px;">Rooted in <span class="gold-text">Ethiopian Soil</span></h2>
+          <p style="line-height: 1.8; margin-bottom: 1.2rem; color: #FFF8E7;">Bean to Bag is dedicated to delivering high-quality Ethiopian coffee from origin to cup. Our coffee is grown by smallholder farmers in traditional garden farms across Ethiopia's highlands at 1,900–2,200 meters above sea level.</p>
+          <p style="line-height: 1.8; color: #F5E6C4;">Every step — from sourcing green beans to small-batch roasting and premium packaging — is carefully handled to ensure freshness and quality. We honor the farmers, the land, and the ancient coffee traditions of Ethiopia.</p>
+        </div>
+        <div class="image-card scroll-animate">
+          <img src="about-coffee.jpg" alt="Premium specialty coffee selection close-up">
+        </div>
       </div>
     </div>
   </section>
@@ -571,14 +581,19 @@
     </div>
   </section>
 
-  <!-- Roasting & Packaging -->
+  <!-- Roasting & Packaging Section featuring roasting.jpg -->
   <section>
     <div class="container">
-      <div class="scroll-animate" style="text-align: center; max-width: 900px; margin: 0 auto;">
-        <span class="section-tag">OUR CRAFT</span>
-        <h2 class="section-title">Small-Batch <span class="gold-text">Roasting</span> & Premium Packaging</h2>
-        <p style="line-height: 1.8; margin-bottom: 1rem;">Every batch is roasted to a precise medium-dark profile, balancing acidity and body while developing rich chocolate and cocoa notes. Our small-batch approach ensures freshness and allows us to highlight each coffee's unique character.</p>
-        <p style="line-height: 1.8;">Our stand-up bags feature one-way degassing valves and zip-lock resealable tops to preserve freshness. Each bag includes roast date, batch number, and brewing recommendations.</p>
+      <div class="grid-2">
+        <div class="image-card scroll-animate">
+          <img src="roasting.jpg" alt="Artisanal small-batch coffee roasting process">
+        </div>
+        <div class="scroll-animate">
+          <span class="section-tag">OUR CRAFT</span>
+          <h2 class="section-title" style="margin-bottom: 24px;">Small-Batch <span class="gold-text">Roasting</span> & Premium Packaging</h2>
+          <p style="line-height: 1.8; margin-bottom: 1.2rem; color: #FFF8E7;">Every batch is roasted to a precise medium-dark profile, balancing acidity and body while developing rich chocolate and cocoa notes. Our small-batch approach ensures freshness and allows us to highlight each coffee's unique character.</p>
+          <p style="line-height: 1.8; color: #F5E6C4;">Our stand-up bags feature one-way degassing valves and zip-lock resealable tops to preserve freshness. Each bag includes roast date, batch number, and brewing recommendations.</p>
+        </div>
       </div>
     </div>
   </section>
@@ -599,15 +614,17 @@
     </div>
   </section>
 
-  <!-- Final CTA -->
+  <!-- Final CTA Section (With dark-coffee-beans-bowl-brown-table.jpg Image Overlay Background) -->
   <div class="cta-gold">
     <div class="container">
-      <span class="section-tag">EXPERIENCE THE JOURNEY</span>
-      <h2 class="section-title" style="max-width: 800px; margin: 0 auto;">Taste Ethiopia in Every Cup</h2>
-      <p style="font-size: 1.1rem; margin: 25px auto; max-width: 550px;">Visit our cafe in Addis Ababa or order our freshly roasted beans online.</p>
-      <div style="display: flex; gap: 20px; justify-content: center; flex-wrap: wrap;">
-        <a href="products.html" class="btn btn-primary">Shop Our Coffees</a>
-        <a href="contact.html" class="btn btn-outline">Visit Our Cafe</a>
+      <div class="scroll-animate">
+        <span class="section-tag">EXPERIENCE THE JOURNEY</span>
+        <h2 class="section-title" style="max-width: 800px; margin: 0 auto;">Taste Ethiopia in Every Cup</h2>
+        <p style="font-size: 1.1rem; margin: 25px auto; max-width: 550px; color: #FFF8E7;">Visit our cafe in Addis Ababa or order our freshly roasted beans online.</p>
+        <div style="display: flex; gap: 20px; justify-content: center; flex-wrap: wrap;">
+          <a href="products.html" class="btn btn-primary">Shop Our Coffees</a>
+          <a href="contact.html" class="btn btn-outline">Visit Our Cafe</a>
+        </div>
       </div>
     </div>
   </div>
