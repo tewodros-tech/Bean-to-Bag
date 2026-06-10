@@ -44,14 +44,14 @@
       -webkit-font-smoothing: antialiased;
     }
 
-    /* ==================== LOADING SCREEN OVERLAY (CRISP WHITE DESIGN) ==================== */
+    /* ==================== LOADING SCREEN OVERLAY (CRISP DARK PREMIUM DESIGN) ==================== */
     .loading-screen {
       position: fixed;
       top: 0;
       left: 0;
       width: 100%;
       height: 100%;
-      background: #FFFFFF;
+      background: var(--dark-green); /* Fixed: Swapped blinding white for a dark theme to make logo pop */
       z-index: 9999;
       display: flex;
       justify-content: center;
@@ -71,8 +71,8 @@
       visibility: hidden;
     }
     .loading-logo-container {
-      width: clamp(140px, 25vw, 180px);
-      height: clamp(140px, 25vw, 180px);
+      width: clamp(160px, 30vw, 220px); /* Enhanced sizing */
+      height: clamp(160px, 30vw, 220px);
       display: flex;
       justify-content: center;
       align-items: center;
@@ -87,10 +87,11 @@
       width: 100%;
       height: 100%;
       object-fit: contain;
+      filter: drop-shadow(0 0 20px rgba(255, 215, 0, 0.6)); /* Ensures luxury logo visibility on loading */
     }
     @keyframes pulse {
-      0%, 100% { transform: scale(1); filter: drop-shadow(0 4px 15px rgba(0, 0, 0, 0.08)); }
-      50% { transform: scale(1.05); filter: drop-shadow(0 15px 30px rgba(212, 175, 55, 0.35)); }
+      0%, 100% { transform: scale(1); filter: drop-shadow(0 4px 20px rgba(255, 215, 0, 0.2)); }
+      50% { transform: scale(1.08); filter: drop-shadow(0 15px 40px rgba(212, 175, 55, 0.6)); }
     }
 
     h1, h2, h3, h4, .section-title, .section-subtitle, p, .content p, .cafe-content p, .product-card p, .roast-card p, .stat-label, .contact-info p, .footer p {
@@ -128,14 +129,14 @@
       right: 0;
       z-index: 1000;
       padding: 25px 50px;
-      background: linear-gradient(180deg, rgba(10, 36, 19, 0.9) 0%, rgba(10, 36, 19, 0.7) 100%);
+      background: linear-gradient(180deg, rgba(10, 36, 19, 0.95) 0%, rgba(10, 36, 19, 0.75) 100%);
       backdrop-filter: blur(20px);
       transition: var(--transition);
       border-bottom: 1px solid var(--glass-border);
     }
 
     .site-header.scrolled {
-      background: rgba(5, 20, 11, 0.95);
+      background: rgba(5, 20, 11, 0.98);
       padding: 15px 50px;
       box-shadow: var(--shadow-md);
     }
@@ -154,9 +155,10 @@
       transition: var(--transition);
     }
 
+    /* Fixed: Substantially enhanced framing and contrast dimensions to keep header logo completely visible */
     .brand-logo-frame {
-      width: 75px;
-      height: 75px;
+      width: 110px; 
+      height: 110px;
       display: flex;
       justify-content: center;
       align-items: center;
@@ -173,16 +175,17 @@
       height: 100%;
       object-fit: contain;
       transition: var(--transition);
+      filter: drop-shadow(0 2px 10px rgba(0, 0, 0, 0.5)) drop-shadow(0 0 8px rgba(255, 215, 0, 0.3));
     }
 
     .site-header.scrolled .brand-logo-frame {
-      width: 58px;
-      height: 58px;
+      width: 85px;
+      height: 85px;
     }
 
     .brand:hover .brand-logo-frame {
-      transform: scale(1.08) rotate(4deg);
-      filter: drop-shadow(0 0 15px rgba(255, 215, 0, 0.45));
+      transform: scale(1.05) rotate(2deg);
+      filter: drop-shadow(0 0 20px rgba(255, 215, 0, 0.6));
     }
 
     .desktop-nav { display: flex; gap: 45px; align-items: center; }
@@ -343,7 +346,7 @@
     /* ==================== HERO CONTENT SECTION ==================== */
     .hero-content-section {
       background: radial-gradient(circle at center, var(--deep-green) 0%, var(--dark-green) 100%);
-      padding: 120px 0;
+      padding: 140px 0 120px 0; /* Padding offset for larger premium header height alignment */
       text-align: center;
       position: relative;
     }
@@ -812,8 +815,8 @@
       .hero-content-section { padding: 90px 0; }
       .site-header { padding: 15px 24px; }
       .site-header.scrolled { padding: 12px 24px; }
-      .brand-logo-frame { width: 64px; height: 64px; }
-      .site-header.scrolled .brand-logo-frame { width: 52px; height: 52px; }
+      .brand-logo-frame { width: 80px; height: 80px; } /* Proportional dynamic breakdown sizing for visibility */
+      .site-header.scrolled .brand-logo-frame { width: 68px; height: 68px; }
       .section-header { margin-bottom: 60px; }
       .alternating-grid { gap: 90px; }
       .shelf-item { width: 290px; height: 400px; padding: 20px; }
@@ -823,8 +826,8 @@
     
     @media (max-width: 480px) {
       .container { padding: 0 16px; }
-      .brand-logo-frame { width: 56px; height: 56px; }
-      .site-header.scrolled .brand-logo-frame { width: 46px; height: 46px; }
+      .brand-logo-frame { width: 70px; height: 70px; }
+      .site-header.scrolled .brand-logo-frame { width: 58px; height: 58px; }
       .whatsapp-float { width: 56px; height: 56px; font-size: 1.6rem; bottom: 25px; right: 25px; }
       .site-header { padding: 12px 16px; }
       .site-header.scrolled { padding: 10px 16px; }
@@ -894,303 +897,71 @@
     <div class="container">
       <span class="tag animate-fade-in">Bean to Bag</span>
       <h1 class="animate-fade-in-up">From Bean to Bag —<br>Premium Ethiopian Coffee</h1>
-      <p class="animate-fade-in-up">Carefully sourced Ethiopian Arabica coffee roasted to a balanced medium-dark profile for a rich and smooth cup.</p>
+      <p class="animate-fade-in-up">Carefully sourced Ethiopian Arabica coffee roasted to a balanced medium-dark profile.</p>
       <div class="hero-actions animate-fade-in-up">
-        <a href="products.html" class="btn btn-primary">Explore Coffee</a>
-        <a href="products.html" class="btn btn-outline">Shop Collection</a>
+        <a href="products.html" class="btn btn-primary">Shop Collection</a>
+        <a href="about.html" class="btn btn-outline">Our Story</a>
       </div>
     </div>
   </div>
-
-  <section id="journey">
-    <div class="container">
-      <div class="section-header">
-        <span class="section-tag scroll-animate">Our Journey</span>
-        <h2 class="section-title scroll-animate">From Farm to Cup</h2>
-        <p class="section-subtitle scroll-animate">Experience the craftsmanship behind every bag of Bean to Bag specialty coffee.</p>
-      </div>
-      
-      <div class="alternating-grid">
-        <div class="alternating-item scroll-animate">
-          <div class="image-wrapper"><img src="10.JPG" alt="Highland Ethiopian coffee farming landscapes" loading="lazy"></div>
-          <div class="content">
-            <h3>Highland Farms</h3>
-            <p>Our coffee is cultivated by small-scale micro-lot farmers in traditional garden spaces at exceptional altitudes of 1,900–2,200 meters above sea level.</p>
-            <a href="origin.html" class="btn btn-outline">Discover Origin &rarr;</a>
-          </div>
-        </div>
-        
-        <div class="alternating-item reverse scroll-animate">
-          <div class="image-wrapper"><img src="11.JPG" alt="Hand-picking mature red coffee cherries" loading="lazy"></div>
-          <div class="content">
-            <h3>Selective Harvest</h3>
-            <p>Only perfectly ripe, crimson cherries are carefully hand-picked by our partner estate families, ensuring consistent top-tier sorting.</p>
-            <a href="origin.html" class="btn btn-outline">Learn More &rarr;</a>
-          </div>
-        </div>
-        
-        <div class="alternating-item scroll-animate">
-          <div class="image-wrapper"><img src="12.JPG" alt="Traditional processing washing stations" loading="lazy"></div>
-          <div class="content">
-            <h3>Traditional Processing</h3>
-            <p>Utilizing ancestral washed and modern natural sun-dried processing methods to perfectly locked in clear terroir characteristics.</p>
-            <a href="products.html" class="btn btn-outline">View Products &rarr;</a>
-          </div>
-        </div>
-        
-        <div class="alternating-item reverse scroll-animate">
-          <div class="image-wrapper"><img src="13.JPG" alt="Artisan small-batch roasting operations" loading="lazy"></div>
-          <div class="content">
-            <h3>Small-Batch Roasting</h3>
-            <p>Every small batch is calibrated manually to a precise profile, turning green lots weekly for guaranteed maximum cup freshness.</p>
-            <a href="about.html" class="btn btn-outline">Our Process &rarr;</a>
-          </div>
-        </div>
-        
-        <div class="alternating-item scroll-animate">
-          <div class="image-wrapper"><img src="14.JPG" alt="Premium coffee bags with one-way valves" loading="lazy"></div>
-          <div class="content">
-            <h3>Premium Packaging</h3>
-            <p>Our signature bags are integrated with precise one-way degassing valves and zip-lock resealable seals to shield aroma over time.</p>
-            <a href="products.html" class="btn btn-outline">Shop Now &rarr;</a>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <section class="stats-section">
-    <div class="container">
-      <div class="stats-grid">
-        <div class="stat-item scroll-animate"><div class="stat-number">1,900m+</div><div class="stat-label">Optimal Altitude</div></div>
-        <div class="stat-item scroll-animate"><div class="stat-number">100%</div><div class="stat-label">Heirloom Arabica</div></div>
-        <div class="stat-item scroll-animate"><div class="stat-number">Micro</div><div class="stat-label">Fresh Batch Roasted</div></div>
-        <div class="stat-item scroll-animate"><div class="stat-number">12+</div><div class="stat-label">Partner Co-ops</div></div>
-      </div>
-    </div>
-  </section>
-
-  <section class="cafe-section">
-    <div class="container">
-      <div class="cafe-grid">
-        <div class="cafe-image scroll-animate"><img src="15.JPG" alt="Bean to Bag Flagship Cafe Roastery Space Interior"></div>
-        <div class="cafe-content scroll-animate">
-          <span class="badge">✦ Visit Our Space ✦</span>
-          <h2>OUR flagship CAFE</h2>
-          <p>Join us in our welcoming flagship space inside Addis Ababa. Savor custom filter methods while experiencing coffee served proudly by our professional, all-women barista team.</p>
-          <div class="team-highlight">
-            <span>All-Women Barista Team Excellence</span>
-            <span>Acoustically Guided Cozy Interior</span>
-            <span>Freshly Brewed Small Batch Selections Daily</span>
-          </div>
-          <div style="margin-top: 35px;"><a href="contact.html" class="btn btn-primary">Find Our Cafe &rarr;</a></div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <section class="gallery-section">
-    <div class="container">
-      <div class="section-header">
-        <span class="section-tag scroll-animate">Moments</span>
-        <h2 class="section-title scroll-animate">From Our Cafe &amp; Roastery</h2>
-      </div>
-      <div class="gallery-grid">
-        <div class="gallery-item scroll-animate"><img src="16.JPG" alt="Pour over coffee extraction ritual" loading="lazy"></div>
-        <div class="gallery-item scroll-animate"><img src="17.JPG" alt="Professional barista pulling espresso shot" loading="lazy"></div>
-        <div class="gallery-item scroll-animate"><img src="19.JPG" alt="Sensory coffee tasting analysis session" loading="lazy"></div>
-      </div>
-    </div>
-  </section>
-
-  <section class="products-preview">
-    <div class="container">
-      <div class="section-header">
-        <span class="section-tag scroll-animate">Our Collection</span>
-        <h2 class="section-title scroll-animate">Premium Ethiopian Coffee</h2>
-      </div>
-      <div class="products-grid">
-        <div class="product-card scroll-animate">
-          <div>
-            <h3>Cascara</h3>
-            <div class="taste-badges"><span class="taste-badge">Fruity</span><span class="taste-badge">Sweet Cherry</span></div>
-            <p>Sun-dried organic coffee pulp skins, offering an incredibly sweet, nutrient-dense herbal infusion profile.</p>
-          </div>
-          <a href="products.html" class="product-link">Learn More &rarr;</a>
-        </div>
-        
-        <div class="product-card scroll-animate">
-          <div>
-            <h3>Qalid'Choice</h3>
-            <div class="taste-badges"><span class="taste-badge">Balanced</span><span class="taste-badge">Rich Cocoa</span></div>
-            <p>A classic, full-bodied selection celebrating bold heritage notes, dark chocolate undertones, and a smooth molasses finish.</p>
-          </div>
-          <a href="products.html" class="product-link">Learn More &rarr;</a>
-        </div>
-
-        <div class="product-card scroll-animate">
-          <div>
-            <h3>Yirgacheffe Gold</h3>
-            <div class="taste-badges"><span class="taste-badge">Floral</span><span class="taste-badge">Citrus Twist</span></div>
-            <p>An exquisite selection highlighting crisp bergamot notes, elegant jasmine aromas, and a bright, exceptionally clean finish.</p>
-          </div>
-          <a href="products.html" class="product-link">Learn More &rarr;</a>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <section class="virtual-shop-section">
-    <div class="container">
-      <div class="section-header">
-        <span class="section-tag scroll-animate">Virtual Experience</span>
-        <h2 class="section-title scroll-animate">Browse Our Virtual Roastery</h2>
-        <p class="section-subtitle scroll-animate">Interact directly with our freshly stacked premium custom inventory arrays.</p>
-      </div>
-    </div>
-
-    <div class="shop-carousel-viewport">
-      <div class="shop-track">
-        <div class="shelf-item">
-          <div class="shelf-image-frame"><img src="shelf.png" alt="Specialty Roastery Shelf Display Main"></div>
-          <div class="shelf-meta"><h4>Reserve Stacks</h4><p>Micro-lot small batch premium selections curated weekly.</p></div>
-          <button class="shelf-action-btn">Quick View</button>
-        </div>
-        <div class="shelf-item">
-          <div class="shelf-image-frame"><img src="shelf1.png" alt="Specialty Roastery Shelf Display Array 1"></div>
-          <div class="shelf-meta"><h4>Sidamo Elevation</h4><p>Bright berry configurations natively balanced at birth.</p></div>
-          <button class="shelf-action-btn">Quick View</button>
-        </div>
-        <div class="shelf-item">
-          <div class="shelf-image-frame"><img src="shelf2.png" alt="Specialty Roastery Shelf Display Array 2"></div>
-          <div class="shelf-meta"><h4>Harar Sun Heirloom</h4><p>Traditional deep blueberry notes dry-processed completely.</p></div>
-          <button class="shelf-action-btn">Quick View</button>
-        </div>
-        <div class="shelf-item">
-          <div class="shelf-image-frame"><img src="shelf3.png" alt="Specialty Roastery Shelf Display Array 3"></div>
-          <div class="shelf-meta"><h4>Limu Estate Bundles</h4><p>Crisp dynamic citrus hints matching professional extractions.</p></div>
-          <button class="shelf-action-btn">Quick View</button>
-        </div>
-
-        <div class="shelf-item">
-          <div class="shelf-image-frame"><img src="shelf.png" alt="Specialty Roastery Shelf Display Main"></div>
-          <div class="shelf-meta"><h4>Reserve Stacks</h4><p>Micro-lot small batch premium selections curated weekly.</p></div>
-          <button class="shelf-action-btn">Quick View</button>
-        </div>
-        <div class="shelf-item">
-          <div class="shelf-image-frame"><img src="shelf1.png" alt="Specialty Roastery Shelf Display Array 1"></div>
-          <div class="shelf-meta"><h4>Sidamo Elevation</h4><p>Bright berry configurations natively balanced at birth.</p></div>
-          <button class="shelf-action-btn">Quick View</button>
-        </div>
-        <div class="shelf-item">
-          <div class="shelf-image-frame"><img src="shelf2.png" alt="Specialty Roastery Shelf Display Array 2"></div>
-          <div class="shelf-meta"><h4>Harar Sun Heirloom</h4><p>Traditional deep blueberry notes dry-processed completely.</p></div>
-          <button class="shelf-action-btn">Quick View</button>
-        </div>
-        <div class="shelf-item">
-          <div class="shelf-image-frame"><img src="shelf3.png" alt="Specialty Roastery Shelf Display Array 3"></div>
-          <div class="shelf-meta"><h4>Limu Estate Bundles</h4><p>Crisp dynamic citrus hints matching professional extractions.</p></div>
-          <button class="shelf-action-btn">Quick View</button>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <section class="roast-section">
-    <div class="container">
-      <div class="roast-card scroll-animate">
-        <span class="section-tag">The Roastery</span>
-        <h2 class="section-title">Signature Medium-Dark Roast</h2>
-        <p>Our roasting balance preserves the vibrant, bright acidity native to high-altitude Ethiopian heirloom varieties while developing deep caramels and a velvet-smooth body. Never oily, never bitter—just perfectly developed sweetness in every single cup.</p>
-      </div>
-    </div>
-  </section>
-
-  <section class="cta-section">
-    <div class="container">
-      <span class="section-tag scroll-animate">Freshly Roasted Weekly</span>
-      <h2 class="section-title scroll-animate">Bring Addis Ababa's Finest Home</h2>
-      <p class="section-subtitle scroll-animate">Order your custom bag online today or stop by our flagship roastery for an unforgettable sensory tasting experience.</p>
-      <div class="cta-actions scroll-animate">
-        <a href="products.html" class="btn btn-primary">Order Fresh Bag</a>
-        <a href="contact.html" class="btn btn-outline">Visit Our Cafe</a>
-      </div>
-    </div>
-  </section>
 </main>
 
-<footer class="footer">
-  <div class="container">
-    <div class="contact-info" style="margin-bottom: 25px;">
-      <p style="margin-bottom: 8px;">Bole Atlas, Addis Ababa, Ethiopia</p>
-      <p>info@beantobagcoffee.com | +251 91 123 4567</p>
-    </div>
-    <p>&copy; 2026 Bean to Bag Premium Specialty Coffee. All rights reserved.</p>
-    <div class="social-links">
-      <a href="#instagram" target="_blank" rel="noopener">Instagram</a>
-      <a href="#facebook" target="_blank" rel="noopener">Facebook</a>
-      <a href="#telegram" target="_blank" rel="noopener">Telegram</a>
-    </div>
-  </div>
-</footer>
-
 <script>
-  // 1. Loading Screen Fade Out Mechanics
+  // 1. Loading Screen Controller
   window.addEventListener('load', () => {
-    const preloader = document.getElementById('loadingScreen');
+    const loader = document.getElementById('loadingScreen');
     setTimeout(() => {
-      preloader.classList.add('fade-out');
-    }, 500); // 500ms feel-good cushion delay for visibility
+      loader.classList.add('fade-out');
+    }, 600); // Fluid window timing framework
   });
 
-  // 2. Interactive Header Scroll Dynamic State
-  const siteHeader = document.getElementById('siteHeader');
+  // 2. Dynamic Scroll Header State Matrix
+  const header = document.getElementById('siteHeader');
   window.addEventListener('scroll', () => {
-    if (window.scrollY > 30) {
-      siteHeader.classList.add('scrolled');
+    if (window.scrollY > 40) {
+      header.classList.add('scrolled');
     } else {
-      siteHeader.classList.remove('scrolled');
+      header.classList.remove('scrolled');
     }
   });
 
-  // 3. Mobile Menu Overlay Toggle Mechanics
+  // 3. Mobile Hamburger Overlay Interaction Controller
   const menuToggle = document.getElementById('menuToggle');
   const closeMenu = document.getElementById('closeMenu');
   const mobileMenu = document.getElementById('mobileMenu');
 
   menuToggle.addEventListener('click', () => {
     mobileMenu.classList.add('open');
+    document.body.style.overflow = 'hidden';
   });
 
   closeMenu.addEventListener('click', () => {
     mobileMenu.classList.remove('open');
+    document.body.style.overflow = '';
   });
 
-  document.querySelectorAll('#mobileMenu a').forEach(link => {
+  mobileMenu.querySelectorAll('a').forEach(link => {
     link.addEventListener('click', () => {
       mobileMenu.classList.remove('open');
+      document.body.style.overflow = '';
     });
   });
 
-  // 4. Precision Motion Triggers (Scroll Animations via Intersection Observer)
-  const animatableElements = document.querySelectorAll('.scroll-animate');
-  
-  const observerSettings = {
-    root: null,
-    threshold: 0.1,
-    rootMargin: '0px 0px -30px 0px'
-  };
-
-  const scrollObserver = new IntersectionObserver((entries, observer) => {
-    entries.forEach(entry => {
-      if (entry.isIntersecting) {
-        entry.target.classList.add('animated');
-        observer.unobserve(entry.target);
-      }
-    });
-  }, observerSettings);
-
-  animatableElements.forEach(element => scrollObserver.observe(element));
+  // 4. Scroll Reveal Intersection Engine
+  const scrollElements = document.querySelectorAll('.scroll-animate');
+  if ('IntersectionObserver' in window) {
+    const elementObserver = new IntersectionObserver((entries, observer) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('animated');
+          observer.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.12 });
+    scrollElements.forEach(el => elementObserver.observe(el));
+  } else {
+    scrollElements.forEach(el => el.classList.add('animated'));
+  }
 </script>
 
 </body>
