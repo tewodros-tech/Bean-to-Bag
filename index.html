@@ -51,7 +51,7 @@
       left: 0;
       width: 100%;
       height: 100%;
-      background: var(--dark-green); /* Fixed: Swapped blinding white for a dark theme to make logo pop */
+      background: var(--dark-green);
       z-index: 9999;
       display: flex;
       justify-content: center;
@@ -71,7 +71,7 @@
       visibility: hidden;
     }
     .loading-logo-container {
-      width: clamp(160px, 30vw, 220px); /* Enhanced sizing */
+      width: clamp(160px, 30vw, 220px);
       height: clamp(160px, 30vw, 220px);
       display: flex;
       justify-content: center;
@@ -87,7 +87,7 @@
       width: 100%;
       height: 100%;
       object-fit: contain;
-      filter: drop-shadow(0 0 20px rgba(255, 215, 0, 0.6)); /* Ensures luxury logo visibility on loading */
+      filter: drop-shadow(0 0 20px rgba(255, 215, 0, 0.6));
     }
     @keyframes pulse {
       0%, 100% { transform: scale(1); filter: drop-shadow(0 4px 20px rgba(255, 215, 0, 0.2)); }
@@ -155,7 +155,6 @@
       transition: var(--transition);
     }
 
-    /* Fixed: Substantially enhanced framing and contrast dimensions to keep header logo completely visible */
     .brand-logo-frame {
       width: 110px; 
       height: 110px;
@@ -346,7 +345,7 @@
     /* ==================== HERO CONTENT SECTION ==================== */
     .hero-content-section {
       background: radial-gradient(circle at center, var(--deep-green) 0%, var(--dark-green) 100%);
-      padding: 140px 0 120px 0; /* Padding offset for larger premium header height alignment */
+      padding: 140px 0 120px 0;
       text-align: center;
       position: relative;
     }
@@ -815,7 +814,7 @@
       .hero-content-section { padding: 90px 0; }
       .site-header { padding: 15px 24px; }
       .site-header.scrolled { padding: 12px 24px; }
-      .brand-logo-frame { width: 80px; height: 80px; } /* Proportional dynamic breakdown sizing for visibility */
+      .brand-logo-frame { width: 80px; height: 80px; }
       .site-header.scrolled .brand-logo-frame { width: 68px; height: 68px; }
       .section-header { margin-bottom: 60px; }
       .alternating-grid { gap: 90px; }
@@ -904,7 +903,246 @@
       </div>
     </div>
   </div>
+
+  <section id="heritage">
+    <div class="container">
+      <div class="section-header scroll-animate">
+        <span class="section-tag">The Heritage</span>
+        <h2 class="section-title">The Essence of Origin</h2>
+        <p class="section-subtitle">Grown in rich volcanic soils and high altitudes, each cherry is harvested at peak maturity to lock in its distinct floral complexity and natural sweetness.</p>
+      </div>
+      
+      <div class="alternating-grid">
+        <div class="alternating-item scroll-animate">
+          <div class="image-wrapper">
+            <img src="origin-landscape.jpg" alt="High Altitude Mountain Fields Landscape of Kaffa Ethiopia">
+          </div>
+          <div class="content">
+            <h3>Handpicked Traditions</h3>
+            <p>Our coffee beans come exclusively from certified heritage micro-lots across the Yirgacheffe and Sidamo regions. Passed down generations, our farming network implements clean organic shade farming practices to sustain regional biodiversity.</p>
+          </div>
+        </div>
+
+        <div class="alternating-item reverse scroll-animate">
+          <div class="image-wrapper">
+            <img src="sorting-beans.jpg" alt="Artisanal Sorting Process of Raw Green Coffee Beans">
+          </div>
+          <div class="content">
+            <h3>Meticulous Processing</h3>
+            <p>Before packaging, every batch undergoes double washed wet-milling or strict natural sun-drying on raised African beds. This painstaking evaluation method ensures zero structural defects and an intensely clean, flavorful espresso extraction.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div class="stats-section">
+    <div class="container">
+      <div class="stats-grid">
+        <div class="stat-item scroll-animate">
+          <div class="stat-number">2,200m</div>
+          <div class="stat-label">Optimal Altitude</div>
+        </div>
+        <div class="stat-item scroll-animate">
+          <div class="stat-number">100%</div>
+          <div class="stat-label">Traceable Arabica</div>
+        </div>
+        <div class="stat-item scroll-animate">
+          <div class="stat-number">48hrs</div>
+          <div class="stat-label">Post-Roast Seal</div>
+        </div>
+        <div class="stat-item scroll-animate">
+          <div class="stat-number">15+</div>
+          <div class="stat-label">Sourcing Partners</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <section id="cafe" class="cafe-section">
+    <div class="container">
+      <div class="cafe-grid">
+        <div class="cafe-image scroll-animate">
+          <img src="cafe-interior.jpg" alt="Interior Atmosphere Architecture Design layout of Bean to Bag Cafe Location">
+        </div>
+        <div class="cafe-content scroll-animate">
+          <span class="badge">Visit Our Cafe</span>
+          <h2>Experience the Brew in Addis Ababa</h2>
+          <p>Our modern sensory coffee bar offers enthusiasts an immersive look into extraction science. Sip hand-poured single origins prepared by champion baristas alongside freshly baked regional pastries within a relaxed luxury workspace.</p>
+          <div class="team-highlight">
+            <span>Precision dial-in custom espresso configurations daily</span>
+            <span>Pour-over methods showcasing unique seasonal lots</span>
+            <span>A quiet community ecosystem for remote creative work</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="gallery" style="background: #05140B;">
+    <div class="container">
+      <div class="section-header scroll-animate">
+        <span class="section-tag">Visual Identity</span>
+        <h2 class="section-title">Crafted Moments</h2>
+      </div>
+      <div class="gallery-grid">
+        <div class="gallery-item scroll-animate"><img src="gallery-1.jpg" alt="Close Shot of a Master Barista Pulling an Espresso Shot"></div>
+        <div class="gallery-item scroll-animate"><img src="gallery-2.jpg" alt="Premium Branded Matte Package Display Box Frame Close View"></div>
+        <div class="gallery-item scroll-animate"><img src="gallery-3.jpg" alt="Fresh Roasted Coffee Whole Beans Pouring into Hopper Scale Container"></div>
+      </div>
+    </div>
+  </section>
+
+  <section id="products" class="products-preview">
+    <div class="container">
+      <div class="section-header scroll-animate">
+        <span class="section-tag">The Bags</span>
+        <h2 class="section-title">Signature Selections</h2>
+        <p class="section-subtitle">Available in whole bean structural format or custom grinds tailored explicitly for your residential kitchen setup.</p>
+      </div>
+
+      <div class="products-grid">
+        <div class="product-card scroll-animate">
+          <div>
+            <h3>Yirgacheffe Reserve</h3>
+            <div class="taste-badges">
+              <span class="taste-badge">Jasmine</span>
+              <span class="taste-badge">Bergamot</span>
+              <span class="taste-badge">Citrus Lip</span>
+            </div>
+            <p>A classic washed profiles boasting sweet floral fragrance, light tea body structures, and complex crisp lemon acidity profiles.</p>
+          </div>
+          <a href="products.html" class="product-link">View Pricing →</a>
+        </div>
+
+        <div class="product-card scroll-animate">
+          <div>
+            <h3>Sidamo Gold</h3>
+            <div class="taste-badges">
+              <span class="taste-badge">Dark Berry</span>
+              <span class="taste-badge">Cacao</span>
+              <span class="taste-badge">Creamy Mouthfeel</span>
+            </div>
+            <p>Naturally processed sundried variants offering decadent chocolate textures, deep mixed-berry sweetness, and smooth aftertastes.</p>
+          </div>
+          <a href="products.html" class="product-link">View Pricing →</a>
+        </div>
+
+        <div class="product-card scroll-animate">
+          <div>
+            <h3>Harar Dark Roast</h3>
+            <div class="taste-badges">
+              <span class="taste-badge">Spice Blend</span>
+              <span class="taste-badge">Molasses</span>
+              <span class="taste-badge">Bold Finish</span>
+            </div>
+            <p>Intensely rich roast architecture constructed for traditional dark profiles, producing rich earthy tones with zero bitterness.</p>
+          </div>
+          <a href="products.html" class="product-link">View Pricing →</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="virtual-shop-section">
+    <div class="container">
+      <div class="section-header scroll-animate" style="margin-bottom: 20px;">
+        <span class="section-tag">Interactive Shelf</span>
+        <h2 class="section-title">The Virtual Showcase</h2>
+        <p class="section-subtitle">Hover over a bag profile package to inspect its architectural roasting curves and origin details instantly.</p>
+      </div>
+    </div>
+
+    <div class="shop-carousel-viewport">
+      <div class="shop-track">
+        <div class="shelf-item">
+          <div class="shelf-image-frame"><img src="bag-yirgacheffe.png" alt="Premium Matte Pack Bag Profile Sample Design"></div>
+          <div class="shelf-meta">
+            <h4>Yirgacheffe Lot 01</h4>
+            <p>Washed Elite Micro-lot • Light Roast Curve</p>
+          </div>
+          <button class="shelf-action-btn">Quick View</button>
+        </div>
+        <div class="shelf-item">
+          <div class="shelf-image-frame"><img src="bag-sidamo.png" alt="Premium Gold Foil Pack Bag Profile Sample Design"></div>
+          <div class="shelf-meta">
+            <h4>Sidamo Lot 04</h4>
+            <p>Natural Sun Process • Medium Roast Curve</p>
+          </div>
+          <button class="shelf-action-btn">Quick View</button>
+        </div>
+        <div class="shelf-item">
+          <div class="shelf-image-frame"><img src="bag-harar.png" alt="Premium Charcoal Pack Bag Profile Sample Design"></div>
+          <div class="shelf-meta">
+            <h4>Harar Lot 09</h4>
+            <p>Traditional Dry Process • Full City Dark Roast</p>
+          </div>
+          <button class="shelf-action-btn">Quick View</button>
+        </div>
+        <div class="shelf-item">
+          <div class="shelf-image-frame"><img src="bag-yirgacheffe.png" alt="Premium Matte Pack Bag Profile Sample Design"></div>
+          <div class="shelf-meta">
+            <h4>Yirgacheffe Lot 01</h4>
+            <p>Washed Elite Micro-lot • Light Roast Curve</p>
+          </div>
+          <button class="shelf-action-btn">Quick View</button>
+        </div>
+        <div class="shelf-item">
+          <div class="shelf-image-frame"><img src="bag-sidamo.png" alt="Premium Gold Foil Pack Bag Profile Sample Design"></div>
+          <div class="shelf-meta">
+            <h4>Sidamo Lot 04</h4>
+            <p>Natural Sun Process • Medium Roast Curve</p>
+          </div>
+          <button class="shelf-action-btn">Quick View</button>
+        </div>
+        <div class="shelf-item">
+          <div class="shelf-image-frame"><img src="bag-harar.png" alt="Premium Charcoal Pack Bag Profile Sample Design"></div>
+          <div class="shelf-meta">
+            <h4>Harar Lot 09</h4>
+            <p>Traditional Dry Process • Full City Dark Roast</p>
+          </div>
+          <button class="shelf-action-btn">Quick View</button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section style="background: var(--dark-green); padding-bottom: 140px;">
+    <div class="container">
+      <div class="roast-card scroll-animate">
+        <span class="section-tag" style="margin-bottom: 12px;">Our Roast Strategy</span>
+        <h2 class="section-title">Optimized Micro-Batches</h2>
+        <p>Instead of blending qualities away, we utilize thermodynamic air-flow roasting protocols designed to capture localized soil sugars. We track temperature drops down to a millisecond, sealing packages immediately to maintain complete integrity from bean to cup.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="cta-section">
+    <div class="container">
+      <h2 class="section-title scroll-animate">Elevate Your Daily Ritual</h2>
+      <p class="section-subtitle scroll-animate" style="max-width: 600px;">Bring home the world's most aromatic heritage coffee crops. Shipping fresh weekly worldwide.</p>
+      <div class="cta-actions scroll-animate">
+        <a href="products.html" class="btn btn-primary">Purchase Online</a>
+        <a href="contact.html" class="btn btn-outline">Find A Retailer</a>
+      </div>
+    </div>
+  </section>
 </main>
+
+<footer class="footer">
+  <div class="container">
+    <div class="contact-info">
+      <p style="margin-bottom: 8px; font-weight: 600; color: #FFF;">Bole Medhanialem Road, Addis Ababa, Ethiopia</p>
+      <p>info@beantobagcoffee.com • +251 911 234 567</p>
+    </div>
+    <div class="social-links">
+      <a href="#">Instagram</a>
+      <a href="#">Telegram</a>
+      <a href="#">Facebook</a>
+    </div>
+    <p style="margin-top: 50px; font-size: 0.8rem; letter-spacing: 0.05em;">&copy; 2026 Bean to Bag Coffee Roasters. All rights reserved.</p>
+  </div>
+</footer>
 
 <script>
   // 1. Loading Screen Controller
@@ -912,7 +1150,7 @@
     const loader = document.getElementById('loadingScreen');
     setTimeout(() => {
       loader.classList.add('fade-out');
-    }, 600); // Fluid window timing framework
+    }, 600);
   });
 
   // 2. Dynamic Scroll Header State Matrix
