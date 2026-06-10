@@ -116,7 +116,7 @@
     ::-webkit-scrollbar { width: 10px; }
     ::-webkit-scrollbar-track { background: var(--dark-green); }
     ::-webkit-scrollbar-thumb { background: linear-gradient(180deg, var(--accent-light), var(--accent)); border-radius: 10px; border: 2px solid var(--dark-green); }
-    ::selection { background: var(--accent); color: var(--deep-green); }
+    ::-selection { background: var(--accent); color: var(--deep-green); }
 
     /* ==================== HEADER ==================== */
     .site-header {
@@ -608,11 +608,170 @@
     .animate-fade-in-up:nth-child(4) { animation-delay: 0.45s; }
     @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
     .animate-fade-in { animation: fadeIn 1s cubic-bezier(0.16, 1, 0.3, 1) forwards; }
+
+    /* ==================== VIRTUAL 3D PARALLAX SHOP CAROUSEL ==================== */
+    .virtual-shop-section {
+      background: linear-gradient(180deg, var(--deep-green) 0%, #06190d 100%);
+      overflow: hidden;
+      perspective: 1500px;
+      padding: 100px 0;
+    }
+    
+    .shop-carousel-viewport {
+      width: 100%;
+      position: relative;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      padding: 60px 0;
+    }
+
+    .shop-track {
+      display: flex;
+      gap: 50px;
+      width: max-content;
+      transform-style: preserve-3d;
+      animation: smoothInfiniteScroll 35s linear infinite;
+    }
+
+    /* Pause animation smoothly on hover to inspect shelves */
+    .shop-track:hover {
+      animation-play-state: paused;
+    }
+
+    .shelf-item {
+      position: relative;
+      width: 320px;
+      height: 420px;
+      background: rgba(10, 42, 22, 0.6);
+      border: 1px solid var(--glass-border);
+      border-radius: 24px;
+      padding: 24px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      align-items: center;
+      backdrop-filter: blur(12px);
+      box-shadow: var(--shadow-md);
+      transform: translateZ(0) rotateY(10deg);
+      transition: all 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+      transform-style: preserve-3d;
+    }
+
+    /* Spectacular dynamic focus hover frame alignment */
+    .shelf-item:hover {
+      transform: translateZ(60px) scale(1.05) rotateY(0deg);
+      border-color: var(--accent);
+      background: rgba(15, 59, 31, 0.9);
+      box-shadow: var(--shadow-xl), 0 0 40px rgba(255, 215, 0, 0.15);
+    }
+
+    /* Dim out other items when one is hovered */
+    .shop-track:hover .shelf-item:not(:hover) {
+      filter: blur(2px) brightness(0.6);
+      transform: scale(0.95) translateZ(-20px);
+    }
+
+    .shelf-image-frame {
+      width: 100%;
+      height: 220px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      position: relative;
+      overflow: hidden;
+      border-radius: 16px;
+      background: radial-gradient(circle at center, rgba(255, 215, 0, 0.05) 0%, transparent 80%);
+    }
+
+    .shelf-image-frame img {
+      max-height: 90%;
+      max-width: 90%;
+      object-fit: contain;
+      transition: transform 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+      filter: drop-shadow(0 15px 20px rgba(0,0,0,0.5));
+    }
+
+    .shelf-item:hover .shelf-image-frame img {
+      transform: translateY(-10px) scale(1.08) rotate(3deg);
+      filter: drop-shadow(0 25px 30px rgba(0,0,0,0.6));
+    }
+
+    /* Premium reflection dynamic sheen overlay */
+    .shelf-image-frame::after {
+      content: '';
+      position: absolute;
+      top: -50%;
+      left: -60%;
+      width: 30%;
+      height: 200%;
+      background: linear-gradient(to right, transparent, rgba(255, 215, 0, 0.15), transparent);
+      transform: rotate(30deg);
+      transition: none;
+    }
+
+    .shelf-item:hover .shelf-image-frame::after {
+      left: 130%;
+      transition: left 0.8s ease-in-out;
+    }
+
+    .shelf-meta {
+      text-align: center;
+      width: 100%;
+      margin-top: 15px;
+    }
+
+    .shelf-meta h4 {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.4rem;
+      color: #FFF;
+      margin-bottom: 6px;
+    }
+
+    .shelf-meta p {
+      font-size: 0.85rem;
+      color: rgba(255, 243, 201, 0.7);
+      font-weight: 300;
+      line-height: 1.4;
+    }
+
+    .shelf-action-btn {
+      width: 100%;
+      padding: 12px;
+      border-radius: 50px;
+      background: transparent;
+      border: 1px solid rgba(255, 215, 0, 0.3);
+      color: var(--accent-light);
+      font-size: 0.75rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      cursor: pointer;
+      transition: var(--transition-fast);
+      margin-top: 15px;
+    }
+
+    .shelf-item:hover .shelf-action-btn {
+      background: var(--accent);
+      color: #05140b;
+      border-color: var(--accent);
+      box-shadow: 0 4px 15px rgba(255, 215, 0, 0.2);
+    }
+
+    @keyframes smoothInfiniteScroll {
+      0% { transform: translateX(0); }
+      100% { transform: translateX(calc(-50% - 25px)); } /* Matches exact duplicated track offset */
+    }
+
+    @media (max-width: 768px) {
+      .shelf-item { width: 280px; height: 380px; padding: 16px; }
+      .shelf-image-frame { height: 180px; }
+      .shelf-meta h4 { font-size: 1.2rem; }
+    }
   </style>
 </head>
 <body>
 
-<!-- PREMIUM BALANCED LOADING SCREEN USING Beans.png -->
 <div class="loading-screen" id="loadingScreen">
   <div class="loading-logo-container">
     <img src="Beans.png" alt="Bean to Bag Logo Premium Preloader Image">
@@ -649,7 +808,6 @@
 <a href="https://wa.me/251911234567" class="whatsapp-float" target="_blank" rel="noopener noreferrer" aria-label="Direct WhatsApp Message Connection Routing">💬</a>
 
 <main>
-  <!-- VIDEO HERO OVERLAY BLOCK -->
   <div class="hero-video-section">
     <video class="hero-video" autoplay muted loop playsinline webkit-playsinline="true" preload="auto" id="heroVideo">
       <source src="Bean.mp4" type="video/mp4">
@@ -670,7 +828,6 @@
     </div>
   </div>
 
-  <!-- NARRATIVE TIMELINE SECTION -->
   <section id="journey">
     <div class="container">
       <div class="section-header">
@@ -728,7 +885,6 @@
     </div>
   </section>
 
-  <!-- DATA MATRIX COUNTERS -->
   <section class="stats-section">
     <div class="container">
       <div class="stats-grid">
@@ -740,7 +896,6 @@
     </div>
   </section>
 
-  <!-- BRAND HUB CAFE SHOWCASE -->
   <section class="cafe-section">
     <div class="container">
       <div class="cafe-grid">
@@ -760,7 +915,6 @@
     </div>
   </section>
 
-  <!-- GRID INTERACTION GALLERY -->
   <section class="gallery-section">
     <div class="container">
       <div class="section-header">
@@ -775,7 +929,6 @@
     </div>
   </section>
 
-  <!-- COLLECTION OVERVIEW DISPLAY -->
   <section class="products-preview">
     <div class="container">
       <div class="section-header">
@@ -795,118 +948,176 @@
         <div class="product-card scroll-animate">
           <div>
             <h3>Qalid's Choice</h3>
-            <div class="taste-badges"><span class="taste-badge">Balanced</span><span class="taste-badge">Smooth Nutty</span></div>
-            <p>Our premium signature blend engineered beautifully for traditional Jebena, standard French Press, or clean filter cups.</p>
+            <div class="taste-badges"><span class="taste-badge">Balanced</span><span class="taste-badge">Rich Cocoa</span></div>
+            <p>A classic, full-bodied selection celebrating bold heritage notes, dark chocolate undertones, and a smooth molasses finish.</p>
           </div>
           <a href="products.html" class="product-link">Learn More &rarr;</a>
         </div>
-        
+
         <div class="product-card scroll-animate">
           <div>
-            <h3>Chemina</h3>
-            <div class="taste-badges"><span class="taste-badge">Bold Body</span><span class="taste-badge">Dark Cocoa</span></div>
-            <p>Premium dark cocoa-noted whole bean selection, balanced optimally for direct espresso shots and milk pairings.</p>
-          </div>
-          <a href="products.html" class="product-link">Learn More &rarr;</a>
-        </div>
-        
-        <div class="product-card scroll-animate">
-          <div>
-            <h3>Origin Green</h3>
-            <div class="taste-badges"><span class="taste-badge">Unroasted</span><span class="taste-badge">Traceable Lot</span></div>
-            <p>Raw unroasted green coffee beans directly tracked back to specific micro-washing stations for artisan home roasters.</p>
+            <h3>Yirgacheffe Gold</h3>
+            <div class="taste-badges"><span class="taste-badge">Floral</span><span class="taste-badge">Citrus Twist</span></div>
+            <p>An exquisite selection highlighting crisp bergamot notes, elegant jasmine aromas, and a bright, exceptionally clean finish.</p>
           </div>
           <a href="products.html" class="product-link">Learn More &rarr;</a>
         </div>
       </div>
-      <div style="text-align: center; margin-top: 60px;"><a href="products.html" class="btn btn-primary">View All Products &rarr;</a></div>
     </div>
   </section>
 
-  <!-- ROAST PARAMETER PROFILE SUMMARY -->
+  <section class="virtual-shop-section">
+    <div class="container">
+      <div class="section-header">
+        <span class="section-tag scroll-animate">Virtual Experience</span>
+        <h2 class="section-title scroll-animate">Browse Our Virtual Roastery</h2>
+        <p class="section-subtitle scroll-animate">Interact directly with our freshly stacked premium custom inventory arrays.</p>
+      </div>
+    </div>
+
+    <div class="shop-carousel-viewport">
+      <div class="shop-track">
+        <div class="shelf-item">
+          <div class="shelf-image-frame"><img src="shelf.png" alt="Specialty Roastery Shelf Display Main"></div>
+          <div class="shelf-meta"><h4>Reserve Stacks</h4><p>Micro-lot small batch premium selections curated weekly.</p></div>
+          <button class="shelf-action-btn">Quick View</button>
+        </div>
+        <div class="shelf-item">
+          <div class="shelf-image-frame"><img src="shelf1.png" alt="Specialty Roastery Shelf Display Array 1"></div>
+          <div class="shelf-meta"><h4>Sidamo Elevation</h4><p>Bright berry configurations natively balanced at birth.</p></div>
+          <button class="shelf-action-btn">Quick View</button>
+        </div>
+        <div class="shelf-item">
+          <div class="shelf-image-frame"><img src="shelf2.png" alt="Specialty Roastery Shelf Display Array 2"></div>
+          <div class="shelf-meta"><h4>Harar Sun Heirloom</h4><p>Traditional deep blueberry notes dry-processed completely.</p></div>
+          <button class="shelf-action-btn">Quick View</button>
+        </div>
+        <div class="shelf-item">
+          <div class="shelf-image-frame"><img src="shelf3.png" alt="Specialty Roastery Shelf Display Array 3"></div>
+          <div class="shelf-meta"><h4>Limu Estate Bundles</h4><p>Crisp dynamic citrus hints matching professional extractions.</p></div>
+          <button class="shelf-action-btn">Quick View</button>
+        </div>
+
+        <div class="shelf-item">
+          <div class="shelf-image-frame"><img src="shelf.png" alt="Specialty Roastery Shelf Display Main"></div>
+          <div class="shelf-meta"><h4>Reserve Stacks</h4><p>Micro-lot small batch premium selections curated weekly.</p></div>
+          <button class="shelf-action-btn">Quick View</button>
+        </div>
+        <div class="shelf-item">
+          <div class="shelf-image-frame"><img src="shelf1.png" alt="Specialty Roastery Shelf Display Array 1"></div>
+          <div class="shelf-meta"><h4>Sidamo Elevation</h4><p>Bright berry configurations natively balanced at birth.</p></div>
+          <button class="shelf-action-btn">Quick View</button>
+        </div>
+        <div class="shelf-item">
+          <div class="shelf-image-frame"><img src="shelf2.png" alt="Specialty Roastery Shelf Display Array 2"></div>
+          <div class="shelf-meta"><h4>Harar Sun Heirloom</h4><p>Traditional deep blueberry notes dry-processed completely.</p></div>
+          <button class="shelf-action-btn">Quick View</button>
+        </div>
+        <div class="shelf-item">
+          <div class="shelf-image-frame"><img src="shelf3.png" alt="Specialty Roastery Shelf Display Array 3"></div>
+          <div class="shelf-meta"><h4>Limu Estate Bundles</h4><p>Crisp dynamic citrus hints matching professional extractions.</p></div>
+          <button class="shelf-action-btn">Quick View</button>
+        </div>
+      </div>
+    </div>
+  </section>
+
   <section class="roast-section">
     <div class="container">
       <div class="roast-card scroll-animate">
-        <span class="section-tag">Roast Profile Matrix</span>
-        <h2 class="section-title">Medium-Dark Calibrated Profile</h2>
-        <p>All roasted offerings from Bean to Bag are structured exclusively to a balanced Medium-Dark roast parameter. This ensures an elegantly muted acidity profile, heavy body density, and prominent notes of dark stone fruit, deep chocolate, and caramelized cocoa sweetness.</p>
+        <span class="section-tag">The Roastery</span>
+        <h2 class="section-title">Signature Medium-Dark Roast</h2>
+        <p>Our roasting balance preserves the vibrant, bright acidity native to high-altitude Ethiopian heirloom varieties while developing deep caramels and a velvet-smooth body. Never oily, never bitter—just perfectly developed sweetness in every single cup.</p>
       </div>
     </div>
   </section>
 
-  <!-- TARGET CONVERSION SEGMENT -->
   <section class="cta-section">
     <div class="container">
-      <h2 class="section-title scroll-animate">Ready to experience Bean to Bag?</h2>
-      <p style="font-size:1.15rem; color:rgba(255,243,201,0.8); max-width:650px; margin:0 auto; font-weight:300;">Join our international community of coffee purists celebrating strict origin traceability and organic Ethiopian coffee production legacy.</p>
+      <span class="section-tag scroll-animate">Freshly Roasted Weekly</span>
+      <h2 class="section-title scroll-animate">Bring Addis Ababa's Finest Home</h2>
+      <p class="section-subtitle scroll-animate">Order your custom bag online today or stop by our flagship roastery for an unforgettable sensory tasting experience.</p>
       <div class="cta-actions scroll-animate">
-        <a href="products.html" class="btn btn-primary">Shop Online Now</a>
-        <a href="contact.html" class="btn btn-outline">Contact Roast Desk</a>
+        <a href="products.html" class="btn btn-primary">Order Fresh Bag</a>
+        <a href="contact.html" class="btn btn-outline">Visit Our Cafe</a>
       </div>
     </div>
   </section>
 </main>
 
 <footer class="footer">
-  <div class="footer-content">
-    <p>&copy; 2025 Bean to Bag Coffee. Authentic Ethiopian Specialty Arabica Ecosystem. Freshly hand-roasted in micro-lots.</p>
-    <div class="social-links">
-      <a href="#" target="_blank" rel="noopener noreferrer">📷 Instagram</a>
-      <a href="#" target="_blank" rel="noopener noreferrer">📘 Facebook</a>
-      <a href="#" target="_blank" rel="noopener noreferrer">✈️ Telegram</a>
+  <div class="container">
+    <div class="contact-info" style="margin-bottom: 25px;">
+      <p style="margin-bottom: 8px;">Bole Atlas, Addis Ababa, Ethiopia</p>
+      <p>info@beantobagcoffee.com | +251 91 123 4567</p>
     </div>
-    <div class="contact-info" style="margin-top:28px;">
-      <p>📍 Bole Road, Addis Ababa, Ethiopia &nbsp;|&nbsp; ✉️ hello@beantobag.coffee &nbsp;|&nbsp; 📞 +251 911 234 567</p>
+    <p>&copy; 2026 Bean to Bag Premium Specialty Coffee. All rights reserved.</p>
+    <div class="social-links">
+      <a href="#instagram" target="_blank" rel="noopener">Instagram</a>
+      <a href="#facebook" target="_blank" rel="noopener">Facebook</a>
+      <a href="#telegram" target="_blank" rel="noopener">Telegram</a>
     </div>
   </div>
 </footer>
 
 <script>
-  // High-performance Loading Engine System Handler
-  const loadingScreen = document.getElementById('loadingScreen');
-  window.addEventListener('load', function() {
-    setTimeout(function() {
-      loadingScreen.classList.add('fade-out');
-      setTimeout(function() { loadingScreen.style.display = 'none'; }, 600);
-    }, 800);
+  // 1. Premium Loading Screen Fade Out
+  window.addEventListener('load', () => {
+    const preloader = document.getElementById('loadingScreen');
+    setTimeout(() => {
+      preloader.classList.add('fade-out');
+    }, 400);
   });
 
-  // Structural Header Adaptive Scroll Logic
-  const header = document.getElementById('siteHeader');
+  // 2. Interactive Header Scroll Dynamic State
+  const siteHeader = document.getElementById('siteHeader');
   window.addEventListener('scroll', () => {
-    header.classList.toggle('scrolled', window.scrollY > 40);
-  }, { passive: true });
+    if (window.scrollY > 40) {
+      siteHeader.classList.add('scrolled');
+    } else {
+      siteHeader.classList.remove('scrolled');
+    }
+  });
 
-  // Responsive Menu Navigation System Overlay Manager
-  const menuBtn = document.getElementById('menuToggle');
-  const mobileMenu = document.getElementById('mobileMenu');
+  // 3. Mobile Menu Overlay Toggle Mechanics
+  const menuToggle = document.getElementById('menuToggle');
   const closeMenu = document.getElementById('closeMenu');
+  const mobileMenu = document.getElementById('mobileMenu');
+
+  menuToggle.addEventListener('click', () => {
+    mobileMenu.classList.add('open');
+  });
+
+  closeMenu.addEventListener('click', () => {
+    mobileMenu.classList.remove('open');
+  });
+
+  document.querySelectorAll('#mobileMenu a').forEach(link => {
+    link.addEventListener('click', () => {
+      mobileMenu.classList.remove('open');
+    });
+  });
+
+  // 4. Precision Motion Triggers (Scroll Animations via Intersection Observer)
+  const animatableElements = document.querySelectorAll('.scroll-animate');
   
-  const toggleMenu = (open) => { 
-    mobileMenu.classList.toggle('open', open); 
-    document.body.style.overflow = open ? 'hidden' : ''; 
+  const observerSettings = {
+    root: null,
+    threshold: 0.12,
+    rootMargin: '0px 0px -40px 0px'
   };
-  
-  menuBtn?.addEventListener('click', () => toggleMenu(true));
-  closeMenu?.addEventListener('click', () => toggleMenu(false));
-  document.querySelectorAll('.mobile-menu a').forEach(link => link.addEventListener('click', () => toggleMenu(false)));
 
-  // Autoplay Protection Fallback Protocol
-  const video = document.getElementById('heroVideo');
-  if(video) video.play().catch(e => console.log("Video autoplay initialized with user-intent context parameters"));
-
-  // Performance optimized Intersection Observer for Element Reveal Movements
-  const observerOptions = { threshold: 0.1, rootMargin: '0px 0px -20px 0px' };
-  const observer = new IntersectionObserver((entries) => {
+  const scrollObserver = new IntersectionObserver((entries, observer) => {
     entries.forEach(entry => {
-      if(entry.isIntersecting) {
+      if (entry.isIntersecting) {
         entry.target.classList.add('animated');
         observer.unobserve(entry.target);
       }
     });
-  }, observerOptions);
-  
-  document.querySelectorAll('.scroll-animate').forEach(el => observer.observe(el));
+  }, observerSettings);
+
+  animatableElements.forEach(element => scrollObserver.observe(element));
 </script>
+
 </body>
 </html>
