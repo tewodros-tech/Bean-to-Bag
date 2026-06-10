@@ -44,27 +44,26 @@
       -webkit-font-smoothing: antialiased;
     }
 
-    /* LOADING SCREEN OVERLAY (Clean Transparent Logo Framework) */
+    /* ==================== LOADING SCREEN OVERLAY (CRISP WHITE DESIGN) ==================== */
     .loading-screen {
       position: fixed;
       top: 0;
       left: 0;
       width: 100%;
       height: 100%;
-      background: linear-gradient(135deg, #030D07 0%, var(--deep-green) 50%, #0C2C16 100%);
+      background: #FFFFFF;
       z-index: 9999;
       display: flex;
       justify-content: center;
       align-items: center;
       transition: opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1), visibility 0.8s cubic-bezier(0.16, 1, 0.3, 1);
-      backdrop-filter: blur(12px);
     }
     .loading-screen::before {
       content: "";
       position: absolute;
       width: 100%;
       height: 100%;
-      background: radial-gradient(circle at 50% 50%, rgba(255, 215, 0, 0.12) 0%, transparent 60%);
+      background: radial-gradient(circle at 50% 50%, rgba(255, 215, 0, 0.15) 0%, transparent 70%);
       pointer-events: none;
     }
     .loading-screen.fade-out {
@@ -72,8 +71,8 @@
       visibility: hidden;
     }
     .loading-logo-container {
-      width: 160px;
-      height: 160px;
+      width: clamp(140px, 25vw, 180px);
+      height: clamp(140px, 25vw, 180px);
       display: flex;
       justify-content: center;
       align-items: center;
@@ -90,8 +89,8 @@
       object-fit: contain;
     }
     @keyframes pulse {
-      0%, 100% { transform: scale(1); filter: drop-shadow(0 0 15px rgba(255, 215, 0, 0.15)); }
-      50% { transform: scale(1.06); filter: drop-shadow(0 0 35px rgba(255, 215, 0, 0.4)); }
+      0%, 100% { transform: scale(1); filter: drop-shadow(0 4px 15px rgba(0, 0, 0, 0.08)); }
+      50% { transform: scale(1.05); filter: drop-shadow(0 15px 30px rgba(212, 175, 55, 0.35)); }
     }
 
     h1, h2, h3, h4, .section-title, .section-subtitle, p, .content p, .cafe-content p, .product-card p, .roast-card p, .stat-label, .contact-info p, .footer p {
@@ -246,7 +245,7 @@
       transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
     }
     .mobile-menu.open { transform: translateX(0); }
-    .mobile-menu a { font-family: 'Playfair Display', serif; font-size: 2.5rem; color: var(--cream); position: relative; transition: var(--transition); }
+    .mobile-menu a { font-family: 'Playfair Display', serif; font-size: 2.2rem; color: var(--cream); position: relative; transition: var(--transition); text-align: center; width: 100%; display: block; }
     .mobile-menu a:hover, .mobile-menu a.active { color: var(--accent); transform: scale(1.05); }
     .close-menu {
       position: absolute;
@@ -362,8 +361,8 @@
 
     .hero-content-section h1 {
       font-family: 'Playfair Display', serif;
-      font-size: clamp(3rem, 8vw, 5.5rem);
-      line-height: 1.1;
+      font-size: clamp(2.6rem, 7vw, 5.5rem);
+      line-height: 1.15;
       margin-bottom: 2rem;
       background: linear-gradient(135deg, #FFF 30%, var(--accent-light) 100%);
       -webkit-background-clip: text;
@@ -390,7 +389,7 @@
 
     /* ==================== SECTION STYLES ==================== */
     section { padding: 140px 0; position: relative; }
-    .section-header { text-align: center; margin-bottom: 90px; position: relative; z-index: 2; }
+    .section-header { text-align: center; margin-bottom: 90px; position: relative; z-index: 2; padding: 0 10px; }
     .section-tag {
       color: var(--accent-light);
       letter-spacing: 0.35em;
@@ -403,8 +402,8 @@
     }
     .section-title {
       font-family: 'Playfair Display', serif;
-      font-size: clamp(2.8rem, 6vw, 4.2rem);
-      line-height: 1.15;
+      font-size: clamp(2.4rem, 5.5vw, 4.2rem);
+      line-height: 1.2;
       margin-bottom: 1.5rem;
       background: linear-gradient(135deg, #FFF 40%, var(--accent-light) 100%);
       -webkit-background-clip: text;
@@ -475,7 +474,7 @@
 
     .content h3 {
       font-family: 'Playfair Display', serif;
-      font-size: 2.8rem;
+      font-size: clamp(2.0rem, 4vw, 2.8rem);
       margin-bottom: 1.5rem;
       color: #FFF;
       font-weight: 700;
@@ -492,8 +491,8 @@
     }
     .stats-grid {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
-      gap: 40px;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 30px;
       text-align: center;
       position: relative;
       z-index: 2;
@@ -507,7 +506,7 @@
       transition: var(--transition);
     }
     .stat-item:hover { border-color: var(--accent); transform: translateY(-8px); background: rgba(255,215,0,0.05); box-shadow: 0 15px 35px rgba(0,0,0,0.4), inset 0 0 15px rgba(255,215,0,0.05); }
-    .stat-number { font-size: 3.8rem; color: var(--accent); font-weight: 900; font-family: 'Playfair Display', serif; line-height: 1; text-shadow: 0 4px 10px rgba(0,0,0,0.3); }
+    .stat-number { font-size: clamp(2.8rem, 5vw, 3.8rem); color: var(--accent); font-weight: 900; font-family: 'Playfair Display', serif; line-height: 1; text-shadow: 0 4px 10px rgba(0,0,0,0.3); }
     .stat-label { color: rgba(255,245,214,0.65); font-size: 0.85rem; letter-spacing: 0.2em; margin-top: 14px; text-transform: uppercase; font-weight: 600; }
 
     /* Cafe Area styling */
@@ -543,10 +542,10 @@
       text-transform: uppercase;
       text-shadow: 0 0 10px rgba(255,215,0,0.2);
     }
-    .cafe-content h2 { font-size: clamp(3rem, 5vw, 4.2rem); margin-bottom: 24px; color: #FFF; font-family: 'Playfair Display', serif; line-height: 1.15; }
+    .cafe-content h2 { font-size: clamp(2.4rem, 5vw, 4.2rem); margin-bottom: 24px; color: #FFF; font-family: 'Playfair Display', serif; line-height: 1.15; }
     .team-highlight { display: flex; flex-direction: column; gap: 18px; margin-top: 35px; padding-top: 30px; border-top: 1px solid var(--glass-border); }
-    .team-highlight span { font-size: 1.05rem; color: rgba(255,245,214,0.9); display: flex; align-items: center; gap: 14px; font-weight: 400; }
-    .team-highlight span::before { content: "✦"; color: var(--accent); font-size: 1.2rem; text-shadow: 0 0 8px var(--accent); }
+    .team-highlight span { font-size: 1.05rem; color: rgba(255,245,214,0.9); display: flex; align-items: center; gap: 14px; font-weight: 400; text-align: left; }
+    .team-highlight span::before { content: "✦"; color: var(--accent); font-size: 1.2rem; text-shadow: 0 0 8px var(--accent); flex-shrink: 0; }
 
     /* Gallery Grid */
     .gallery-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 35px; }
@@ -616,7 +615,7 @@
       border: 1px solid var(--glass-border);
       box-shadow: var(--shadow-lg);
     }
-    .roast-card .section-title { margin-bottom: 24px; font-size: 3.2rem; }
+    .roast-card .section-title { margin-bottom: 24px; font-size: clamp(2.2rem, 5vw, 3.2rem); }
     .roast-card p { font-size: 1.2rem; font-weight: 300; max-width: 800px; margin: 0 auto; color: rgba(255,245,214,0.85); line-height: 1.85; }
 
     /* High Converting CTA Block Frame */
@@ -631,7 +630,7 @@
       border-top: 1px solid var(--glass-border);
     }
     .footer p { font-size: 1rem; color: rgba(255,245,214,0.55); font-weight: 300; }
-    .social-links { display: flex; gap: 24px; justify-content: center; flex-wrap: wrap; margin-top: 40px; }
+    .social-links { display: flex; gap: 16px; justify-content: center; flex-wrap: wrap; margin-top: 40px; }
     .social-links a { color: var(--cream); font-size: 0.9rem; font-weight: 500; letter-spacing: 0.08em; padding: 10px 24px; border-radius: 30px; background: rgba(255,255,255,0.01); border: 1px solid rgba(255,215,0,0.05); transition: var(--transition); }
     .social-links a:hover { color: var(--accent); background: rgba(255,215,0,0.06); border-color: rgba(255,215,0,0.2); transform: translateY(-4px); box-shadow: 0 10px 20px rgba(0,0,0,0.3); }
     .contact-info p { font-size: 1rem; color: rgba(255,245,214,0.6); font-weight: 400; letter-spacing: 0.05em; }
@@ -654,45 +653,6 @@
       transition: var(--transition);
     }
     .whatsapp-float:hover { transform: scale(1.12) translateY(-6px); box-shadow: 0 20px 45px rgba(37,211,102,0.55); }
-
-    /* Responsive Architecture Adapters */
-    @media (max-width: 1200px) {
-      .alternating-item, .alternating-item.reverse { gap: 60px; grid-template-columns: 1fr 1fr; }
-    }
-    @media (max-width: 992px) {
-      .alternating-item, .alternating-item.reverse, .cafe-grid { grid-template-columns: 1fr !important; gap: 50px; }
-      .alternating-item.reverse .image-wrapper { grid-column: auto; }
-      .alternating-item.reverse .content { grid-column: auto; }
-      .gallery-grid { grid-template-columns: repeat(2, 1fr); gap: 25px; }
-      section { padding: 100px 0; }
-    }
-    @media (max-width: 768px) {
-      .desktop-nav { display: none; }
-      .menu-button { display: flex; }
-      .container { padding: 0 30px; }
-      .gallery-grid { grid-template-columns: 1fr; }
-      .roast-card { padding: 50px 30px; }
-      .hero-actions, .cta-actions { flex-direction: column; align-items: center; width: 100%; }
-      .btn { width: 100%; max-width: 340px; }
-      .hero-content-section { padding: 100px 0; }
-      .brand-logo-frame { width: 62px; height: 62px; }
-    }
-    @media (max-width: 480px) {
-      .brand-logo-frame { width: 54px; height: 54px; }
-      .whatsapp-float { width: 56px; height: 56px; font-size: 1.6rem; bottom: 25px; right: 25px; }
-      .site-header { padding: 16px 25px; }
-    }
-
-    /* Scroll Animations */
-    .scroll-animate { opacity: 0; transform: translateY(40px); transition: opacity 1s cubic-bezier(0.16, 1, 0.3, 1), transform 1s cubic-bezier(0.16, 1, 0.3, 1); will-change: transform, opacity; }
-    .scroll-animate.animated { opacity: 1; transform: translateY(0); }
-    @keyframes fadeInUp { from { opacity: 0; transform: translateY(40px); } to { opacity: 1; transform: translateY(0); } }
-    .animate-fade-in-up { opacity: 0; animation: fadeInUp 1.2s cubic-bezier(0.16, 1, 0.3, 1) forwards; }
-    .animate-fade-in-up:nth-child(2) { animation-delay: 0.2s; }
-    .animate-fade-in-up:nth-child(3) { animation-delay: 0.4s; }
-    .animate-fade-in-up:nth-child(4) { animation-delay: 0.6s; }
-    @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
-    .animate-fade-in { animation: fadeIn 1.2s cubic-bezier(0.16, 1, 0.3, 1) forwards; }
 
     /* ==================== VIRTUAL 3D SHOP CAROUSEL ==================== */
     .virtual-shop-section {
@@ -779,23 +739,6 @@
       filter: drop-shadow(0 30px 35px rgba(0,0,0,0.75)) brightness(1.05);
     }
 
-    .shelf-image-frame::after {
-      content: '';
-      position: absolute;
-      top: -50%;
-      left: -60%;
-      width: 35%;
-      height: 200%;
-      background: linear-gradient(to right, transparent, rgba(255, 215, 0, 0.25), transparent);
-      transform: rotate(35deg);
-      transition: none;
-    }
-
-    .shelf-item:hover .shelf-image-frame::after {
-      left: 140%;
-      transition: left 0.9s ease-in-out;
-    }
-
     .shelf-meta {
       text-align: center;
       width: 100%;
@@ -844,23 +787,71 @@
       100% { transform: translateX(calc(-50% - 30px)); }
     }
 
+    /* ==================== RESPONSIVE MOBILE ARCHITECTURE CODES ==================== */
+    @media (max-width: 1200px) {
+      .alternating-item, .alternating-item.reverse { gap: 60px; grid-template-columns: 1fr 1fr; }
+      .site-header { padding: 20px 30px; }
+    }
+    
+    @media (max-width: 992px) {
+      .alternating-item, .alternating-item.reverse, .cafe-grid { grid-template-columns: 1fr !important; gap: 40px; }
+      .alternating-item.reverse .image-wrapper { grid-column: auto; }
+      .alternating-item.reverse .content { grid-column: auto; }
+      .gallery-grid { grid-template-columns: repeat(2, 1fr); gap: 25px; }
+      section { padding: 90px 0; }
+    }
+    
     @media (max-width: 768px) {
+      .desktop-nav { display: none; }
+      .menu-button { display: flex; }
+      .container { padding: 0 24px; }
+      .gallery-grid { grid-template-columns: 1fr; gap: 20px; }
+      .roast-card { padding: 45px 25px; }
+      .hero-actions, .cta-actions { flex-direction: column; align-items: center; width: 100%; gap: 15px; }
+      .btn { width: 100%; max-width: 320px; padding: 16px 32px; }
+      .hero-content-section { padding: 90px 0; }
+      .site-header { padding: 15px 24px; }
+      .site-header.scrolled { padding: 12px 24px; }
+      .brand-logo-frame { width: 64px; height: 64px; }
+      .site-header.scrolled .brand-logo-frame { width: 52px; height: 52px; }
+      .section-header { margin-bottom: 60px; }
+      .alternating-grid { gap: 90px; }
       .shelf-item { width: 290px; height: 400px; padding: 20px; }
       .shelf-image-frame { height: 190px; }
       .shelf-meta h4 { font-size: 1.3rem; }
     }
+    
+    @media (max-width: 480px) {
+      .container { padding: 0 16px; }
+      .brand-logo-frame { width: 56px; height: 56px; }
+      .site-header.scrolled .brand-logo-frame { width: 46px; height: 46px; }
+      .whatsapp-float { width: 56px; height: 56px; font-size: 1.6rem; bottom: 25px; right: 25px; }
+      .site-header { padding: 12px 16px; }
+      .site-header.scrolled { padding: 10px 16px; }
+      section { padding: 70px 0; }
+      .stat-item { padding: 30px 15px; }
+    }
+
+    /* Scroll Animations */
+    .scroll-animate { opacity: 0; transform: translateY(30px); transition: opacity 1s cubic-bezier(0.16, 1, 0.3, 1), transform 1s cubic-bezier(0.16, 1, 0.3, 1); will-change: transform, opacity; }
+    .scroll-animate.animated { opacity: 1; transform: translateY(0); }
+    @keyframes fadeInUp { from { opacity: 0; transform: translateY(30px); } to { opacity: 1; transform: translateY(0); } }
+    .animate-fade-in-up { opacity: 0; animation: fadeInUp 1.2s cubic-bezier(0.16, 1, 0.3, 1) forwards; }
+    .animate-fade-in-up:nth-child(2) { animation-delay: 0.15s; }
+    .animate-fade-in-up:nth-child(3) { animation-delay: 0.3s; }
+    .animate-fade-in-up:nth-child(4) { animation-delay: 0.45s; }
+    @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+    .animate-fade-in { animation: fadeIn 1.2s cubic-bezier(0.16, 1, 0.3, 1) forwards; }
   </style>
 </head>
 <body>
 
-<!-- LOADING SCREEN OVERLAY (With Gemini.png & Transparent Fit Background) -->
 <div class="loading-screen" id="loadingScreen">
   <div class="loading-logo-container">
     <img src="Gemini.png" alt="Bean to Bag Logo Premium Preloader Image">
   </div>
 </div>
 
-<!-- SITE HEADER NAVIGATION (With Gemini.png & Transparent Fit Background) -->
 <header class="site-header" id="siteHeader">
   <div class="nav-wrap">
     <a href="index.html" class="brand" aria-label="Bean to Bag Home Page Anchor">
@@ -891,7 +882,6 @@
 <a href="https://wa.me/251911234567" class="whatsapp-float" target="_blank" rel="noopener noreferrer" aria-label="Direct WhatsApp Message Connection Routing">💬</a>
 
 <main>
-  <!-- VIDEO HERO OVERLAY BLOCK -->
   <div class="hero-video-section">
     <video class="hero-video" autoplay muted loop playsinline webkit-playsinline="true" preload="auto" id="heroVideo">
       <source src="Bean.mp4" type="video/mp4">
@@ -912,7 +902,6 @@
     </div>
   </div>
 
-  <!-- NARRATIVE TIMELINE SECTION -->
   <section id="journey">
     <div class="container">
       <div class="section-header">
@@ -970,7 +959,6 @@
     </div>
   </section>
 
-  <!-- DATA MATRIX COUNTERS -->
   <section class="stats-section">
     <div class="container">
       <div class="stats-grid">
@@ -982,7 +970,6 @@
     </div>
   </section>
 
-  <!-- BRAND HUB CAFE SHOWCASE -->
   <section class="cafe-section">
     <div class="container">
       <div class="cafe-grid">
@@ -1002,7 +989,6 @@
     </div>
   </section>
 
-  <!-- GRID INTERACTION GALLERY -->
   <section class="gallery-section">
     <div class="container">
       <div class="section-header">
@@ -1017,7 +1003,6 @@
     </div>
   </section>
 
-  <!-- COLLECTION OVERVIEW DISPLAY -->
   <section class="products-preview">
     <div class="container">
       <div class="section-header">
@@ -1036,7 +1021,7 @@
         
         <div class="product-card scroll-animate">
           <div>
-            <h3>Qalid's Choice</h3>
+            <h3>Qalid'Choice</h3>
             <div class="taste-badges"><span class="taste-badge">Balanced</span><span class="taste-badge">Rich Cocoa</span></div>
             <p>A classic, full-bodied selection celebrating bold heritage notes, dark chocolate undertones, and a smooth molasses finish.</p>
           </div>
@@ -1055,7 +1040,6 @@
     </div>
   </section>
 
-  <!-- VIRTUAL SHOP ROLLING PARALLAX CAROUSEL -->
   <section class="virtual-shop-section">
     <div class="container">
       <div class="section-header">
@@ -1067,7 +1051,6 @@
 
     <div class="shop-carousel-viewport">
       <div class="shop-track">
-        <!-- Original Array -->
         <div class="shelf-item">
           <div class="shelf-image-frame"><img src="shelf.png" alt="Specialty Roastery Shelf Display Main"></div>
           <div class="shelf-meta"><h4>Reserve Stacks</h4><p>Micro-lot small batch premium selections curated weekly.</p></div>
@@ -1089,7 +1072,6 @@
           <button class="shelf-action-btn">Quick View</button>
         </div>
 
-        <!-- Duplicated Infinite Loop Mirror -->
         <div class="shelf-item">
           <div class="shelf-image-frame"><img src="shelf.png" alt="Specialty Roastery Shelf Display Main"></div>
           <div class="shelf-meta"><h4>Reserve Stacks</h4><p>Micro-lot small batch premium selections curated weekly.</p></div>
@@ -1114,7 +1096,6 @@
     </div>
   </section>
 
-  <!-- ROAST PROFILE DISPLAY BLOCK -->
   <section class="roast-section">
     <div class="container">
       <div class="roast-card scroll-animate">
@@ -1125,7 +1106,6 @@
     </div>
   </section>
 
-  <!-- HIGH CONVERTING CTA BLOCK FRAME -->
   <section class="cta-section">
     <div class="container">
       <span class="section-tag scroll-animate">Freshly Roasted Weekly</span>
@@ -1139,7 +1119,6 @@
   </section>
 </main>
 
-<!-- PREMIUM GLOBAL FOOTER CONTAINER -->
 <footer class="footer">
   <div class="container">
     <div class="contact-info" style="margin-bottom: 25px;">
@@ -1155,20 +1134,19 @@
   </div>
 </footer>
 
-<!-- SYSTEM ARCHITECTURE INTERACTIONS -->
 <script>
-  // 1. Premium Loading Screen Fade Out
+  // 1. Loading Screen Fade Out Mechanics
   window.addEventListener('load', () => {
     const preloader = document.getElementById('loadingScreen');
     setTimeout(() => {
       preloader.classList.add('fade-out');
-    }, 400);
+    }, 500); // 500ms feel-good cushion delay for visibility
   });
 
   // 2. Interactive Header Scroll Dynamic State
   const siteHeader = document.getElementById('siteHeader');
   window.addEventListener('scroll', () => {
-    if (window.scrollY > 40) {
+    if (window.scrollY > 30) {
       siteHeader.classList.add('scrolled');
     } else {
       siteHeader.classList.remove('scrolled');
@@ -1199,8 +1177,8 @@
   
   const observerSettings = {
     root: null,
-    threshold: 0.12,
-    rootMargin: '0px 0px -40px 0px'
+    threshold: 0.1,
+    rootMargin: '0px 0px -30px 0px'
   };
 
   const scrollObserver = new IntersectionObserver((entries, observer) => {
