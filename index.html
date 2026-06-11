@@ -74,6 +74,7 @@
       width: clamp(140px, 25vw, 180px);
       height: clamp(140px, 25vw, 180px);
       display: flex;
+      flex-direction: column;
       justify-content: center;
       align-items: center;
       background: transparent;
@@ -118,9 +119,10 @@
     ::-webkit-scrollbar { width: 10px; }
     ::-webkit-scrollbar-track { background: var(--dark-green); }
     ::-webkit-scrollbar-thumb { background: linear-gradient(180deg, var(--accent-light), var(--accent-dark)); border-radius: 10px; border: 2px solid var(--dark-green); }
-    ::-selection { background: var(--accent); color: var(--dark-green); }
+    ::-webkit-scrollbar-thumb:hover { background: var(--accent); }
+    ::selection { background: var(--accent); color: var(--dark-green); }
 
-    /* ==================== HEADER (Clean Transparent Logo Framework) ==================== */
+    /* ==================== HEADER (Clean Brand Framework with Italic Roastery) ==================== */
     .site-header {
       position: fixed;
       top: 0;
@@ -150,8 +152,15 @@
 
     .brand {
       display: flex;
-      align-items: center;
+      flex-direction: column;
+      align-items: flex-start;
       transition: var(--transition);
+      gap: 6px;
+    }
+
+    .brand-top {
+      display: flex;
+      align-items: center;
     }
 
     .brand-logo-frame {
@@ -183,6 +192,35 @@
     .brand:hover .brand-logo-frame {
       transform: scale(1.08) rotate(4deg);
       filter: drop-shadow(0 0 15px rgba(255, 215, 0, 0.45));
+    }
+
+    /* Italic Roastery word below logo (attractive elegant style) */
+    .roastery-tagline {
+      font-family: 'Playfair Display', serif;
+      font-style: italic;
+      font-weight: 500;
+      font-size: 0.75rem;
+      letter-spacing: 0.12em;
+      color: var(--accent-light);
+      text-transform: lowercase;
+      margin-left: 4px;
+      transition: var(--transition);
+      text-shadow: 0 0 6px rgba(255,215,0,0.2);
+      background: linear-gradient(135deg, #FFE6A3 20%, var(--accent) 80%);
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+      opacity: 0.95;
+    }
+
+    .site-header.scrolled .roastery-tagline {
+      font-size: 0.65rem;
+      letter-spacing: 0.1em;
+    }
+
+    .brand:hover .roastery-tagline {
+      letter-spacing: 0.18em;
+      text-shadow: 0 0 12px rgba(255,215,0,0.5);
     }
 
     .desktop-nav { display: flex; gap: 45px; align-items: center; }
@@ -819,6 +857,8 @@
       .shelf-item { width: 290px; height: 400px; padding: 20px; }
       .shelf-image-frame { height: 190px; }
       .shelf-meta h4 { font-size: 1.3rem; }
+      .roastery-tagline { font-size: 0.7rem; }
+      .site-header.scrolled .roastery-tagline { font-size: 0.6rem; }
     }
     
     @media (max-width: 480px) {
@@ -830,6 +870,7 @@
       .site-header.scrolled { padding: 10px 16px; }
       section { padding: 70px 0; }
       .stat-item { padding: 30px 15px; }
+      .roastery-tagline { font-size: 0.65rem; }
     }
 
     /* Scroll Animations */
@@ -848,16 +889,19 @@
 
 <div class="loading-screen" id="loadingScreen">
   <div class="loading-logo-container">
-    <img src="Gemini.png" alt="Bean to Bag Logo Premium Preloader Image">
+    <img src="Beans.png" alt="Bean to Bag Logo Premium Preloader Image">
   </div>
 </div>
 
 <header class="site-header" id="siteHeader">
   <div class="nav-wrap">
     <a href="index.html" class="brand" aria-label="Bean to Bag Home Page Anchor">
-      <div class="brand-logo-frame">
-        <img src="Gemini.png" alt="Bean to Bag Luxury Brand Identity Logo">
+      <div class="brand-top">
+        <div class="brand-logo-frame">
+          <img src="Beans.png" alt="Bean to Bag Luxury Brand Identity Logo">
+        </div>
       </div>
+      <div class="roastery-tagline">roastery</div>
     </a>
     <nav class="desktop-nav">
       <a href="index.html" class="active">Home</a>
@@ -1135,12 +1179,12 @@
 </footer>
 
 <script>
-  // 1. Loading Screen Fade Out Mechanics
+  // 1. Loading Screen Fade Out (only logo displays, Roastery word not visible in preloader)
   window.addEventListener('load', () => {
     const preloader = document.getElementById('loadingScreen');
     setTimeout(() => {
       preloader.classList.add('fade-out');
-    }, 500); // 500ms feel-good cushion delay for visibility
+    }, 500);
   });
 
   // 2. Interactive Header Scroll Dynamic State
@@ -1172,7 +1216,7 @@
     });
   });
 
-  // 4. Precision Motion Triggers (Scroll Animations via Intersection Observer)
+  // 4. Scroll Animations with Intersection Observer
   const animatableElements = document.querySelectorAll('.scroll-animate');
   
   const observerSettings = {
@@ -1192,6 +1236,5 @@
 
   animatableElements.forEach(element => scrollObserver.observe(element));
 </script>
-
 </body>
 </html>
