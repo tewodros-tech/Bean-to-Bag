@@ -122,7 +122,7 @@
     ::-webkit-scrollbar-thumb:hover { background: var(--accent); }
     ::selection { background: var(--accent); color: var(--dark-green); }
 
-    /* ==================== HEADER (Clean Brand Framework - ULTRA TIGHT PROXIMITY) ==================== */
+    /* ==================== HEADER (Logo with White Background) ==================== */
     .site-header {
       position: fixed;
       top: 0;
@@ -150,7 +150,7 @@
       margin: 0 auto;
     }
 
-    /* --- BRAND GROUP: LOGO + COFFEE ROASTERY (EXTREME PROXIMITY - NO GAP) --- */
+    /* --- BRAND GROUP: LOGO WITH WHITE BACKGROUND + COFFEE ROASTERY --- */
     .brand {
       display: flex;
       flex-direction: row;
@@ -162,17 +162,18 @@
       cursor: pointer;
     }
 
+    /* Logo container with WHITE BACKGROUND and subtle border */
     .brand-logo-frame {
       width: 75px;
       height: 75px;
       display: flex;
       justify-content: center;
       align-items: center;
-      border-radius: 0;
-      background: transparent;
-      padding: 0;
-      border: none;
-      box-shadow: none;
+      background: #FFFFFF;
+      border-radius: 16px;
+      padding: 8px;
+      border: 1px solid rgba(255, 215, 0, 0.2);
+      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.15), inset 0 0 0 1px rgba(255,255,255,0.2);
       transition: var(--transition);
       line-height: 0;
       margin-right: -4px;
@@ -188,14 +189,17 @@
     .site-header.scrolled .brand-logo-frame {
       width: 58px;
       height: 58px;
+      border-radius: 14px;
+      padding: 6px;
     }
 
     .brand:hover .brand-logo-frame {
-      transform: scale(1.08) rotate(4deg);
-      filter: drop-shadow(0 0 15px rgba(255, 215, 0, 0.45));
+      transform: scale(1.08) rotate(2deg);
+      box-shadow: 0 8px 25px rgba(0, 0, 0, 0.25), 0 0 0 2px rgba(255, 215, 0, 0.4);
+      border-color: var(--accent);
     }
 
-    /* Italic Coffee Roastery — ZERO GAP, ATTACHED DIRECTLY TO LOGO */
+    /* Italic Coffee Roastery — attached directly to logo */
     .roastery-tagline {
       font-family: 'Playfair Display', serif;
       font-style: italic;
@@ -553,7 +557,7 @@
     .stat-number { font-size: clamp(2.8rem, 5vw, 3.8rem); color: var(--accent); font-weight: 900; font-family: 'Playfair Display', serif; line-height: 1; text-shadow: 0 4px 10px rgba(0,0,0,0.3); }
     .stat-label { color: rgba(255,245,214,0.65); font-size: 0.85rem; letter-spacing: 0.2em; margin-top: 14px; text-transform: uppercase; font-weight: 600; }
 
-    /* Cafe Area styling */
+    /* Cafe Area styling - REMOVED BUTTON SECTION */
     .cafe-section { background: radial-gradient(circle at 80% 20%, rgba(255,215,0,0.04) 0%, transparent 50%); }
     .cafe-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 90px; align-items: center; }
     
@@ -591,7 +595,7 @@
     .team-highlight span { font-size: 1.05rem; color: rgba(255,245,214,0.9); display: flex; align-items: center; gap: 14px; font-weight: 400; text-align: left; }
     .team-highlight span::before { content: "✦"; color: var(--accent); font-size: 1.2rem; text-shadow: 0 0 8px var(--accent); flex-shrink: 0; }
 
-    /* Gallery Grid */
+    /* Gallery Grid - Updated section header */
     .gallery-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 35px; }
     .gallery-item { 
       border-radius: 20px; 
@@ -698,11 +702,10 @@
     }
     .whatsapp-float:hover { transform: scale(1.12) translateY(-6px); box-shadow: 0 20px 45px rgba(37,211,102,0.55); }
 
-    /* ==================== VIRTUAL 3D SHOP CAROUSEL ==================== */
+    /* ==================== VIRTUAL SHOP - IMAGE SLIDER (NO CARDS) ==================== */
     .virtual-shop-section {
       background: linear-gradient(180deg, var(--deep-green) 0%, var(--dark-green) 100%);
       overflow: hidden;
-      perspective: 2000px;
       padding: 120px 0;
     }
     
@@ -712,129 +715,77 @@
       display: flex;
       justify-content: center;
       align-items: center;
-      padding: 80px 0;
+      padding: 40px 0;
+      overflow: hidden;
     }
 
     .shop-track {
       display: flex;
-      gap: 60px;
+      gap: 30px;
       width: max-content;
-      transform-style: preserve-3d;
-      animation: smoothInfiniteScroll 40s linear infinite;
+      animation: smoothInfiniteScroll 45s linear infinite;
     }
 
     .shop-track:hover {
       animation-play-state: paused;
     }
 
-    .shelf-item {
+    /* Clean image slide item - no cards, just beautiful images */
+    .slide-image {
+      width: 380px;
+      height: 480px;
+      flex-shrink: 0;
+      border-radius: 20px;
+      overflow: hidden;
+      box-shadow: var(--shadow-lg);
+      transition: all 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+      cursor: pointer;
       position: relative;
-      width: 340px;
-      height: 440px;
-      background: linear-gradient(135deg, rgba(255,215,0,0.04) 0%, rgba(255,215,0,0.01) 100%), rgba(5, 20, 11, 0.7);
-      border: 1px solid var(--glass-border);
-      border-radius: 28px;
-      padding: 30px 25px;
-      display: flex;
-      flex-direction: column;
-      justify-content: space-between;
-      align-items: center;
-      backdrop-filter: blur(20px);
-      box-shadow: var(--shadow-md), inset 0 1px 0 rgba(255,215,0,0.1);
-      transform: translateZ(0) rotateY(12deg);
-      transition: all 0.7s cubic-bezier(0.16, 1, 0.3, 1);
-      transform-style: preserve-3d;
     }
 
-    .shelf-item:hover {
-      transform: translateZ(80px) scale(1.06) rotateY(0deg);
-      border-color: var(--accent);
-      background: rgba(10, 36, 19, 0.95);
+    .slide-image img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+      transition: transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    .slide-image:hover {
+      transform: translateY(-12px) scale(1.02);
       box-shadow: var(--shadow-xl), var(--glow-gold);
     }
 
-    .shop-track:hover .shelf-item:not(:hover) {
-      filter: blur(3px) brightness(0.5);
-      transform: scale(0.92) translateZ(-40px);
+    .slide-image:hover img {
+      transform: scale(1.08);
     }
 
-    .shelf-image-frame {
-      width: 100%;
-      height: 230px;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      position: relative;
-      overflow: hidden;
+    /* Optional subtle overlay on hover */
+    .slide-image::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(180deg, rgba(0,0,0,0.1) 0%, rgba(0,0,0,0.4) 100%);
+      opacity: 0;
+      transition: opacity 0.4s ease;
+      pointer-events: none;
       border-radius: 20px;
-      background: radial-gradient(circle at center, rgba(255, 215, 0, 0.08) 0%, transparent 75%);
     }
 
-    .shelf-image-frame img {
-      max-height: 95%;
-      max-width: 95%;
-      object-fit: contain;
-      transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1), filter 0.6s ease;
-      filter: drop-shadow(0 20px 25px rgba(0,0,0,0.6));
-    }
-
-    .shelf-item:hover .shelf-image-frame img {
-      transform: translateY(-12px) scale(1.1) rotate(4deg);
-      filter: drop-shadow(0 30px 35px rgba(0,0,0,0.75)) brightness(1.05);
-    }
-
-    .shelf-meta {
-      text-align: center;
-      width: 100%;
-      margin-top: 20px;
-    }
-
-    .shelf-meta h4 {
-      font-family: 'Playfair Display', serif;
-      font-size: 1.5rem;
-      color: #FFF;
-      margin-bottom: 8px;
-    }
-
-    .shelf-meta p {
-      font-size: 0.9rem;
-      color: rgba(255, 245, 214, 0.75);
-      font-weight: 300;
-      line-height: 1.45;
-    }
-
-    .shelf-action-btn {
-      width: 100%;
-      padding: 14px;
-      border-radius: 50px;
-      background: transparent;
-      border: 1px solid rgba(255, 215, 0, 0.3);
-      color: var(--accent-light);
-      font-size: 0.8rem;
-      font-weight: 700;
-      text-transform: uppercase;
-      letter-spacing: 0.12em;
-      cursor: pointer;
-      transition: var(--transition-fast);
-      margin-top: 20px;
-    }
-
-    .shelf-item:hover .shelf-action-btn {
-      background: var(--accent);
-      color: #05140B;
-      border-color: var(--accent);
-      box-shadow: 0 5px 20px rgba(255, 215, 0, 0.25);
+    .slide-image:hover::after {
+      opacity: 1;
     }
 
     @keyframes smoothInfiniteScroll {
       0% { transform: translateX(0); }
-      100% { transform: translateX(calc(-50% - 30px)); }
+      100% { transform: translateX(calc(-50% - 15px)); }
     }
 
     /* ==================== RESPONSIVE MOBILE ARCHITECTURE CODES ==================== */
     @media (max-width: 1200px) {
       .alternating-item, .alternating-item.reverse { gap: 60px; grid-template-columns: 1fr 1fr; }
       .site-header { padding: 20px 30px; }
+      .slide-image { width: 320px; height: 420px; }
     }
     
     @media (max-width: 992px) {
@@ -843,6 +794,7 @@
       .alternating-item.reverse .content { grid-column: auto; }
       .gallery-grid { grid-template-columns: repeat(2, 1fr); gap: 25px; }
       section { padding: 90px 0; }
+      .slide-image { width: 280px; height: 380px; }
     }
     
     @media (max-width: 768px) {
@@ -856,26 +808,25 @@
       .hero-content-section { padding: 90px 0; }
       .site-header { padding: 15px 24px; }
       .site-header.scrolled { padding: 12px 24px; }
-      .brand-logo-frame { width: 64px; height: 64px; }
-      .site-header.scrolled .brand-logo-frame { width: 52px; height: 52px; }
+      .brand-logo-frame { width: 64px; height: 64px; border-radius: 14px; padding: 6px; }
+      .site-header.scrolled .brand-logo-frame { width: 52px; height: 52px; border-radius: 12px; padding: 5px; }
       .section-header { margin-bottom: 60px; }
       .alternating-grid { gap: 90px; }
-      .shelf-item { width: 290px; height: 400px; padding: 20px; }
-      .shelf-image-frame { height: 190px; }
-      .shelf-meta h4 { font-size: 1.3rem; }
+      .slide-image { width: 260px; height: 350px; }
       .roastery-tagline { font-size: 0.65rem; letter-spacing: 0.06em; margin-bottom: 2px; margin-left: 0px; }
       .site-header.scrolled .roastery-tagline { font-size: 0.55rem; letter-spacing: 0.05em; }
     }
     
     @media (max-width: 480px) {
       .container { padding: 0 16px; }
-      .brand-logo-frame { width: 56px; height: 56px; }
-      .site-header.scrolled .brand-logo-frame { width: 46px; height: 46px; }
+      .brand-logo-frame { width: 56px; height: 56px; border-radius: 12px; padding: 5px; }
+      .site-header.scrolled .brand-logo-frame { width: 46px; height: 46px; border-radius: 10px; padding: 4px; }
       .whatsapp-float { width: 56px; height: 56px; font-size: 1.6rem; bottom: 25px; right: 25px; }
       .site-header { padding: 12px 16px; }
       .site-header.scrolled { padding: 10px 16px; }
       section { padding: 70px 0; }
       .stat-item { padding: 30px 15px; }
+      .slide-image { width: 220px; height: 300px; }
       .roastery-tagline { font-size: 0.58rem; margin-left: -1px; }
     }
 
@@ -1031,7 +982,6 @@
             <span>Acoustically Guided Cozy Interior</span>
             <span>Freshly Brewed Small Batch Selections Daily</span>
           </div>
-          <div style="margin-top: 35px;"><a href="contact.html" class="btn btn-primary">Find Our Cafe &rarr;</a></div>
         </div>
       </div>
     </div>
@@ -1040,8 +990,7 @@
   <section class="gallery-section">
     <div class="container">
       <div class="section-header">
-        <span class="section-tag scroll-animate">Moments</span>
-        <h2 class="section-title scroll-animate">From Our Cafe &amp; Roastery</h2>
+        <h2 class="section-title scroll-animate">Coffee Pleasures</h2>
       </div>
       <div class="gallery-grid">
         <div class="gallery-item scroll-animate"><img src="16.JPG" alt="Pour over coffee extraction ritual" loading="lazy"></div>
@@ -1093,53 +1042,20 @@
       <div class="section-header">
         <span class="section-tag scroll-animate">Virtual Experience</span>
         <h2 class="section-title scroll-animate">Browse Our Virtual Roastery</h2>
-        <p class="section-subtitle scroll-animate">Interact directly with our freshly stacked premium custom inventory arrays.</p>
+        <p class="section-subtitle scroll-animate">Immerse yourself in the visual journey of our premium coffee collection.</p>
       </div>
     </div>
 
     <div class="shop-carousel-viewport">
       <div class="shop-track">
-        <div class="shelf-item">
-          <div class="shelf-image-frame"><img src="shelf.png" alt="Specialty Roastery Shelf Display Main"></div>
-          <div class="shelf-meta"><h4>Reserve Stacks</h4><p>Micro-lot small batch premium selections curated weekly.</p></div>
-          <button class="shelf-action-btn">Quick View</button>
-        </div>
-        <div class="shelf-item">
-          <div class="shelf-image-frame"><img src="shelf1.png" alt="Specialty Roastery Shelf Display Array 1"></div>
-          <div class="shelf-meta"><h4>Sidamo Elevation</h4><p>Bright berry configurations natively balanced at birth.</p></div>
-          <button class="shelf-action-btn">Quick View</button>
-        </div>
-        <div class="shelf-item">
-          <div class="shelf-image-frame"><img src="shelf2.png" alt="Specialty Roastery Shelf Display Array 2"></div>
-          <div class="shelf-meta"><h4>Harar Sun Heirloom</h4><p>Traditional deep blueberry notes dry-processed completely.</p></div>
-          <button class="shelf-action-btn">Quick View</button>
-        </div>
-        <div class="shelf-item">
-          <div class="shelf-image-frame"><img src="shelf3.png" alt="Specialty Roastery Shelf Display Array 3"></div>
-          <div class="shelf-meta"><h4>Limu Estate Bundles</h4><p>Crisp dynamic citrus hints matching professional extractions.</p></div>
-          <button class="shelf-action-btn">Quick View</button>
-        </div>
-
-        <div class="shelf-item">
-          <div class="shelf-image-frame"><img src="shelf.png" alt="Specialty Roastery Shelf Display Main"></div>
-          <div class="shelf-meta"><h4>Reserve Stacks</h4><p>Micro-lot small batch premium selections curated weekly.</p></div>
-          <button class="shelf-action-btn">Quick View</button>
-        </div>
-        <div class="shelf-item">
-          <div class="shelf-image-frame"><img src="shelf1.png" alt="Specialty Roastery Shelf Display Array 1"></div>
-          <div class="shelf-meta"><h4>Sidamo Elevation</h4><p>Bright berry configurations natively balanced at birth.</p></div>
-          <button class="shelf-action-btn">Quick View</button>
-        </div>
-        <div class="shelf-item">
-          <div class="shelf-image-frame"><img src="shelf2.png" alt="Specialty Roastery Shelf Display Array 2"></div>
-          <div class="shelf-meta"><h4>Harar Sun Heirloom</h4><p>Traditional deep blueberry notes dry-processed completely.</p></div>
-          <button class="shelf-action-btn">Quick View</button>
-        </div>
-        <div class="shelf-item">
-          <div class="shelf-image-frame"><img src="shelf3.png" alt="Specialty Roastery Shelf Display Array 3"></div>
-          <div class="shelf-meta"><h4>Limu Estate Bundles</h4><p>Crisp dynamic citrus hints matching professional extractions.</p></div>
-          <button class="shelf-action-btn">Quick View</button>
-        </div>
+        <div class="slide-image"><img src="shelf.png" alt="Reserve coffee stack presentation"></div>
+        <div class="slide-image"><img src="shelf1.png" alt="Sidamo elevation coffee beans"></div>
+        <div class="slide-image"><img src="shelf2.png" alt="Harar sun heirloom natural processed"></div>
+        <div class="slide-image"><img src="shelf3.png" alt="Limu estate premium bundles"></div>
+        <div class="slide-image"><img src="shelf.png" alt="Reserve coffee stack presentation"></div>
+        <div class="slide-image"><img src="shelf1.png" alt="Sidamo elevation coffee beans"></div>
+        <div class="slide-image"><img src="shelf2.png" alt="Harar sun heirloom natural processed"></div>
+        <div class="slide-image"><img src="shelf3.png" alt="Limu estate premium bundles"></div>
       </div>
     </div>
   </section>
