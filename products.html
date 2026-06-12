@@ -391,6 +391,7 @@
       border-radius: 32px;
       padding: 36px;
       transition: var(--transition);
+      text-align: center;
     }
     .product-card:hover {
       transform: translateY(-8px);
@@ -398,11 +399,18 @@
       box-shadow: var(--shadow-lg), var(--glow-gold);
       background: rgba(255,215,0,0.05);
     }
-    .product-icon {
-      width: 60px;
-      height: 60px;
-      border-radius: 50%;
-      margin-bottom: 20px;
+    .product-image {
+      width: 100%;
+      height: 200px;
+      object-fit: cover;
+      border-radius: 20px;
+      margin-bottom: 24px;
+      box-shadow: 0 8px 20px rgba(0,0,0,0.3);
+      transition: var(--transition-fast);
+    }
+    .product-card:hover .product-image {
+      transform: scale(1.02);
+      box-shadow: 0 12px 30px rgba(0,0,0,0.4);
     }
     .product-card h3 {
       font-size: 2rem;
@@ -437,12 +445,6 @@
       font-size: 0.85rem;
       line-height: 1.8;
       color: rgba(255,245,214,0.75);
-    }
-    .price {
-      font-size: 1.5rem;
-      font-weight: 700;
-      color: var(--accent);
-      margin: 16px 0;
     }
 
     /* Footer */
@@ -504,6 +506,7 @@
       .site-header.scrolled .brand-logo-frame { width: 52px; height: 52px; }
       .roastery-tagline { font-size: 0.65rem; letter-spacing: 0.06em; margin-bottom: 2px; margin-left: 0px; }
       .whatsapp-float { width: 56px; height: 56px; font-size: 1.6rem; bottom: 25px; right: 25px; }
+      .product-image { height: 180px; }
     }
     @media (max-width: 480px) {
       .container { padding: 0 16px; }
@@ -512,6 +515,7 @@
       .site-header.scrolled { padding: 10px 16px; }
       .roastery-tagline { font-size: 0.58rem; margin-left: -1px; }
       .product-card h3 { font-size: 1.6rem; }
+      .product-image { height: 160px; }
     }
 
     /* Animations */
@@ -578,37 +582,34 @@
       <div class="product-grid">
         <!-- Product 1: Caskara -->
         <div class="product-card scroll-animate">
-          <div class="product-icon" style="background: #FF8C42;"></div>
+          <img src="caskara.jfif" alt="Caskara Dried Coffee Cherry" class="product-image" onerror="this.src='https://placehold.co/400x300/1C4D2A/FFD700?text=Caskara'">
           <h3>Caskara</h3>
           <p class="product-subtitle">Dried Coffee Cherry</p>
           <div><span class="taste-badge">Fruity</span><span class="taste-badge">Sweet</span><span class="taste-badge">Floral</span></div>
           <p class="product-description">Made from the dried skin of coffee cherries. Produces a naturally sweet and fruity beverage with delicate floral notes. Perfect as a refreshing cold brew or hot tea-like drink.</p>
           <div class="product-details"><strong>Type:</strong> Whole dried coffee cherry<br><strong>Sizes:</strong> 250g<br><strong>Packaging Color:</strong> Orange<br><strong>Brewing:</strong> Steep in hot water or cold brew</div>
-          <div class="price">250g · Contact for Price</div>
           <button class="btn btn-primary" style="margin-top: 16px; width: 100%;" onclick="window.location.href='contact.html'">Order via WhatsApp</button>
         </div>
 
         <!-- Product 2: Qalid's Choice -->
         <div class="product-card scroll-animate">
-          <div class="product-icon" style="background: #8B5A2B;"></div>
+          <img src="Qalids.jpg" alt="Qalid's Choice House Blend" class="product-image" onerror="this.src='https://placehold.co/400x300/1C4D2A/FFD700?text=Qalid+Choice'">
           <h3>Qalid's Choice</h3>
           <p class="product-subtitle">House Blend – Ground Coffee</p>
           <div><span class="taste-badge">Balanced</span><span class="taste-badge">Smooth</span><span class="taste-badge">Chocolate</span></div>
           <p class="product-description">Our signature house blend designed for everyday coffee enjoyment. The medium-dark roast creates a balanced cup with smooth body and chocolate notes. Made for Ethiopian traditional brewing.</p>
           <div class="product-details"><strong>Roast Level:</strong> Medium-Dark<br><strong>Grind Options:</strong> Jebena / French Press / Espresso<br><strong>Sizes:</strong> 250g / 500g / 1kg<br><strong>Packaging Color:</strong> Warm Brown</div>
-          <div class="price">250g · Contact for Price</div>
           <button class="btn btn-primary" style="margin-top: 16px; width: 100%;" onclick="window.location.href='contact.html'">Order via WhatsApp</button>
         </div>
 
         <!-- Product 3: Chemina -->
         <div class="product-card scroll-animate">
-          <div class="product-icon" style="background: #2D2D2D;"></div>
+          <img src="Chemia.jpg" alt="Chemina Whole Bean Coffee" class="product-image" onerror="this.src='https://placehold.co/400x300/1C4D2A/FFD700?text=Chemina'">
           <h3>Chemina</h3>
           <p class="product-subtitle">Whole Bean Coffee</p>
           <div><span class="taste-badge">Bold Body</span><span class="taste-badge">Cocoa Notes</span><span class="taste-badge">Smooth Finish</span></div>
           <p class="product-description">A bold coffee experience with a rich body and deep cocoa notes. The medium-dark roast is ideal for espresso and milk-based coffee drinks. Whole beans preserve freshness longer.</p>
           <div class="product-details"><strong>Roast Level:</strong> Medium-Dark<br><strong>Best For:</strong> Espresso, Macchiato, Cappuccino, Latte<br><strong>Sizes:</strong> 250g / 500g / 1kg<br><strong>Packaging Color:</strong> Black / Dark Gray</div>
-          <div class="price">250g · Contact for Price</div>
           <button class="btn btn-primary" style="margin-top: 16px; width: 100%;" onclick="window.location.href='contact.html'">Order via WhatsApp</button>
         </div>
       </div>
