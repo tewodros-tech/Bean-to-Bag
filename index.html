@@ -122,7 +122,7 @@
     ::-webkit-scrollbar-thumb:hover { background: var(--accent); }
     ::selection { background: var(--accent); color: var(--dark-green); }
 
-    /* ==================== HEADER (Logo with White Background) ==================== */
+    /* ==================== HEADER (Clean Brand Framework) ==================== */
     .site-header {
       position: fixed;
       top: 0;
@@ -150,7 +150,6 @@
       margin: 0 auto;
     }
 
-    /* --- BRAND GROUP: LOGO WITH WHITE BACKGROUND + COFFEE ROASTERY --- */
     .brand {
       display: flex;
       flex-direction: row;
@@ -162,18 +161,15 @@
       cursor: pointer;
     }
 
-    /* Logo container with WHITE BACKGROUND and subtle border */
     .brand-logo-frame {
       width: 75px;
       height: 75px;
       display: flex;
       justify-content: center;
       align-items: center;
-      background: #FFFFFF;
-      border-radius: 16px;
-      padding: 8px;
-      border: 1px solid rgba(255, 215, 0, 0.2);
-      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.15), inset 0 0 0 1px rgba(255,255,255,0.2);
+      background: transparent;
+      border-radius: 0;
+      padding: 0;
       transition: var(--transition);
       line-height: 0;
       margin-right: -4px;
@@ -189,17 +185,13 @@
     .site-header.scrolled .brand-logo-frame {
       width: 58px;
       height: 58px;
-      border-radius: 14px;
-      padding: 6px;
     }
 
     .brand:hover .brand-logo-frame {
-      transform: scale(1.08) rotate(2deg);
-      box-shadow: 0 8px 25px rgba(0, 0, 0, 0.25), 0 0 0 2px rgba(255, 215, 0, 0.4);
-      border-color: var(--accent);
+      transform: scale(1.08) rotate(4deg);
+      filter: drop-shadow(0 0 15px rgba(255, 215, 0, 0.45));
     }
 
-    /* Italic Coffee Roastery — attached directly to logo */
     .roastery-tagline {
       font-family: 'Playfair Display', serif;
       font-style: italic;
@@ -218,7 +210,6 @@
       margin-left: -2px;
     }
 
-    /* Hover sophistication */
     .brand:hover .roastery-tagline {
       letter-spacing: 0.15em;
       text-shadow: 0 0 12px rgba(255,215,0,0.5);
@@ -557,7 +548,7 @@
     .stat-number { font-size: clamp(2.8rem, 5vw, 3.8rem); color: var(--accent); font-weight: 900; font-family: 'Playfair Display', serif; line-height: 1; text-shadow: 0 4px 10px rgba(0,0,0,0.3); }
     .stat-label { color: rgba(255,245,214,0.65); font-size: 0.85rem; letter-spacing: 0.2em; margin-top: 14px; text-transform: uppercase; font-weight: 600; }
 
-    /* Cafe Area styling - REMOVED BUTTON SECTION */
+    /* Cafe Area styling */
     .cafe-section { background: radial-gradient(circle at 80% 20%, rgba(255,215,0,0.04) 0%, transparent 50%); }
     .cafe-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 90px; align-items: center; }
     
@@ -595,7 +586,7 @@
     .team-highlight span { font-size: 1.05rem; color: rgba(255,245,214,0.9); display: flex; align-items: center; gap: 14px; font-weight: 400; text-align: left; }
     .team-highlight span::before { content: "✦"; color: var(--accent); font-size: 1.2rem; text-shadow: 0 0 8px var(--accent); flex-shrink: 0; }
 
-    /* Gallery Grid - Updated section header */
+    /* Gallery Grid */
     .gallery-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 35px; }
     .gallery-item { 
       border-radius: 20px; 
@@ -702,35 +693,36 @@
     }
     .whatsapp-float:hover { transform: scale(1.12) translateY(-6px); box-shadow: 0 20px 45px rgba(37,211,102,0.55); }
 
-    /* ==================== VIRTUAL SHOP - IMAGE SLIDER (NO CARDS) ==================== */
+    /* ==================== VIRTUAL SHOP - IMAGE SLIDER WITH ARROWS ==================== */
     .virtual-shop-section {
       background: linear-gradient(180deg, var(--deep-green) 0%, var(--dark-green) 100%);
       overflow: hidden;
       padding: 120px 0;
     }
     
+    .shop-carousel-container {
+      position: relative;
+      width: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
     .shop-carousel-viewport {
       width: 100%;
-      position: relative;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      padding: 40px 0;
       overflow: hidden;
+      scroll-behavior: smooth;
+      position: relative;
     }
 
     .shop-track {
       display: flex;
       gap: 30px;
       width: max-content;
-      animation: smoothInfiniteScroll 45s linear infinite;
+      transition: transform 0.5s cubic-bezier(0.2, 0.9, 0.4, 1.1);
+      padding: 20px 0;
     }
 
-    .shop-track:hover {
-      animation-play-state: paused;
-    }
-
-    /* Clean image slide item - no cards, just beautiful images */
     .slide-image {
       width: 380px;
       height: 480px;
@@ -738,7 +730,7 @@
       border-radius: 20px;
       overflow: hidden;
       box-shadow: var(--shadow-lg);
-      transition: all 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+      transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
       cursor: pointer;
       position: relative;
     }
@@ -748,7 +740,7 @@
       height: 100%;
       object-fit: cover;
       display: block;
-      transition: transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+      transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
     }
 
     .slide-image:hover {
@@ -760,7 +752,6 @@
       transform: scale(1.08);
     }
 
-    /* Optional subtle overlay on hover */
     .slide-image::after {
       content: '';
       position: absolute;
@@ -776,16 +767,64 @@
       opacity: 1;
     }
 
-    @keyframes smoothInfiniteScroll {
-      0% { transform: translateX(0); }
-      100% { transform: translateX(calc(-50% - 15px)); }
+    /* Navigation Arrows */
+    .carousel-arrow {
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      width: 52px;
+      height: 52px;
+      background: rgba(10, 36, 19, 0.85);
+      backdrop-filter: blur(12px);
+      border: 1px solid var(--glass-border);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      z-index: 20;
+      transition: var(--transition-fast);
+      font-size: 1.8rem;
+      color: var(--accent-light);
+      font-weight: 300;
+    }
+
+    .carousel-arrow:hover {
+      background: var(--accent);
+      color: #030D07;
+      border-color: var(--accent);
+      transform: translateY(-50%) scale(1.1);
+      box-shadow: var(--glow-gold);
+    }
+
+    .arrow-left {
+      left: 20px;
+    }
+
+    .arrow-right {
+      right: 20px;
+    }
+
+    @media (max-width: 768px) {
+      .carousel-arrow {
+        width: 42px;
+        height: 42px;
+        font-size: 1.4rem;
+      }
+      .arrow-left { left: 10px; }
+      .arrow-right { right: 10px; }
+      .slide-image { width: 280px; height: 380px; }
+    }
+
+    @media (max-width: 480px) {
+      .slide-image { width: 240px; height: 320px; }
+      .carousel-arrow { width: 36px; height: 36px; font-size: 1.2rem; }
     }
 
     /* ==================== RESPONSIVE MOBILE ARCHITECTURE CODES ==================== */
     @media (max-width: 1200px) {
       .alternating-item, .alternating-item.reverse { gap: 60px; grid-template-columns: 1fr 1fr; }
       .site-header { padding: 20px 30px; }
-      .slide-image { width: 320px; height: 420px; }
     }
     
     @media (max-width: 992px) {
@@ -794,7 +833,6 @@
       .alternating-item.reverse .content { grid-column: auto; }
       .gallery-grid { grid-template-columns: repeat(2, 1fr); gap: 25px; }
       section { padding: 90px 0; }
-      .slide-image { width: 280px; height: 380px; }
     }
     
     @media (max-width: 768px) {
@@ -808,25 +846,23 @@
       .hero-content-section { padding: 90px 0; }
       .site-header { padding: 15px 24px; }
       .site-header.scrolled { padding: 12px 24px; }
-      .brand-logo-frame { width: 64px; height: 64px; border-radius: 14px; padding: 6px; }
-      .site-header.scrolled .brand-logo-frame { width: 52px; height: 52px; border-radius: 12px; padding: 5px; }
+      .brand-logo-frame { width: 64px; height: 64px; }
+      .site-header.scrolled .brand-logo-frame { width: 52px; height: 52px; }
       .section-header { margin-bottom: 60px; }
       .alternating-grid { gap: 90px; }
-      .slide-image { width: 260px; height: 350px; }
       .roastery-tagline { font-size: 0.65rem; letter-spacing: 0.06em; margin-bottom: 2px; margin-left: 0px; }
       .site-header.scrolled .roastery-tagline { font-size: 0.55rem; letter-spacing: 0.05em; }
     }
     
     @media (max-width: 480px) {
       .container { padding: 0 16px; }
-      .brand-logo-frame { width: 56px; height: 56px; border-radius: 12px; padding: 5px; }
-      .site-header.scrolled .brand-logo-frame { width: 46px; height: 46px; border-radius: 10px; padding: 4px; }
+      .brand-logo-frame { width: 56px; height: 56px; }
+      .site-header.scrolled .brand-logo-frame { width: 46px; height: 46px; }
       .whatsapp-float { width: 56px; height: 56px; font-size: 1.6rem; bottom: 25px; right: 25px; }
       .site-header { padding: 12px 16px; }
       .site-header.scrolled { padding: 10px 16px; }
       section { padding: 70px 0; }
       .stat-item { padding: 30px 15px; }
-      .slide-image { width: 220px; height: 300px; }
       .roastery-tagline { font-size: 0.58rem; margin-left: -1px; }
     }
 
@@ -1046,17 +1082,21 @@
       </div>
     </div>
 
-    <div class="shop-carousel-viewport">
-      <div class="shop-track">
-        <div class="slide-image"><img src="shelf.png" alt="Reserve coffee stack presentation"></div>
-        <div class="slide-image"><img src="shelf1.png" alt="Sidamo elevation coffee beans"></div>
-        <div class="slide-image"><img src="shelf2.png" alt="Harar sun heirloom natural processed"></div>
-        <div class="slide-image"><img src="shelf3.png" alt="Limu estate premium bundles"></div>
-        <div class="slide-image"><img src="shelf.png" alt="Reserve coffee stack presentation"></div>
-        <div class="slide-image"><img src="shelf1.png" alt="Sidamo elevation coffee beans"></div>
-        <div class="slide-image"><img src="shelf2.png" alt="Harar sun heirloom natural processed"></div>
-        <div class="slide-image"><img src="shelf3.png" alt="Limu estate premium bundles"></div>
+    <div class="shop-carousel-container">
+      <div class="carousel-arrow arrow-left" id="arrowLeft">←</div>
+      <div class="shop-carousel-viewport" id="carouselViewport">
+        <div class="shop-track" id="shopTrack">
+          <div class="slide-image"><img src="shelf.png" alt="Reserve coffee stack presentation"></div>
+          <div class="slide-image"><img src="shelf1.png" alt="Sidamo elevation coffee beans"></div>
+          <div class="slide-image"><img src="shelf2.png" alt="Harar sun heirloom natural processed"></div>
+          <div class="slide-image"><img src="shelf3.png" alt="Limu estate premium bundles"></div>
+          <div class="slide-image"><img src="shelf.png" alt="Reserve coffee stack presentation"></div>
+          <div class="slide-image"><img src="shelf1.png" alt="Sidamo elevation coffee beans"></div>
+          <div class="slide-image"><img src="shelf2.png" alt="Harar sun heirloom natural processed"></div>
+          <div class="slide-image"><img src="shelf3.png" alt="Limu estate premium bundles"></div>
+        </div>
       </div>
+      <div class="carousel-arrow arrow-right" id="arrowRight">→</div>
     </div>
   </section>
 
@@ -1099,7 +1139,7 @@
 </footer>
 
 <script>
-  // 1. Loading Screen Fade Out (only logo displays, Roastery word not visible in preloader)
+  // 1. Loading Screen Fade Out
   window.addEventListener('load', () => {
     const preloader = document.getElementById('loadingScreen');
     setTimeout(() => {
@@ -1107,7 +1147,7 @@
     }, 500);
   });
 
-  // 2. Interactive Header Scroll Dynamic State
+  // 2. Header Scroll State
   const siteHeader = document.getElementById('siteHeader');
   window.addEventListener('scroll', () => {
     if (window.scrollY > 30) {
@@ -1117,7 +1157,7 @@
     }
   });
 
-  // 3. Mobile Menu Overlay Toggle Mechanics
+  // 3. Mobile Menu
   const menuToggle = document.getElementById('menuToggle');
   const closeMenu = document.getElementById('closeMenu');
   const mobileMenu = document.getElementById('mobileMenu');
@@ -1136,25 +1176,74 @@
     });
   });
 
-  // 4. Scroll Animations with Intersection Observer
+  // 4. Scroll Animations
   const animatableElements = document.querySelectorAll('.scroll-animate');
-  
-  const observerSettings = {
-    root: null,
-    threshold: 0.1,
-    rootMargin: '0px 0px -30px 0px'
-  };
-
-  const scrollObserver = new IntersectionObserver((entries, observer) => {
+  const observerSettings = { root: null, threshold: 0.1, rootMargin: '0px 0px -30px 0px' };
+  const scrollObserver = new IntersectionObserver((entries) => {
     entries.forEach(entry => {
       if (entry.isIntersecting) {
         entry.target.classList.add('animated');
-        observer.unobserve(entry.target);
+        scrollObserver.unobserve(entry.target);
       }
     });
   }, observerSettings);
-
   animatableElements.forEach(element => scrollObserver.observe(element));
+
+  // 5. Carousel with Arrow Controls
+  const track = document.getElementById('shopTrack');
+  const viewport = document.getElementById('carouselViewport');
+  const arrowLeft = document.getElementById('arrowLeft');
+  const arrowRight = document.getElementById('arrowRight');
+  
+  let currentIndex = 0;
+  const slides = document.querySelectorAll('.slide-image');
+  const slideWidth = slides[0]?.offsetWidth || 380;
+  const gap = 30;
+  const totalSlides = slides.length;
+  const visibleSlides = window.innerWidth < 768 ? 1 : (window.innerWidth < 1200 ? 2 : 3);
+  
+  // Clone slides for infinite feel if needed, but we'll just scroll with bounds
+  const maxIndex = totalSlides - visibleSlides;
+  
+  function updateCarousel() {
+    const offset = currentIndex * (slideWidth + gap);
+    track.style.transform = `translateX(-${offset}px)`;
+  }
+  
+  arrowRight.addEventListener('click', () => {
+    if (currentIndex < maxIndex) {
+      currentIndex++;
+    } else {
+      currentIndex = 0; // loop back to start
+    }
+    updateCarousel();
+  });
+  
+  arrowLeft.addEventListener('click', () => {
+    if (currentIndex > 0) {
+      currentIndex--;
+    } else {
+      currentIndex = maxIndex; // loop to end
+    }
+    updateCarousel();
+  });
+  
+  // Adjust on window resize
+  window.addEventListener('resize', () => {
+    const newVisibleSlides = window.innerWidth < 768 ? 1 : (window.innerWidth < 1200 ? 2 : 3);
+    const newMaxIndex = totalSlides - newVisibleSlides;
+    if (currentIndex > newMaxIndex && newMaxIndex >= 0) {
+      currentIndex = newMaxIndex;
+    } else if (newMaxIndex < 0 && totalSlides > 0) {
+      currentIndex = 0;
+    }
+    updateCarousel();
+  });
+  
+  // initial update
+  setTimeout(() => {
+    updateCarousel();
+  }, 100);
 </script>
 </body>
 </html>
