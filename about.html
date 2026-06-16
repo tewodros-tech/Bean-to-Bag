@@ -35,7 +35,7 @@
     body {
       font-family: 'Inter', sans-serif;
       background: var(--deep-green);
-      background-image: 
+      background-image:
         radial-gradient(circle at 10% 20%, rgba(255, 215, 0, 0.03) 0%, transparent 40%),
         radial-gradient(circle at 90% 70%, rgba(255, 215, 0, 0.02) 0%, transparent 50%);
       color: var(--cream);
@@ -44,14 +44,12 @@
       -webkit-font-smoothing: antialiased;
     }
 
-    /* GLOBAL IMAGE FIX */
     img {
       max-width: 100%;
       height: auto;
       display: block;
     }
 
-    /* LOADING SCREEN */
     .loading-screen {
       position: fixed;
       top: 0;
@@ -113,7 +111,6 @@
     ::-webkit-scrollbar-thumb:hover { background: var(--accent); }
     ::selection { background: var(--accent); color: var(--dark-green); }
 
-    /* Header */
     .site-header {
       position: fixed;
       top: 0;
@@ -291,7 +288,6 @@
     }
     .close-menu:hover { transform: rotate(90deg); color: var(--accent); }
 
-    /* Buttons */
     .btn {
       display: inline-flex;
       align-items: center;
@@ -334,7 +330,6 @@
     .btn-outline { border: 2px solid var(--accent); color: var(--cream); background: transparent; }
     .btn-outline:hover { background: var(--accent); color: #030D07; transform: translateY(-5px); box-shadow: var(--glow-gold); }
 
-    /* Typography */
     .section-tag {
       color: var(--accent-light);
       letter-spacing: 0.35em;
@@ -357,13 +352,12 @@
     }
     .gold-text { color: var(--accent); background: none; -webkit-text-fill-color: var(--accent); }
 
-    /* Hero Section */
     .hero-about {
       min-height: 75vh;
       display: flex;
       align-items: center;
       position: relative;
-      background: linear-gradient(180deg, rgba(5,20,11,0.85) 0%, rgba(10,36,19,0.95) 100%), 
+      background: linear-gradient(180deg, rgba(5,20,11,0.85) 0%, rgba(10,36,19,0.95) 100%),
                   url('coffee-beans-top-view-background.jpg') no-repeat center center;
       background-size: cover;
       background-attachment: fixed;
@@ -383,7 +377,6 @@
       border: 1px solid rgba(255, 215, 0, 0.3);
     }
 
-    /* Section Styles */
     section { padding: 80px 0; }
     .grid-2 {
       display: grid;
@@ -402,7 +395,6 @@
     .image-card:hover { transform: translateY(-8px); box-shadow: var(--shadow-xl), var(--glow-gold); }
     .image-card:hover img { transform: scale(1.05); }
 
-    /* Ceremony Section */
     .ceremony-section {
       background: var(--dark-green);
       padding: 80px 0;
@@ -417,7 +409,6 @@
       border: 1px solid var(--glass-border);
     }
 
-    /* Stats */
     .stats-grid {
       display: grid;
       grid-template-columns: repeat(4, 1fr);
@@ -438,7 +429,6 @@
       text-transform: uppercase;
     }
 
-    /* Values */
     .values-grid {
       display: grid;
       grid-template-columns: repeat(3, 1fr);
@@ -456,9 +446,8 @@
     .value-card:hover { border-color: var(--accent); transform: translateY(-6px); background: rgba(255,215,0,0.05); }
     .value-card h3 { color: var(--accent-light); margin-bottom: 15px; font-size: 1.5rem; }
 
-    /* CTA Section */
     .cta-gold {
-      background: linear-gradient(180deg, rgba(10, 42, 22, 0.85) 0%, rgba(10, 42, 22, 0.95) 100%), 
+      background: linear-gradient(180deg, rgba(10, 42, 22, 0.85) 0%, rgba(10, 42, 22, 0.95) 100%),
                   url('dark-coffee-beans-bowl-brown-table.jpg') no-repeat center center;
       background-size: cover;
       padding: 100px 0;
@@ -467,7 +456,6 @@
       border-bottom: 1px solid var(--glass-border);
     }
 
-    /* Footer */
     .footer {
       background: #030D07;
       padding: 90px 40px 40px;
@@ -495,7 +483,6 @@
     }
     .whatsapp-float:hover { transform: scale(1.12) translateY(-6px); box-shadow: 0 20px 45px rgba(37,211,102,0.55); }
 
-    /* Social Links */
     .social-links {
       display: flex;
       gap: 16px;
@@ -507,7 +494,6 @@
     .social-links a:hover { color: var(--accent); background: rgba(255,215,0,0.06); border-color: rgba(255,215,0,0.2); transform: translateY(-4px); }
     .contact-info p { font-size: 1rem; color: rgba(255,245,214,0.6); font-weight: 400; letter-spacing: 0.05em; }
 
-    /* Responsive */
     @media (max-width: 992px) {
       .grid-2 { grid-template-columns: 1fr; gap: 40px; }
       .values-grid { grid-template-columns: repeat(2, 1fr); }
@@ -536,7 +522,6 @@
       .roastery-tagline { font-size: 0.58rem; margin-left: -1px; }
     }
 
-    /* Animations */
     .scroll-animate {
       opacity: 0;
       transform: translateY(30px);
@@ -547,7 +532,6 @@
 </head>
 <body>
 
-<!-- LOADING SCREEN -->
 <div class="loading-screen" id="loadingScreen">
   <div class="loading-logo-container">
     <img src="Beans.png" alt="Bean to Bag Logo">
@@ -585,7 +569,6 @@
 <a href="https://wa.me/251911234567" class="whatsapp-float" target="_blank" rel="noopener">💬</a>
 
 <main>
-  <!-- Hero Section -->
   <div class="hero-about">
     <div class="container">
       <div class="scroll-animate" style="text-align: center;">
@@ -597,7 +580,6 @@
     </div>
   </div>
 
-  <!-- Our Story Section -->
   <section id="story">
     <div class="container">
       <div class="grid-2">
@@ -614,7 +596,6 @@
     </div>
   </section>
 
-  <!-- Ethiopian Coffee Ceremony -->
   <div class="ceremony-section">
     <div class="container">
       <div class="grid-2">
@@ -631,7 +612,6 @@
     </div>
   </div>
 
-  <!-- Stats Section -->
   <section>
     <div class="container">
       <div class="stats-grid">
@@ -643,7 +623,6 @@
     </div>
   </section>
 
-  <!-- Our Values -->
   <section style="background: rgba(0,0,0,0.15);">
     <div class="container">
       <div class="scroll-animate" style="text-align: center; margin-bottom: 50px;">
@@ -658,7 +637,6 @@
     </div>
   </section>
 
-  <!-- Roasting & Packaging Section -->
   <section>
     <div class="container">
       <div class="grid-2">
@@ -675,23 +653,6 @@
     </div>
   </section>
 
-  <!-- Vision Section -->
-  <section style="background: rgba(0,0,0,0.1);">
-    <div class="container">
-      <div class="scroll-animate" style="text-align: center; max-width: 900px; margin: 0 auto;">
-        <span class="section-tag">✨ FUTURE VISION</span>
-        <h2 class="section-title">Growing <span class="gold-text">Together</span></h2>
-        <p style="line-height: 1.85; margin-bottom: 1.5rem; color: rgba(255,245,214,0.85);">After the first year of operation, Bean to Bag plans to invest in dry-processing coffee land. This strategy will allow us to reduce raw coffee costs, control coffee quality, improve traceability, and increase profit margins.</p>
-        <div style="display: flex; flex-wrap: wrap; gap: 20px; justify-content: center; margin-top: 30px;">
-          <div style="background: rgba(255,215,0,0.08); border-radius: 20px; padding: 20px; min-width: 180px; border: 1px solid rgba(255,215,0,0.15);"><strong style="color: var(--accent); font-size: 1.5rem;">Year 1</strong><br>Establish brand<br>200kg monthly sales</div>
-          <div style="background: rgba(255,215,0,0.08); border-radius: 20px; padding: 20px; min-width: 180px; border: 1px solid rgba(255,215,0,0.15);"><strong style="color: var(--accent); font-size: 1.5rem;">Year 2</strong><br>500kg/month<br>Expand retail distribution</div>
-          <div style="background: rgba(255,215,0,0.08); border-radius: 20px; padding: 20px; min-width: 180px; border: 1px solid rgba(255,215,0,0.15);"><strong style="color: var(--accent); font-size: 1.5rem;">Year 3</strong><br>Retail shop<br>Export roasted coffee</div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- Final CTA Section -->
   <div class="cta-gold">
     <div class="container">
       <div class="scroll-animate">
@@ -721,7 +682,6 @@
 </footer>
 
 <script>
-  // Loading Screen
   const loadingScreen = document.getElementById('loadingScreen');
   window.addEventListener('load', () => {
     setTimeout(() => {
@@ -730,7 +690,6 @@
     }, 500);
   });
 
-  // Header Scroll
   const siteHeader = document.getElementById('siteHeader');
   window.addEventListener('scroll', () => {
     if (window.scrollY > 30) {
@@ -740,7 +699,6 @@
     }
   });
 
-  // Mobile Menu
   const menuToggle = document.getElementById('menuToggle');
   const closeMenu = document.getElementById('closeMenu');
   const mobileMenu = document.getElementById('mobileMenu');
@@ -760,7 +718,6 @@
     });
   });
 
-  // Scroll Animations
   const animatableElements = document.querySelectorAll('.scroll-animate');
   const observerSettings = { root: null, threshold: 0.1, rootMargin: '0px 0px -30px 0px' };
   const scrollObserver = new IntersectionObserver((entries) => {
