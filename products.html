@@ -380,18 +380,24 @@
     }
     .product-grid {
       display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 40px;
+      grid-template-columns: 1fr;
+      gap: 60px;
       margin-top: 40px;
+      max-width: 900px;
+      margin-left: auto;
+      margin-right: auto;
     }
     .product-card {
       background: var(--glass);
       backdrop-filter: blur(4px);
       border: 1px solid var(--glass-border);
       border-radius: 32px;
-      padding: 36px;
+      padding: 40px 48px;
       transition: var(--transition);
       text-align: center;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
     }
     .product-card:hover {
       transform: translateY(-8px);
@@ -399,52 +405,75 @@
       box-shadow: var(--shadow-lg), var(--glow-gold);
       background: rgba(255,215,0,0.05);
     }
+    .product-image-wrapper {
+      width: 100%;
+      max-width: 500px;
+      border-radius: 24px;
+      overflow: hidden;
+      margin-bottom: 28px;
+      box-shadow: 0 12px 30px rgba(0,0,0,0.4);
+      transition: var(--transition-fast);
+      background: rgba(0,0,0,0.2);
+    }
+    .product-card:hover .product-image-wrapper {
+      transform: scale(1.02);
+      box-shadow: 0 20px 45px rgba(0,0,0,0.6);
+    }
     .product-image {
       width: 100%;
-      height: 200px;
+      height: auto;
+      aspect-ratio: 4/3;
       object-fit: cover;
-      border-radius: 20px;
-      margin-bottom: 24px;
-      box-shadow: 0 8px 20px rgba(0,0,0,0.3);
+      display: block;
       transition: var(--transition-fast);
     }
-    .product-card:hover .product-image {
-      transform: scale(1.02);
-      box-shadow: 0 12px 30px rgba(0,0,0,0.4);
-    }
     .product-card h3 {
-      font-size: 2rem;
+      font-size: 2.4rem;
       color: var(--accent-light);
       font-family: 'Playfair Display', serif;
-      margin-bottom: 8px;
+      margin-bottom: 4px;
     }
     .product-subtitle {
       color: var(--accent);
       font-style: italic;
+      font-size: 1.1rem;
       margin-bottom: 12px;
     }
     .taste-badge {
       display: inline-block;
       background: rgba(255, 215, 0, 0.15);
-      padding: 6px 14px;
+      padding: 6px 18px;
       border-radius: 40px;
-      font-size: 0.7rem;
-      margin: 4px;
+      font-size: 0.75rem;
+      margin: 4px 6px;
       color: #FFEFB5;
+      font-weight: 500;
+      letter-spacing: 0.03em;
     }
     .product-description {
-      margin: 16px 0;
+      margin: 16px 0 12px;
       line-height: 1.7;
       color: rgba(255,245,214,0.85);
+      max-width: 600px;
     }
     .product-details {
-      margin: 16px 0;
-      padding: 12px 0;
+      margin: 16px 0 8px;
+      padding: 14px 0;
       border-top: 1px solid var(--glass-border);
       border-bottom: 1px solid var(--glass-border);
-      font-size: 0.85rem;
-      line-height: 1.8;
-      color: rgba(255,245,214,0.75);
+      font-size: 0.9rem;
+      line-height: 1.9;
+      color: rgba(255,245,214,0.8);
+      width: 100%;
+      max-width: 500px;
+    }
+    .product-details strong {
+      color: var(--accent-light);
+      font-weight: 600;
+    }
+    .product-card .btn {
+      margin-top: 20px;
+      min-width: 240px;
     }
 
     /* Footer */
@@ -487,26 +516,23 @@
     .contact-info p { font-size: 1rem; color: rgba(255,245,214,0.6); font-weight: 400; letter-spacing: 0.05em; }
 
     /* Responsive */
-    @media (max-width: 1200px) {
-      .product-grid { gap: 30px; }
-    }
-    @media (max-width: 992px) {
-      .product-grid { grid-template-columns: repeat(2, 1fr); }
-    }
     @media (max-width: 768px) {
       .desktop-nav { display: none; }
       .menu-button { display: flex; }
       .container { padding: 0 24px; }
       .hero-products { padding: 130px 0 40px; }
-      .product-grid { grid-template-columns: 1fr; gap: 30px; }
-      .product-card { padding: 28px; }
+      .product-grid { gap: 40px; padding: 0 8px; }
+      .product-card { padding: 28px 20px; }
+      .product-card h3 { font-size: 2rem; }
       .site-header { padding: 15px 24px; }
       .site-header.scrolled { padding: 12px 24px; }
       .brand-logo-frame { width: 64px; height: 64px; }
       .site-header.scrolled .brand-logo-frame { width: 52px; height: 52px; }
       .roastery-tagline { font-size: 0.65rem; letter-spacing: 0.06em; margin-bottom: 2px; margin-left: 0px; }
       .whatsapp-float { width: 56px; height: 56px; font-size: 1.6rem; bottom: 25px; right: 25px; }
-      .product-image { height: 180px; }
+      .product-image-wrapper { max-width: 100%; }
+      .product-card .btn { min-width: 100%; }
+      .product-details { font-size: 0.8rem; }
     }
     @media (max-width: 480px) {
       .container { padding: 0 16px; }
@@ -514,8 +540,8 @@
       .site-header { padding: 12px 16px; }
       .site-header.scrolled { padding: 10px 16px; }
       .roastery-tagline { font-size: 0.58rem; margin-left: -1px; }
-      .product-card h3 { font-size: 1.6rem; }
-      .product-image { height: 160px; }
+      .product-card h3 { font-size: 1.7rem; }
+      .product-card { padding: 20px 16px; }
     }
 
     /* Animations */
@@ -582,35 +608,68 @@
       <div class="product-grid">
         <!-- Product 1: Caskara -->
         <div class="product-card scroll-animate">
-          <img src="caskara.jfif" alt="Caskara Dried Coffee Cherry" class="product-image" onerror="this.src='https://placehold.co/400x300/1C4D2A/FFD700?text=Caskara'">
+          <div class="product-image-wrapper">
+            <img src="CASKARA.png" alt="Caskara Dried Coffee Cherry" class="product-image" onerror="this.src='https://placehold.co/600x450/1C4D2A/FFD700?text=Caskara'">
+          </div>
           <h3>Caskara</h3>
           <p class="product-subtitle">Dried Coffee Cherry</p>
-          <div><span class="taste-badge">Fruity</span><span class="taste-badge">Sweet</span><span class="taste-badge">Floral</span></div>
+          <div>
+            <span class="taste-badge">Fruity</span>
+            <span class="taste-badge">Sweet</span>
+            <span class="taste-badge">Floral</span>
+          </div>
           <p class="product-description">Made from the dried skin of coffee cherries. Produces a naturally sweet and fruity beverage with delicate floral notes. Perfect as a refreshing cold brew or hot tea-like drink.</p>
-          <div class="product-details"><strong>Type:</strong> Whole dried coffee cherry<br><strong>Sizes:</strong> 250g<br><strong>Packaging Color:</strong> Orange<br><strong>Brewing:</strong> Steep in hot water or cold brew</div>
-          <button class="btn btn-primary" style="margin-top: 16px; width: 100%;" onclick="window.location.href='contact.html'">Order via WhatsApp</button>
+          <div class="product-details">
+            <strong>Type:</strong> Whole dried coffee cherry<br>
+            <strong>Packaging Color:</strong> Orange<br>
+            <strong>Brewing:</strong> Steep in hot water or cold brew<br>
+            <strong>Sizes:</strong> 250g / 500g / 1kg
+          </div>
+          <button class="btn btn-primary" onclick="window.location.href='contact.html'">Order via WhatsApp</button>
         </div>
 
         <!-- Product 2: Qalid's Choice -->
         <div class="product-card scroll-animate">
-          <img src="Qalids.jpg" alt="Qalid's Choice House Blend" class="product-image" onerror="this.src='https://placehold.co/400x300/1C4D2A/FFD700?text=Qalid+Choice'">
+          <div class="product-image-wrapper">
+            <img src="Qalids.png" alt="Qalid's Choice House Blend" class="product-image" onerror="this.src='https://placehold.co/600x450/1C4D2A/FFD700?text=Qalid+Choice'">
+          </div>
           <h3>Qalid's Choice</h3>
           <p class="product-subtitle">House Blend – Ground Coffee</p>
-          <div><span class="taste-badge">Balanced</span><span class="taste-badge">Smooth</span><span class="taste-badge">Chocolate</span></div>
+          <div>
+            <span class="taste-badge">Balanced</span>
+            <span class="taste-badge">Smooth</span>
+            <span class="taste-badge">Chocolate</span>
+          </div>
           <p class="product-description">Our signature house blend designed for everyday coffee enjoyment. The medium-dark roast creates a balanced cup with smooth body and chocolate notes. Made for Ethiopian traditional brewing.</p>
-          <div class="product-details"><strong>Roast Level:</strong> Medium-Dark<br><strong>Grind Options:</strong> Jebena / French Press / Espresso<br><strong>Sizes:</strong> 250g / 500g / 1kg<br><strong>Packaging Color:</strong> Warm Brown</div>
-          <button class="btn btn-primary" style="margin-top: 16px; width: 100%;" onclick="window.location.href='contact.html'">Order via WhatsApp</button>
+          <div class="product-details">
+            <strong>Roast Level:</strong> Medium-Dark<br>
+            <strong>Grind Options:</strong> Jebena / French Press / Espresso<br>
+            <strong>Packaging Color:</strong> Warm Brown<br>
+            <strong>Sizes:</strong> 250g / 500g / 1kg
+          </div>
+          <button class="btn btn-primary" onclick="window.location.href='contact.html'">Order via WhatsApp</button>
         </div>
 
         <!-- Product 3: Chemina -->
         <div class="product-card scroll-animate">
-          <img src="Chemia.jpg" alt="Chemina Whole Bean Coffee" class="product-image" onerror="this.src='https://placehold.co/400x300/1C4D2A/FFD700?text=Chemina'">
+          <div class="product-image-wrapper">
+            <img src="CHEMIA.png" alt="Chemina Whole Bean Coffee" class="product-image" onerror="this.src='https://placehold.co/600x450/1C4D2A/FFD700?text=Chemina'">
+          </div>
           <h3>Chemina</h3>
           <p class="product-subtitle">Whole Bean Coffee</p>
-          <div><span class="taste-badge">Bold Body</span><span class="taste-badge">Cocoa Notes</span><span class="taste-badge">Smooth Finish</span></div>
+          <div>
+            <span class="taste-badge">Bold Body</span>
+            <span class="taste-badge">Cocoa Notes</span>
+            <span class="taste-badge">Smooth Finish</span>
+          </div>
           <p class="product-description">A bold coffee experience with a rich body and deep cocoa notes. The medium-dark roast is ideal for espresso and milk-based coffee drinks. Whole beans preserve freshness longer.</p>
-          <div class="product-details"><strong>Roast Level:</strong> Medium-Dark<br><strong>Best For:</strong> Espresso, Macchiato, Cappuccino, Latte<br><strong>Sizes:</strong> 250g / 500g / 1kg<br><strong>Packaging Color:</strong> Black / Dark Gray</div>
-          <button class="btn btn-primary" style="margin-top: 16px; width: 100%;" onclick="window.location.href='contact.html'">Order via WhatsApp</button>
+          <div class="product-details">
+            <strong>Roast Level:</strong> Medium-Dark<br>
+            <strong>Best For:</strong> Espresso, Macchiato, Cappuccino, Latte<br>
+            <strong>Packaging Color:</strong> Black / Dark Gray<br>
+            <strong>Sizes:</strong> 250g / 500g / 1kg
+          </div>
+          <button class="btn btn-primary" onclick="window.location.href='contact.html'">Order via WhatsApp</button>
         </div>
       </div>
     </div>
