@@ -436,7 +436,7 @@
     }
     .product-image-wrapper {
       width: 100%;
-      max-width: 600px;
+      max-width: 480px;
       border-radius: 24px;
       overflow: hidden;
       margin-bottom: 22px;
@@ -462,10 +462,10 @@
     .product-image {
       width: 100%;
       height: auto;
-      aspect-ratio: 16 / 10;
-      object-fit: cover;
+      object-fit: contain;
       display: block;
       transition: var(--transition-fast);
+      background: rgba(0,0,0,0.1);
     }
     .product-card:hover .product-image {
       transform: scale(1.02);
@@ -590,7 +590,6 @@
       .product-card .btn { min-width: 100%; padding: 14px 20px; font-size: 0.75rem; }
       .product-details { font-size: 0.8rem; }
       .product-description { font-size: 0.9rem; }
-      .product-image { aspect-ratio: 16/10; }
     }
     @media (max-width: 480px) {
       .container { padding: 0 14px; }
@@ -602,7 +601,6 @@
       .product-card { padding: 16px 12px 18px; border-radius: 20px; }
       .product-image-wrapper { border-radius: 12px; }
       .product-card .btn { font-size: 0.7rem; padding: 12px 16px; }
-      .product-image { aspect-ratio: 16/10; }
     }
 
     /* Animations */
@@ -670,7 +668,7 @@
         <!-- Product 1: Caskara -->
         <div class="product-card scroll-animate">
           <div class="product-image-wrapper">
-            <img src="CASKARA.png" alt="Caskara Dried Coffee Cherry" class="product-image" onerror="this.src='https://placehold.co/800x500/1C4D2A/FFD700?text=Caskara'">
+            <img src="CASKARA.png" alt="Caskara Dried Coffee Cherry" class="product-image" onerror="this.src='https://placehold.co/600x800/1C4D2A/FFD700?text=Caskara'">
           </div>
           <h3>Caskara</h3>
           <p class="product-subtitle">Dried Coffee Cherry</p>
@@ -690,7 +688,7 @@
         <!-- Product 2: Qalid's Choice -->
         <div class="product-card scroll-animate">
           <div class="product-image-wrapper">
-            <img src="Qalids.png" alt="Qalid's Choice House Blend" class="product-image" onerror="this.src='https://placehold.co/800x500/1C4D2A/FFD700?text=Qalid+Choice'">
+            <img src="Qalids.png" alt="Qalid's Choice House Blend" class="product-image" onerror="this.src='https://placehold.co/600x800/1C4D2A/FFD700?text=Qalid+Choice'">
           </div>
           <h3>Qalid's Choice</h3>
           <p class="product-subtitle">House Blend – Ground Coffee</p>
@@ -710,7 +708,7 @@
         <!-- Product 3: Chemina -->
         <div class="product-card scroll-animate">
           <div class="product-image-wrapper">
-            <img src="CHEMIA.png" alt="Chemina Whole Bean Coffee" class="product-image" onerror="this.src='https://placehold.co/800x500/1C4D2A/FFD700?text=Chemina'">
+            <img src="CHEMIA.png" alt="Chemina Whole Bean Coffee" class="product-image" onerror="this.src='https://placehold.co/600x800/1C4D2A/FFD700?text=Chemina'">
           </div>
           <h3>Chemina</h3>
           <p class="product-subtitle">Whole Bean Coffee</p>
